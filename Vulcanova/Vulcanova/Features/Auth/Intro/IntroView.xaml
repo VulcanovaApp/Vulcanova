@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<rxui:ReactiveContentPage x:TypeArguments="intro:IntroViewModel"
+                          xmlns="http://xamarin.com/schemas/2014/forms"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+                          xmlns:intro="clr-namespace:Vulcanova.Features.Auth.Intro;assembly=Vulcanova"
+                          x:Class="Vulcanova.Features.Auth.Intro.IntroView"
+                          NavigationPage.HasNavigationBar="False">
+    <ContentPage.Content>
+        <StackLayout VerticalOptions="Center" Padding="32" Spacing="48">
+            <StackLayout>
+                <Label Style="{StaticResource HeadingLabelStyle}">Vulcanova</Label>
+                <Label Style="{StaticResource DefaultLabelStyle}">Nieoficjalna aplikacja dla dziennika Vulcan UONET+</Label>
+            </StackLayout>
+            <StackLayout>
+                <Label HorizontalTextAlignment="Center" FontSize="Small" Style="{StaticResource DefaultLabelStyle}">Dodaj konto</Label>
+                <Button Style="{StaticResource DefaultButtonStyle}" Text="Skanuj kod QR"
+                        x:Name="ScanQrButton" />
+                <Button Style="{StaticResource DefaultButtonStyle}" Text="Wpisz dane ręcznie" x:Name="ManualSignInButton" />
+            </StackLayout>
+            <Label HorizontalTextAlignment="Center" TextColor="#EC4899" FontSize="Small">Strona projektu na GitHubie</Label>
+        </StackLayout>
+    </ContentPage.Content>
+</rxui:ReactiveContentPage>

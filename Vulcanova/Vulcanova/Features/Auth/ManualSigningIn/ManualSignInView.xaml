@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<rxui:ReactiveContentPage x:TypeArguments="manualSigningIn:ManualSignInViewModel"
+                          xmlns="http://xamarin.com/schemas/2014/forms"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+                          xmlns:manualSigningIn="clr-namespace:Vulcanova.Features.Auth.ManualSigningIn;assembly=Vulcanova"
+                          x:Class="Vulcanova.Features.Auth.ManualSigningIn.ManualSignInView">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout VerticalOptions="Center" Padding="32" Spacing="48">
+                <StackLayout>
+                    <Label Style="{StaticResource HeadingLabelStyle}">Dodaj konto</Label>
+                    <Label Style="{StaticResource DefaultLabelStyle}">Wpisz poniżej dane z zakładki 'Dodaj konto' w przeglądarkowej wersji dziennika</Label>
+                </StackLayout>
+                <StackLayout>
+                    <Entry x:Name="Token" Placeholder="Token" />
+                    <Entry x:Name="Symbol" Placeholder="Symbol" />
+                    <Entry x:Name="Pin" Placeholder="Pin" />
+                </StackLayout>
+                <Button Style="{StaticResource DefaultButtonStyle}" Text="Dodaj" x:Name="AddButton" />
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</rxui:ReactiveContentPage>

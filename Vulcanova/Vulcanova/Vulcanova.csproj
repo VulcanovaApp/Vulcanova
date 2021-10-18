@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <LangVersion>9.0</LangVersion>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <DebugType>pdbonly</DebugType>
+        <DebugSymbols>true</DebugSymbols>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="BarcodeScanner.XF" Version="5.0.9" />
+        <PackageReference Include="IsExternalInit" Version="1.0.1">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="ReactiveMarbles.ObservableEvents.SourceGenerator" Version="1.1.4">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="ReactiveUI.Fody" Version="16.2.6" />
+        <PackageReference Include="ReactiveUI.XamForms" Version="16.2.6" />
+        <PackageReference Include="Sextant.XamForms" Version="2.12.4" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2125" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Vulcanova.Uonet\Vulcanova.Uonet.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\..\..\.nuget\packages\xamarin.forms\5.0.0.2125\lib\MonoAndroid10.0\Xamarin.Forms.Core.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+</Project>
