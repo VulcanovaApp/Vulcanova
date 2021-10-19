@@ -1,14 +1,12 @@
+using Prism.Navigation;
 using ReactiveUI;
-using Sextant;
 
 namespace Vulcanova.Core.Mvvm
 {
-    public abstract class ViewModelBase : ReactiveObject, IViewModel
+    public abstract class ViewModelBase : ReactiveObject
     {
-        protected readonly IViewStackService ViewStackService;
+        protected readonly INavigationService NavigationService;
 
-        protected ViewModelBase(IViewStackService viewStackService) => ViewStackService = viewStackService;
-
-        public abstract string Id { get; }
+        protected ViewModelBase(INavigationService navigationService) => NavigationService = navigationService;
     }
 }

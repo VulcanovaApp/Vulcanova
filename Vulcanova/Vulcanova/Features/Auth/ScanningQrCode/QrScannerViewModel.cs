@@ -1,8 +1,7 @@
 using System;
 using System.Threading.Tasks;
+using Prism.Navigation;
 using ReactiveUI;
-using Sextant;
-using Splat;
 using Vulcanova.Core.Mvvm;
 
 namespace Vulcanova.Features.Auth.ScanningQrCode
@@ -13,9 +12,11 @@ namespace Vulcanova.Features.Auth.ScanningQrCode
 
         private readonly IAuthenticationService _authenticationService;
 
-        public QrScannerViewModel(IViewStackService viewStackService) : base(viewStackService)
+        public QrScannerViewModel(
+            INavigationService navigationService,
+            IAuthenticationService authenticationService) : base(navigationService)
         {
-            _authenticationService = Locator.Current.GetService<IAuthenticationService>();
+            _authenticationService = authenticationService;
 
             ProcessQrCodeCommand = ReactiveCommand.CreateFromTask<string, string>(ProcessQrCode);
         }
@@ -26,7 +27,5 @@ namespace Vulcanova.Features.Auth.ScanningQrCode
 
             throw new NotImplementedException();
         }
-
-        public override string Id => "QrScanner";
     }
 }

@@ -1,9 +1,8 @@
 using System.Reactive;
 using System.Threading.Tasks;
+using Prism.Navigation;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
-using Sextant;
-using Splat;
 using Vulcanova.Core.Mvvm;
 
 namespace Vulcanova.Features.Auth.ManualSigningIn
@@ -20,9 +19,11 @@ namespace Vulcanova.Features.Auth.ManualSigningIn
 
         private readonly IAuthenticationService _authenticationService;
 
-        public ManualSignInViewModel(IViewStackService viewStackService) : base(viewStackService)
+        public ManualSignInViewModel(
+            INavigationService navigationService,
+            IAuthenticationService authenticationService) : base(navigationService)
         {
-            _authenticationService = Locator.Current.GetService<IAuthenticationService>();
+            _authenticationService = authenticationService;
 
             AddDevice = ReactiveCommand.CreateFromTask(_ => AddDeviceAsync(Token, Symbol, Pin));
         }
@@ -33,7 +34,5 @@ namespace Vulcanova.Features.Auth.ManualSigningIn
 
             return Unit.Default;
         }
-
-        public override string Id => "Dodaj konto";
     }
 }
