@@ -23,7 +23,7 @@ namespace Vulcanova
             
             Methods.SetSupportBarcodeFormat(BarcodeFormats.QRCode);
 
-            await NavigationService.NavigateAsync(nameof(IntroView));
+            await NavigationService.NavigateAsync("NavigationPage/IntroView");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
