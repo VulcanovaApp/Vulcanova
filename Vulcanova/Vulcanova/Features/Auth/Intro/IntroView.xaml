@@ -19,7 +19,7 @@
                         x:Name="ScanQrButton" />
                 <Button Style="{StaticResource DefaultButtonStyle}" Text="Wpisz dane ręcznie" x:Name="ManualSignInButton" />
             </StackLayout>
-            <Label HorizontalTextAlignment="Center" TextColor="#EC4899" FontSize="Small">Strona projektu na GitHubie</Label>
+            <Label HorizontalTextAlignment="Center" FontSize="Small" Style="{StaticResource LinkLabelStyle}">Strona projektu na GitHubie</Label>
         </StackLayout>
     </ContentPage.Content>
 </rxui:ReactiveContentPage>

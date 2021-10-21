@@ -1,7 +1,9 @@
 <ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
                     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                     x:Class="Vulcanova.Resources.Themes.LightTheme">
-    <Color x:Key="PrimaryColor">#EC4899</Color>
+    <Color x:Key="LightPrimaryColor">#007aff</Color>
+    <Color x:Key="DarkPrimaryColor">#0a84ff</Color>
+
     <Color x:Key="SecondaryColor">Black</Color>
 
     <Color x:Key="LightPrimaryTextColor">Black</Color>
