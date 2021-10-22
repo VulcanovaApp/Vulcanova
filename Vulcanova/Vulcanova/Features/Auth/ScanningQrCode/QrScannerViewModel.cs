@@ -1,4 +1,4 @@
-using System;
+using System.Reactive;
 using System.Threading.Tasks;
 using Prism.Navigation;
 using ReactiveUI;
@@ -9,28 +9,33 @@ namespace Vulcanova.Features.Auth.ScanningQrCode
 {
     public class QrScannerViewModel : ViewModelBase
     {
-        public ReactiveCommand<string, string> ProcessQrCodeCommand { get; }
-
-        private readonly IAuthenticationService _authenticationService;
+        public ReactiveCommand<string, Unit> ProcessQrCodeCommand { get; }
+        
         private readonly IInstanceUrlProvider _instanceUrlProvider;
 
         public QrScannerViewModel(
             INavigationService navigationService,
-            IAuthenticationService authenticationService,
             IInstanceUrlProvider instanceUrlProvider) : base(navigationService)
         {
-            _authenticationService = authenticationService;
             _instanceUrlProvider = instanceUrlProvider;
 
-            ProcessQrCodeCommand = ReactiveCommand.CreateFromTask<string, string>(ProcessQrCode);
+            ProcessQrCodeCommand = ReactiveCommand.CreateFromTask<string, Unit>(ProcessQrCode);
         }
         
-        private async Task<string> ProcessQrCode(string code)
+        private async Task<Unit> ProcessQrCode(string code)
         {
-            var qrCode = AuthQrCode.FromQrString(code);
-            var instanceUrl = _instanceUrlProvider.ExtractInstanceUrlFromRequestUrl(qrCode.ApiAddress);
+            var (apiAddress, token) = AuthQrCode.FromQrString(code);
+            var instanceUrl = _instanceUrlProvider.ExtractInstanceUrlFromRequestUrl(apiAddress);
 
-            throw new NotImplementedException();
+            var navigationParams = new NavigationParameters
+            {
+                {"instanceUrl", instanceUrl},
+                {"token", token}
+            };
+
+            await NavigationService.NavigateAsync(nameof(EnterPinCodeView), navigationParams);
+            
+            return Unit.Default;
         }
     }
 }

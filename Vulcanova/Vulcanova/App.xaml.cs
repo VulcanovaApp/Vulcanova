@@ -35,6 +35,7 @@ namespace Vulcanova
             containerRegistry.RegisterForNavigation<IntroView, IntroViewModel>();
             containerRegistry.RegisterForNavigation<ManualSignInView, ManualSignInViewModel>();
             containerRegistry.RegisterForNavigation<QrScannerView, QrScannerViewModel>();
+            containerRegistry.RegisterForNavigation<EnterPinCodeView, EnterPinCodeViewModel>();
 
             containerRegistry.RegisterSingleton<IApiClientFactory, ApiClientFactory>();
             containerRegistry.RegisterSingleton<IRequestSigner, RequestSignerAdapter>();
