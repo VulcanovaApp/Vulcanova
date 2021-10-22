@@ -1,5 +1,4 @@
 using System;
-using System.IO;
 using Org.BouncyCastle.Asn1.X509;
 using Org.BouncyCastle.Crypto;
 using Org.BouncyCastle.Crypto.Generators;
@@ -8,12 +7,13 @@ using Org.BouncyCastle.Math;
 using Org.BouncyCastle.OpenSsl;
 using Org.BouncyCastle.Security;
 using Org.BouncyCastle.X509;
+using X509Certificate = Org.BouncyCastle.X509.X509Certificate;
 
 namespace Vulcanova.Uonet.Crypto
 {
     public static class KeyPairGenerator
     {
-        public static (string Fingerprint, string PrivateKey, string Cert) GenerateKeyPair()
+        public static (string PemPrivateKey, X509Certificate Cert) GenerateKeyPair()
         {
             var keygen = new RsaKeyPairGenerator();
             keygen.Init(new KeyGenerationParameters(new SecureRandom(), 2048));
@@ -21,12 +21,11 @@ namespace Vulcanova.Uonet.Crypto
             var pair = keygen.GenerateKeyPair();
 
             var cert = GenerateCert(pair);
-            var fingerprint = cert.GetFingerprint();
 
             var pkcs8 = new Pkcs8Generator(pair.Private);
             var privateKey = pkcs8.Generate().DumpToString();
 
-            return (fingerprint, privateKey, cert.DumpToString());
+            return (privateKey, cert);
         }
 
         private static X509Certificate GenerateCert(AsymmetricCipherKeyPair pair)

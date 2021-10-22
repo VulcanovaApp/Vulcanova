@@ -4,6 +4,6 @@ namespace Vulcanova.Features.Auth
 {
     public interface IAuthenticationService
     {
-        Task<bool> AuthenticateAsync(string token, string symbol, string pin);
+        Task<bool> AuthenticateAsync(string token, string pin, string instanceUrl);
     }
 }

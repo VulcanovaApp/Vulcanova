@@ -1,40 +1,40 @@
 using System;
 using System.Threading.Tasks;
+using Vulcanova.Core.Uonet;
 using Vulcanova.Uonet;
-using Vulcanova.Uonet.Auth;
-using Vulcanova.Uonet.Crypto;
-using Vulcanova.Uonet.Firebase;
-using Vulcanova.Uonet.Signing;
+using Vulcanova.Uonet.Api.Auth;
 
 namespace Vulcanova.Features.Auth
 {
     public class AuthenticationService : IAuthenticationService
     {
-        public async Task<bool> AuthenticateAsync(string token, string symbol, string pin)
-        {
-            var (fingerprint, privateKey, cert) = KeyPairGenerator.GenerateKeyPair();
-            
-            var firebaseToken = await FirebaseTokenFetcher.FetchFirebaseToken();
+        private readonly IApiClientFactory _apiClientFactory;
 
-            var certData = string.Join("", cert.Split('\n')[1..^2]);
+        public AuthenticationService(IApiClientFactory apiClientFactory)
+        {
+            _apiClientFactory = apiClientFactory;
+        }
+
+        public async Task<bool> AuthenticateAsync(string token, string pin, string instanceUrl)
+        {
+            var (x509Certificate2, _, _) = await ClientIdentityProvider.GetOrCreateClientIdentityAsync();
 
             var request = new RegisterClientRequest
             {
                 OS = Constants.AppOs,
                 DeviceModel = Constants.DeviceModel,
-                Certificate = certData,
+                Certificate = Convert.ToBase64String(x509Certificate2.RawData),
                 CertificateType = "X509",
-                CertificateThumbprint = fingerprint,
+                CertificateThumbprint = x509Certificate2.Thumbprint,
                 PIN = pin,
                 SecurityToken = token,
                 SelfIdentifier = Guid.NewGuid().ToString()
             };
 
-            var signer = new RequestSigner(fingerprint, privateKey, firebaseToken);
-            var client = new ApiClient(signer, token, symbol);
+            var client = _apiClientFactory.GetForApiInstanceUrl(instanceUrl);
 
-            await client.SendRequest("api/mobile/register/new", request);
-
+            await client.SendRequestAsync("api/mobile/register/new", request);
+            
             return true;
         }
     }

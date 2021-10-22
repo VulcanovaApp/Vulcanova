@@ -1,6 +1,6 @@
 using System;
 
-namespace Vulcanova.Uonet
+namespace Vulcanova.Uonet.Api
 {
     public class SignedApiPayload
     {

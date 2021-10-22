@@ -1,9 +1,12 @@
 ﻿using GoogleVisionBarCodeScanner;
 using Prism.Ioc;
+using Vulcanova.Core.Uonet;
 using Vulcanova.Features.Auth;
 using Vulcanova.Features.Auth.Intro;
 using Vulcanova.Features.Auth.ManualSigningIn;
 using Vulcanova.Features.Auth.ScanningQrCode;
+using Vulcanova.Uonet.Api.Common;
+using Vulcanova.Uonet.Signing;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -32,6 +35,10 @@ namespace Vulcanova
             containerRegistry.RegisterForNavigation<IntroView, IntroViewModel>();
             containerRegistry.RegisterForNavigation<ManualSignInView, ManualSignInViewModel>();
             containerRegistry.RegisterForNavigation<QrScannerView, QrScannerViewModel>();
+
+            containerRegistry.RegisterSingleton<IApiClientFactory, ApiClientFactory>();
+            containerRegistry.RegisterSingleton<IRequestSigner, RequestSignerAdapter>();
+            containerRegistry.RegisterSingleton<IInstanceUrlProvider, InstanceUrlProvider>();
 
             containerRegistry.RegisterScoped<IAuthenticationService, AuthenticationService>();
         }

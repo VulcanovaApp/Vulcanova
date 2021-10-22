@@ -1,4 +1,4 @@
-namespace Vulcanova.Uonet.Auth
+namespace Vulcanova.Uonet.Api.Auth
 {
     public class RegisterClientRequest : IApiRequest
     {

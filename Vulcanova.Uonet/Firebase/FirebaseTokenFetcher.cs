@@ -6,7 +6,7 @@ namespace Vulcanova.Uonet.Firebase
 {
     public static class FirebaseTokenFetcher
     {
-        public static async Task<string> FetchFirebaseToken()
+        public static async Task<string> FetchFirebaseTokenAsync()
         {
             const string aid = "4609707972546570896:3626695765779152704";
             var device = aid.Split(':')[0];

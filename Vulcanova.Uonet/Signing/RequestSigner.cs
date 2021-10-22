@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using Vulcanova.Uonet.Api;
 
 namespace Vulcanova.Uonet.Signing
 {
@@ -16,13 +18,13 @@ namespace Vulcanova.Uonet.Signing
             _firebaseToken = firebaseToken;
         }
 
-        public Dictionary<string, string> CreateSignedHeaders(string body, string fullUrl)
+        public ValueTask<Dictionary<string, string>> CreateSignedHeaders(string body, string fullUrl)
         {
             var date = DateTime.UtcNow;
 
             var (digest, canonicalUrl, signature) = ValuesSigner.GetSignatureValues(_fingerprint, _privateKey, body, fullUrl, date);
 
-            return new Dictionary<string, string>
+            return new ValueTask<Dictionary<string, string>>(new Dictionary<string, string>
             {
                 {"User-Agent", Constants.UserAgent},
                 {"vOS", Constants.AppOs},
@@ -33,12 +35,12 @@ namespace Vulcanova.Uonet.Signing
                 {"Signature", signature},
                 {"Digest", digest},
                 {"Content-Type", "application/json"}
-            };
+            });
         }
 
-        public SignedApiPayload SignPayload(object o)
+        public ValueTask<SignedApiPayload> SignPayload(object o)
         {
-            return new SignedApiPayload
+            return new ValueTask<SignedApiPayload>(new SignedApiPayload
             {
                 AppName = Constants.AppName,
                 AppVersion = Constants.AppVersion,
@@ -49,7 +51,7 @@ namespace Vulcanova.Uonet.Signing
                 Timestamp = DateTimeOffset.Now.ToUnixTimeMilliseconds(),
                 TimestampFormatted = DateTime.Now.ToString("yyyy-M-d HH:mm:ss"),
                 Envelope = o
-            };
+            });
         }
     }
 }
