@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using ReactiveMarbles.ObservableEvents;
 using ReactiveUI;
@@ -17,7 +18,8 @@ namespace Vulcanova.Features.Auth.ScanningQrCode
             {
                 this.CameraView.Events().OnDetected
                     .Select(args => args.BarcodeResults.First().RawValue)
-                    .InvokeCommand(ViewModel, vm => vm.ProcessQrCodeCommand);
+                    .InvokeCommand(ViewModel, vm => vm.ProcessQrCodeCommand)
+                    .DisposeWith(disposable);
             });
         }
     }
