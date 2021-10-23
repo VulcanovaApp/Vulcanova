@@ -6,8 +6,9 @@
                           xmlns:gv="clr-namespace:GoogleVisionBarCodeScanner;assembly=BarcodeScanner.XF"
                           xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
                           xmlns:qr="clr-namespace:Vulcanova.Features.Auth.ScanningQrCode;assembly=Vulcanova"
+                          xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
                           x:Class="Vulcanova.Features.Auth.ScanningQrCode.QrScannerView"
-                          Title="Skaner QR">
+                          Title="{x:Static resx:Strings.QrScannerViewTitle}">
     <ContentPage.Content>
         <ScrollView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
             <gv:CameraView HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand"

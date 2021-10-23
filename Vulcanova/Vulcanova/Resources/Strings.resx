@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="ScanQrCodeButton" xml:space="preserve">
+        <value>Scan QR code</value>
+    </data>
+    <data name="SignInManuallyButton" xml:space="preserve">
+        <value>Enter data manually</value>
+    </data>
+    <data name="VulcanovaSubheadingLabel" xml:space="preserve">
+        <value>Unofficial Vulcan UONET+ mobile client</value>
+    </data>
+    <data name="GitHubLinkLabel" xml:space="preserve">
+        <value>Vulcanova on GitHub</value>
+    </data>
+    <data name="AddAccountLabel" xml:space="preserve">
+        <value>Add account</value>
+    </data>
+    <data name="AddAccountSubheadingLabel" xml:space="preserve">
+        <value>Enter below values from 'Dodaj konto' section from the web diary client</value>
+    </data>
+    <data name="AddButton" xml:space="preserve">
+        <value>Add</value>
+    </data>
+    <data name="EnterPinCodeLabel" xml:space="preserve">
+        <value>Enter PIN code</value>
+    </data>
+    <data name="EnterPinCodeSubheadingLabel" xml:space="preserve">
+        <value>To finish adding account, enter the PIN code</value>
+    </data>
+    <data name="QrScannerViewTitle" xml:space="preserve">
+        <value>QR Scanner</value>
+    </data>
+</root>

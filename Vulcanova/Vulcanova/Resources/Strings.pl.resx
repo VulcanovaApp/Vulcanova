@@ -1,0 +1,44 @@
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="GitHubLinkLabel" xml:space="preserve">
+        <value>Strona projektu na GitHubie</value>
+    </data>
+    <data name="ScanQrCodeButton" xml:space="preserve">
+        <value>Skanuj kod QR</value>
+    </data>
+    <data name="SignInManuallyButton" xml:space="preserve">
+        <value>Wpisz dane ręcznie</value>
+    </data>
+    <data name="VulcanovaSubheadingLabel" xml:space="preserve">
+        <value>Nieoficjalna aplikacja dla dziennika Vulcan UONET+</value>
+    </data>
+    <data name="AddAccountLabel" xml:space="preserve">
+        <value>Dodaj konto</value>
+    </data>
+    <data name="AddAccountSubheadingLabel" xml:space="preserve">
+        <value>Wpisz poniżej dane z zakładki 'Dodaj konto' w przeglądarkowej wersji dziennika</value>
+    </data>
+    <data name="AddButton" xml:space="preserve">
+        <value>Dodaj</value>
+    </data>
+    <data name="EnterPinCodeLabel" xml:space="preserve">
+        <value>Wpisz PIN</value>
+    </data>
+    <data name="EnterPinCodeSubheadingLabel" xml:space="preserve">
+        <value>Aby zakończyć dodawanie konta, wpisz kod PIN</value>
+    </data>
+    <data name="QrScannerViewTitle" xml:space="preserve">
+        <value>Skaner QR</value>
+    </data>
+</root>

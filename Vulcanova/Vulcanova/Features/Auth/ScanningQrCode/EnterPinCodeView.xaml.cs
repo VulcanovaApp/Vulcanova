@@ -16,7 +16,7 @@ namespace Vulcanova.Features.Auth.ScanningQrCode
                 this.Bind(ViewModel, vm => vm.Pin, v => v.Pin.Text)
                     .DisposeWith(disposable);
 
-                this.BindCommand(ViewModel, vm => vm.RegisterDevice, v => v.RegisterButton)
+                this.BindCommand(ViewModel, vm => vm.RegisterDevice, v => v.AddAccountButton)
                     .DisposeWith(disposable);
             });
         }
