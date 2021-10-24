@@ -5,6 +5,8 @@
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ed5b89fc_002D7dc1_002D49fe_002Db5a9_002D10fb33972179/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestSigner_ChecksHeaders" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::10BC104F-9BCC-4A05-BE90-1B72BC2DEF0D::net5.0::Vulcanova.Uonet.UnitTests.Api.Common.InstanceUrlProviderTests.ExtractInstanceUrlFromRequestUrl_QrCodeReturnedUrl_ReturnsInstanceUrl&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::10BC104F-9BCC-4A05-BE90-1B72BC2DEF0D::net5.0::Vulcanova.Uonet.UnitTests.Signing.ValuesSignerTests.GetSignatureHeaders_ValuesWithNullBody_ReturnsHeadersWithoutDigest&lt;/TestId&gt;
+    &lt;TestId&gt;xUnit::10BC104F-9BCC-4A05-BE90-1B72BC2DEF0D::net5.0::Vulcanova.Uonet.UnitTests.Signing.ValuesSignerTests.GetSignatureHeaders_ValuesWithBody_ReturnsCorrectHeaders&lt;/TestId&gt;
   &lt;/TestAncestor&gt;
 &lt;/SessionState&gt;</s:String>
 	<s:Boolean x:Key="/Default/ResxEditorPersonal/CheckedGroups/=Vulcanova_002FResources_002FStrings/@EntryIndexedValue">True</s:Boolean>
