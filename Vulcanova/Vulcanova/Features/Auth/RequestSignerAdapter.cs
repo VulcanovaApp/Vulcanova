@@ -9,6 +9,13 @@ namespace Vulcanova.Features.Auth
     {
         private RequestSigner _requestSigner;
 
+        public async ValueTask<Dictionary<string, string>> CreateSignedHeaders(string fullUrl)
+        {
+            var signer = await GetOrCreateBaseRequestSigner();
+
+            return await signer.CreateSignedHeaders(fullUrl);
+        }
+
         public async ValueTask<Dictionary<string, string>> CreateSignedHeaders(string body, string fullUrl)
         {
             var signer = await GetOrCreateBaseRequestSigner();

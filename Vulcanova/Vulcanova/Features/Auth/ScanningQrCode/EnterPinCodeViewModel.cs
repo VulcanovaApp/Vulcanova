@@ -1,5 +1,7 @@
+using System.Linq;
 using System.Reactive;
 using System.Threading.Tasks;
+using Akavache;
 using Prism.Navigation;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -39,7 +41,11 @@ namespace Vulcanova.Features.Auth.ScanningQrCode
 
         private async Task<Unit> RegisterDeviceAsync(string token, string pin, string instanceUrl)
         {
-            await _authenticationService.AuthenticateAsync(token, pin, instanceUrl);
+            var accounts = await _authenticationService.AuthenticateAsync(token, pin, instanceUrl);
+
+            accounts.First().IsActive = true;
+
+            BlobCache.UserAccount.InsertAllObjects(accounts.ToDictionary(a => a.Pupil.Id.ToString(), a => a));
 
             return Unit.Default;
         }

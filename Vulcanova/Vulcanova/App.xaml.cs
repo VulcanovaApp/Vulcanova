@@ -1,5 +1,7 @@
-﻿using GoogleVisionBarCodeScanner;
+﻿using Akavache;
+using GoogleVisionBarCodeScanner;
 using Prism.Ioc;
+using Vulcanova.Core.Mapping;
 using Vulcanova.Core.Uonet;
 using Vulcanova.Features.Auth;
 using Vulcanova.Features.Auth.Intro;
@@ -26,11 +28,15 @@ namespace Vulcanova
             
             Methods.SetSupportBarcodeFormat(BarcodeFormats.QRCode);
 
+            Registrations.Start("Vulcanova");
+
             await NavigationService.NavigateAsync("NavigationPage/IntroView");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterAutoMapper();
+
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<IntroView, IntroViewModel>();
             containerRegistry.RegisterForNavigation<ManualSignInView, ManualSignInViewModel>();

@@ -4,6 +4,7 @@ namespace Vulcanova.Uonet.Api
 {
     public interface IApiClient
     {
-        Task<string> SendRequestAsync(string url, IApiRequest payload);
+        Task<ApiResponse<TResponse>> GetAsync<TResponse>(string url, IApiQuery<TResponse> query);
+        Task<ApiResponse<TResponse>> PostAsync<TResponse>(string url, IApiRequest<TResponse> request);
     }
 }

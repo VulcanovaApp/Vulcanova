@@ -18,24 +18,20 @@ namespace Vulcanova.Uonet.Signing
             _firebaseToken = firebaseToken;
         }
 
+        public ValueTask<Dictionary<string, string>> CreateSignedHeaders(string fullUrl)
+            => CreateSignedHeaders(null, fullUrl);
+
         public ValueTask<Dictionary<string, string>> CreateSignedHeaders(string body, string fullUrl)
         {
-            var date = DateTime.UtcNow;
+            var signatureHeaders = ValuesSigner.GetSignatureHeaders(_fingerprint, _privateKey, body, fullUrl);
 
-            var (digest, canonicalUrl, signature) = ValuesSigner.GetSignatureValues(_fingerprint, _privateKey, body, fullUrl, date);
+            signatureHeaders["User-Agent"] = Constants.UserAgent;
+            signatureHeaders["vOS"] = Constants.AppOs;
+            signatureHeaders["vDeviceModel"] = Constants.DeviceModel;
+            signatureHeaders["vAPI"] = "1";
+            signatureHeaders["Content-Type"] = "application/json";
 
-            return new ValueTask<Dictionary<string, string>>(new Dictionary<string, string>
-            {
-                {"User-Agent", Constants.UserAgent},
-                {"vOS", Constants.AppOs},
-                {"vDeviceModel", Constants.DeviceModel},
-                {"vAPI", "1"},
-                {"vDate", date.ToString("R")},
-                {"vCanonicalUrl", canonicalUrl},
-                {"Signature", signature},
-                {"Digest", digest},
-                {"Content-Type", "application/json"}
-            });
+            return new ValueTask<Dictionary<string, string>>(signatureHeaders);
         }
 
         public ValueTask<SignedApiPayload> SignPayload(object o)

@@ -1,5 +1,7 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Vulcanova.Core.Uonet;
 using Vulcanova.Uonet;
 using Vulcanova.Uonet.Api.Auth;
@@ -9,13 +11,17 @@ namespace Vulcanova.Features.Auth
     public class AuthenticationService : IAuthenticationService
     {
         private readonly IApiClientFactory _apiClientFactory;
+        private readonly IMapper _mapper;
 
-        public AuthenticationService(IApiClientFactory apiClientFactory)
+        public AuthenticationService(
+            IApiClientFactory apiClientFactory,
+            IMapper mapper)
         {
             _apiClientFactory = apiClientFactory;
+            _mapper = mapper;
         }
 
-        public async Task<bool> AuthenticateAsync(string token, string pin, string instanceUrl)
+        public async Task<Account[]> AuthenticateAsync(string token, string pin, string instanceUrl)
         {
             var (x509Certificate2, _, _) = await ClientIdentityProvider.GetOrCreateClientIdentityAsync();
 
@@ -33,9 +39,11 @@ namespace Vulcanova.Features.Auth
 
             var client = _apiClientFactory.GetForApiInstanceUrl(instanceUrl);
 
-            await client.SendRequestAsync("api/mobile/register/new", request);
-            
-            return true;
+            await client.PostAsync(RegisterClientRequest.ApiEndpoint, request);
+
+            var registerHebeResponse = await client.GetAsync(RegisterHebeClientQuery.ApiEndpoint, new RegisterHebeClientQuery());
+
+            return registerHebeResponse.Envelope.Select(_mapper.Map<Account>).ToArray();
         }
     }
 }

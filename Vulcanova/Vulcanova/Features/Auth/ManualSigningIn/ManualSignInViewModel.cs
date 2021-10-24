@@ -1,5 +1,7 @@
+using System.Linq;
 using System.Reactive;
 using System.Threading.Tasks;
+using Akavache;
 using Prism.Navigation;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -36,7 +38,12 @@ namespace Vulcanova.Features.Auth.ManualSigningIn
         private async Task<Unit> AddDeviceAsync(string token, string symbol, string pin)
         {
             var instanceUrl = await _instanceUrlProvider.GetInstanceUrlAsync(token, symbol);
-            await _authenticationService.AuthenticateAsync(token, pin, instanceUrl);
+            var accounts = await _authenticationService.AuthenticateAsync(token, pin, instanceUrl);
+
+            // TODO: Ask the user which acc to make active
+            accounts.First().IsActive = true;
+
+            BlobCache.UserAccount.InsertAccounts(accounts);
 
             return Unit.Default;
         }
