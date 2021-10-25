@@ -55,7 +55,7 @@ namespace Vulcanova.Uonet.Signing
         {
             var rx = Regex.Match(path, "(api/mobile/.+)");
 
-            return HttpUtility.UrlEncode(rx.Value);
+            return HttpUtility.UrlEncode(rx.Value).ToLower();
         }
 
         private static string GetDigest(string body)
