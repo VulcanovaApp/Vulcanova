@@ -1,6 +1,7 @@
-﻿using Akavache;
-using GoogleVisionBarCodeScanner;
+﻿using GoogleVisionBarCodeScanner;
 using Prism.Ioc;
+using Prism.Navigation;
+using Vulcanova.Core.Data;
 using Vulcanova.Core.Mapping;
 using Vulcanova.Core.Uonet;
 using Vulcanova.Features.Auth;
@@ -35,6 +36,10 @@ namespace Vulcanova
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.RegisterDbContext();
+
+            containerRegistry.RegisterScoped<IAccountRepository, AccountRepository>();
+
             containerRegistry.RegisterAutoMapper();
 
             containerRegistry.RegisterForNavigation<NavigationPage>();

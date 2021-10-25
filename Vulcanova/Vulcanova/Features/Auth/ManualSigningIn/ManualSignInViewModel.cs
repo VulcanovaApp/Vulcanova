@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Reactive;
 using System.Threading.Tasks;
-using Akavache;
 using Prism.Navigation;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -21,15 +20,18 @@ namespace Vulcanova.Features.Auth.ManualSigningIn
         [Reactive] public string Pin { get; set; }
 
         private readonly IAuthenticationService _authenticationService;
+        private readonly IAccountRepository _accountRepository;
 
         private readonly IInstanceUrlProvider _instanceUrlProvider;
 
         public ManualSignInViewModel(
             INavigationService navigationService,
             IInstanceUrlProvider instanceUrlProvider,
-            IAuthenticationService authenticationService) : base(navigationService)
+            IAuthenticationService authenticationService,
+            IAccountRepository accountRepository) : base(navigationService)
         {
             _authenticationService = authenticationService;
+            _accountRepository = accountRepository;
             _instanceUrlProvider = instanceUrlProvider;
 
             AddDevice = ReactiveCommand.CreateFromTask(_ => AddDeviceAsync(Token, Symbol, Pin));
@@ -43,7 +45,7 @@ namespace Vulcanova.Features.Auth.ManualSigningIn
             // TODO: Ask the user which acc to make active
             accounts.First().IsActive = true;
 
-            BlobCache.UserAccount.InsertAccounts(accounts);
+            await _accountRepository.AddAccounts(accounts);
 
             return Unit.Default;
         }

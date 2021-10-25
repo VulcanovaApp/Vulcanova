@@ -10,6 +10,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vulcanova.Uonet", "Vulcanov
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vulcanova.Uonet.UnitTests", "Vulcanova.Uonet.UnitTests\Vulcanova.Uonet.UnitTests.csproj", "{10BC104F-9BCC-4A05-BE90-1B72BC2DEF0D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vulcanova.Dummy", "Vulcanova.Dummy\Vulcanova.Dummy.csproj", "{715CCB38-DB41-41EB-8702-2F930E4EF8EC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|iPhone = Ad-Hoc|iPhone

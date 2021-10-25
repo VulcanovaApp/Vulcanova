@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Reactive;
 using System.Threading.Tasks;
-using Akavache;
 using Prism.Navigation;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -19,12 +18,15 @@ namespace Vulcanova.Features.Auth.ScanningQrCode
         private string _token;
         
         private readonly IAuthenticationService _authenticationService;
+        private readonly IAccountRepository _accountRepository;
 
         public EnterPinCodeViewModel(
             INavigationService navigationService,
-            IAuthenticationService authenticationService) : base(navigationService)
+            IAuthenticationService authenticationService,
+            IAccountRepository accountRepository) : base(navigationService)
         {
             _authenticationService = authenticationService;
+            _accountRepository = accountRepository;
 
             RegisterDevice = ReactiveCommand.CreateFromTask(_ => RegisterDeviceAsync(_token, Pin, _instanceUrl));
         }
@@ -45,7 +47,7 @@ namespace Vulcanova.Features.Auth.ScanningQrCode
 
             accounts.First().IsActive = true;
 
-            BlobCache.UserAccount.InsertAllObjects(accounts.ToDictionary(a => a.Pupil.Id.ToString(), a => a));
+            await _accountRepository.AddAccounts(accounts);
 
             return Unit.Default;
         }
