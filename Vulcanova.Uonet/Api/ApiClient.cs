@@ -18,7 +18,7 @@ namespace Vulcanova.Uonet.Api
 
         public async Task<ApiResponse<TResponse>> GetAsync<TResponse>(string url, IApiQuery<TResponse> query)
         {
-            url = GetFullRequestUrl(url);
+            url = GetFullRequestUrl(url) + query.ToQueryString();
 
             var headers = await _requestSigner.CreateSignedHeaders(url);
 
