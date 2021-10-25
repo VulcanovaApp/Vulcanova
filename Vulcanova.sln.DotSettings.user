@@ -2,6 +2,16 @@
 	<s:String x:Key="/Default/Environment/AssemblyExplorer/XmlDocument/@EntryValue">&lt;AssemblyExplorer&gt;
   &lt;Assembly Path="/Users/piotr/.nuget/packages/wulkanowy.uonetrequestsigner.hebe/1.0.0/lib/netstandard2.1/Wulkanowy.UonetRequestSigner.Hebe.dll" /&gt;
 &lt;/AssemblyExplorer&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=6f9646fd_002Ddd85_002D4f01_002Dacc7_002De25d0637c62d/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="ToQueryString_ApiQuery_ReturnsCorrectQueryString" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::10BC104F-9BCC-4A05-BE90-1B72BC2DEF0D::net5.0::Vulcanova.Uonet.UnitTests.Api.QueryExtensionsTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=7190ac13_002D3d06_002D44fc_002D8dab_002D80d49a652b12/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="QueryExtensionsTests" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
+  &lt;TestAncestor&gt;
+    &lt;TestId&gt;xUnit::10BC104F-9BCC-4A05-BE90-1B72BC2DEF0D::net5.0::Vulcanova.Uonet.UnitTests.Api.QueryExtensionsTests&lt;/TestId&gt;
+  &lt;/TestAncestor&gt;
+&lt;/SessionState&gt;</s:String>
 	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ed5b89fc_002D7dc1_002D49fe_002Db5a9_002D10fb33972179/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="TestSigner_ChecksHeaders" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;
   &lt;TestAncestor&gt;
     &lt;TestId&gt;xUnit::10BC104F-9BCC-4A05-BE90-1B72BC2DEF0D::net5.0::Vulcanova.Uonet.UnitTests.Api.Common.InstanceUrlProviderTests.ExtractInstanceUrlFromRequestUrl_QrCodeReturnedUrl_ReturnsInstanceUrl&lt;/TestId&gt;
