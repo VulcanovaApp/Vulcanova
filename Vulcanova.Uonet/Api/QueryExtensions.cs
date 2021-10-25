@@ -1,6 +1,5 @@
+using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
-using System.Text.Json;
 using System.Web;
 
 namespace Vulcanova.Uonet.Api
@@ -9,20 +8,19 @@ namespace Vulcanova.Uonet.Api
     {
         internal static string ToQueryString(this IApiQuery apiQuery)
         {
-            string PropertyToKeyValuePair(PropertyInfo property)
+            string KeyValuePairToQueryFragment(KeyValuePair<string, string> pair)
             {
-                var camelCasePolicy = JsonNamingPolicy.CamelCase;
-
-                var propertyName = HttpUtility.UrlEncode(camelCasePolicy.ConvertName(property.Name));
-                var propertyValue = HttpUtility.UrlEncode(property.GetValue(apiQuery).ToString());
+                var (key, value) = pair;
+                var propertyName = HttpUtility.UrlEncode(key);
+                var propertyValue = HttpUtility.UrlEncode(value);
 
                 return $"{propertyName}={propertyValue}";
             }
-            
-            var publicProperties = apiQuery.GetType().GetProperties(BindingFlags.Public | BindingFlags.Instance);
+
+            var publicProperties = apiQuery.GetPropertyKeyValuePairs();
 
             var pairs = publicProperties
-                .Select(PropertyToKeyValuePair)
+                .Select(KeyValuePairToQueryFragment)
                 .ToArray();
 
             if (!pairs.Any())
