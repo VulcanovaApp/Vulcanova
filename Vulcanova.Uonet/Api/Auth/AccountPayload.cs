@@ -1,4 +1,5 @@
 using System;
+using System.Text.Json.Serialization;
 
 namespace Vulcanova.Uonet.Api.Auth
 {
@@ -19,14 +20,14 @@ namespace Vulcanova.Uonet.Api.Auth
         public Period[] Periods { get; set; }
         public Journal Journal { get; set; }
         public Constraints Constraints { get; set; }
-        public long State { get; set; }
+        public int State { get; set; }
         public Policies Policies { get; set; }
         public string Context { get; set; }
     }
 
     public class ConstituentUnit
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Short { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
@@ -43,7 +44,7 @@ namespace Vulcanova.Uonet.Api.Auth
     public class Educator
     {
         public string Id { get; set; }
-        public long LoginId { get; set; }
+        public int LoginId { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public string Initials { get; set; }
@@ -53,7 +54,7 @@ namespace Vulcanova.Uonet.Api.Auth
     public class Role
     {
         public string RoleName { get; set; }
-        public long RoleOrder { get; set; }
+        public int RoleOrder { get; set; }
         public string Address { get; set; }
         public string AddressHash { get; set; }
         public object UnitSymbol { get; set; }
@@ -66,7 +67,7 @@ namespace Vulcanova.Uonet.Api.Auth
 
     public class Journal
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public YearEnd YearStart { get; set; }
         public YearEnd YearEnd { get; set; }
     }
@@ -83,7 +84,7 @@ namespace Vulcanova.Uonet.Api.Auth
 
     public class Login
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Value { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
@@ -95,9 +96,9 @@ namespace Vulcanova.Uonet.Api.Auth
     public class Period
     {
         public object[] Capabilities { get; set; }
-        public long Id { get; set; }
-        public long Level { get; set; }
-        public long Number { get; set; }
+        public int Id { get; set; }
+        public int Level { get; set; }
+        public int Number { get; set; }
         public YearEnd Start { get; set; }
         public YearEnd End { get; set; }
         public bool Current { get; set; }
@@ -114,8 +115,8 @@ namespace Vulcanova.Uonet.Api.Auth
 
     public class Pupil
     {
-        public long Id { get; set; }
-        public long LoginId { get; set; }
+        public int Id { get; set; }
+        public int LoginId { get; set; }
         public string LoginValue { get; set; }
         public string FirstName { get; set; }
         public string SecondName { get; set; }
@@ -126,7 +127,7 @@ namespace Vulcanova.Uonet.Api.Auth
 
     public class SenderEntry
     {
-        public long LoginId { get; set; }
+        public int LoginId { get; set; }
         public string Address { get; set; }
         public string AddressHash { get; set; }
         public string Initials { get; set; }
@@ -134,9 +135,10 @@ namespace Vulcanova.Uonet.Api.Auth
 
     public class Unit
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public string Symbol { get; set; }
         public string Short { get; set; }
+        [JsonPropertyName("RestURL")]
         public Uri RestUrl { get; set; }
         public string Name { get; set; }
         public string Address { get; set; }
@@ -147,7 +149,7 @@ namespace Vulcanova.Uonet.Api.Auth
 
     public class Status
     {
-        public long Code { get; set; }
+        public int Code { get; set; }
         public string Message { get; set; }
     }
 }
