@@ -120,6 +120,7 @@ namespace Vulcanova.Uonet.Api.Auth
         public string FirstName { get; set; }
         public string SecondName { get; set; }
         public string Surname { get; set; }
+        // Why is this a boolean? 🤣
         public bool Sex { get; set; }
     }
 
