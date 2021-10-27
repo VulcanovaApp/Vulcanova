@@ -27,6 +27,8 @@ namespace Vulcanova
         {
             InitializeComponent();
             
+            SQLitePCL.Batteries_V2.Init();
+
             Methods.SetSupportBarcodeFormat(BarcodeFormats.QRCode);
 
             Registrations.Start("Vulcanova");
