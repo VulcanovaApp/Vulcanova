@@ -96,6 +96,7 @@
     <ItemGroup>
         <Compile Include="Main.cs" />
         <Compile Include="AppDelegate.cs" />
+        <Compile Include="SvgTabbedPageRenderer.cs" />
         <None Include="Entitlements.plist" />
         <None Include="Info.plist" />
         <Compile Include="Properties\AssemblyInfo.cs" />
@@ -114,7 +115,7 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="BarcodeScanner.XF" Version="5.0.9" />
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2125" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     </ItemGroup>
     <ItemGroup>
         <ProjectReference Include="..\Vulcanova\Vulcanova.csproj">

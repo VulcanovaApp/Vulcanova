@@ -27,7 +27,7 @@
         </PackageReference>
         <PackageReference Include="ReactiveUI.Fody" Version="16.2.6" />
         <PackageReference Include="ReactiveUI.XamForms" Version="16.2.6" />
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2125" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     </ItemGroup>
 
     <ItemGroup>
@@ -45,6 +45,8 @@
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>Strings.Designer.cs</LastGenOutput>
       </EmbeddedResource>
+      <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
+      <EmbeddedResource Include="Resources\Fonts\Poppins-Regular.ttf" />
     </ItemGroup>
 
     <ItemGroup>

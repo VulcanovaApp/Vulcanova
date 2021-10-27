@@ -46,7 +46,7 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="BarcodeScanner.XF" Version="5.0.9" />
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2125" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MainActivity.cs" />
@@ -59,6 +59,7 @@
         <None Include="Properties\AndroidManifest.xml" />
     </ItemGroup>
     <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_star.xml" />
         <AndroidResource Include="Resources\layout\Tabbar.axml" />
         <AndroidResource Include="Resources\layout\Toolbar.axml" />
         <AndroidResource Include="Resources\values\styles.xml" />
