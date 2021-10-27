@@ -118,6 +118,14 @@
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     </ItemGroup>
     <ItemGroup>
+        <PackageReference Include="System.Memory" Version="4.5.4">
+            <IncludeAssets>none</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="System.Buffers" Version="4.5.1">
+            <IncludeAssets>none</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
+    <ItemGroup>
         <ProjectReference Include="..\Vulcanova\Vulcanova.csproj">
             <Project>{EA93A4B0-B98D-431C-8B13-863E11368665}</Project>
             <Name>Vulcanova</Name>
@@ -125,6 +133,7 @@
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="GoogleService-Info.plist" />
+      <BundleResource Include="Resources\star-outline.svg" />
     </ItemGroup>
     <ItemGroup>
       <Content Include=".gitignore" />
