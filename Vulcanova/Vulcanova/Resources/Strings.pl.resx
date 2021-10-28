@@ -41,4 +41,7 @@
     <data name="QrScannerViewTitle" xml:space="preserve">
         <value>Skaner QR</value>
     </data>
+    <data name="LuckyNumberTabTitle" xml:space="preserve">
+        <value>Szczęśliwy numerek</value>
+    </data>
 </root>

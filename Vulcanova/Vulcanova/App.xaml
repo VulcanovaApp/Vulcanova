@@ -36,9 +36,23 @@
         <Style x:Key="LinkLabelStyle" TargetType="Label">
             <Setter Property="TextColor" Value="{DynamicResource DarkPrimaryColor}" />
         </Style>
+        
+        <Style ApplyToDerivedTypes="true" TargetType="ContentPage">
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" />
+        </Style>
+
         <Style ApplyToDerivedTypes="true" TargetType="NavigationPage">
-            <Setter Property="BarBackgroundColor" Value="{DynamicResource DarkPrimaryColor}" />
-            <Setter Property="BarTextColor" Value="White" />
+            <Setter Property="BarBackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource LightPanelColor}, Dark={StaticResource DarkPanelColor}}" />
+            <Setter Property="BarTextColor"
+                    Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+        </Style>
+
+        <Style ApplyToDerivedTypes="true" TargetType="TabbedPage">
+            <Setter Property="BarBackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource LightPanelColor}, Dark={StaticResource DarkPanelColor}} " />
+            <Setter Property="SelectedTabColor"
+                    Value="{AppThemeBinding Light={StaticResource LightPrimaryColor}, Dark={StaticResource DarkPrimaryColor}} " />
         </Style>
     </Application.Resources>
 </prism:PrismApplication>

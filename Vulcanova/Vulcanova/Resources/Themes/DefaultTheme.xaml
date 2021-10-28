@@ -8,4 +8,10 @@
 
     <Color x:Key="LightPrimaryTextColor">Black</Color>
     <Color x:Key="DarkPrimaryTextColor">White</Color>
+    
+    <Color x:Key="LightBackgroundColor">#F7F7F9</Color>
+    <Color x:Key="DarkBackgroundColor">Black</Color>
+    
+    <Color x:Key="LightPanelColor">White</Color>
+    <Color x:Key="DarkPanelColor">Black</Color>
 </ResourceDictionary>

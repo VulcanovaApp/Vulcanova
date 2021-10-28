@@ -104,5 +104,11 @@ namespace Vulcanova.Resources {
                 return ResourceManager.GetString("QrScannerViewTitle", resourceCulture);
             }
         }
+        
+        internal static string LuckyNumberTabTitle {
+            get {
+                return ResourceManager.GetString("LuckyNumberTabTitle", resourceCulture);
+            }
+        }
     }
 }
