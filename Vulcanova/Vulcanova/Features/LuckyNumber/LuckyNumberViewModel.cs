@@ -1,3 +1,4 @@
+using System;
 using System.Reactive;
 using System.Threading.Tasks;
 using Prism.Navigation;
@@ -10,33 +11,28 @@ namespace Vulcanova.Features.LuckyNumber
 {
     public class LuckyNumberViewModel : ViewModelBase, INavigatedAware
     {
-        public ReactiveCommand<Unit, int> GetLuckyNumber { get; }
+        public ReactiveCommand<Unit, LuckyNumber> GetLuckyNumber { get; }
 
         [ObservableAsProperty]
-        public int LuckyNumber { get; }
+        public LuckyNumber LuckyNumber { get; }
 
         private readonly ILuckyNumberService _luckyNumberService;
-        private readonly IAccountRepository _accountRepository;
 
         private int _accountId;
 
         public LuckyNumberViewModel(
             INavigationService navigationService,
-            ILuckyNumberService luckyNumberService,
-            IAccountRepository accountRepository) : base(navigationService)
+            ILuckyNumberService luckyNumberService) : base(navigationService)
         {
             _luckyNumberService = luckyNumberService;
-            _accountRepository = accountRepository;
 
-            GetLuckyNumber = ReactiveCommand.CreateFromTask(_ => GetLuckyNumberAsync(_accountId));
+            GetLuckyNumber = ReactiveCommand.CreateFromTask(_ => GetLuckyNumberAsync(_accountId, DateTime.Now));
             GetLuckyNumber.ToPropertyEx(this, vm => vm.LuckyNumber);
         }
 
-        private async Task<int> GetLuckyNumberAsync(int accountId)
+        private async Task<LuckyNumber> GetLuckyNumberAsync(int accountId, DateTime date)
         {
-            var account = await _accountRepository.GetByIdAsync(accountId);
-
-            return await _luckyNumberService.GetLuckyNumberAsync(account.ConstituentUnit.Id, account.Unit.RestUrl);
+            return await _luckyNumberService.GetLuckyNumberAsync(accountId, date);
         }
 
         public void OnNavigatedFrom(INavigationParameters parameters)

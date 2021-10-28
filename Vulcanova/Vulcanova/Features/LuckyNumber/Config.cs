@@ -8,6 +8,7 @@ namespace Vulcanova.Features.LuckyNumber
         {
             container.RegisterForNavigation<LuckyNumberView, LuckyNumberViewModel>();
             container.RegisterScoped<ILuckyNumberService, LuckyNumberService>();
+            container.RegisterScoped<ILuckyNumberRepository, LuckyNumberRepository>();
         }
     }
 }

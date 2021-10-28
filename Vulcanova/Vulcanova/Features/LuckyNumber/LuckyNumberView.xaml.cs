@@ -20,7 +20,11 @@ namespace Vulcanova.Features.LuckyNumber
                     .InvokeCommand(ViewModel!.GetLuckyNumber)
                     .DisposeWith(disposable);
 
-                this.OneWayBind(ViewModel, vm => vm.LuckyNumber, v => v.LuckyNumberLabel.Text);
+                this.OneWayBind(ViewModel, 
+                        vm => vm.LuckyNumber, 
+                        v => v.LuckyNumberLabel.Text,
+                        l => l?.Number.ToString())
+                    .DisposeWith(disposable);
             });
         }
     }
