@@ -6,13 +6,7 @@ using Vulcanova.Core.Layout;
 using Vulcanova.Core.Mapping;
 using Vulcanova.Core.Uonet;
 using Vulcanova.Features.Auth;
-using Vulcanova.Features.Auth.Intro;
-using Vulcanova.Features.Auth.ManualSigningIn;
-using Vulcanova.Features.Auth.ScanningQrCode;
 using Vulcanova.Features.LuckyNumber;
-using Vulcanova.Uonet.Api.Common;
-using Vulcanova.Uonet.Signing;
-using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -53,24 +47,14 @@ namespace Vulcanova
         {
             containerRegistry.RegisterDbContext();
 
-            containerRegistry.RegisterScoped<IAccountRepository, AccountRepository>();
-
             containerRegistry.RegisterAutoMapper();
+            
+            containerRegistry.RegisterLayout();
+            
+            containerRegistry.RegisterAuth();
+            containerRegistry.RegisterLuckyNumber();
 
-            containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<HomeTabbedPage>();
-            containerRegistry.RegisterForNavigation<IntroView, IntroViewModel>();
-            containerRegistry.RegisterForNavigation<ManualSignInView, ManualSignInViewModel>();
-            containerRegistry.RegisterForNavigation<QrScannerView, QrScannerViewModel>();
-            containerRegistry.RegisterForNavigation<EnterPinCodeView, EnterPinCodeViewModel>();
-            containerRegistry.RegisterForNavigation<LuckyNumberView, LuckyNumberViewModel>();
-
-            containerRegistry.RegisterSingleton<IApiClientFactory, ApiClientFactory>();
-            containerRegistry.RegisterSingleton<IRequestSigner, RequestSignerAdapter>();
-            containerRegistry.RegisterSingleton<IInstanceUrlProvider, InstanceUrlProvider>();
-
-            containerRegistry.RegisterScoped<IAuthenticationService, AuthenticationService>();
-            containerRegistry.RegisterScoped<ILuckyNumberService, LuckyNumberService>();
+            containerRegistry.RegisterUonet();
         }
     }
 }
