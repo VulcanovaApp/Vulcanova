@@ -110,5 +110,11 @@ namespace Vulcanova.Resources {
                 return ResourceManager.GetString("LuckyNumberTabTitle", resourceCulture);
             }
         }
+        
+        internal static string GradesTabTitle {
+            get {
+                return ResourceManager.GetString("GradesTabTitle", resourceCulture);
+            }
+        }
     }
 }

@@ -51,4 +51,7 @@
     <data name="LuckyNumberTabTitle" xml:space="preserve">
         <value>Lucky number</value>
     </data>
+    <data name="GradesTabTitle" xml:space="preserve">
+        <value>Grades</value>
+    </data>
 </root>

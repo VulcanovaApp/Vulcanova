@@ -1,4 +1,5 @@
-﻿using GoogleVisionBarCodeScanner;
+﻿using System.Linq;
+using GoogleVisionBarCodeScanner;
 using Prism.Ioc;
 using Prism.Navigation;
 using Vulcanova.Core.Data;
@@ -6,6 +7,7 @@ using Vulcanova.Core.Layout;
 using Vulcanova.Core.Mapping;
 using Vulcanova.Core.Uonet;
 using Vulcanova.Features.Auth;
+using Vulcanova.Features.Grades;
 using Vulcanova.Features.LuckyNumber;
 using Xamarin.Forms.Xaml;
 
@@ -32,9 +34,10 @@ namespace Vulcanova
 
             if (activeAccount != null)
             {
-                await NavigationService.NavigateAsync("NavigationPage/HomeTabbedPage?selectedTab=LuckyNumberView", new NavigationParameters
+                await NavigationService.NavigateAsync("NavigationPage/HomeTabbedPage?selectedTab=GradesSummaryView", new NavigationParameters
                 {
-                    {"accountId", activeAccount.Id}
+                    {"accountId", activeAccount.Id},
+                    {"periodId", activeAccount.Periods.First(p => p.Current).Id}
                 });
             }
             else
@@ -53,6 +56,7 @@ namespace Vulcanova
             
             containerRegistry.RegisterAuth();
             containerRegistry.RegisterLuckyNumber();
+            containerRegistry.RegisterGrades();
 
             containerRegistry.RegisterUonet();
         }

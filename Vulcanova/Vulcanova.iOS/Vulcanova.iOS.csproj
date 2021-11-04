@@ -115,6 +115,7 @@
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="BarcodeScanner.XF" Version="5.0.9" />
+        <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     </ItemGroup>
     <ItemGroup>
@@ -133,6 +134,7 @@
     </ItemGroup>
     <ItemGroup>
       <BundleResource Include="GoogleService-Info.plist" />
+      <BundleResource Include="Resources\medal-outline.svg" />
       <BundleResource Include="Resources\star-outline.svg" />
     </ItemGroup>
     <ItemGroup>
