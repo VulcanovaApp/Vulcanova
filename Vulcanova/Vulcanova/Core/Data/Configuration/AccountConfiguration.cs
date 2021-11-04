@@ -11,6 +11,7 @@ namespace Vulcanova.Core.Data.Configuration
             builder.HasOne(a => a.Pupil);
             builder.HasOne(a => a.Unit);
             builder.HasOne(a => a.ConstituentUnit);
+            builder.HasMany(a => a.Periods);
         }
     }
 }

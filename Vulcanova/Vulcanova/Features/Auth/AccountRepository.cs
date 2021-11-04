@@ -23,7 +23,9 @@ namespace Vulcanova.Features.Auth
 
         public async Task<Account> GetActiveAccount()
         {
-            return await _dbContext.Accounts.FirstOrDefaultAsync(a => a.IsActive);
+            return await _dbContext.Accounts
+                .Include(a => a.Periods)
+                .FirstOrDefaultAsync(a => a.IsActive);
         }
 
         public async Task<Account> GetByIdAsync(int id)
