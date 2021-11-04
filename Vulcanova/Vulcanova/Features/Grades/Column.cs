@@ -1,0 +1,17 @@
+using System;
+
+namespace Vulcanova.Features.Grades
+{
+    public class Column
+    {
+        public int Id { get; set; }
+        public Guid Key { get; set; }
+        public int PeriodId { get; set; }
+        public string Name { get; set; }
+        public string Code { get; set; }
+        public string Group { get; set; }
+        public int Number { get; set; }
+        public int Color { get; set; }
+        public decimal Weight { get; set; }
+    }
+}
