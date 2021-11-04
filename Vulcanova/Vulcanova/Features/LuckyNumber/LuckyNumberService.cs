@@ -54,11 +54,7 @@ namespace Vulcanova.Features.LuckyNumber
         {
             var apiClient = _apiClientFactory.GetForApiInstanceUrl(restUrl);
 
-            var query = new GetLuckyNumberQuery
-            {
-                ConstituentId = constituentId,
-                Day = DateTime.Now
-            };
+            var query = new GetLuckyNumberQuery(constituentId, DateTime.Now);
 
             var result = await apiClient.GetAsync(GetLuckyNumberQuery.ApiEndpoint, query);
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -13,16 +14,32 @@ namespace Vulcanova.Uonet.Api
     {
         public IEnumerable<KeyValuePair<string, string>> GetPropertyKeyValuePairs()
         {
-            var camelCasePolicy = JsonNamingPolicy.CamelCase;
+            KeyValuePair<string, string> PropertyToKeyValuePair(PropertyInfo propertyInfo)
+            {
+                var camelCasePolicy = JsonNamingPolicy.CamelCase;
+
+                var name = camelCasePolicy.ConvertName(propertyInfo.Name);
+                var rawValue = propertyInfo.GetValue(this);
+
+                string value;
+
+                if (propertyInfo.PropertyType == typeof(DateTime))
+                {
+                    value = ((DateTime) rawValue).ToString("yyyy-MM-dd");
+                }
+                else
+                {
+                    value = rawValue.ToString();
+                }
+
+                return new KeyValuePair<string, string>(name, value);
+            }
 
             var publicProperties = GetType()
                 .GetProperties(BindingFlags.Public | BindingFlags.Instance);
 
             return publicProperties
-                .Select(p => new KeyValuePair<string, string>(
-                    camelCasePolicy.ConvertName(p.Name),
-                    p.GetValue(this).ToString())
-                )
+                .Select(PropertyToKeyValuePair)
                 .ToArray();
         }
     }
