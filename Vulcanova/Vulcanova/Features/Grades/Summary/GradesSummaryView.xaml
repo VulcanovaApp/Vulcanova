@@ -24,8 +24,7 @@
                             </StackLayout>
                         </StackLayout>
                         <!-- Separator -->
-                        <BoxView HeightRequest="2"
-                                 BackgroundColor="#DFDFE1"
+                        <BoxView Style="{StaticResource SeparatorStyle}"
                                  VerticalOptions="End" />
                     </StackLayout>
                 </DataTemplate>
