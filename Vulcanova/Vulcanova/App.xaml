@@ -5,67 +5,11 @@
                         xmlns:prism="http://prismlibrary.com"
                         x:Class="Vulcanova.App">
     <Application.Resources>
-        <ResourceDictionary Source="Resources/Themes/DefaultTheme.xaml" />
-        <Style x:Key="HeadingLabelStyle"
-               TargetType="Label">
-            <Setter Property="TextColor"
-                    Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
-            <Setter Property="FontSize"
-                    Value="34" />
-        </Style>
-        <Style x:Key="DefaultButtonStyle" TargetType="Button">
-            <Setter Property="CornerRadius" Value="16" />
-            <Setter Property="BackgroundColor"
-                    Value="{AppThemeBinding Dark={StaticResource DarkPrimaryColor}, Light={StaticResource LightPrimaryColor}}" />
-            <Setter Property="TextColor" Value="White" />
-            <Setter Property="TextTransform" Value="None" />
-            <Setter Property="FontAttributes" Value="Bold"></Setter>
-        </Style>
-        <Style x:Key="LargeLabelStyle"
-               TargetType="Label">
-            <Setter Property="TextColor"
-                    Value="{DynamicResource DarkPrimaryTextColor}" />
-            <Setter Property="FontSize"
-                    Value="30" />
-        </Style>
-        <Style x:Key="DefaultLabelStyle"
-               TargetType="Label"
-               ApplyToDerivedTypes="True">
-            <Setter Property="TextColor"
-                    Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
-        </Style>
-        <Style x:Key="LinkLabelStyle" TargetType="Label">
-            <Setter Property="TextColor" Value="{DynamicResource DarkPrimaryColor}" />
-        </Style>
-        <Style x:Key="SeparatorStyle" TargetType="BoxView">
-                <Setter Property="HeightRequest" Value="2" />
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBorderColor}, Dark={StaticResource DarkBorderColor}}" />
-        </Style>
-        
-        <Style ApplyToDerivedTypes="true" TargetType="StackLayout">
-                <Setter Property="BackgroundColor"
-                        Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" />
-        </Style>
-        
-        <Style ApplyToDerivedTypes="true" TargetType="ContentPage">
-            <Setter Property="BackgroundColor"
-                    Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" />
-        </Style>
-
-        <Style ApplyToDerivedTypes="true" TargetType="NavigationPage">
-            <Setter Property="BarBackgroundColor"
-                    Value="{AppThemeBinding Light={StaticResource LightPanelColor}, Dark={StaticResource DarkPanelColor}}" />
-            <Setter Property="BarTextColor"
-                    Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
-        </Style>
-
-        <Style ApplyToDerivedTypes="true" TargetType="TabbedPage">
-            <Setter Property="BarBackgroundColor"
-                    Value="{AppThemeBinding Light={StaticResource LightPanelColor}, Dark={StaticResource DarkPanelColor}} " />
-            <Setter Property="SelectedTabColor"
-                    Value="{AppThemeBinding Light={StaticResource LightPrimaryColor}, Dark={StaticResource DarkPrimaryColor}} " />
-            <Setter Property="UnselectedTabColor"
-                    Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
-        </Style>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/Themes/DefaultTheme.xaml" />
+                <ResourceDictionary Source="Resources/Styles.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </prism:PrismApplication>
