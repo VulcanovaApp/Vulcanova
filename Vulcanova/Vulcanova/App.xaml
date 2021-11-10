@@ -29,16 +29,27 @@
                     Value="30" />
         </Style>
         <Style x:Key="DefaultLabelStyle"
-               TargetType="Label">
+               TargetType="Label"
+               ApplyToDerivedTypes="True">
             <Setter Property="TextColor"
                     Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
         </Style>
         <Style x:Key="LinkLabelStyle" TargetType="Label">
             <Setter Property="TextColor" Value="{DynamicResource DarkPrimaryColor}" />
         </Style>
+        <Style x:Key="SeparatorStyle" TargetType="BoxView">
+                <Setter Property="HeightRequest" Value="2" />
+                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBorderColor}, Dark={StaticResource DarkBorderColor}}" />
+        </Style>
+        
+        <Style ApplyToDerivedTypes="true" TargetType="StackLayout">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" />
+        </Style>
         
         <Style ApplyToDerivedTypes="true" TargetType="ContentPage">
-                <Setter Property="BackgroundColor" Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" />
+            <Setter Property="BackgroundColor"
+                    Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" />
         </Style>
 
         <Style ApplyToDerivedTypes="true" TargetType="NavigationPage">
@@ -53,7 +64,8 @@
                     Value="{AppThemeBinding Light={StaticResource LightPanelColor}, Dark={StaticResource DarkPanelColor}} " />
             <Setter Property="SelectedTabColor"
                     Value="{AppThemeBinding Light={StaticResource LightPrimaryColor}, Dark={StaticResource DarkPrimaryColor}} " />
-            <Setter Property="UnselectedTabColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+            <Setter Property="UnselectedTabColor"
+                    Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
         </Style>
     </Application.Resources>
 </prism:PrismApplication>

@@ -9,9 +9,12 @@
     <Color x:Key="LightPrimaryTextColor">Black</Color>
     <Color x:Key="DarkPrimaryTextColor">White</Color>
     
-    <Color x:Key="LightBackgroundColor">#F7F7F9</Color>
+    <Color x:Key="LightBackgroundColor">White</Color>
     <Color x:Key="DarkBackgroundColor">Black</Color>
     
     <Color x:Key="LightPanelColor">White</Color>
     <Color x:Key="DarkPanelColor">Black</Color>
+    
+    <Color x:Key="LightBorderColor">#DFDFE1</Color>
+    <Color x:Key="DarkBorderColor">#666666</Color>
 </ResourceDictionary>

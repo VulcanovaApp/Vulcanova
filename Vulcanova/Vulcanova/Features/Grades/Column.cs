@@ -1,4 +1,5 @@
 using System;
+using Vulcanova.Features.Shared;
 
 namespace Vulcanova.Features.Grades
 {
@@ -13,5 +14,6 @@ namespace Vulcanova.Features.Grades
         public int Number { get; set; }
         public int Color { get; set; }
         public decimal Weight { get; set; }
+        public Subject Subject { get; set; }
     }
 }

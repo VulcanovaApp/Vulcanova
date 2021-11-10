@@ -4,7 +4,7 @@ using System.Reactive.Linq;
 using ReactiveUI;
 using Xamarin.Forms.Xaml;
 
-namespace Vulcanova.Features.Grades
+namespace Vulcanova.Features.Grades.Summary
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class GradesSummaryView
@@ -20,7 +20,7 @@ namespace Vulcanova.Features.Grades
                     .InvokeCommand(ViewModel!.GetGrades)
                     .DisposeWith(disposable);
 
-                this.OneWayBind(ViewModel, vm => vm.Grades, v => v.Grades.ItemsSource)
+                this.OneWayBind(ViewModel, vm => vm.Grades, v => v.SubjectGrades.ItemsSource)
                     .DisposeWith(disposable);
             });
         }

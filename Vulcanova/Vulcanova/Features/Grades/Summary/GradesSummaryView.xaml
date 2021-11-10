@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<rxui:ReactiveContentPage x:TypeArguments="grades:GradesViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+                          xmlns:grades="clr-namespace:Vulcanova.Features.Grades;assembly=Vulcanova"
+                          xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
+                          Title="{x:Static resx:Strings.GradesTabTitle}"
+                          IconImageSource="{OnPlatform iOS=medal-outline.svg, Android=ic_medal}"
+                          x:Class="Vulcanova.Features.Grades.Summary.GradesSummaryView">
+    <ContentPage.Content>
+        <CollectionView x:Name="SubjectGrades">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout Spacing="0" Padding="0">
+                        <StackLayout Padding="16, 8">
+                            <Label Text="{Binding SubjectName}" Style="{StaticResource DefaultLabelStyle}" />
+                            <StackLayout BindableLayout.ItemsSource="{Binding Grades}" Orientation="Horizontal">
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate>
+                                        <Label Text="{Binding Content}" Style="{StaticResource DefaultLabelStyle}" />
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </StackLayout>
+                        <!-- Separator -->
+                        <BoxView HeightRequest="2"
+                                 BackgroundColor="#DFDFE1"
+                                 VerticalOptions="End" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </ContentPage.Content>
+</rxui:ReactiveContentPage>

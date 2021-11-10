@@ -1,6 +1,7 @@
 using System;
 using AutoMapper;
 using Vulcanova.Uonet.Api.Grades;
+using Subject = Vulcanova.Features.Shared.Subject;
 
 namespace Vulcanova.Features.Grades
 {
@@ -13,9 +14,10 @@ namespace Vulcanova.Features.Grades
 
             CreateMap<Uonet.Api.Grades.Column, Column>();
 
+            CreateMap<Uonet.Api.Grades.Subject, Subject>();
+
             CreateMap<Date, DateTime>()
-                .ConvertUsing(
-                    d => d == null ? DateTime.MinValue : DateTimeOffset.FromUnixTimeMilliseconds(d.Timestamp).UtcDateTime);
+                .ConvertUsing(d => DateTimeOffset.FromUnixTimeMilliseconds(d.Timestamp).UtcDateTime);
         }
     }
 }
