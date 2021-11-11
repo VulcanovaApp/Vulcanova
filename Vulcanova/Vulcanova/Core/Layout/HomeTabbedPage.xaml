@@ -11,6 +11,6 @@
                       x:Class="Vulcanova.Core.Layout.HomeTabbedPage"
                       android:TabbedPage.ToolbarPlacement="Bottom"
                       ios:TabbedPage.TranslucencyMode="Translucent">
-    <luckyNumber:LuckyNumberView />
     <grades:GradesSummaryView />
-</layout:SvgTabbedPage>
+    <luckyNumber:LuckyNumberView />
+</layout:SvgTabbedPage> 
