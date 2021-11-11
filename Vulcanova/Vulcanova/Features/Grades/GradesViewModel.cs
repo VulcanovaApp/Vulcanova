@@ -6,36 +6,38 @@ using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Vulcanova.Core.Mvvm;
 using Vulcanova.Features.Grades.Summary;
+using Vulcanova.Features.Shared;
 
 namespace Vulcanova.Features.Grades
 {
-    public class GradesViewModel : ViewModelBase, INavigatedAware
+    public class GradesViewModel : ViewModelBase
     {
         public ReactiveCommand<Unit, SubjectGrades[]> ForceSyncGrades { get; }
-        public ReactiveCommand<Unit, SubjectGrades[]> GetGrades { get; }
+        public ReactiveCommand<int, SubjectGrades[]> GetGrades { get; }
         
         [ObservableAsProperty]
         public SubjectGrades[] Grades { get; }
-
+        
         private readonly IGradesService _gradesService;
-
-        private int _accountId;
-        private int _periodId;
 
         public GradesViewModel(
             INavigationService navigationService,
+            AccountContext accountContext,
             IGradesService gradesService) : base(navigationService)
         {
             _gradesService = gradesService;
 
-            GetGrades = ReactiveCommand.CreateFromTask(_ => GetGradesAsync(_accountId, _periodId));
+            GetGrades = ReactiveCommand.CreateFromTask((int accountId) => GetGradesAsync(accountId));
 
             GetGrades.ToPropertyEx(this, vm => vm.Grades);
+            
+            accountContext.WhenAnyValue(ctx => ctx.AccountId)
+                .InvokeCommand(GetGrades);
         }
 
-        private async Task<SubjectGrades[]> GetGradesAsync(int accountId, int periodId)
+        private async Task<SubjectGrades[]> GetGradesAsync(int accountId)
         {
-            return (await _gradesService.GetGradesAsync(accountId, periodId, true))
+            return (await _gradesService.GetCurrentPeriodGradesAsync(accountId, true))
                 .GroupBy(g => new
                 {
                     g.Column.Subject.Id,
@@ -47,16 +49,6 @@ namespace Vulcanova.Features.Grades
                     Grades = g.ToArray()
                 })
                 .ToArray();
-        }
-
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-        }
-
-        public void OnNavigatedTo(INavigationParameters parameters)
-        {
-            _accountId = parameters.GetValue<int>("accountId");
-            _periodId = parameters.GetValue<int>("periodId");
         }
     }
 }

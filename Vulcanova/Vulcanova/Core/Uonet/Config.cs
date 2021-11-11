@@ -1,5 +1,6 @@
 using Prism.Ioc;
 using Vulcanova.Features.Auth;
+using Vulcanova.Features.Shared;
 using Vulcanova.Uonet.Api.Common;
 using Vulcanova.Uonet.Signing;
 
@@ -12,6 +13,7 @@ namespace Vulcanova.Core.Uonet
             container.RegisterSingleton<IApiClientFactory, ApiClientFactory>();
             container.RegisterSingleton<IRequestSigner, RequestSignerAdapter>();
             container.RegisterSingleton<IInstanceUrlProvider, InstanceUrlProvider>();
+            container.RegisterSingleton<AccountContext>();
         }
     }
 }

@@ -4,6 +4,6 @@ namespace Vulcanova.Features.Grades
 {
     public interface IGradesService
     {
-        Task<Grade[]> GetGradesAsync(int accountId, int periodId, bool forceUpdate);
+        Task<Grade[]> GetCurrentPeriodGradesAsync(int accountId, bool forceUpdate);
     }
 }

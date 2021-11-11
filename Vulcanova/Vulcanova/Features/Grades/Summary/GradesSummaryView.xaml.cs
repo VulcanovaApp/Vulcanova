@@ -15,11 +15,6 @@ namespace Vulcanova.Features.Grades.Summary
 
             this.WhenActivated(disposable =>
             {
-                this.WhenAnyValue(v => v.ViewModel)
-                    .Select(_ => Unit.Default)
-                    .InvokeCommand(ViewModel!.GetGrades)
-                    .DisposeWith(disposable);
-
                 this.OneWayBind(ViewModel, vm => vm.Grades, v => v.SubjectGrades.ItemsSource)
                     .DisposeWith(disposable);
             });

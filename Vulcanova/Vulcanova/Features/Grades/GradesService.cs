@@ -24,9 +24,10 @@ namespace Vulcanova.Features.Grades
             _mapper = mapper;
         }
 
-        public async Task<Grade[]> GetGradesAsync(int accountId, int periodId, bool forceUpdate = true)
+        public async Task<Grade[]> GetCurrentPeriodGradesAsync(int accountId, bool forceUpdate = true)
         {
             var account = await _accountRepository.GetByIdAsync(accountId);
+            var periodId = account.Periods.Single(p => p.Current).Id;
 
             var query = new GetGradesByPupilQuery(account.Unit.Id, account.Pupil.Id, periodId, DateTime.MinValue, 500);
 

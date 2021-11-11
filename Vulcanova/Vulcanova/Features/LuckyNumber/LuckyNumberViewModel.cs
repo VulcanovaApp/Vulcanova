@@ -1,47 +1,41 @@
 using System;
-using System.Reactive;
 using System.Threading.Tasks;
 using Prism.Navigation;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Vulcanova.Core.Mvvm;
-using Vulcanova.Features.Auth;
+using Vulcanova.Features.Shared;
 
 namespace Vulcanova.Features.LuckyNumber
 {
-    public class LuckyNumberViewModel : ViewModelBase, INavigatedAware
+    public class LuckyNumberViewModel : ViewModelBase
     {
-        public ReactiveCommand<Unit, LuckyNumber> GetLuckyNumber { get; }
+        public ReactiveCommand<int, LuckyNumber> GetLuckyNumber { get; }
 
         [ObservableAsProperty]
         public LuckyNumber LuckyNumber { get; }
 
         private readonly ILuckyNumberService _luckyNumberService;
 
-        private int _accountId;
-
         public LuckyNumberViewModel(
             INavigationService navigationService,
+            AccountContext accountContext,
             ILuckyNumberService luckyNumberService) : base(navigationService)
         {
             _luckyNumberService = luckyNumberService;
 
-            GetLuckyNumber = ReactiveCommand.CreateFromTask(_ => GetLuckyNumberAsync(_accountId, DateTime.Now));
+            GetLuckyNumber = ReactiveCommand.CreateFromTask((int accountId) => GetLuckyNumberAsync(accountId));
             GetLuckyNumber.ToPropertyEx(this, vm => vm.LuckyNumber);
+
+            accountContext.WhenAnyValue(ctx => ctx.AccountId)
+                .InvokeCommand(GetLuckyNumber);
         }
 
-        private async Task<LuckyNumber> GetLuckyNumberAsync(int accountId, DateTime date)
+        private async Task<LuckyNumber> GetLuckyNumberAsync(int accountId)
         {
-            return await _luckyNumberService.GetLuckyNumberAsync(accountId, date);
-        }
-
-        public void OnNavigatedFrom(INavigationParameters parameters)
-        {
-        }
-
-        public void OnNavigatedTo(INavigationParameters parameters)
-        {
-            _accountId = parameters.GetValue<int>("accountId");
+            return await _luckyNumberService.GetLuckyNumberAsync(
+                accountId,
+                DateTime.Now);
         }
     }
 }
