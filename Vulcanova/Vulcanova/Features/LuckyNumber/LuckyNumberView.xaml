@@ -6,7 +6,7 @@
                           xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
                           xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
                           Title="{x:Static resx:Strings.LuckyNumberTabTitle}"
-                          IconImageSource="{OnPlatform iOS=star-outline.svg, Android=ic_star}"
+                          IconImageSource="{OnPlatform iOS=star-outline@3x.png, Android=ic_star}"
                           x:Class="Vulcanova.Features.LuckyNumber.LuckyNumberView">
     <ContentPage.Content>
         <StackLayout>

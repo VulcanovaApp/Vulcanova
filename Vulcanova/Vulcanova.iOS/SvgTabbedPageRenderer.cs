@@ -22,10 +22,9 @@ namespace Vulcanova.iOS
             if (page.IconImageSource is FileImageSource fileImage && fileImage.File.Contains(".svg"))
             {
                 // Load SVG from file
-                var uiImage = await ImageService.Instance.LoadFile(fileImage.File)
+                imageIcon = await ImageService.Instance.LoadFile(fileImage.File)
                     .WithCustomDataResolver(new SvgDataResolver(10, 10))
                     .AsUIImageAsync();
-                imageIcon = uiImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate);
             }
             else
             {
@@ -47,8 +46,7 @@ namespace Vulcanova.iOS
                         break;
                 }
 
-                var uiImage = await sourceHandler.LoadImageAsync(page.IconImageSource);
-                imageIcon = uiImage.ImageWithRenderingMode(UIImageRenderingMode.AlwaysOriginal);
+                imageIcon = await sourceHandler.LoadImageAsync(page.IconImageSource);
             }
 
             return new Tuple<UIImage, UIImage>(imageIcon, null);

@@ -6,7 +6,7 @@
                           xmlns:grades="clr-namespace:Vulcanova.Features.Grades;assembly=Vulcanova"
                           xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
                           Title="{x:Static resx:Strings.GradesTabTitle}"
-                          IconImageSource="{OnPlatform iOS=medal-outline.svg, Android=ic_medal}"
+                          IconImageSource="{OnPlatform iOS=medal-outline@3x.png, Android=ic_medal}"
                           x:Class="Vulcanova.Features.Grades.Summary.GradesSummaryView">
     <ContentPage.Content>
         <CollectionView x:Name="SubjectGrades">
