@@ -29,7 +29,7 @@ namespace Vulcanova.Uonet.Api.Grades
         public string Code { get; set; }
         public string Group { get; set; }
         public int Number { get; set; }
-        public int Color { get; set; }
+        public uint Color { get; set; }
         public decimal Weight { get; set; }
         public Subject Subject { get; set; }
         public Category Category { get; set; }
