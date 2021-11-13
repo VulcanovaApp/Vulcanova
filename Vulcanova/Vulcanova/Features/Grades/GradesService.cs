@@ -11,7 +11,7 @@ using Vulcanova.Uonet.Api.Grades;
 
 namespace Vulcanova.Features.Grades
 {
-    public class GradesService : IGradesService
+    public class GradesService : UonetResourceProvider, IGradesService
     {
         private readonly IApiClientFactory _apiClientFactory;
         private readonly IAccountRepository _accountRepository;
@@ -36,16 +36,22 @@ namespace Vulcanova.Features.Grades
             {
                 return Task.Run(async () =>
                 {
-                    var account = await _accountRepository.GetByIdAsync(accountId);
+                    var account = _accountRepository.GetById(accountId);
 
-                    observer.OnNext(await _gradesRepository.GetGradesForPupilAsync(account.Id, account.Pupil.Id));
+                    var resourceKey = $"Grades_{accountId}_{account.Pupil.Id}";
 
-                    var onlineGrades = await FetchCurrentPeriodGradesAsync(account);
+                    observer.OnNext(_gradesRepository.GetGradesForPupil(account.Id, account.Pupil.Id));
 
-                    observer.OnNext(onlineGrades);
-
-                    await _gradesRepository.UpdatePupilGradesAsync(account.Id, account.Pupil.Id, onlineGrades);
+                    if (ShouldSync(resourceKey))
+                    {
+                        var onlineGrades = await FetchCurrentPeriodGradesAsync(account);
+                        observer.OnNext(onlineGrades);
                     
+                        _gradesRepository.UpdatePupilGrades(account.Id, account.Pupil.Id, onlineGrades);
+                        
+                        SetJustSynced(resourceKey);
+                    }
+
                     observer.OnCompleted();
                 });
             });
@@ -70,5 +76,7 @@ namespace Vulcanova.Features.Grades
 
             return domainGrades;
         }
+
+        protected override TimeSpan OfflineDataLifespan => TimeSpan.FromMinutes(15);
     }
 }

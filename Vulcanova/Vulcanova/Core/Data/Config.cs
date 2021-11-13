@@ -1,7 +1,5 @@
 using System.IO;
-using DryIoc;
-using Microsoft.EntityFrameworkCore;
-using Prism.DryIoc;
+using LiteDB;
 using Prism.Ioc;
 using Xamarin.Essentials;
 
@@ -9,13 +7,12 @@ namespace Vulcanova.Core.Data
 {
     public static class Config
     {
-        public static void RegisterDbContext(this IContainerRegistry containerRegistry)
+        public static void RegisterLiteDb(this IContainerRegistry containerRegistry)
         {
-            var dbPath = Path.Combine(FileSystem.AppDataDirectory, "data.db3");
+            var dbPath = Path.Combine(FileSystem.AppDataDirectory, "data.db");
+            var db = new LiteDatabase(dbPath);
 
-            containerRegistry.RegisterScoped<AppDbContext>(() => new AppDbContext(dbPath));
-
-            containerRegistry.GetContainer().Resolve<AppDbContext>().Database.Migrate();
+            containerRegistry.RegisterInstance(typeof(LiteDatabase), db);
         }
     }
 }

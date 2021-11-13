@@ -5,6 +5,7 @@ using Vulcanova.Core.Layout;
 using Vulcanova.Core.Mapping;
 using Vulcanova.Core.Uonet;
 using Vulcanova.Features.Auth;
+using Vulcanova.Features.Auth.Accounts;
 using Vulcanova.Features.Grades;
 using Vulcanova.Features.LuckyNumber;
 using Vulcanova.Features.Shared;
@@ -29,7 +30,7 @@ namespace Vulcanova
             Methods.SetSupportBarcodeFormat(BarcodeFormats.QRCode);
 
             var accRepo = Container.Resolve<IAccountRepository>();
-            var activeAccount = await accRepo.GetActiveAccount();
+            var activeAccount = accRepo.GetActiveAccount();
 
             if (activeAccount != null)
             {
@@ -46,7 +47,7 @@ namespace Vulcanova
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
-            containerRegistry.RegisterDbContext();
+            containerRegistry.RegisterLiteDb();
 
             containerRegistry.RegisterAutoMapper();
             

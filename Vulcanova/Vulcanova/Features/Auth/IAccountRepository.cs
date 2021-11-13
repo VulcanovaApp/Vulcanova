@@ -6,8 +6,8 @@ namespace Vulcanova.Features.Auth
 {
     public interface IAccountRepository
     {
-        Task AddAccounts(IEnumerable<Account> accounts);
-        Task<Account> GetActiveAccount();
-        Task<Account> GetByIdAsync(int id);
+        void AddAccounts(IEnumerable<Account> accounts);
+        Account GetActiveAccount();
+        Account GetById(int id);
     }
 }

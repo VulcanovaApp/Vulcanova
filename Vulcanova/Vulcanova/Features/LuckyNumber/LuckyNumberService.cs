@@ -24,11 +24,12 @@ namespace Vulcanova.Features.LuckyNumber
 
         public async Task<LuckyNumber> GetLuckyNumberAsync(int accountId, DateTime dateTime)
         {
-            var account = await _accountRepository.GetByIdAsync(accountId);
+            var account = _accountRepository.GetById(accountId);
 
-            var luckyNumber =
-                await _luckyNumberRepository.FindForAccountAndConstituentAsync(accountId, account.ConstituentUnit.Id,
-                    dateTime);
+            var luckyNumber = _luckyNumberRepository.FindForAccountAndConstituent(
+                accountId,
+                account.ConstituentUnit.Id, 
+                dateTime);
 
             if (luckyNumber != null)
             {
@@ -45,7 +46,7 @@ namespace Vulcanova.Features.LuckyNumber
                 Number = result.Number
             };
 
-            await _luckyNumberRepository.AddAsync(luckyNumber);
+            _luckyNumberRepository.Add(luckyNumber);
 
             return luckyNumber;
         }

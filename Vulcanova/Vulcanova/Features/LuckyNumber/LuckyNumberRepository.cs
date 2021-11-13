@@ -1,30 +1,29 @@
 using System;
-using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Vulcanova.Core.Data;
+using LiteDB;
 
 namespace Vulcanova.Features.LuckyNumber
 {
     public class LuckyNumberRepository : ILuckyNumberRepository
     {
-        private readonly AppDbContext _dbContext;
+        private readonly LiteDatabase _db;
 
-        public LuckyNumberRepository(AppDbContext dbContext)
+        public LuckyNumberRepository(LiteDatabase db)
         {
-            _dbContext = dbContext;
+            _db = db;
         }
 
-        public async Task<LuckyNumber> FindForAccountAndConstituentAsync(int accountId, int constituentId,
+        public LuckyNumber FindForAccountAndConstituent(int accountId, int constituentId,
             DateTime date)
         {
-            return await _dbContext.LuckyNumbers.FirstOrDefaultAsync(l =>
-                l.ConstituentId == constituentId && l.AccountId == accountId && date.Date == l.Date.Date);
+            return _db.GetCollection<LuckyNumber>().FindOne(l =>
+                l.ConstituentId == constituentId 
+                && l.AccountId == accountId 
+                && date.Date == l.Date.Date);
         }
 
-        public async Task AddAsync(LuckyNumber luckyNumber)
+        public void Add(LuckyNumber luckyNumber)
         {
-            await _dbContext.LuckyNumbers.AddAsync(luckyNumber);
-            await _dbContext.SaveChangesAsync();
+            _db.GetCollection<LuckyNumber>().Insert(luckyNumber);
         }
     }
 }
