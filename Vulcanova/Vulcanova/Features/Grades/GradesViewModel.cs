@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
-using System.Threading.Tasks;
+using System.Reactive.Linq;
 using Prism.Navigation;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -12,22 +13,21 @@ namespace Vulcanova.Features.Grades
 {
     public class GradesViewModel : ViewModelBase
     {
-        public ReactiveCommand<Unit, SubjectGrades[]> ForceSyncGrades { get; }
-        public ReactiveCommand<int, SubjectGrades[]> GetGrades { get; }
+        public ReactiveCommand<Unit, IEnumerable<SubjectGrades>> ForceSyncGrades { get; }
+        public ReactiveCommand<int, IEnumerable<SubjectGrades>> GetGrades { get; }
         
         [ObservableAsProperty]
-        public SubjectGrades[] Grades { get; }
-        
-        private readonly IGradesService _gradesService;
+        public IEnumerable<SubjectGrades> Grades { get; }
 
         public GradesViewModel(
             INavigationService navigationService,
             AccountContext accountContext,
             IGradesService gradesService) : base(navigationService)
         {
-            _gradesService = gradesService;
-
-            GetGrades = ReactiveCommand.CreateFromTask((int accountId) => GetGradesAsync(accountId));
+            GetGrades = ReactiveCommand.CreateFromObservable((int accountId) =>
+                gradesService
+                    .GetCurrentPeriodGrades(accountId)
+                    .Select(ToSubjectGrades));
 
             GetGrades.ToPropertyEx(this, vm => vm.Grades);
             
@@ -35,10 +35,8 @@ namespace Vulcanova.Features.Grades
                 .InvokeCommand(GetGrades);
         }
 
-        private async Task<SubjectGrades[]> GetGradesAsync(int accountId)
-        {
-            return (await _gradesService.GetCurrentPeriodGradesAsync(accountId, true))
-                .GroupBy(g => new
+        private static IEnumerable<SubjectGrades> ToSubjectGrades(IEnumerable<Grade> grades)
+            => grades.GroupBy(g => new
                 {
                     g.Column.Subject.Id,
                     g.Column.Subject.Name
@@ -47,8 +45,6 @@ namespace Vulcanova.Features.Grades
                 {
                     SubjectName = g.Key.Name,
                     Grades = g.ToArray()
-                })
-                .ToArray();
-        }
+                });
     }
 }

@@ -5,6 +5,7 @@ namespace Vulcanova.Features.Grades
     public class Grade
     {
         public int Id { get; set; }
+        public int AccountId { get; set; }
         public string CreatorName { get; set; }
         public int PupilId { get; set; }
         public string ContentRaw { get; set; }

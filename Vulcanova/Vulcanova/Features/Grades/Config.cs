@@ -9,6 +9,7 @@ namespace Vulcanova.Features.Grades
         {
             container.RegisterForNavigation<GradesSummaryView, GradesViewModel>();
 
+            container.RegisterScoped<IGradesRepository, GradesRepository>();
             container.RegisterScoped<IGradesService, GradesService>();
         }
     }

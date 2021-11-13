@@ -9,8 +9,8 @@ using Vulcanova.Core.Data;
 namespace Vulcanova.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20211102184213_AddGradesAndPeriods")]
-    partial class AddGradesAndPeriods
+    [Migration("20211111175841_AddGrades")]
+    partial class AddGrades
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -146,7 +146,7 @@ namespace Vulcanova.Migrations
                     b.Property<string>("Code")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Color")
+                    b.Property<uint>("Color")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Group")
@@ -164,10 +164,15 @@ namespace Vulcanova.Migrations
                     b.Property<int>("PeriodId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Weight")
+                    b.Property<int?>("SubjectId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<decimal>("Weight")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("SubjectId");
 
                     b.ToTable("Column");
                 });
@@ -176,6 +181,9 @@ namespace Vulcanova.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("AccountId")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("ColumnId")
@@ -193,17 +201,25 @@ namespace Vulcanova.Migrations
                     b.Property<string>("CreatorName")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("DateModify")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("PupilId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int?>("Value")
-                        .HasColumnType("INTEGER");
+                    b.Property<decimal?>("Value")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("AccountId");
+
                     b.HasIndex("ColumnId");
 
-                    b.ToTable("Grade");
+                    b.ToTable("Grades");
                 });
 
             modelBuilder.Entity("Vulcanova.Features.LuckyNumber.LuckyNumber", b =>
@@ -248,6 +264,29 @@ namespace Vulcanova.Migrations
                     b.ToTable("Period");
                 });
 
+            modelBuilder.Entity("Vulcanova.Features.Shared.Subject", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid>("Key")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Kod")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Position")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Subject");
+                });
+
             modelBuilder.Entity("Vulcanova.Features.Auth.Accounts.Account", b =>
                 {
                     b.HasOne("Vulcanova.Features.Auth.Accounts.ConstituentUnit", "ConstituentUnit")
@@ -269,67 +308,28 @@ namespace Vulcanova.Migrations
                     b.Navigation("Unit");
                 });
 
+            modelBuilder.Entity("Vulcanova.Features.Grades.Column", b =>
+                {
+                    b.HasOne("Vulcanova.Features.Shared.Subject", "Subject")
+                        .WithMany()
+                        .HasForeignKey("SubjectId");
+
+                    b.Navigation("Subject");
+                });
+
             modelBuilder.Entity("Vulcanova.Features.Grades.Grade", b =>
                 {
+                    b.HasOne("Vulcanova.Features.Auth.Accounts.Account", null)
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Vulcanova.Features.Grades.Column", "Column")
                         .WithMany()
                         .HasForeignKey("ColumnId");
 
-                    b.OwnsOne("Vulcanova.Uonet.Api.Grades.Date", "DateCreated", b1 =>
-                        {
-                            b1.Property<int>("GradeId")
-                                .HasColumnType("INTEGER");
-
-                            b1.Property<DateTime>("DateDate")
-                                .HasColumnType("TEXT");
-
-                            b1.Property<string>("DateDisplay")
-                                .HasColumnType("TEXT");
-
-                            b1.Property<DateTime>("Time")
-                                .HasColumnType("TEXT");
-
-                            b1.Property<long>("Timestamp")
-                                .HasColumnType("INTEGER");
-
-                            b1.HasKey("GradeId");
-
-                            b1.ToTable("Grade");
-
-                            b1.WithOwner()
-                                .HasForeignKey("GradeId");
-                        });
-
-                    b.OwnsOne("Vulcanova.Uonet.Api.Grades.Date", "DateModify", b1 =>
-                        {
-                            b1.Property<int>("GradeId")
-                                .HasColumnType("INTEGER");
-
-                            b1.Property<DateTime>("DateDate")
-                                .HasColumnType("TEXT");
-
-                            b1.Property<string>("DateDisplay")
-                                .HasColumnType("TEXT");
-
-                            b1.Property<DateTime>("Time")
-                                .HasColumnType("TEXT");
-
-                            b1.Property<long>("Timestamp")
-                                .HasColumnType("INTEGER");
-
-                            b1.HasKey("GradeId");
-
-                            b1.ToTable("Grade");
-
-                            b1.WithOwner()
-                                .HasForeignKey("GradeId");
-                        });
-
                     b.Navigation("Column");
-
-                    b.Navigation("DateCreated");
-
-                    b.Navigation("DateModify");
                 });
 
             modelBuilder.Entity("Vulcanova.Features.Shared.Period", b =>

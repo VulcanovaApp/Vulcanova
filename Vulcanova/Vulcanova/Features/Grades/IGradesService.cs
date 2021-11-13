@@ -1,9 +1,10 @@
-using System.Threading.Tasks;
+using System;
+using System.Collections.Generic;
 
 namespace Vulcanova.Features.Grades
 {
     public interface IGradesService
     {
-        Task<Grade[]> GetCurrentPeriodGradesAsync(int accountId, bool forceUpdate);
+        IObservable<IEnumerable<Grade>> GetCurrentPeriodGrades(int accountId);
     }
 }
