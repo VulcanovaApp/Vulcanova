@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Vulcanova.Features.Auth.Accounts;
 
 namespace Vulcanova.Features.Auth

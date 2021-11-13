@@ -1,9 +1,5 @@
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using LiteDB;
-using Microsoft.EntityFrameworkCore;
-using Vulcanova.Core.Data;
 using Vulcanova.Features.Auth.Accounts;
 
 namespace Vulcanova.Features.Auth
