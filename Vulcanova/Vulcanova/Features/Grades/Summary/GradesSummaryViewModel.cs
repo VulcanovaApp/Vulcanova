@@ -39,6 +39,7 @@ namespace Vulcanova.Features.Grades.Summary
             GetGrades.IsExecuting.ToPropertyEx(this, vm => vm.IsSyncing);
             
             accountContext.WhenAnyValue(ctx => ctx.AccountId)
+                .Select(_ => false)
                 .InvokeCommand(GetGrades);
         }
 
