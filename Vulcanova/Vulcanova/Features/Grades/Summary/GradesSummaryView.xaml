@@ -19,7 +19,7 @@
             <CollectionView x:Name="SubjectGrades">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Spacing="0" Padding="0">
+                        <StackLayout>
                             <StackLayout Orientation="Horizontal" Padding="16, 8">
                                 <StackLayout HorizontalOptions="FillAndExpand">
                                     <Label Text="{Binding SubjectName}" Style="{StaticResource DefaultLabelStyle}" />
