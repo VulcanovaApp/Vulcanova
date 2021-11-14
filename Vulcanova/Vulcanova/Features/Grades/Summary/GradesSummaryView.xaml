@@ -14,28 +14,30 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
-        <CollectionView x:Name="SubjectGrades">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <StackLayout Spacing="0" Padding="0">
-                        <StackLayout Padding="16, 8">
-                            <Label Text="{Binding SubjectName}" Style="{StaticResource DefaultLabelStyle}" />
-                            <StackLayout BindableLayout.ItemsSource="{Binding Grades}" Orientation="Horizontal">
-                                <BindableLayout.ItemTemplate>
-                                    <DataTemplate>
-                                        <Label
-                                            TextColor="{Binding Column.Color, Converter={StaticResource GradeColorConverter}}"
-                                            Text="{Binding Content}" Style="{StaticResource DefaultLabelStyle}" />
-                                    </DataTemplate>
-                                </BindableLayout.ItemTemplate>
+        <RefreshView x:Name="RefreshView">
+            <CollectionView x:Name="SubjectGrades">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Spacing="0" Padding="0">
+                            <StackLayout Padding="16, 8">
+                                <Label Text="{Binding SubjectName}" Style="{StaticResource DefaultLabelStyle}" />
+                                <StackLayout BindableLayout.ItemsSource="{Binding Grades}" Orientation="Horizontal">
+                                    <BindableLayout.ItemTemplate>
+                                        <DataTemplate>
+                                            <Label
+                                                TextColor="{Binding Column.Color, Converter={StaticResource GradeColorConverter}}"
+                                                Text="{Binding Content}" Style="{StaticResource DefaultLabelStyle}" />
+                                        </DataTemplate>
+                                    </BindableLayout.ItemTemplate>
+                                </StackLayout>
                             </StackLayout>
+                            <!-- Separator -->
+                            <BoxView Style="{StaticResource SeparatorStyle}"
+                                     VerticalOptions="End" />
                         </StackLayout>
-                        <!-- Separator -->
-                        <BoxView Style="{StaticResource SeparatorStyle}"
-                                 VerticalOptions="End" />
-                    </StackLayout>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </RefreshView>
     </ContentPage.Content>
 </rxui:ReactiveContentPage>

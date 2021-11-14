@@ -12,23 +12,31 @@ namespace Vulcanova.Features.Grades.Summary
 {
     public class GradesViewModel : ViewModelBase
     {
+        public ReactiveCommand<bool, IEnumerable<SubjectGrades>> GetGrades { get; }
+
         public ReactiveCommand<Unit, IEnumerable<SubjectGrades>> ForceSyncGrades { get; }
-        public ReactiveCommand<int, IEnumerable<SubjectGrades>> GetGrades { get; }
-        
+
         [ObservableAsProperty]
         public IEnumerable<SubjectGrades> Grades { get; }
+        
+        [ObservableAsProperty]
+        public bool IsSyncing { get; }
 
         public GradesViewModel(
             INavigationService navigationService,
             AccountContext accountContext,
             IGradesService gradesService) : base(navigationService)
         {
-            GetGrades = ReactiveCommand.CreateFromObservable((int accountId) =>
+            GetGrades = ReactiveCommand.CreateFromObservable((bool forceSync) =>
                 gradesService
-                    .GetCurrentPeriodGrades(accountId)
+                    .GetCurrentPeriodGrades(accountContext.AccountId, forceSync)
                     .Select(ToSubjectGrades));
 
+            ForceSyncGrades = ReactiveCommand.CreateFromObservable(() => GetGrades.Execute(true));
+
             GetGrades.ToPropertyEx(this, vm => vm.Grades);
+
+            GetGrades.IsExecuting.ToPropertyEx(this, vm => vm.IsSyncing);
             
             accountContext.WhenAnyValue(ctx => ctx.AccountId)
                 .InvokeCommand(GetGrades);

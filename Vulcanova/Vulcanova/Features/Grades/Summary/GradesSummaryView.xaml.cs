@@ -15,6 +15,12 @@ namespace Vulcanova.Features.Grades.Summary
             {
                 this.OneWayBind(ViewModel, vm => vm.Grades, v => v.SubjectGrades.ItemsSource)
                     .DisposeWith(disposable);
+
+                this.BindCommand(ViewModel, vm => vm.ForceSyncGrades, v => v.RefreshView)
+                    .DisposeWith(disposable);
+
+                this.OneWayBind(ViewModel, vm => vm.IsSyncing, v => v.RefreshView.IsRefreshing)
+                    .DisposeWith(disposable);
             });
         }
     }

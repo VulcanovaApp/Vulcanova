@@ -30,7 +30,7 @@ namespace Vulcanova.Features.Grades
             _gradesRepository = gradesRepository;
         }
 
-        public IObservable<IEnumerable<Grade>> GetCurrentPeriodGrades(int accountId)
+        public IObservable<IEnumerable<Grade>> GetCurrentPeriodGrades(int accountId, bool forceSync = false)
         {
             return Observable.Create<IEnumerable<Grade>>(observer =>
             {
@@ -39,10 +39,13 @@ namespace Vulcanova.Features.Grades
                     var account = _accountRepository.GetById(accountId);
 
                     var resourceKey = $"Grades_{accountId}_{account.Pupil.Id}";
+                    
+                    if (!forceSync)
+                    {
+                        observer.OnNext(_gradesRepository.GetGradesForPupil(account.Id, account.Pupil.Id));
+                    }
 
-                    observer.OnNext(_gradesRepository.GetGradesForPupil(account.Id, account.Pupil.Id));
-
-                    if (ShouldSync(resourceKey))
+                    if (ShouldSync(resourceKey) || forceSync)
                     {
                         var onlineGrades = await FetchCurrentPeriodGradesAsync(account);
                         observer.OnNext(onlineGrades);

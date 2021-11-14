@@ -5,6 +5,6 @@ namespace Vulcanova.Features.Grades
 {
     public interface IGradesService
     {
-        IObservable<IEnumerable<Grade>> GetCurrentPeriodGrades(int accountId);
+        IObservable<IEnumerable<Grade>> GetCurrentPeriodGrades(int accountId, bool forceSync = false);
     }
 }
