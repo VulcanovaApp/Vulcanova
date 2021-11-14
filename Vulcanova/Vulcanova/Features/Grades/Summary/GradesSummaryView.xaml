@@ -5,6 +5,7 @@
                           xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
                           xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
                           xmlns:local="clr-namespace:Vulcanova.Features.Grades.Summary;assembly=Vulcanova"
+                          xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
                           Title="{x:Static resx:Strings.GradesTabTitle}"
                           IconImageSource="{OnPlatform iOS=medal-outline@3x.png, Android=ic_medal}"
                           x:Class="Vulcanova.Features.Grades.Summary.GradesSummaryView">
@@ -19,17 +20,25 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Spacing="0" Padding="0">
-                            <StackLayout Padding="16, 8">
-                                <Label Text="{Binding SubjectName}" Style="{StaticResource DefaultLabelStyle}" />
-                                <StackLayout BindableLayout.ItemsSource="{Binding Grades}" Orientation="Horizontal">
-                                    <BindableLayout.ItemTemplate>
-                                        <DataTemplate>
-                                            <Label
-                                                TextColor="{Binding Column.Color, Converter={StaticResource GradeColorConverter}}"
-                                                Text="{Binding Content}" Style="{StaticResource DefaultLabelStyle}" />
-                                        </DataTemplate>
-                                    </BindableLayout.ItemTemplate>
+                            <StackLayout Orientation="Horizontal" Padding="16, 8">
+                                <StackLayout HorizontalOptions="FillAndExpand">
+                                    <Label Text="{Binding SubjectName}" Style="{StaticResource DefaultLabelStyle}" />
+                                    <StackLayout BindableLayout.ItemsSource="{Binding Grades}" Orientation="Horizontal">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <Label
+                                                    TextColor="{Binding Column.Color, Converter={StaticResource GradeColorConverter}}"
+                                                    Text="{Binding Content}" Style="{StaticResource DefaultLabelStyle}" />
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
                                 </StackLayout>
+                                <layout:TintedCachedImage
+                                    HeightRequest="32"
+                                    WidthRequest="32"
+                                    Source="resource://Vulcanova.Resources.Icons.chevron-right.svg"
+                                    TintColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
+                                </layout:TintedCachedImage>
                             </StackLayout>
                             <!-- Separator -->
                             <BoxView Style="{StaticResource SeparatorStyle}"

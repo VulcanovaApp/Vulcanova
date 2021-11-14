@@ -26,6 +26,8 @@
         </PackageReference>
         <PackageReference Include="ReactiveUI.Fody" Version="16.2.6" />
         <PackageReference Include="ReactiveUI.XamForms" Version="16.2.6" />
+        <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
+        <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
         <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
     </ItemGroup>
 
@@ -34,6 +36,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Reference Include="FFImageLoading.Svg.Forms, Version=2.4.11.982, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\..\..\.nuget\packages\xamarin.ffimageloading.svg.forms\2.4.11.982\lib\Xamarin.iOS10\FFImageLoading.Svg.Forms.dll</HintPath>
+      </Reference>
       <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, PublicKeyToken=null">
         <HintPath>..\..\..\..\.nuget\packages\xamarin.forms\5.0.0.2125\lib\MonoAndroid10.0\Xamarin.Forms.Core.dll</HintPath>
       </Reference>
@@ -44,6 +49,7 @@
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>Strings.Designer.cs</LastGenOutput>
       </EmbeddedResource>
+      <EmbeddedResource Include="Resources\Icons\chevron-right.svg" />
       <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
       <EmbeddedResource Include="Resources\Fonts\Poppins-Regular.ttf" />
     </ItemGroup>
