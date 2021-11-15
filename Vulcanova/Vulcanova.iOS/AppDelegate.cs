@@ -1,4 +1,5 @@
-﻿using Foundation;
+﻿using FFImageLoading.Forms.Platform;
+using Foundation;
 using UIKit;
 
 namespace Vulcanova.iOS
@@ -20,6 +21,8 @@ namespace Vulcanova.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
+            
+            CachedImageRenderer.Init();
             
             GoogleVisionBarCodeScanner.iOS.Initializer.Init();
             Firebase.Core.App.Configure();
