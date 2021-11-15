@@ -13,7 +13,7 @@ namespace Vulcanova.Features.Grades
         public string Group { get; set; }
         public int Number { get; set; }
         public uint Color { get; set; }
-        public decimal Weight { get; set; }
+        public int Weight { get; set; }
         public Subject Subject { get; set; }
     }
 }

@@ -32,6 +32,13 @@
                 Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>
 
+    <Style x:Key="SmallLabelStyle"
+           TargetType="Label">
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+        <Setter Property="FontSize" Value="Small" />
+    </Style>
+
     <Style x:Key="LinkLabelStyle" TargetType="Label">
         <Setter Property="TextColor" Value="{DynamicResource DarkPrimaryColor}" />
     </Style>

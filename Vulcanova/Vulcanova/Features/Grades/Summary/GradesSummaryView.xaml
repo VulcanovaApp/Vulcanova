@@ -33,6 +33,7 @@
                                         </BindableLayout.ItemTemplate>
                                     </StackLayout>
                                 </StackLayout>
+                                <Label Style="{StaticResource SmallLabelStyle}" Text="{Binding Average, StringFormat='{0:F2}'}" VerticalTextAlignment="Center" />
                                 <layout:TintedCachedImage
                                     HeightRequest="32"
                                     WidthRequest="32"

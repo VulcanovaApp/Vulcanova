@@ -14,5 +14,6 @@ namespace Vulcanova.Features.Grades
         public DateTime DateCreated { get; set; }
         public DateTime DateModify { get; set; }
         public decimal? Value { get; set; }
-        public Column Column { get; set; } }
+        public Column Column { get; set; }
+    }
 }

@@ -52,6 +52,7 @@ namespace Vulcanova.Features.Grades.Summary
                 .Select(g => new SubjectGrades
                 {
                     SubjectName = g.Key.Name,
+                    Average = g.Average(),
                     Grades = g.ToArray()
                 });
     }
