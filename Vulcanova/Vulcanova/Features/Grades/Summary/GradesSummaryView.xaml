@@ -19,7 +19,7 @@
             <CollectionView x:Name="SubjectGrades">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout>
+                        <StackLayout Padding="0, 2">
                             <StackLayout Orientation="Horizontal" Padding="16, 8">
                                 <StackLayout HorizontalOptions="FillAndExpand">
                                     <Label Text="{Binding SubjectName}" Style="{StaticResource DefaultLabelStyle}" />
@@ -42,8 +42,7 @@
                                 </layout:TintedCachedImage>
                             </StackLayout>
                             <!-- Separator -->
-                            <BoxView Style="{StaticResource SeparatorStyle}"
-                                     VerticalOptions="End" />
+                            <BoxView Style="{StaticResource SeparatorStyle}" />
                         </StackLayout>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
