@@ -20,8 +20,7 @@ namespace Vulcanova.Features.Grades
 
         public void UpdatePupilGrades(int accountId, int pupilId, IEnumerable<Grade> newGrades)
         {
-            _db.GetCollection<Grade>().DeleteMany(g => g.PupilId == pupilId && g.AccountId == accountId);
-            _db.GetCollection<Grade>().InsertBulk(newGrades);
+            _db.GetCollection<Grade>().Upsert(newGrades);
         }
     }
 }
