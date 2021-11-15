@@ -15,5 +15,5 @@
     <Color x:Key="DarkPanelColor">Black</Color>
     
     <Color x:Key="LightBorderColor">#DFDFE1</Color>
-    <Color x:Key="DarkBorderColor">#666666</Color>
+    <Color x:Key="DarkBorderColor">#2C2C2E</Color>
 </ResourceDictionary>
