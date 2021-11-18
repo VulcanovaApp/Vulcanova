@@ -54,4 +54,16 @@
     <data name="GradesTabTitle" xml:space="preserve">
         <value>Grades</value>
     </data>
+    <data name="GradeWeightLabel" xml:space="preserve">
+        <value>weight: {0}</value>
+    </data>
+    <data name="GradeCreatedDateLabel" xml:space="preserve">
+        <value>date: {0:d}</value>
+    </data>
+    <data name="GradeModifiedDateLabel" xml:space="preserve">
+        <value>(modified: {0:d})</value>
+    </data>
+    <data name="GradeEmptyNameLabel" xml:space="preserve">
+        <value>untitled</value>
+    </data>
 </root>

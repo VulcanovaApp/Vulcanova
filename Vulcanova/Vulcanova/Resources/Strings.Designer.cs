@@ -116,5 +116,29 @@ namespace Vulcanova.Resources {
                 return ResourceManager.GetString("GradesTabTitle", resourceCulture);
             }
         }
+        
+        internal static string GradeWeightLabel {
+            get {
+                return ResourceManager.GetString("GradeWeightLabel", resourceCulture);
+            }
+        }
+        
+        internal static string GradeCreatedDateLabel {
+            get {
+                return ResourceManager.GetString("GradeCreatedDateLabel", resourceCulture);
+            }
+        }
+        
+        internal static string GradeModifiedDateLabel {
+            get {
+                return ResourceManager.GetString("GradeModifiedDateLabel", resourceCulture);
+            }
+        }
+        
+        internal static string GradeEmptyNameLabel {
+            get {
+                return ResourceManager.GetString("GradeEmptyNameLabel", resourceCulture);
+            }
+        }
     }
 }

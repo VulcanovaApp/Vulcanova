@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:grades="clr-namespace:Vulcanova.Features.Grades;assembly=Vulcanova"
+    xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
+    x:Class="Vulcanova.Features.Grades.SubjectDetails.GradesSubjectDetailsView">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <grades:GradeColorConverter x:Key="GradeColorConverter" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <StackLayout>
+            <CollectionView x:Name="SubjectGrades">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <StackLayout Orientation="Horizontal" Padding="8, 8">
+                                <Label
+                                    WidthRequest="40"
+                                    VerticalTextAlignment="Center"
+                                    HorizontalTextAlignment="Center"
+                                    FontSize="Large"
+                                    TextColor="{Binding Column.Color, Converter={StaticResource GradeColorConverter}}"
+                                    Text="{Binding Content}" Style="{StaticResource DefaultLabelStyle}" />
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                        <RowDefinition Height="*" />
+                                    </Grid.RowDefinitions>
+                                    <Label FontSize="Small" FontAttributes="Bold"
+                                           Text="{Binding Column.Name, TargetNullValue={x:Static resx:Strings.GradeEmptyNameLabel}}" />
+                                    <StackLayout Grid.Row="1" Orientation="Horizontal">
+                                        <Label Text="{Binding ContentRaw}" FontSize="Small" />
+                                        <Label FontSize="Small"
+                                               Text="{Binding Column.Weight, StringFormat={x:Static resx:Strings.GradeWeightLabel}}" />
+                                    </StackLayout>
+                                    <StackLayout Grid.Row="2" Orientation="Horizontal">
+                                        <Label FontSize="Small"
+                                               Text="{Binding DateCreated, StringFormat={x:Static resx:Strings.GradeCreatedDateLabel}}" />
+                                        <Label FontSize="Small" IsVisible="{Binding IsModified}"
+                                               Text="{Binding DateModify, StringFormat={x:Static resx:Strings.GradeModifiedDateLabel}}" />
+                                    </StackLayout>
+                                </Grid>
+                            </StackLayout>
+                            <BoxView Style="{StaticResource SeparatorStyle}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

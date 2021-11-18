@@ -2,7 +2,7 @@ using System;
 using System.Globalization;
 using Xamarin.Forms;
 
-namespace Vulcanova.Features.Grades.Summary
+namespace Vulcanova.Features.Grades
 {
     public class GradeColorConverter : IValueConverter
     {

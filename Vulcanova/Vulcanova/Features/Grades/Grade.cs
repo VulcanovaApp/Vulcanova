@@ -13,6 +13,7 @@ namespace Vulcanova.Features.Grades
         public string Comment { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateModify { get; set; }
+        public bool IsModified => DateCreated != DateModify;
         public decimal? Value { get; set; }
         public Column Column { get; set; }
     }

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<rxui:ReactiveContentPage x:TypeArguments="local:GradesViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<rxui:ReactiveContentPage x:TypeArguments="local:GradesSummaryViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                           xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
                           xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
                           xmlns:local="clr-namespace:Vulcanova.Features.Grades.Summary;assembly=Vulcanova"
                           xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
+                          xmlns:grades="clr-namespace:Vulcanova.Features.Grades;assembly=Vulcanova"
                           Title="{x:Static resx:Strings.GradesTabTitle}"
                           IconImageSource="{OnPlatform iOS=medal-outline@3x.png, Android=ic_medal}"
                           x:Class="Vulcanova.Features.Grades.Summary.GradesSummaryView">
     <ContentPage.Resources>
         <ResourceDictionary>
-            <local:GradeColorConverter x:Key="GradeColorConverter" />
+            <grades:GradeColorConverter x:Key="GradeColorConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -20,6 +21,12 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="0, 2">
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type local:GradesSummaryViewModel}}, Path=ShowSubjectGradesDetails}"
+                                    CommandParameter="{Binding SubjectId}">
+                                </TapGestureRecognizer>
+                            </StackLayout.GestureRecognizers>
                             <StackLayout Orientation="Horizontal" Padding="16, 8">
                                 <StackLayout HorizontalOptions="FillAndExpand">
                                     <Label Text="{Binding SubjectName}" Style="{StaticResource DefaultLabelStyle}" />
@@ -33,7 +40,8 @@
                                         </BindableLayout.ItemTemplate>
                                     </StackLayout>
                                 </StackLayout>
-                                <Label Style="{StaticResource SmallLabelStyle}" Text="{Binding Average, StringFormat='{0:F2}'}" VerticalTextAlignment="Center" />
+                                <Label Style="{StaticResource SmallLabelStyle}"
+                                       Text="{Binding Average, StringFormat='{0:F2}'}" VerticalTextAlignment="Center" />
                                 <layout:TintedCachedImage
                                     HeightRequest="32"
                                     WidthRequest="32"

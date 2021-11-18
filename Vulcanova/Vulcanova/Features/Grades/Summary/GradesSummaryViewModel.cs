@@ -10,11 +10,13 @@ using Vulcanova.Features.Shared;
 
 namespace Vulcanova.Features.Grades.Summary
 {
-    public class GradesViewModel : ViewModelBase
+    public class GradesSummaryViewModel : ViewModelBase
     {
         public ReactiveCommand<bool, IEnumerable<SubjectGrades>> GetGrades { get; }
 
         public ReactiveCommand<Unit, IEnumerable<SubjectGrades>> ForceSyncGrades { get; }
+        
+        public ReactiveCommand<int, INavigationResult> ShowSubjectGradesDetails { get; }
 
         [ObservableAsProperty]
         public IEnumerable<SubjectGrades> Grades { get; }
@@ -22,7 +24,7 @@ namespace Vulcanova.Features.Grades.Summary
         [ObservableAsProperty]
         public bool IsSyncing { get; }
 
-        public GradesViewModel(
+        public GradesSummaryViewModel(
             INavigationService navigationService,
             AccountContext accountContext,
             IGradesService gradesService) : base(navigationService)
@@ -41,6 +43,17 @@ namespace Vulcanova.Features.Grades.Summary
             accountContext.WhenAnyValue(ctx => ctx.AccountId)
                 .Select(_ => false)
                 .InvokeCommand(GetGrades);
+
+            ShowSubjectGradesDetails = ReactiveCommand.CreateFromTask((int subjectId) =>
+            {
+                var subjectGrades = Grades?.First(g => g.SubjectId == subjectId);
+
+                return navigationService.NavigateAsync("GradesSubjectDetailsView", new NavigationParameters
+                {
+                    {"grades", subjectGrades.Grades},
+                    {"subjectName", subjectGrades.SubjectName}
+                });
+            });
         }
 
         private static IEnumerable<SubjectGrades> ToSubjectGrades(IEnumerable<Grade> grades)
@@ -51,6 +64,7 @@ namespace Vulcanova.Features.Grades.Summary
                 })
                 .Select(g => new SubjectGrades
                 {
+                    SubjectId = g.Key.Id,
                     SubjectName = g.Key.Name,
                     Average = g.Average(),
                     Grades = g.ToArray()
