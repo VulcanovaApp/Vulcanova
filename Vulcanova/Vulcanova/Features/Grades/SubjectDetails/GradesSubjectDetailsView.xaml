@@ -5,10 +5,12 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:grades="clr-namespace:Vulcanova.Features.Grades;assembly=Vulcanova"
     xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
+    xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
     x:Class="Vulcanova.Features.Grades.SubjectDetails.GradesSubjectDetailsView">
     <ContentPage.Resources>
         <ResourceDictionary>
             <grades:GradeColorConverter x:Key="GradeColorConverter" />
+            <layout:FallbackStringConverter x:Key="FallbackStringConverter" />
         </ResourceDictionary>
     </ContentPage.Resources>
     <ContentPage.Content>
@@ -32,7 +34,7 @@
                                         <RowDefinition Height="*" />
                                     </Grid.RowDefinitions>
                                     <Label FontSize="Small" FontAttributes="Bold"
-                                           Text="{Binding Column.Name, TargetNullValue={x:Static resx:Strings.GradeEmptyNameLabel}}" />
+                                           Text="{Binding Column.Name, Converter={StaticResource FallbackStringConverter}, ConverterParameter={x:Static resx:Strings.GradeEmptyNameLabel}}" />
                                     <StackLayout Grid.Row="1" Orientation="Horizontal">
                                         <Label Text="{Binding ContentRaw}" FontSize="Small" />
                                         <Label FontSize="Small"
