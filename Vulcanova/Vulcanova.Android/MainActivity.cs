@@ -3,6 +3,7 @@ using Android.Content.PM;
 using Android.Graphics;
 using Android.Runtime;
 using Android.OS;
+using FFImageLoading.Forms.Platform;
 
 namespace Vulcanova.Android
 {
@@ -16,6 +17,8 @@ namespace Vulcanova.Android
             ToolbarResource = Resource.Layout.Toolbar;
 
             base.OnCreate(savedInstanceState);
+
+            CachedImageRenderer.Init(true);
             
             GoogleVisionBarCodeScanner.Droid.RendererInitializer.Init();
             
