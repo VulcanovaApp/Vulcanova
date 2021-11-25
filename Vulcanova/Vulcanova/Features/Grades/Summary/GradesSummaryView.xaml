@@ -19,7 +19,7 @@
         <RefreshView x:Name="RefreshView">
             <CollectionView x:Name="SubjectGrades">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate>
+                    <DataTemplate x:DataType="local:SubjectGrades">
                         <StackLayout Padding="0, 1">
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer
@@ -32,7 +32,7 @@
                                     <Label Text="{Binding SubjectName}" Style="{StaticResource DefaultLabelStyle}" />
                                     <StackLayout BindableLayout.ItemsSource="{Binding Grades}" Orientation="Horizontal">
                                         <BindableLayout.ItemTemplate>
-                                            <DataTemplate>
+                                            <DataTemplate x:DataType="grades:Grade">
                                                 <Label
                                                     TextColor="{Binding Column.Color, Converter={StaticResource GradeColorConverter}}"
                                                     Text="{Binding Content}" Style="{StaticResource DefaultLabelStyle}" />
