@@ -20,7 +20,7 @@
             <CollectionView x:Name="SubjectGrades">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="0, 2">
+                        <StackLayout Padding="0, 1">
                             <StackLayout.GestureRecognizers>
                                 <TapGestureRecognizer
                                     Command="{Binding Source={RelativeSource AncestorType={x:Type local:GradesSummaryViewModel}}, Path=ShowSubjectGradesDetails}"

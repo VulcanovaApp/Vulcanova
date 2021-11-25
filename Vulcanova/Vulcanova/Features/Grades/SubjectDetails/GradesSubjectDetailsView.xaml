@@ -18,7 +18,7 @@
             <CollectionView x:Name="SubjectGrades">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout>
+                        <StackLayout Padding="0, 1">
                             <StackLayout Orientation="Horizontal" Padding="8, 8">
                                 <Label
                                     WidthRequest="40"
