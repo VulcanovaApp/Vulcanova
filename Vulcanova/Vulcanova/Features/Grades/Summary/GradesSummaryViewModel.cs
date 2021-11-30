@@ -16,13 +16,15 @@ namespace Vulcanova.Features.Grades.Summary
 
         public ReactiveCommand<Unit, IEnumerable<SubjectGrades>> ForceSyncGrades { get; }
         
-        public ReactiveCommand<int, INavigationResult> ShowSubjectGradesDetails { get; }
+        public ReactiveCommand<int, Unit> ShowSubjectGradesDetails { get; }
 
         [ObservableAsProperty]
         public IEnumerable<SubjectGrades> Grades { get; }
         
         [ObservableAsProperty]
         public bool IsSyncing { get; }
+        
+        [Reactive] public SubjectGrades CurrentSubject { get; private set; }
 
         public GradesSummaryViewModel(
             INavigationService navigationService,
@@ -44,15 +46,11 @@ namespace Vulcanova.Features.Grades.Summary
                 .Select(_ => false)
                 .InvokeCommand(GetGrades);
 
-            ShowSubjectGradesDetails = ReactiveCommand.CreateFromTask((int subjectId) =>
+            ShowSubjectGradesDetails = ReactiveCommand.Create((int subjectId) =>
             {
-                var subjectGrades = Grades?.First(g => g.SubjectId == subjectId);
+                CurrentSubject = Grades?.First(g => g.SubjectId == subjectId);
 
-                return navigationService.NavigateAsync("GradesSubjectDetailsView", new NavigationParameters
-                {
-                    {"grades", subjectGrades.Grades},
-                    {"subjectName", subjectGrades.SubjectName}
-                });
+                return Unit.Default;
             });
         }
 

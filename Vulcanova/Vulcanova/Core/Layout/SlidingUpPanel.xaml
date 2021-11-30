@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<forms:ContentView xmlns:forms="http://xamarin.com/schemas/2014/forms" xmlns="http://xamarin.com/schemas/2014/forms"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   x:Class="Vulcanova.Core.Layout.SlidingUpPanel"
+                   x:Name="SlidingPanel">
+    <ContentView.GestureRecognizers>
+        <PanGestureRecognizer x:Name="PanGestureRecognizer" />
+    </ContentView.GestureRecognizers>
+    <ContentView.Content>
+        <Grid>
+            <RelativeLayout>
+                <BoxView x:Name="Backdrop" RelativeLayout.XConstraint="0" RelativeLayout.YConstraint="-1000"
+                         RelativeLayout.HeightConstraint="2000" RelativeLayout.WidthConstraint="5000"
+                         InputTransparent="True" BackgroundColor="Black" Opacity="0" />
+            </RelativeLayout>
+            <Frame BorderColor="{AppThemeBinding Light={StaticResource LightBorderColor}, Dark={StaticResource DarkBorderColor}}" CornerRadius="16" BackgroundColor="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}"
+                   VerticalOptions="End" Padding="8, 8" Margin="-1, 0"
+                   HasShadow="False">
+                <StackLayout>
+                    <BoxView CornerRadius="2" BackgroundColor="LightGray" HeightRequest="4"
+                             WidthRequest="40" HorizontalOptions="Center">
+                    </BoxView>
+                    <Grid x:Name="ContentWrapper" />
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ContentView.Content>
+</forms:ContentView>

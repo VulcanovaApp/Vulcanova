@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<ContentPage
-    xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:grades="clr-namespace:Vulcanova.Features.Grades;assembly=Vulcanova"
-    xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
-    xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
-    x:Class="Vulcanova.Features.Grades.SubjectDetails.GradesSubjectDetailsView">
-    <ContentPage.Resources>
+<forms:ContentView xmlns:forms="http://xamarin.com/schemas/2014/forms" xmlns="http://xamarin.com/schemas/2014/forms"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:grades="clr-namespace:Vulcanova.Features.Grades;assembly=Vulcanova"
+                   xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
+                   xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
+                   x:Class="Vulcanova.Features.Grades.SubjectDetails.GradesSubjectDetailsView"
+                   x:Name="View">
+    <ContentView.Resources>
         <ResourceDictionary>
             <grades:GradeColorConverter x:Key="GradeColorConverter" />
             <layout:FallbackStringConverter x:Key="FallbackStringConverter" />
         </ResourceDictionary>
-    </ContentPage.Resources>
+    </ContentView.Resources>
     <ContentPage.Content>
         <StackLayout>
-            <CollectionView x:Name="SubjectGrades">
+            <CollectionView BindingContext="{x:Reference View}" ItemsSource="{Binding Subject.Grades}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="grades:Grade">
                         <StackLayout Padding="0, 1">
@@ -55,4 +55,4 @@
             </CollectionView>
         </StackLayout>
     </ContentPage.Content>
-</ContentPage>
+</forms:ContentView>
