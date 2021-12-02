@@ -11,6 +11,10 @@
         <ResourceDictionary>
             <grades:GradeColorConverter x:Key="GradeColorConverter" />
             <layout:FallbackStringConverter x:Key="FallbackStringConverter" />
+            <Style ApplyToDerivedTypes="true" TargetType="StackLayout">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding Light={StaticResource LightPanelColor}, Dark={StaticResource DarkPanelColor}}" />
+            </Style>
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentPage.Content>

@@ -27,11 +27,11 @@
             <Frame
                 BorderColor="{AppThemeBinding Light={StaticResource LightBorderColor}, Dark={StaticResource DarkBorderColor}}"
                 CornerRadius="16"
-                BackgroundColor="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}"
                 VerticalOptions="End" Padding="8, 8, 8, 12"
                 HasShadow="False"
+                Style="{StaticResource PanelStyle}"
                 x:Name="Sheet">
-                <StackLayout>
+                <StackLayout Style="{StaticResource PanelStyle}">
                     <BoxView x:Name="Handle" CornerRadius="2" BackgroundColor="LightGray" HeightRequest="4"
                              WidthRequest="40" HorizontalOptions="Center">
                     </BoxView>

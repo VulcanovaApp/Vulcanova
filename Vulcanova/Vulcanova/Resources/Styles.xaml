@@ -57,6 +57,11 @@
                 Value="{AppThemeBinding Light={StaticResource LightBorderColor}, Dark={StaticResource DarkBorderColor}}" />
     </Style>
 
+    <Style x:Key="PanelStyle" TargetType="View">
+        <Setter Property="BackgroundColor"
+                Value="{AppThemeBinding Light={StaticResource LightPanelColor}, Dark={StaticResource DarkPanelColor}}" />
+    </Style>
+
     <Style ApplyToDerivedTypes="true" TargetType="StackLayout">
         <Setter Property="BackgroundColor"
                 Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" />

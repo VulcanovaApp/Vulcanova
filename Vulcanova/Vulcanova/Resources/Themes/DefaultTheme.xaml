@@ -12,7 +12,7 @@
     <Color x:Key="DarkBackgroundColor">Black</Color>
     
     <Color x:Key="LightPanelColor">White</Color>
-    <Color x:Key="DarkPanelColor">Black</Color>
+    <Color x:Key="DarkPanelColor">#131313</Color>
     
     <Color x:Key="LightBorderColor">#F2F2F7</Color>
     <Color x:Key="DarkBorderColor">#1C1C1C</Color>
