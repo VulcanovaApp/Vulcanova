@@ -20,7 +20,7 @@
                          InputTransparent="{Binding Open, Converter={StaticResource NegateBooleanConverter}}"
                          BackgroundColor="Black" Opacity="0">
                     <BoxView.GestureRecognizers>
-                        <TapGestureRecognizer x:Name="TapGestureRecognizer"></TapGestureRecognizer>
+                        <TapGestureRecognizer x:Name="TapGestureRecognizer" />
                     </BoxView.GestureRecognizers>
                 </BoxView>
             </RelativeLayout>
