@@ -25,6 +25,14 @@
                 Value="30" />
     </Style>
 
+    <Style x:Key="MediumLabelStyle"
+           TargetType="Label">
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+        <Setter Property="FontSize"
+                Value="18" />
+    </Style>
+
     <Style x:Key="DefaultLabelStyle"
            TargetType="Label"
            ApplyToDerivedTypes="True">

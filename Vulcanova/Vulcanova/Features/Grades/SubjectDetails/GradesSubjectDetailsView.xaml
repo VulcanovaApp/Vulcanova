@@ -14,12 +14,17 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout BindingContext="{x:Reference View}">
+            <StackLayout Orientation="Horizontal" Padding="16, 8">
+                <Label Style="{StaticResource MediumLabelStyle}" HorizontalOptions="FillAndExpand"
+                       Text="{Binding Subject.SubjectName}" />
+                <Label Text="{Binding Subject.Average, StringFormat='{0:F2}'}" />
+            </StackLayout>
             <CollectionView BindingContext="{x:Reference View}" ItemsSource="{Binding Subject.Grades}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="grades:Grade">
                         <StackLayout Padding="0, 1">
-                            <StackLayout Orientation="Horizontal" Padding="8, 8">
+                            <StackLayout Orientation="Horizontal" Padding="12, 8">
                                 <Label
                                     WidthRequest="40"
                                     VerticalTextAlignment="Center"

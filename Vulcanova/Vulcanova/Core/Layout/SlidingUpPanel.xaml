@@ -14,11 +14,15 @@
                          RelativeLayout.HeightConstraint="2000" RelativeLayout.WidthConstraint="5000"
                          InputTransparent="True" BackgroundColor="Black" Opacity="0" />
             </RelativeLayout>
-            <Frame BorderColor="{AppThemeBinding Light={StaticResource LightBorderColor}, Dark={StaticResource DarkBorderColor}}" CornerRadius="16" BackgroundColor="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}"
-                   VerticalOptions="End" Padding="8, 8" Margin="-1, 0"
-                   HasShadow="False">
+            <Frame
+                BorderColor="{AppThemeBinding Light={StaticResource LightBorderColor}, Dark={StaticResource DarkBorderColor}}"
+                CornerRadius="16"
+                BackgroundColor="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}"
+                VerticalOptions="End" Padding="8, 8, 8, 12"
+                HasShadow="False"
+                x:Name="Sheet">
                 <StackLayout>
-                    <BoxView CornerRadius="2" BackgroundColor="LightGray" HeightRequest="4"
+                    <BoxView x:Name="Handle" CornerRadius="2" BackgroundColor="LightGray" HeightRequest="4"
                              WidthRequest="40" HorizontalOptions="Center">
                     </BoxView>
                     <Grid x:Name="ContentWrapper" />
