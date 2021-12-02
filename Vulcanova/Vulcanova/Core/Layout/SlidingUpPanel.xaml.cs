@@ -48,6 +48,9 @@ namespace Vulcanova.Core.Layout
                     Open = end <= start;
                 });
 
+            this.TapGestureRecognizer.Events().Tapped
+                .Subscribe(_ => Open = false);
+
             var layout = this.Events().LayoutChanged;
 
             layout.Subscribe(_ =>

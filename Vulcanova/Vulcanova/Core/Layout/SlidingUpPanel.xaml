@@ -2,17 +2,27 @@
 
 <forms:ContentView xmlns:forms="http://xamarin.com/schemas/2014/forms" xmlns="http://xamarin.com/schemas/2014/forms"
                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
                    x:Class="Vulcanova.Core.Layout.SlidingUpPanel"
                    x:Name="SlidingPanel">
+    <ContentView.Resources>
+        <layout:NegateBooleanConverter x:Key="NegateBooleanConverter" />
+    </ContentView.Resources>
     <ContentView.GestureRecognizers>
         <PanGestureRecognizer x:Name="PanGestureRecognizer" />
     </ContentView.GestureRecognizers>
     <ContentView.Content>
         <Grid>
             <RelativeLayout>
-                <BoxView x:Name="Backdrop" RelativeLayout.XConstraint="0" RelativeLayout.YConstraint="-1000"
+                <BoxView BindingContext="{x:Reference SlidingPanel}" x:Name="Backdrop" RelativeLayout.XConstraint="0"
+                         RelativeLayout.YConstraint="-1000"
                          RelativeLayout.HeightConstraint="2000" RelativeLayout.WidthConstraint="5000"
-                         InputTransparent="True" BackgroundColor="Black" Opacity="0" />
+                         InputTransparent="{Binding Open, Converter={StaticResource NegateBooleanConverter}}"
+                         BackgroundColor="Black" Opacity="0">
+                    <BoxView.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="TapGestureRecognizer"></TapGestureRecognizer>
+                    </BoxView.GestureRecognizers>
+                </BoxView>
             </RelativeLayout>
             <Frame
                 BorderColor="{AppThemeBinding Light={StaticResource LightBorderColor}, Dark={StaticResource DarkBorderColor}}"
