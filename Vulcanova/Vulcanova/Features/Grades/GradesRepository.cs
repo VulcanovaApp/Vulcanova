@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using LiteDB;
 
 namespace Vulcanova.Features.Grades
@@ -15,7 +16,8 @@ namespace Vulcanova.Features.Grades
         public IEnumerable<Grade> GetGradesForPupil(int accountId, int pupilId)
         {
             return _db.GetCollection<Grade>()
-                .Find(g => g.PupilId == pupilId && g.AccountId == accountId);
+                .Find(g => g.PupilId == pupilId && g.AccountId == accountId)
+                .OrderByDescending(g => g.DateCreated);
         }
 
         public void UpdatePupilGrades(int accountId, int pupilId, IEnumerable<Grade> newGrades)
