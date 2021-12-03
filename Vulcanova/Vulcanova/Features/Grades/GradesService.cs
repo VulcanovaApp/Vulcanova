@@ -38,23 +38,18 @@ namespace Vulcanova.Features.Grades
                 {
                     var account = _accountRepository.GetById(accountId);
 
-                    var resourceKey = $"Grades_{accountId}_{account.Pupil.Id}";
-                    
-                    if (!forceSync)
-                    {
-                        observer.OnNext(_gradesRepository.GetGradesForPupil(account.Id, account.Pupil.Id));
-                    }
+                    var resourceKey = GetResourceKeyForAccount(account);
 
                     if (ShouldSync(resourceKey) || forceSync)
                     {
                         var onlineGrades = await FetchCurrentPeriodGradesAsync(account);
-                        observer.OnNext(onlineGrades);
-                    
+
                         _gradesRepository.UpdatePupilGrades(account.Id, account.Pupil.Id, onlineGrades);
                         
                         SetJustSynced(resourceKey);
                     }
 
+                    observer.OnNext(_gradesRepository.GetGradesForPupil(account.Id, account.Pupil.Id));
                     observer.OnCompleted();
                 });
             });
@@ -62,9 +57,11 @@ namespace Vulcanova.Features.Grades
 
         private async Task<Grade[]> FetchCurrentPeriodGradesAsync(Account account)
         {
+            var lastSync = GetLastSync(GetResourceKeyForAccount(account));
+
             var periodId = account.Periods.Single(p => p.Current).Id;
 
-            var query = new GetGradesByPupilQuery(account.Unit.Id, account.Pupil.Id, periodId, DateTime.MinValue, 500);
+            var query = new GetGradesByPupilQuery(account.Unit.Id, account.Pupil.Id, periodId, lastSync, 500);
 
             var client = _apiClientFactory.GetForApiInstanceUrl(account.Unit.RestUrl);
 
@@ -79,6 +76,9 @@ namespace Vulcanova.Features.Grades
 
             return domainGrades;
         }
+
+        private static string GetResourceKeyForAccount(Account account)
+            => $"Grades_{account.Id}_{account.Pupil.Id}";
 
         protected override TimeSpan OfflineDataLifespan => TimeSpan.FromMinutes(15);
     }

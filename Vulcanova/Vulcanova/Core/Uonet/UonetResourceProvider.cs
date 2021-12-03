@@ -13,6 +13,9 @@ namespace Vulcanova.Core.Uonet
             return DateTime.UtcNow - lastSync > OfflineDataLifespan;
         }
 
+        protected static DateTime GetLastSync(string resourceKey)
+            => Preferences.Get($"LastSync_{resourceKey}", DateTime.MinValue);
+
         protected static void SetJustSynced(string resourceKey)
         {
             Preferences.Set($"LastSync_{resourceKey}", DateTime.UtcNow);
