@@ -1,3 +1,4 @@
+using System;
 using AutoMapper;
 using Vulcanova.Features.Auth.Accounts;
 using Vulcanova.Uonet.Api.Auth;
@@ -17,6 +18,8 @@ namespace Vulcanova.Features.Auth
             CreateMap<Uonet.Api.Auth.Unit, Unit>();
             CreateMap<Uonet.Api.Auth.ConstituentUnit, ConstituentUnit>();
             CreateMap<Uonet.Api.Auth.Period, Period>();
+            CreateMap<Uonet.Api.Auth.YearEnd, DateTime>()
+                .ConvertUsing(y => DateTimeOffset.FromUnixTimeMilliseconds(y.Timestamp).Date);
         }
     }
 }

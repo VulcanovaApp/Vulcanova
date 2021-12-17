@@ -13,10 +13,10 @@ namespace Vulcanova.Features.Grades
             _db = db;
         }
 
-        public IEnumerable<Grade> GetGradesForPupil(int accountId, int pupilId)
+        public IEnumerable<Grade> GetGradesForPupil(int accountId, int pupilId, int periodId)
         {
             return _db.GetCollection<Grade>()
-                .Find(g => g.PupilId == pupilId && g.AccountId == accountId)
+                .Find(g => g.PupilId == pupilId && g.AccountId == accountId && g.Column.PeriodId == periodId)
                 .OrderByDescending(g => g.DateCreated);
         }
 

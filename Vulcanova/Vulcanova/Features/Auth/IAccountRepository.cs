@@ -8,5 +8,6 @@ namespace Vulcanova.Features.Auth
         void AddAccounts(IEnumerable<Account> accounts);
         Account GetActiveAccount();
         Account GetById(int id);
+        void UpdateAccount(Account account);
     }
 }

@@ -29,5 +29,10 @@ namespace Vulcanova.Features.Auth
             return _db.GetCollection<Account>()
                 .FindById(id);
         }
+
+        public void UpdateAccount(Account account)
+        {
+            _db.GetCollection<Account>().Update(account);
+        }
     }
 }

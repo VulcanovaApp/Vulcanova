@@ -7,6 +7,7 @@ using AutoMapper;
 using Vulcanova.Core.Uonet;
 using Vulcanova.Features.Auth;
 using Vulcanova.Features.Auth.Accounts;
+using Vulcanova.Features.Shared;
 using Vulcanova.Uonet.Api.Grades;
 
 namespace Vulcanova.Features.Grades
@@ -30,7 +31,7 @@ namespace Vulcanova.Features.Grades
             _gradesRepository = gradesRepository;
         }
 
-        public IObservable<IEnumerable<Grade>> GetCurrentPeriodGrades(int accountId, bool forceSync = false)
+        public IObservable<IEnumerable<Grade>> GetPeriodGrades(int accountId, int periodId, bool forceSync = false)
         {
             return Observable.Create<IEnumerable<Grade>>(observer =>
             {
@@ -42,24 +43,22 @@ namespace Vulcanova.Features.Grades
 
                     if (ShouldSync(resourceKey) || forceSync)
                     {
-                        var onlineGrades = await FetchCurrentPeriodGradesAsync(account);
+                        var onlineGrades = await FetchPeriodGradesAsync(account, periodId);
 
                         _gradesRepository.UpdatePupilGrades(account.Id, account.Pupil.Id, onlineGrades);
                         
                         SetJustSynced(resourceKey);
                     }
 
-                    observer.OnNext(_gradesRepository.GetGradesForPupil(account.Id, account.Pupil.Id));
+                    observer.OnNext(_gradesRepository.GetGradesForPupil(account.Id, account.Pupil.Id, account.GetCurrentPeriod().Id));
                     observer.OnCompleted();
                 });
             });
         }
 
-        private async Task<Grade[]> FetchCurrentPeriodGradesAsync(Account account)
+        private async Task<Grade[]> FetchPeriodGradesAsync(Account account, int periodId)
         {
             var lastSync = GetLastSync(GetResourceKeyForAccount(account));
-
-            var periodId = account.Periods.Single(p => p.Current).Id;
 
             var query = new GetGradesByPupilQuery(account.Unit.Id, account.Pupil.Id, periodId, lastSync, 500);
 
@@ -78,7 +77,7 @@ namespace Vulcanova.Features.Grades
         }
 
         private static string GetResourceKeyForAccount(Account account)
-            => $"Grades_{account.Id}_{account.Pupil.Id}";
+            => $"Grades_{account.Id}_{account.Pupil.Id}_{account.GetCurrentPeriod().Id}";
 
         protected override TimeSpan OfflineDataLifespan => TimeSpan.FromMinutes(15);
     }

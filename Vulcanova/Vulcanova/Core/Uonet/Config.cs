@@ -14,6 +14,8 @@ namespace Vulcanova.Core.Uonet
             container.RegisterSingleton<IRequestSigner, RequestSignerAdapter>();
             container.RegisterSingleton<IInstanceUrlProvider, InstanceUrlProvider>();
             container.RegisterSingleton<AccountContext>();
+
+            container.RegisterScoped<IPeriodService, PeriodService>();
         }
     }
 }

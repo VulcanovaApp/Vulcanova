@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
@@ -17,23 +18,29 @@ namespace Vulcanova.Features.Grades.Summary
         public ReactiveCommand<Unit, IEnumerable<SubjectGrades>> ForceSyncGrades { get; }
         
         public ReactiveCommand<int, Unit> ShowSubjectGradesDetails { get; }
+        
+        public ReactiveCommand<Unit, Unit> NextSemester { get; }
+        public ReactiveCommand<Unit, Unit> PreviousSemester { get; }
 
         [ObservableAsProperty]
         public IEnumerable<SubjectGrades> Grades { get; }
-        
+
         [ObservableAsProperty]
         public bool IsSyncing { get; }
-        
+
+        [Reactive] public PeriodResult PeriodInfo { get; private set; }
+
         [Reactive] public SubjectGrades CurrentSubject { get; private set; }
 
         public GradesSummaryViewModel(
             INavigationService navigationService,
             AccountContext accountContext,
-            IGradesService gradesService) : base(navigationService)
+            IGradesService gradesService,
+            IPeriodService periodService) : base(navigationService)
         {
             GetGrades = ReactiveCommand.CreateFromObservable((bool forceSync) =>
                 gradesService
-                    .GetCurrentPeriodGrades(accountContext.AccountId, forceSync)
+                    .GetPeriodGrades(accountContext.AccountId, PeriodInfo!.CurrentPeriod.Id, forceSync)
                     .Select(ToSubjectGrades));
 
             ForceSyncGrades = ReactiveCommand.CreateFromObservable(() => GetGrades.Execute(true));
@@ -41,8 +48,12 @@ namespace Vulcanova.Features.Grades.Summary
             GetGrades.ToPropertyEx(this, vm => vm.Grades);
 
             GetGrades.IsExecuting.ToPropertyEx(this, vm => vm.IsSyncing);
-            
+
             accountContext.WhenAnyValue(ctx => ctx.AccountId)
+                .Subscribe(id => PeriodInfo = periodService.GetCurrentPeriod(id));
+
+            this.WhenAnyValue(vm => vm.PeriodInfo)
+                .WhereNotNull()
                 .Select(_ => false)
                 .InvokeCommand(GetGrades);
 
@@ -51,6 +62,16 @@ namespace Vulcanova.Features.Grades.Summary
                 CurrentSubject = Grades?.First(g => g.SubjectId == subjectId);
 
                 return Unit.Default;
+            });
+
+            NextSemester = ReactiveCommand.Create(() =>
+            {
+                PeriodInfo = periodService.ChangePeriod(accountContext.AccountId, PeriodChangeDirection.Next);
+            });
+            
+            PreviousSemester = ReactiveCommand.Create(() =>
+            {
+                PeriodInfo = periodService.ChangePeriod(accountContext.AccountId, PeriodChangeDirection.Previous);
             });
         }
 
