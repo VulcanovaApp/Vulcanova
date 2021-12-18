@@ -45,7 +45,7 @@ namespace Vulcanova.Features.Auth.ManualSigningIn
             // TODO: Ask the user which acc to make active
             accounts.First().IsActive = true;
 
-            _accountRepository.AddAccounts(accounts);
+            await _accountRepository.AddAccountsAsync(accounts);
 
             return Unit.Default;
         }

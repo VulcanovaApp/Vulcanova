@@ -1,38 +1,39 @@
 using System.Collections.Generic;
-using LiteDB;
+using System.Threading.Tasks;
+using LiteDB.Async;
 using Vulcanova.Features.Auth.Accounts;
 
 namespace Vulcanova.Features.Auth
 {
     public class AccountRepository : IAccountRepository
     {
-        private readonly LiteDatabase _db;
+        private readonly LiteDatabaseAsync _db;
 
-        public AccountRepository(LiteDatabase db)
+        public AccountRepository(LiteDatabaseAsync db)
         {
             _db = db;
         }
 
-        public void AddAccounts(IEnumerable<Account> accounts)
+        public async Task AddAccountsAsync(IEnumerable<Account> accounts)
         {
-            _db.GetCollection<Account>().InsertBulk(accounts);
+            await _db.GetCollection<Account>().InsertBulkAsync(accounts);
         }
 
-        public Account GetActiveAccount()
+        public async Task<Account> GetActiveAccountAsync()
         {
-            return _db.GetCollection<Account>()
-                .FindOne(a => a.IsActive);
+            return await _db.GetCollection<Account>()
+                .FindOneAsync(a => a.IsActive).ConfigureAwait(false);
         }
 
-        public Account GetById(int id)
+        public async Task<Account> GetByIdAsync(int id)
         {
-            return _db.GetCollection<Account>()
-                .FindById(id);
+            return await _db.GetCollection<Account>()
+                .FindByIdAsync(id);
         }
 
-        public void UpdateAccount(Account account)
+        public async Task UpdateAccountAsync(Account account)
         {
-            _db.GetCollection<Account>().Update(account);
+            await _db.GetCollection<Account>().UpdateAsync(account);
         }
     }
 }

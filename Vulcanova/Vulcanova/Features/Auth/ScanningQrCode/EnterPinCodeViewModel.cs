@@ -47,7 +47,7 @@ namespace Vulcanova.Features.Auth.ScanningQrCode
 
             accounts.First().IsActive = true;
 
-            _accountRepository.AddAccounts(accounts);
+            await _accountRepository.AddAccountsAsync(accounts);
 
             return Unit.Default;
         }

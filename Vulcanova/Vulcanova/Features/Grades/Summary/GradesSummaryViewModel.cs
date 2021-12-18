@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reactive;
@@ -16,17 +15,15 @@ namespace Vulcanova.Features.Grades.Summary
         public ReactiveCommand<bool, IEnumerable<SubjectGrades>> GetGrades { get; }
 
         public ReactiveCommand<Unit, IEnumerable<SubjectGrades>> ForceSyncGrades { get; }
-        
+
         public ReactiveCommand<int, Unit> ShowSubjectGradesDetails { get; }
-        
+
         public ReactiveCommand<Unit, Unit> NextSemester { get; }
         public ReactiveCommand<Unit, Unit> PreviousSemester { get; }
 
-        [ObservableAsProperty]
-        public IEnumerable<SubjectGrades> Grades { get; }
+        [ObservableAsProperty] public IEnumerable<SubjectGrades> Grades { get; }
 
-        [ObservableAsProperty]
-        public bool IsSyncing { get; }
+        [ObservableAsProperty] public bool IsSyncing { get; }
 
         [Reactive] public PeriodResult PeriodInfo { get; private set; }
 
@@ -49,8 +46,12 @@ namespace Vulcanova.Features.Grades.Summary
 
             GetGrades.IsExecuting.ToPropertyEx(this, vm => vm.IsSyncing);
 
+            var setCurrentPeriod =
+                ReactiveCommand.CreateFromTask(async (int accountId) =>
+                    PeriodInfo = await periodService.GetCurrentPeriodAsync(accountId));
+
             accountContext.WhenAnyValue(ctx => ctx.AccountId)
-                .Subscribe(id => PeriodInfo = periodService.GetCurrentPeriod(id));
+                .InvokeCommand(setCurrentPeriod);
 
             this.WhenAnyValue(vm => vm.PeriodInfo)
                 .WhereNotNull()
@@ -64,14 +65,16 @@ namespace Vulcanova.Features.Grades.Summary
                 return Unit.Default;
             });
 
-            NextSemester = ReactiveCommand.Create(() =>
+            NextSemester = ReactiveCommand.CreateFromTask(async () =>
             {
-                PeriodInfo = periodService.ChangePeriod(accountContext.AccountId, PeriodChangeDirection.Next);
+                PeriodInfo =
+                    await periodService.ChangePeriodAsync(accountContext.AccountId, PeriodChangeDirection.Next);
             });
-            
-            PreviousSemester = ReactiveCommand.Create(() =>
+
+            PreviousSemester = ReactiveCommand.CreateFromTask(async () =>
             {
-                PeriodInfo = periodService.ChangePeriod(accountContext.AccountId, PeriodChangeDirection.Previous);
+                PeriodInfo =
+                    await periodService.ChangePeriodAsync(accountContext.AccountId, PeriodChangeDirection.Previous);
             });
         }
 

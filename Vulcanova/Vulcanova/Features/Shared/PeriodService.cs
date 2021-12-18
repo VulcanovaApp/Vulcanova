@@ -1,4 +1,5 @@
 using System;
+using System.Threading.Tasks;
 using ImTools;
 using Vulcanova.Features.Auth;
 
@@ -13,9 +14,9 @@ namespace Vulcanova.Features.Shared
             _accountRepository = accountRepository;
         }
 
-        public PeriodResult GetCurrentPeriod(int accountId)
+        public async Task<PeriodResult> GetCurrentPeriodAsync(int accountId)
         {
-            var account = _accountRepository.GetById(accountId);
+            var account = await _accountRepository.GetByIdAsync(accountId);
             var currentPeriod = account.GetCurrentPeriod();
             var index = account.Periods.IndexOf(currentPeriod);
 
@@ -25,9 +26,9 @@ namespace Vulcanova.Features.Shared
             return new PeriodResult(currentPeriod, hasNext, hasPrevious);
         }
 
-        public PeriodResult ChangePeriod(int accountId, PeriodChangeDirection direction)
+        public async Task<PeriodResult> ChangePeriodAsync(int accountId, PeriodChangeDirection direction)
         {
-            var account = _accountRepository.GetById(accountId);
+            var account = await _accountRepository.GetByIdAsync(accountId);
 
             var currentPeriod = account.GetCurrentPeriod();
             var allPeriods = account.Periods.ToArray();
@@ -49,7 +50,7 @@ namespace Vulcanova.Features.Shared
             var hasNext = nextIndex < account.Periods.Count - 1;
             var hasPrevious = nextIndex > 0;
 
-            _accountRepository.UpdateAccount(account);
+            await _accountRepository.UpdateAccountAsync(account);
 
             return new PeriodResult(nextPeriod, hasNext, hasPrevious);
         }

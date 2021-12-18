@@ -1,5 +1,5 @@
 using System.IO;
-using LiteDB;
+using LiteDB.Async;
 using Prism.Ioc;
 using Xamarin.Essentials;
 
@@ -10,9 +10,9 @@ namespace Vulcanova.Core.Data
         public static void RegisterLiteDb(this IContainerRegistry containerRegistry)
         {
             var dbPath = Path.Combine(FileSystem.AppDataDirectory, "data.db");
-            var db = new LiteDatabase(dbPath);
+            var db = new LiteDatabaseAsync(dbPath);
 
-            containerRegistry.RegisterInstance(typeof(LiteDatabase), db);
+            containerRegistry.RegisterInstance(typeof(LiteDatabaseAsync), db);
         }
     }
 }

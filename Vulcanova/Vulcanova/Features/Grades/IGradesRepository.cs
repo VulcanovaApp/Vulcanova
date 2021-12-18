@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Vulcanova.Features.Grades
 {
     public interface IGradesRepository
     {
-        IEnumerable<Grade> GetGradesForPupil(int accountId, int pupilId, int periodId);
-        void UpdatePupilGrades(int accountId, int pupilId, IEnumerable<Grade> newGrades);
+        Task<IEnumerable<Grade>> GetGradesForPupilAsync(int accountId, int pupilId, int periodId);
+        Task UpdatePupilGradesAsync(int accountId, int pupilId, IEnumerable<Grade> newGrades);
     }
 }

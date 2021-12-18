@@ -27,7 +27,9 @@ namespace Vulcanova
             Methods.SetSupportBarcodeFormat(BarcodeFormats.QRCode);
 
             var accRepo = Container.Resolve<IAccountRepository>();
-            var activeAccount = accRepo.GetActiveAccount();
+            
+            // breaks app startup when executed asynchronously
+            var activeAccount = accRepo.GetActiveAccountAsync().Result;
 
             if (activeAccount != null)
             {
