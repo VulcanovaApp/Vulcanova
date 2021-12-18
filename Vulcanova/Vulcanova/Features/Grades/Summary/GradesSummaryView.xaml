@@ -35,7 +35,7 @@
                                 <TapGestureRecognizer x:Name="PreviousSemesterTap" />
                             </layout:TintedCachedImage.GestureRecognizers>
                         </layout:TintedCachedImage>
-                        <Label HorizontalOptions="CenterAndExpand" VerticalOptions="Center" x:Name="PeriodNameLabel">Semestr 1</Label>
+                        <Label HorizontalOptions="CenterAndExpand" VerticalOptions="Center" x:Name="PeriodNameLabel" />
                         <layout:TintedCachedImage
                             x:Name="NextPeriodImg"
                             HeightRequest="18"
