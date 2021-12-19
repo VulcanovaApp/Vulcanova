@@ -24,6 +24,9 @@ namespace Vulcanova
         {
             InitializeComponent();
 
+            Sharpnado.Tabs.Initializer.Initialize(false, false);
+            Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);
+
             Methods.SetSupportBarcodeFormat(BarcodeFormats.QRCode);
 
             var accRepo = Container.Resolve<IAccountRepository>();
@@ -40,7 +43,7 @@ namespace Vulcanova
             }
             else
             {
-                await NavigationService.NavigateAsync("NavigationPage/IntroView");
+                    await NavigationService.NavigateAsync("NavigationPage/IntroView");
             }
         }
 

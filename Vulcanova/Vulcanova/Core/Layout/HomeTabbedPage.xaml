@@ -7,10 +7,10 @@
                       xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
                       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
                       xmlns:luckyNumber="clr-namespace:Vulcanova.Features.LuckyNumber;assembly=Vulcanova"
-                      xmlns:grades="clr-namespace:Vulcanova.Features.Grades.Summary;assembly=Vulcanova"
+                      xmlns:grades="clr-namespace:Vulcanova.Features.Grades;assembly=Vulcanova"
                       x:Class="Vulcanova.Core.Layout.HomeTabbedPage"
                       android:TabbedPage.ToolbarPlacement="Bottom"
                       ios:TabbedPage.TranslucencyMode="Translucent">
-    <grades:GradesSummaryView />
+    <grades:GradesView />
     <luckyNumber:LuckyNumberView />
 </layout:SvgTabbedPage> 

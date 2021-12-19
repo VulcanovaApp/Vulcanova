@@ -24,6 +24,8 @@ namespace Vulcanova.iOS
             
             CachedImageRenderer.Init();
             
+            Sharpnado.Tabs.iOS.Preserver.Preserve();
+
             GoogleVisionBarCodeScanner.iOS.Initializer.Init();
             Firebase.Core.App.Configure();
 

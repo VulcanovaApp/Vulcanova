@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<rxui:ReactiveContentPage
+    x:TypeArguments="grades:GradesViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="Vulcanova.Features.Grades.GradesView"
+    xmlns:summary="clr-namespace:Vulcanova.Features.Grades.Summary;assembly=Vulcanova"
+    xmlns:final="clr-namespace:Vulcanova.Features.Grades.Final;assembly=Vulcanova"
+    xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+    xmlns:grades="clr-namespace:Vulcanova.Features.Grades;assembly=Vulcanova"
+    xmlns:tabs="http://sharpnado.com"
+    xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
+    xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
+    IconImageSource="{OnPlatform iOS=medal-outline@3x.png, Android=ic_medal}"
+    Title="Grades">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="TabStyle" TargetType="tabs:UnderlinedTabItem">
+                <Setter Property="SelectedTabColor"
+                        Value="{AppThemeBinding Dark={StaticResource DarkPrimaryColor}, Light={StaticResource LightPrimaryColor}}" />
+                <Setter Property="UnderlineAllTab" Value="True" />
+                <Setter Property="UnselectedLabelColor" Value="White" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+        <Grid RowSpacing="16">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <tabs:TabHostView
+                x:Name="TabHost"
+                BackgroundColor="#272727"
+                TabType="Fixed">
+                <tabs:TabHostView.Tabs>
+                    <tabs:UnderlinedTabItem Style="{DynamicResource TabStyle}"
+                                            Label="{x:Static resx:Strings.PartialGradesTabTitle}" />
+                    <tabs:UnderlinedTabItem Style="{DynamicResource TabStyle}"
+                                            Label="{x:Static resx:Strings.FinalGradesTabTitle}" />
+                </tabs:TabHostView.Tabs>
+            </tabs:TabHostView>
+
+            <Frame Grid.Row="1" HasShadow="False" CornerRadius="16" Padding="0" IsClippedToBounds="True" Margin="16, 0">
+                <StackLayout Orientation="Horizontal"
+                             BackgroundColor="{AppThemeBinding Light={StaticResource LightPanelColor}, Dark={StaticResource DarkPanelColor}}"
+                             Padding="8">
+                    <layout:TintedCachedImage
+                        x:Name="PreviousPeriodImg"
+                        HeightRequest="18"
+                        WidthRequest="18"
+                        Source="resource://Vulcanova.Resources.Icons.chevron-left.svg"
+                        TintColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
+                        <layout:TintedCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="PreviousSemesterTap" />
+                        </layout:TintedCachedImage.GestureRecognizers>
+                    </layout:TintedCachedImage>
+                    <Label HorizontalOptions="CenterAndExpand" VerticalOptions="Center" x:Name="PeriodNameLabel" />
+                    <layout:TintedCachedImage
+                        x:Name="NextPeriodImg"
+                        HeightRequest="18"
+                        WidthRequest="18"
+                        Source="resource://Vulcanova.Resources.Icons.chevron-right.svg"
+                        TintColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
+                        <layout:TintedCachedImage.GestureRecognizers>
+                            <TapGestureRecognizer x:Name="NextSemesterTap" />
+                        </layout:TintedCachedImage.GestureRecognizers>
+                    </layout:TintedCachedImage>
+                </StackLayout>
+            </Frame>
+
+            <tabs:ViewSwitcher
+                Grid.Row="2" x:Name="Switcher" Animate="True">
+                <summary:GradesSummaryView x:Name="GradesSummaryView" />
+                <final:FinalGradesView />
+            </tabs:ViewSwitcher>
+        </Grid>
+    </ContentPage.Content>
+</rxui:ReactiveContentPage>

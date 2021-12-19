@@ -66,4 +66,10 @@
     <data name="GradeEmptyNameLabel" xml:space="preserve">
         <value>untitled</value>
     </data>
+    <data name="PartialGradesTabTitle" xml:space="preserve">
+        <value>Partial grades</value>
+    </data>
+    <data name="FinalGradesTabTitle" xml:space="preserve">
+        <value>Final grades</value>
+    </data>
 </root>

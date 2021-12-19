@@ -1,102 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<rxui:ReactiveContentPage x:TypeArguments="local:GradesSummaryViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<rxui:ReactiveContentView x:TypeArguments="local:GradesSummaryViewModel"
+                          xmlns="http://xamarin.com/schemas/2014/forms"
                           x:Name="ContentPage"
                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                           xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
-                          xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
                           xmlns:local="clr-namespace:Vulcanova.Features.Grades.Summary;assembly=Vulcanova"
                           xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
                           xmlns:grades="clr-namespace:Vulcanova.Features.Grades;assembly=Vulcanova"
                           xmlns:subjectDetails="clr-namespace:Vulcanova.Features.Grades.SubjectDetails;assembly=Vulcanova"
-                          Title="{x:Static resx:Strings.GradesTabTitle}"
-                          IconImageSource="{OnPlatform iOS=medal-outline@3x.png, Android=ic_medal}"
                           x:Class="Vulcanova.Features.Grades.Summary.GradesSummaryView">
-    <ContentPage.Resources>
+    <ContentView.Resources>
         <ResourceDictionary>
             <grades:GradeColorConverter x:Key="GradeColorConverter" />
         </ResourceDictionary>
-    </ContentPage.Resources>
-    <ContentPage.Content>
+    </ContentView.Resources>
+    <ContentView.Content>
         <Grid>
-
-            <StackLayout Spacing="0">
-                <Frame HasShadow="False" CornerRadius="16" Padding="0" IsClippedToBounds="True" Margin="16, 16">
-                    <StackLayout Orientation="Horizontal"
-                                 BackgroundColor="{AppThemeBinding Light={StaticResource LightPanelColor}, Dark={StaticResource DarkPanelColor}}"
-                                 Padding="8">
-                        <layout:TintedCachedImage
-                            x:Name="PreviousPeriodImg"
-                            HeightRequest="18"
-                            WidthRequest="18"
-                            Source="resource://Vulcanova.Resources.Icons.chevron-left.svg"
-                            TintColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
-                            <layout:TintedCachedImage.GestureRecognizers>
-                                <TapGestureRecognizer x:Name="PreviousSemesterTap" />
-                            </layout:TintedCachedImage.GestureRecognizers>
-                        </layout:TintedCachedImage>
-                        <Label HorizontalOptions="CenterAndExpand" VerticalOptions="Center" x:Name="PeriodNameLabel" />
-                        <layout:TintedCachedImage
-                            x:Name="NextPeriodImg"
-                            HeightRequest="18"
-                            WidthRequest="18"
-                            Source="resource://Vulcanova.Resources.Icons.chevron-right.svg"
-                            TintColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
-                            <layout:TintedCachedImage.GestureRecognizers>
-                                <TapGestureRecognizer x:Name="NextSemesterTap" />
-                            </layout:TintedCachedImage.GestureRecognizers>
-                        </layout:TintedCachedImage>
-                    </StackLayout>
-                </Frame>
-                <BoxView Style="{StaticResource SeparatorStyle}" />
-                <RefreshView x:Name="RefreshView" IsRefreshing="True">
-                    <CollectionView x:Name="SubjectGrades">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="local:SubjectGrades">
-                                <StackLayout Padding="0, 1">
-                                    <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer
-                                            Command="{Binding Source={RelativeSource AncestorType={x:Type local:GradesSummaryViewModel}}, Path=ShowSubjectGradesDetails}"
-                                            CommandParameter="{Binding SubjectId}">
-                                        </TapGestureRecognizer>
-                                    </StackLayout.GestureRecognizers>
-                                    <StackLayout Orientation="Horizontal" Padding="16, 8">
-                                        <StackLayout HorizontalOptions="FillAndExpand">
-                                            <Label Text="{Binding SubjectName}"
-                                                   Style="{StaticResource DefaultLabelStyle}" />
-                                            <StackLayout BindableLayout.ItemsSource="{Binding Grades}"
-                                                         Orientation="Horizontal">
-                                                <BindableLayout.ItemTemplate>
-                                                    <DataTemplate x:DataType="grades:Grade">
-                                                        <Label
-                                                            TextColor="{Binding Column.Color, Converter={StaticResource GradeColorConverter}}"
-                                                            Text="{Binding Content}"
-                                                            Style="{StaticResource DefaultLabelStyle}" />
-                                                    </DataTemplate>
-                                                </BindableLayout.ItemTemplate>
-                                            </StackLayout>
+            <RefreshView x:Name="RefreshView" IsRefreshing="True">
+                <CollectionView x:Name="SubjectGrades">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="local:SubjectGrades">
+                            <StackLayout Padding="0, 1">
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer
+                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:GradesSummaryViewModel}}, Path=ShowSubjectGradesDetails}"
+                                        CommandParameter="{Binding SubjectId}">
+                                    </TapGestureRecognizer>
+                                </StackLayout.GestureRecognizers>
+                                <StackLayout Orientation="Horizontal" Padding="16, 8">
+                                    <StackLayout HorizontalOptions="FillAndExpand">
+                                        <Label Text="{Binding SubjectName}"
+                                               Style="{StaticResource DefaultLabelStyle}" />
+                                        <StackLayout BindableLayout.ItemsSource="{Binding Grades}"
+                                                     Orientation="Horizontal">
+                                            <BindableLayout.ItemTemplate>
+                                                <DataTemplate x:DataType="grades:Grade">
+                                                    <Label
+                                                        TextColor="{Binding Column.Color, Converter={StaticResource GradeColorConverter}}"
+                                                        Text="{Binding Content}"
+                                                        Style="{StaticResource DefaultLabelStyle}" />
+                                                </DataTemplate>
+                                            </BindableLayout.ItemTemplate>
                                         </StackLayout>
-                                        <Label Style="{StaticResource SmallLabelStyle}"
-                                               Text="{Binding Average, StringFormat='{0:F2}'}"
-                                               VerticalTextAlignment="Center" />
-                                        <layout:TintedCachedImage
-                                            HeightRequest="32"
-                                            WidthRequest="32"
-                                            Source="resource://Vulcanova.Resources.Icons.chevron-right.svg"
-                                            TintColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
-                                        </layout:TintedCachedImage>
                                     </StackLayout>
-                                    <!-- Separator -->
-                                    <BoxView Style="{StaticResource SeparatorStyle}" />
+                                    <Label Style="{StaticResource SmallLabelStyle}"
+                                           Text="{Binding Average, StringFormat='{0:F2}'}"
+                                           VerticalTextAlignment="Center" />
+                                    <layout:TintedCachedImage
+                                        HeightRequest="32"
+                                        WidthRequest="32"
+                                        Source="resource://Vulcanova.Resources.Icons.chevron-right.svg"
+                                        TintColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
+                                    </layout:TintedCachedImage>
                                 </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </RefreshView>
-            </StackLayout>
+                                <!-- Separator -->
+                                <BoxView Style="{StaticResource SeparatorStyle}" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </RefreshView>
             <layout:SlidingUpPanel x:Name="Panel" Open="False">
                 <subjectDetails:GradesSubjectDetailsView x:Name="DetailsView" />
             </layout:SlidingUpPanel>
         </Grid>
-    </ContentPage.Content>
-</rxui:ReactiveContentPage>
+    </ContentView.Content>
+</rxui:ReactiveContentView>

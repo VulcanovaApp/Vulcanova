@@ -140,5 +140,17 @@ namespace Vulcanova.Resources {
                 return ResourceManager.GetString("GradeEmptyNameLabel", resourceCulture);
             }
         }
+        
+        internal static string PartialGradesTabTitle {
+            get {
+                return ResourceManager.GetString("PartialGradesTabTitle", resourceCulture);
+            }
+        }
+        
+        internal static string FinalGradesTabTitle {
+            get {
+                return ResourceManager.GetString("FinalGradesTabTitle", resourceCulture);
+            }
+        }
     }
 }

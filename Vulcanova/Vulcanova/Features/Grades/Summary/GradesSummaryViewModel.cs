@@ -12,69 +12,44 @@ namespace Vulcanova.Features.Grades.Summary
 {
     public class GradesSummaryViewModel : ViewModelBase
     {
-        public ReactiveCommand<bool, IEnumerable<SubjectGrades>> GetGrades { get; }
+        public ReactiveCommand<int, IEnumerable<SubjectGrades>> GetGrades { get; }
 
-        public ReactiveCommand<Unit, IEnumerable<SubjectGrades>> ForceSyncGrades { get; }
+        public ReactiveCommand<int, IEnumerable<SubjectGrades>> ForceRefreshGrades { get; }
 
         public ReactiveCommand<int, Unit> ShowSubjectGradesDetails { get; }
-
-        public ReactiveCommand<Unit, Unit> NextSemester { get; }
-        public ReactiveCommand<Unit, Unit> PreviousSemester { get; }
 
         [ObservableAsProperty] public IEnumerable<SubjectGrades> Grades { get; }
 
         [ObservableAsProperty] public bool IsSyncing { get; }
-
-        [Reactive] public PeriodResult PeriodInfo { get; private set; }
 
         [Reactive] public SubjectGrades CurrentSubject { get; private set; }
 
         public GradesSummaryViewModel(
             INavigationService navigationService,
             AccountContext accountContext,
-            IGradesService gradesService,
-            IPeriodService periodService) : base(navigationService)
+            IGradesService gradesService) : base(navigationService)
         {
-            GetGrades = ReactiveCommand.CreateFromObservable((bool forceSync) =>
+            GetGrades = ReactiveCommand.CreateFromObservable((int periodId) =>
                 gradesService
-                    .GetPeriodGrades(accountContext.AccountId, PeriodInfo!.CurrentPeriod.Id, forceSync)
+                    .GetPeriodGrades(accountContext.AccountId, periodId, false)
                     .Select(ToSubjectGrades));
-
-            ForceSyncGrades = ReactiveCommand.CreateFromObservable(() => GetGrades.Execute(true));
+            
+            ForceRefreshGrades = ReactiveCommand.CreateFromObservable((int periodId) =>
+                gradesService
+                    .GetPeriodGrades(accountContext.AccountId, periodId, true)
+                    .Select(ToSubjectGrades));
 
             GetGrades.ToPropertyEx(this, vm => vm.Grades);
 
+            ForceRefreshGrades.ToPropertyEx(this, vm => vm.Grades);
+
             GetGrades.IsExecuting.ToPropertyEx(this, vm => vm.IsSyncing);
-
-            var setCurrentPeriod =
-                ReactiveCommand.CreateFromTask(async (int accountId) =>
-                    PeriodInfo = await periodService.GetCurrentPeriodAsync(accountId));
-
-            accountContext.WhenAnyValue(ctx => ctx.AccountId)
-                .InvokeCommand(setCurrentPeriod);
-
-            this.WhenAnyValue(vm => vm.PeriodInfo)
-                .WhereNotNull()
-                .Select(_ => false)
-                .InvokeCommand(GetGrades);
 
             ShowSubjectGradesDetails = ReactiveCommand.Create((int subjectId) =>
             {
                 CurrentSubject = Grades?.First(g => g.SubjectId == subjectId);
 
                 return Unit.Default;
-            });
-
-            NextSemester = ReactiveCommand.CreateFromTask(async () =>
-            {
-                PeriodInfo =
-                    await periodService.ChangePeriodAsync(accountContext.AccountId, PeriodChangeDirection.Next);
-            });
-
-            PreviousSemester = ReactiveCommand.CreateFromTask(async () =>
-            {
-                PeriodInfo =
-                    await periodService.ChangePeriodAsync(accountContext.AccountId, PeriodChangeDirection.Previous);
             });
         }
 

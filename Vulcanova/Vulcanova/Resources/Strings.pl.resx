@@ -59,4 +59,10 @@
     <data name="GradeEmptyNameLabel" xml:space="preserve">
         <value>bez nazwy</value>
     </data>
+    <data name="PartialGradesTabTitle" xml:space="preserve">
+        <value>Oceny częściowe</value>
+    </data>
+    <data name="FinalGradesTabTitle" xml:space="preserve">
+        <value>Oceny śródroczne</value>
+    </data>
 </root>
