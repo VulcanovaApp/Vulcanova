@@ -1,7 +1,9 @@
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using ReactiveUI;
 using Xamarin.Forms.Xaml;
 using Xamarin.Forms;
+using System;
 
 namespace Vulcanova.Features.Grades.Summary
 {
@@ -35,10 +37,13 @@ namespace Vulcanova.Features.Grades.Summary
                 this.OneWayBind(ViewModel, vm => vm.CurrentSubject, v => v.DetailsView.Subject)
                     .DisposeWith(disposable);
 
-                this.OneWayBind(ViewModel, vm => vm.CurrentSubject, v => v.Panel.Open, s => s != null)
+                this.WhenAnyValue(v => v.ViewModel.CurrentSubject)
+                    .Skip(1)
+                    .Subscribe(sub => Panel.Open = sub != null)
                     .DisposeWith(disposable);
 
                 this.WhenAnyValue(v => v.PeriodId)
+                    .Skip(1)
                     .WhereNotNull()
                     .InvokeCommand(this, v => v.ViewModel.GetGrades)
                     .DisposeWith(disposable);
