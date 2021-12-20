@@ -13,6 +13,9 @@
     
     <Color x:Key="LightPanelColor">White</Color>
     <Color x:Key="DarkPanelColor">#131313</Color>
+
+    <Color x:Key="LightControlColor">#f7f7f9</Color>
+    <Color x:Key="DarkControlColor">#131313</Color>
     
     <Color x:Key="LightBorderColor">#F2F2F7</Color>
     <Color x:Key="DarkBorderColor">#1C1C1C</Color>

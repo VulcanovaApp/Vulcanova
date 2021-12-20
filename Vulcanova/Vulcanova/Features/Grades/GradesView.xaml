@@ -16,10 +16,13 @@
     <ContentPage.Resources>
         <ResourceDictionary>
             <Style x:Key="TabStyle" TargetType="tabs:UnderlinedTabItem">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light={StaticResource LightControlColor}}" />
                 <Setter Property="SelectedTabColor"
                         Value="{AppThemeBinding Dark={StaticResource DarkPrimaryColor}, Light={StaticResource LightPrimaryColor}}" />
                 <Setter Property="UnderlineAllTab" Value="True" />
-                <Setter Property="UnselectedLabelColor" Value="White" />
+                <Setter Property="UnselectedLabelColor"
+                        Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
             </Style>
         </ResourceDictionary>
     </ContentPage.Resources>
@@ -33,7 +36,6 @@
 
             <tabs:TabHostView
                 x:Name="TabHost"
-                BackgroundColor="#272727"
                 TabType="Fixed">
                 <tabs:TabHostView.Tabs>
                     <tabs:UnderlinedTabItem Style="{DynamicResource TabStyle}"
@@ -45,7 +47,7 @@
 
             <Frame Grid.Row="1" HasShadow="False" CornerRadius="16" Padding="0" IsClippedToBounds="True" Margin="16, 0">
                 <StackLayout Orientation="Horizontal"
-                             BackgroundColor="{AppThemeBinding Light={StaticResource LightPanelColor}, Dark={StaticResource DarkPanelColor}}"
+                             Style="{DynamicResource ControlStyle}"
                              Padding="8">
                     <layout:TintedCachedImage
                         x:Name="PreviousPeriodImg"
