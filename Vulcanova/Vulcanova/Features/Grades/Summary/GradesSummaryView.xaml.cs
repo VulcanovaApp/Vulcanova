@@ -45,7 +45,10 @@ namespace Vulcanova.Features.Grades.Summary
                 this.WhenAnyValue(v => v.PeriodId)
                     .Skip(1)
                     .WhereNotNull()
-                    .InvokeCommand(this, v => v.ViewModel.GetGrades)
+                    .Subscribe(v =>
+                    {
+                        ViewModel!.GetGrades.Execute(v!.Value).Subscribe();
+                    })
                     .DisposeWith(disposable);
             });
         }
