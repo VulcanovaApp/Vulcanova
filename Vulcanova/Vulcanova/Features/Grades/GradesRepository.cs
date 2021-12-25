@@ -18,7 +18,8 @@ namespace Vulcanova.Features.Grades
         {
             return (await _db.GetCollection<Grade>()
                 .FindAsync(g => g.PupilId == pupilId && g.AccountId == accountId && g.Column.PeriodId == periodId))
-                .OrderByDescending(g => g.DateCreated);
+                .OrderBy(g => g.Column.Subject.Name)
+                .ThenBy(g => g.DateCreated);
         }
 
         public async Task UpdatePupilGradesAsync(int accountId, int pupilId, IEnumerable<Grade> newGrades)
