@@ -1,4 +1,6 @@
+using System;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using ReactiveUI;
 using Xamarin.Forms.Xaml;
 
@@ -48,6 +50,14 @@ namespace Vulcanova.Features.Grades
 
                 this.OneWayBind(ViewModel, vm => vm.PeriodInfo, v => v.GradesSummaryView.PeriodId,
                         r => r?.CurrentPeriod?.Id)
+                    .DisposeWith(disposable);
+
+                this.OneWayBind(ViewModel, vm => vm.GradesSummaryViewModel.CurrentSubject, v => v.DetailsView.Subject)
+                    .DisposeWith(disposable);
+
+                this.WhenAnyValue(v => v.ViewModel.GradesSummaryViewModel.CurrentSubject)
+                    .Skip(1)
+                    .Subscribe(sub => Panel.Open = sub != null)
                     .DisposeWith(disposable);
             });
         }

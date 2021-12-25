@@ -8,7 +8,6 @@
                           xmlns:local="clr-namespace:Vulcanova.Features.Grades.Summary;assembly=Vulcanova"
                           xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
                           xmlns:grades="clr-namespace:Vulcanova.Features.Grades;assembly=Vulcanova"
-                          xmlns:subjectDetails="clr-namespace:Vulcanova.Features.Grades.SubjectDetails;assembly=Vulcanova"
                           x:Class="Vulcanova.Features.Grades.Summary.GradesSummaryView">
     <ContentView.Resources>
         <ResourceDictionary>
@@ -59,9 +58,6 @@
                     </CollectionView.ItemTemplate>
                 </CollectionView>
             </RefreshView>
-            <layout:SlidingUpPanel x:Name="Panel" Open="False">
-                <subjectDetails:GradesSubjectDetailsView x:Name="DetailsView" />
-            </layout:SlidingUpPanel>
         </Grid>
     </ContentView.Content>
 </rxui:ReactiveContentView>
