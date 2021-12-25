@@ -39,7 +39,7 @@ namespace Vulcanova.Features.Grades
                 {
                     var account = await _accountRepository.GetByIdAsync(accountId);
 
-                    var resourceKey = GetResourceKeyForAccount(account);
+                    var resourceKey = GetGradesResourceKey(account, periodId);
 
                     if (ShouldSync(resourceKey) || forceSync)
                     {
@@ -50,7 +50,7 @@ namespace Vulcanova.Features.Grades
                         SetJustSynced(resourceKey);
                     }
 
-                    observer.OnNext(await _gradesRepository.GetGradesForPupilAsync(account.Id, account.Pupil.Id, account.GetCurrentPeriod().Id));
+                    observer.OnNext(await _gradesRepository.GetGradesForPupilAsync(account.Id, account.Pupil.Id, periodId));
                     observer.OnCompleted();
                 });
             });
@@ -58,7 +58,7 @@ namespace Vulcanova.Features.Grades
 
         private async Task<Grade[]> FetchPeriodGradesAsync(Account account, int periodId)
         {
-            var lastSync = GetLastSync(GetResourceKeyForAccount(account));
+            var lastSync = GetLastSync(GetGradesResourceKey(account, periodId));
 
             var query = new GetGradesByPupilQuery(account.Unit.Id, account.Pupil.Id, periodId, lastSync, 500);
 
@@ -76,8 +76,8 @@ namespace Vulcanova.Features.Grades
             return domainGrades;
         }
 
-        private static string GetResourceKeyForAccount(Account account)
-            => $"Grades_{account.Id}_{account.Pupil.Id}_{account.GetCurrentPeriod().Id}";
+        private static string GetGradesResourceKey(Account account, int periodId)
+            => $"Grades_{account.Id}_{account.Pupil.Id}_{periodId}";
 
         protected override TimeSpan OfflineDataLifespan => TimeSpan.FromMinutes(15);
     }

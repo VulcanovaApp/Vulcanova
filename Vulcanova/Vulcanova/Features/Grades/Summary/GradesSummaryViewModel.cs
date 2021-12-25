@@ -7,6 +7,7 @@ using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Vulcanova.Core.Mvvm;
 using Vulcanova.Features.Shared;
+using System;
 
 namespace Vulcanova.Features.Grades.Summary
 {
@@ -14,13 +15,15 @@ namespace Vulcanova.Features.Grades.Summary
     {
         public ReactiveCommand<int, IEnumerable<SubjectGrades>> GetGrades { get; }
 
-        public ReactiveCommand<int, IEnumerable<SubjectGrades>> ForceRefreshGrades { get; }
+        public ReactiveCommand<Unit, IEnumerable<SubjectGrades>> ForceRefreshGrades { get; }
 
         public ReactiveCommand<int, Unit> ShowSubjectGradesDetails { get; }
 
         [ObservableAsProperty] public IEnumerable<SubjectGrades> Grades { get; }
 
         [ObservableAsProperty] public bool IsSyncing { get; }
+        
+        [Reactive] public int? PeriodId { get; set; }
 
         [Reactive] public SubjectGrades CurrentSubject { get; private set; }
 
@@ -34,9 +37,9 @@ namespace Vulcanova.Features.Grades.Summary
                     .GetPeriodGrades(accountContext.AccountId, periodId, false)
                     .Select(ToSubjectGrades));
             
-            ForceRefreshGrades = ReactiveCommand.CreateFromObservable((int periodId) =>
+            ForceRefreshGrades = ReactiveCommand.CreateFromObservable(() =>
                 gradesService
-                    .GetPeriodGrades(accountContext.AccountId, periodId, true)
+                    .GetPeriodGrades(accountContext.AccountId, PeriodId.Value, true)
                     .Select(ToSubjectGrades));
 
             GetGrades.ToPropertyEx(this, vm => vm.Grades);
@@ -51,6 +54,13 @@ namespace Vulcanova.Features.Grades.Summary
 
                 return Unit.Default;
             });
+
+            this.WhenAnyValue(vm => vm.PeriodId)
+                .WhereNotNull()
+                .Subscribe(v =>
+                {
+                    GetGrades.Execute(v!.Value).Subscribe();
+                });
         }
 
         private static IEnumerable<SubjectGrades> ToSubjectGrades(IEnumerable<Grade> grades)

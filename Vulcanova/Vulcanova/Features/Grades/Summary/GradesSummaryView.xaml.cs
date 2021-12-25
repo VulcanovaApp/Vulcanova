@@ -42,13 +42,7 @@ namespace Vulcanova.Features.Grades.Summary
                     .Subscribe(sub => Panel.Open = sub != null)
                     .DisposeWith(disposable);
 
-                this.WhenAnyValue(v => v.PeriodId)
-                    .Skip(1)
-                    .WhereNotNull()
-                    .Subscribe(v =>
-                    {
-                        ViewModel!.GetGrades.Execute(v!.Value).Subscribe();
-                    })
+                this.Bind(ViewModel, vm => vm.PeriodId, v => v.PeriodId)
                     .DisposeWith(disposable);
             });
         }
