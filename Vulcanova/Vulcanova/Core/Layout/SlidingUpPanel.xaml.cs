@@ -45,7 +45,17 @@ namespace Vulcanova.Core.Layout
                 .Subscribe(values =>
                 {
                     var (end, start) = values;
-                    Open = end <= start;
+                    var delta = Math.Abs(start - end);
+
+                    if (delta < 20)
+                    {
+                        // restore state
+                        Slide(Open);
+                    }
+                    else
+                    {
+                        Open = end <= start;
+                    }
                 });
 
             this.TapGestureRecognizer.Events().Tapped
@@ -66,19 +76,24 @@ namespace Vulcanova.Core.Layout
                 {
                     var open = values.First;
 
-                    SlidingPanel.InputTransparent = !open;
-
-                    if (open)
-                    {
-                        Sheet.TranslateTo(0, Sheet.Padding.Bottom, 150);
-                        Backdrop.FadeTo(0.2);
-                    }
-                    else
-                    {
-                        Sheet.TranslateTo(0, SlidingPanel.Height, 150);
-                        Backdrop.FadeTo(0);
-                    }
+                    Slide(open);
                 });
+        }
+
+        private void Slide(bool open)
+        {
+            SlidingPanel.InputTransparent = !open;
+
+            if (open)
+            {
+                Sheet.TranslateTo(0, Sheet.Padding.Bottom, 150);
+                Backdrop.FadeTo(0.2);
+            }
+            else
+            {
+                Sheet.TranslateTo(0, SlidingPanel.Height, 150);
+                Backdrop.FadeTo(0);
+            }
         }
     }
 }
