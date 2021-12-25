@@ -36,11 +36,11 @@ namespace Vulcanova.Core.Layout
                 .Where(a => a.StatusType == GestureStatus.Running)
                 .WithLatestFrom(startPosition)
                 .Select(values => values.Second + values.First.TotalY)
-                .Subscribe(val => SlidingPanel.TranslationY = Math.Clamp(val, Sheet.Padding.Bottom, SlidingPanel.Height));
+                .Subscribe(val => Sheet.TranslationY = Math.Clamp(val, Sheet.Padding.Bottom, SlidingPanel.Height));
 
             this.PanGestureRecognizer.Events().PanUpdated
                 .Where(a => a.StatusType is GestureStatus.Canceled or GestureStatus.Completed)
-                .Select(_ => SlidingPanel.TranslationY)
+                .Select(_ => Sheet.TranslationY)
                 .WithLatestFrom(startPosition)
                 .Subscribe(values =>
                 {
@@ -66,14 +66,16 @@ namespace Vulcanova.Core.Layout
                 {
                     var open = values.First;
 
+                    SlidingPanel.InputTransparent = !open;
+
                     if (open)
                     {
-                        SlidingPanel.TranslateTo(0, Sheet.Padding.Bottom, 150);
+                        Sheet.TranslateTo(0, Sheet.Padding.Bottom, 150);
                         Backdrop.FadeTo(0.2);
                     }
                     else
                     {
-                        SlidingPanel.TranslateTo(0, SlidingPanel.Height, 150);
+                        Sheet.TranslateTo(0, SlidingPanel.Height, 150);
                         Backdrop.FadeTo(0);
                     }
                 });
