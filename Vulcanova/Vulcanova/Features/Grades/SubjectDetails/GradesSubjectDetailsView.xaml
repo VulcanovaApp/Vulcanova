@@ -30,7 +30,7 @@
                         <StackLayout Padding="0, 1">
                             <Grid Padding="12, 8">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="40"></ColumnDefinition>
+                                    <ColumnDefinition Width="46"></ColumnDefinition>
                                     <ColumnDefinition Width="*"></ColumnDefinition>
                                 </Grid.ColumnDefinitions>
                                 <Label
