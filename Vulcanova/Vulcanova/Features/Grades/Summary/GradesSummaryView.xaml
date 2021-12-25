@@ -30,16 +30,14 @@
                                 </StackLayout.GestureRecognizers>
                                 <StackLayout Orientation="Horizontal" Padding="16, 8">
                                     <StackLayout HorizontalOptions="FillAndExpand">
-                                        <Label Text="{Binding SubjectName}"
-                                               Style="{StaticResource DefaultLabelStyle}" />
+                                        <Label Text="{Binding SubjectName}" />
                                         <StackLayout BindableLayout.ItemsSource="{Binding Grades}"
                                                      Orientation="Horizontal">
                                             <BindableLayout.ItemTemplate>
                                                 <DataTemplate x:DataType="grades:Grade">
                                                     <Label
                                                         TextColor="{Binding Column.Color, Converter={StaticResource GradeColorConverter}}"
-                                                        Text="{Binding Content}"
-                                                        Style="{StaticResource DefaultLabelStyle}" />
+                                                        Text="{Binding Content}" />
                                                 </DataTemplate>
                                             </BindableLayout.ItemTemplate>
                                         </StackLayout>

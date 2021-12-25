@@ -12,8 +12,7 @@
             <StackLayout VerticalOptions="Center" Padding="32" Spacing="48">
                 <StackLayout>
                     <Label Style="{StaticResource HeadingLabelStyle}" Text="{x:Static resx:Strings.AddAccountLabel}" />
-                    <Label Style="{StaticResource DefaultLabelStyle}"
-                           Text="{x:Static resx:Strings.AddAccountSubheadingLabel}" />
+                    <Label Text="{x:Static resx:Strings.AddAccountSubheadingLabel}" />
                 </StackLayout>
                 <StackLayout>
                     <Entry x:Name="Token" Placeholder="Token" />

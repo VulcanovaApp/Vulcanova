@@ -12,12 +12,10 @@
         <StackLayout VerticalOptions="Center" Padding="32" Spacing="48">
             <StackLayout>
                 <Label Style="{StaticResource HeadingLabelStyle}">Vulcanova</Label>
-                <Label Style="{StaticResource DefaultLabelStyle}"
-                       Text="{x:Static resx:Strings.VulcanovaSubheadingLabel}" />
+                <Label Text="{x:Static resx:Strings.VulcanovaSubheadingLabel}" />
             </StackLayout>
             <StackLayout>
-                <Label HorizontalTextAlignment="Center" FontSize="Small" Style="{StaticResource DefaultLabelStyle}"
-                       Text="{x:Static resx:Strings.AddAccountLabel}" />
+                <Label HorizontalTextAlignment="Center" FontSize="Small" Text="{x:Static resx:Strings.AddAccountLabel}" />
                 <Button Style="{StaticResource DefaultButtonStyle}"
                         Text="{x:Static resx:Strings.ScanQrCodeButton}"
                         x:Name="ScanQrButton" />

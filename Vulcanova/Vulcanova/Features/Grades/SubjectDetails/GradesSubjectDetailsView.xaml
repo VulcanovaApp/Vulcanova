@@ -35,7 +35,7 @@
                                     HorizontalTextAlignment="Center"
                                     FontSize="Large"
                                     TextColor="{Binding Column.Color, Converter={StaticResource GradeColorConverter}}"
-                                    Text="{Binding Content}" Style="{StaticResource DefaultLabelStyle}" />
+                                    Text="{Binding Content}" />
                                 <Grid RowSpacing="0">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="*" />

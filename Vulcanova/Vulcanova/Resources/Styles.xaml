@@ -33,9 +33,7 @@
                 Value="18" />
     </Style>
 
-    <Style x:Key="DefaultLabelStyle"
-           TargetType="Label"
-           ApplyToDerivedTypes="True">
+    <Style TargetType="Label" ApplyToDerivedTypes="True">
         <Setter Property="TextColor"
                 Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
     </Style>

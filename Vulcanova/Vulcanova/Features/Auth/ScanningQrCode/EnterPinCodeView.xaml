@@ -12,8 +12,7 @@
             <StackLayout VerticalOptions="Center" Padding="32" Spacing="48">
                 <StackLayout>
                     <Label Style="{StaticResource HeadingLabelStyle}" Text="{x:Static resx:Strings.EnterPinCodeLabel}" />
-                    <Label Style="{StaticResource DefaultLabelStyle}"
-                           Text="{x:Static resx:Strings.EnterPinCodeSubheadingLabel}" />
+                    <Label Text="{x:Static resx:Strings.EnterPinCodeSubheadingLabel}" />
                 </StackLayout>
                 <StackLayout>
                     <Entry x:Name="Pin" Placeholder="PIN" />
