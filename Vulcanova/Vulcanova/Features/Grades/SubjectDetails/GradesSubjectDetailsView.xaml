@@ -28,35 +28,33 @@
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="grades:Grade">
                         <StackLayout Padding="0, 1">
-                            <StackLayout Orientation="Horizontal" Padding="12, 8">
+                            <Grid Padding="12, 8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="40"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
                                 <Label
-                                    WidthRequest="40"
                                     VerticalTextAlignment="Center"
                                     HorizontalTextAlignment="Center"
                                     FontSize="Large"
                                     TextColor="{Binding Column.Color, Converter={StaticResource GradeColorConverter}}"
                                     Text="{Binding Content}" />
-                                <Grid RowSpacing="0">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                        <RowDefinition Height="*" />
-                                    </Grid.RowDefinitions>
+                                <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="0">
                                     <Label FontSize="Small" FontAttributes="Bold"
                                            Text="{Binding Column.Name, Converter={StaticResource FallbackStringConverter}, ConverterParameter={x:Static resx:Strings.GradeEmptyNameLabel}}" />
-                                    <StackLayout Grid.Row="1" Orientation="Horizontal">
+                                    <StackLayout Orientation="Horizontal">
                                         <Label Text="{Binding ContentRaw}" FontSize="Small" />
                                         <Label FontSize="Small"
                                                Text="{Binding Column.Weight, StringFormat={x:Static resx:Strings.GradeWeightLabel}}" />
                                     </StackLayout>
-                                    <StackLayout Grid.Row="2" Orientation="Horizontal">
+                                    <StackLayout Orientation="Horizontal">
                                         <Label FontSize="Small"
                                                Text="{Binding DateCreated, StringFormat={x:Static resx:Strings.GradeCreatedDateLabel}}" />
                                         <Label FontSize="Small" IsVisible="{Binding IsModified}"
                                                Text="{Binding DateModify, StringFormat={x:Static resx:Strings.GradeModifiedDateLabel}}" />
                                     </StackLayout>
-                                </Grid>
-                            </StackLayout>
+                                </StackLayout>
+                            </Grid>
                             <BoxView Style="{StaticResource SeparatorStyle}" />
                         </StackLayout>
                     </DataTemplate>
