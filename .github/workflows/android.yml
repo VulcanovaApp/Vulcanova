@@ -28,3 +28,8 @@ jobs:
 
     - name: Build
       run: msbuild Vulcanova/Vulcanova.Android/Vulcanova.Android.csproj /t:PackageForAndroid /p:Configuration=Debug
+      
+    - name: Upload artifact
+      uses: actions/upload-artifact@v2
+      with:
+        path: Vulcanova/Vulcanova.Android/bin/Debug/com.companyname.Vulcanova.apk
