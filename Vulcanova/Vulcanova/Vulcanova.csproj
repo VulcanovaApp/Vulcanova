@@ -52,9 +52,6 @@
         <LastGenOutput>Strings.Designer.cs</LastGenOutput>
       </EmbeddedResource>
       <EmbeddedResource Include="Resources\Icons\chevron-right.svg" />
-      <None Remove="Resources\Fonts\Poppins-Regular.ttf" />
-      <EmbeddedResource Include="Resources\Fonts\Poppins-Regular.ttf" />
-      <None Remove="Resources\Icons\chevron-left.svg" />
       <EmbeddedResource Include="Resources\Icons\chevron-left.svg" />
     </ItemGroup>
 
