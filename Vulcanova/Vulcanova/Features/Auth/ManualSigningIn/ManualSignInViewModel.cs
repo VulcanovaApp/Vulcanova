@@ -20,7 +20,7 @@ namespace Vulcanova.Features.Auth.ManualSigningIn
         [Reactive] public string Pin { get; set; }
 
         private readonly IAuthenticationService _authenticationService;
-        private readonly IAccountRepository _accountRepository;
+        private readonly AccountsManager _accountsManager;
 
         private readonly IInstanceUrlProvider _instanceUrlProvider;
 
@@ -28,10 +28,10 @@ namespace Vulcanova.Features.Auth.ManualSigningIn
             INavigationService navigationService,
             IInstanceUrlProvider instanceUrlProvider,
             IAuthenticationService authenticationService,
-            IAccountRepository accountRepository) : base(navigationService)
+            AccountsManager accountsManager) : base(navigationService)
         {
             _authenticationService = authenticationService;
-            _accountRepository = accountRepository;
+            _accountsManager = accountsManager;
             _instanceUrlProvider = instanceUrlProvider;
 
             AddDevice = ReactiveCommand.CreateFromTask(_ => AddDeviceAsync(Token, Symbol, Pin));
@@ -42,10 +42,8 @@ namespace Vulcanova.Features.Auth.ManualSigningIn
             var instanceUrl = await _instanceUrlProvider.GetInstanceUrlAsync(token, symbol);
             var accounts = await _authenticationService.AuthenticateAsync(token, pin, instanceUrl);
 
-            // TODO: Ask the user which acc to make active
-            accounts.First().IsActive = true;
-
-            await _accountRepository.AddAccountsAsync(accounts);
+            await _accountsManager.AddAccountsAsync(accounts);
+            await _accountsManager.OpenAccountAndMarkAsCurrentAsync(accounts.First().Id);
 
             return Unit.Default;
         }

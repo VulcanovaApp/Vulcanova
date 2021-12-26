@@ -9,6 +9,7 @@ namespace Vulcanova.Features.Auth
     {
         public static void RegisterAuth(this IContainerRegistry container)
         {
+            container.RegisterScoped<AccountsManager>();
             container.RegisterScoped<IAccountRepository, AccountRepository>();
 
             container.RegisterForNavigation<IntroView>();

@@ -18,15 +18,15 @@ namespace Vulcanova.Features.Auth.ScanningQrCode
         private string _token;
         
         private readonly IAuthenticationService _authenticationService;
-        private readonly IAccountRepository _accountRepository;
+        private readonly AccountsManager _accountsManager;
 
         public EnterPinCodeViewModel(
             INavigationService navigationService,
             IAuthenticationService authenticationService,
-            IAccountRepository accountRepository) : base(navigationService)
+            AccountsManager accountsManager) : base(navigationService)
         {
             _authenticationService = authenticationService;
-            _accountRepository = accountRepository;
+            _accountsManager = accountsManager;
 
             RegisterDevice = ReactiveCommand.CreateFromTask(_ => RegisterDeviceAsync(_token, Pin, _instanceUrl));
         }
@@ -45,9 +45,8 @@ namespace Vulcanova.Features.Auth.ScanningQrCode
         {
             var accounts = await _authenticationService.AuthenticateAsync(token, pin, instanceUrl);
 
-            accounts.First().IsActive = true;
-
-            await _accountRepository.AddAccountsAsync(accounts);
+            await _accountsManager.AddAccountsAsync(accounts);
+            await _accountsManager.OpenAccountAndMarkAsCurrentAsync(accounts.First().Id);
 
             return Unit.Default;
         }

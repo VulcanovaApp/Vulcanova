@@ -43,7 +43,7 @@ namespace Vulcanova
             }
             else
             {
-                    await NavigationService.NavigateAsync("NavigationPage/IntroView");
+                await NavigationService.NavigateAsync("NavigationPage/IntroView");
             }
         }
 
