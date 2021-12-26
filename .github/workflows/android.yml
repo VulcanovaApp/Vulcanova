@@ -24,7 +24,7 @@ jobs:
         dotnet-version: 5.0.x
 
     - name: Restore dependencies
-      run: dotnet restore
+      run: nuget restore
 
     - name: Build
       run: msbuild Vulcanova/Vulcanova.Android/Vulcanova.Android.csproj /t:PackageForAndroid /p:Configuration=Debug
