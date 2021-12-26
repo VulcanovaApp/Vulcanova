@@ -20,7 +20,6 @@ namespace Vulcanova.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
             
             CachedImageRenderer.Init();
             
@@ -28,6 +27,8 @@ namespace Vulcanova.iOS
 
             GoogleVisionBarCodeScanner.iOS.Initializer.Init();
             Firebase.Core.App.Configure();
+
+            LoadApplication(new App());
 
             return base.FinishedLaunching(app, options);
         }
