@@ -39,11 +39,11 @@ namespace Vulcanova
                 var ctx = Container.Resolve<AccountContext>();
                 ctx.AccountId = activeAccount.Id;
 
-                await NavigationService.NavigateAsync("NavigationPage/HomeTabbedPage?selectedTab=GradesSummaryView");
+                await NavigationService.NavigateAsync("MainNavigationPage/HomeTabbedPage?selectedTab=GradesSummaryView");
             }
             else
             {
-                await NavigationService.NavigateAsync("NavigationPage/IntroView");
+                await NavigationService.NavigateAsync("MainNavigationPage/IntroView");
             }
         }
 

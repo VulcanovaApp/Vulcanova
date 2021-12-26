@@ -152,5 +152,11 @@ namespace Vulcanova.Resources {
                 return ResourceManager.GetString("FinalGradesTabTitle", resourceCulture);
             }
         }
+        
+        internal static string ErrorInvalidToken {
+            get {
+                return ResourceManager.GetString("ErrorInvalidToken", resourceCulture);
+            }
+        }
     }
 }

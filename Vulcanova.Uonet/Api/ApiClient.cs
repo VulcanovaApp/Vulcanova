@@ -51,7 +51,14 @@ namespace Vulcanova.Uonet.Api
                 requestMessage.Headers.TryAddWithoutValidation(key, value);
             }
 
-            return await SendMessageAsync<TResponse>(requestMessage);
+            var result = await SendMessageAsync<TResponse>(requestMessage);
+
+            if (result.Status.Code != 0)
+            {
+                throw new VulcanException(result.Status.Message);
+            }
+
+            return result;
         }
 
         private string GetFullRequestUrl(string relativeUrl) => _apiInstanceUrl + "/" + relativeUrl;

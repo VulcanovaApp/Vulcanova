@@ -72,4 +72,7 @@
     <data name="FinalGradesTabTitle" xml:space="preserve">
         <value>Final grades</value>
     </data>
+    <data name="ErrorInvalidToken" xml:space="preserve">
+        <value>No API url found for given token</value>
+    </data>
 </root>

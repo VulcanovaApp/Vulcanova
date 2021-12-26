@@ -29,7 +29,7 @@ namespace Vulcanova.Features.Auth
             
             _accountContext.AccountId = account.Id;
             
-            await _navigationService.NavigateAsync("/NavigationPage/HomeTabbedPage?selectedTab=GradesSummaryView");
+            await _navigationService.NavigateAsync("/MainNavigationPage/HomeTabbedPage?selectedTab=GradesSummaryView");
         }
 
         public async Task AddAccountsAsync(IEnumerable<Account> accounts)

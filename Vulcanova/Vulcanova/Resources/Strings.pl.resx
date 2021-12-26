@@ -65,4 +65,7 @@
     <data name="FinalGradesTabTitle" xml:space="preserve">
         <value>Oceny śródroczne</value>
     </data>
+    <data name="ErrorInvalidToken" xml:space="preserve">
+        <value>Nie znaleziono adresu API dla podanego tokenu</value>
+    </data>
 </root>

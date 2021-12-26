@@ -14,9 +14,14 @@ namespace Vulcanova.Uonet.Api.Common
 
             var baseUrl = contents
                 .Split('\n')
-                .First(l => l.StartsWith(token[..3]))
+                .FirstOrDefault(l => l.StartsWith(token[..3]))?
                 .Split(',')[1]
                 .TrimEnd();
+
+            if (baseUrl == null)
+            {
+                return null;
+            }
 
             return baseUrl + "/" + symbol;
         }

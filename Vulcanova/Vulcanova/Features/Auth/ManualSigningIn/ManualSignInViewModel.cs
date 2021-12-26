@@ -6,6 +6,8 @@ using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Vulcanova.Core.Mvvm;
 using Vulcanova.Uonet.Api.Common;
+using System;
+using Vulcanova.Resources;
 
 namespace Vulcanova.Features.Auth.ManualSigningIn
 {
@@ -35,11 +37,22 @@ namespace Vulcanova.Features.Auth.ManualSigningIn
             _instanceUrlProvider = instanceUrlProvider;
 
             AddDevice = ReactiveCommand.CreateFromTask(_ => AddDeviceAsync(Token, Symbol, Pin));
+
+            AddDevice.ThrownExceptions.Subscribe(ex =>
+            {
+                Interactions.Errors.Handle(ex).Subscribe();
+            });
         }
 
         private async Task<Unit> AddDeviceAsync(string token, string symbol, string pin)
         {
             var instanceUrl = await _instanceUrlProvider.GetInstanceUrlAsync(token, symbol);
+
+            if (string.IsNullOrEmpty(instanceUrl))
+            {
+                throw new ArgumentException(Strings.ErrorInvalidToken, nameof(token));
+            }
+
             var accounts = await _authenticationService.AuthenticateAsync(token, pin, instanceUrl);
 
             await _accountsManager.AddAccountsAsync(accounts);
