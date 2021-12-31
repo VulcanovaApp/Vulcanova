@@ -17,6 +17,11 @@
         <Setter Property="FontAttributes" Value="Bold"></Setter>
     </Style>
 
+    <Style x:Key="PrimaryColorLabelStyle" TargetType="Label">
+        <Setter Property="TextColor"
+                Value="{AppThemeBinding Dark={StaticResource DarkPrimaryColor}, Light={StaticResource LightPrimaryColor}}" />
+    </Style>
+
     <Style x:Key="LargeLabelStyle"
            TargetType="Label">
         <Setter Property="TextColor"

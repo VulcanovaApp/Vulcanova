@@ -15,16 +15,24 @@
                             <Label
                                 Text="{Binding Subject.Name}" />
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{x:Static resx:Strings.PredictedGradeLabel}" />
+                                <Label Text="{x:Static resx:Strings.PredictedGradeLabel}"
+                                       FontSize="Small" />
                                 <Label
-                                    Text="{Binding PredictedGrade}" HorizontalOptions="FillAndExpand"
-                                    HorizontalTextAlignment="End" />
+                                    Text="{Binding PredictedGrade}"
+                                    HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="End"
+                                    FontSize="Small" />
                             </StackLayout>
                             <StackLayout Orientation="Horizontal">
-                                <Label Text="{x:Static resx:Strings.FinalGradeLabel}" />
+                                <Label Text="{x:Static resx:Strings.FinalGradeLabel}"
+                                       Style="{StaticResource PrimaryColorLabelStyle}"
+                                       FontSize="Small" />
                                 <Label
-                                    Text="{Binding FinalGrade}" HorizontalOptions="FillAndExpand"
-                                    HorizontalTextAlignment="End" />
+                                    Text="{Binding FinalGrade}"
+                                    Style="{StaticResource PrimaryColorLabelStyle}"
+                                    HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="End"
+                                    FontSize="Small" />
                             </StackLayout>
                         </StackLayout>
                         <BoxView Style="{StaticResource SeparatorStyle}" />
