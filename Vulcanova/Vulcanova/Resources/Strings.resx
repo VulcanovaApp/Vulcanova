@@ -75,4 +75,10 @@
     <data name="ErrorInvalidToken" xml:space="preserve">
         <value>No API url found for given token</value>
     </data>
+    <data name="PredictedGradeLabel" xml:space="preserve">
+        <value>Predicted grade</value>
+    </data>
+    <data name="FinalGradeLabel" xml:space="preserve">
+        <value>Final grade</value>
+    </data>
 </root>

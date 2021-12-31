@@ -68,4 +68,10 @@
     <data name="ErrorInvalidToken" xml:space="preserve">
         <value>Nie znaleziono adresu API dla podanego tokenu</value>
     </data>
+    <data name="PredictedGradeLabel" xml:space="preserve">
+        <value>Ocena przewidywana</value>
+    </data>
+    <data name="FinalGradeLabel" xml:space="preserve">
+        <value>Ocena końcowa</value>
+    </data>
 </root>
