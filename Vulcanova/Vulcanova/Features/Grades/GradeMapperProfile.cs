@@ -22,6 +22,7 @@ namespace Vulcanova.Features.Grades
                 .ConvertUsing(d => DateTimeOffset.FromUnixTimeMilliseconds(d.Timestamp).UtcDateTime);
 
             CreateMap<GradesSummaryEntryPayload, FinalGradesEntry>()
+                .ForMember(f => f.Id, cfg => cfg.MapFrom(src => $"{src.PeriodId}_{src.Id}"))
                 .ForMember(f => f.PredictedGrade, cfg => cfg.MapFrom(src => src.Entry1))
                 .ForMember(f => f.FinalGrade, cfg => cfg.MapFrom(src => src.Entry2));
         }

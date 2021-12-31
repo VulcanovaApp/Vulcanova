@@ -5,7 +5,7 @@ namespace Vulcanova.Features.Grades.Final
 {
     public class FinalGradesEntry
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
         public int AccountId { get; set; }
         public int PupilId { get; set; }
         public int PeriodId { get; set; }
