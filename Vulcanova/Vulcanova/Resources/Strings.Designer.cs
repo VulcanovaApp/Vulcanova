@@ -158,5 +158,17 @@ namespace Vulcanova.Resources {
                 return ResourceManager.GetString("ErrorInvalidToken", resourceCulture);
             }
         }
+        
+        internal static string PredictedGradeLabel {
+            get {
+                return ResourceManager.GetString("PredictedGradeLabel", resourceCulture);
+            }
+        }
+        
+        internal static string FinalGradeLabel {
+            get {
+                return ResourceManager.GetString("FinalGradeLabel", resourceCulture);
+            }
+        }
     }
 }

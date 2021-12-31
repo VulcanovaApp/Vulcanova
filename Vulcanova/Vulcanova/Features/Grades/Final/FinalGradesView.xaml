@@ -4,24 +4,33 @@
                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                           xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
                           xmlns:final="clr-namespace:Vulcanova.Features.Grades.Final;assembly=Vulcanova"
+                          xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
                           x:Class="Vulcanova.Features.Grades.Final.FinalGradesView">
     <ContentView.Content>
         <CollectionView x:Name="FinalGradesList">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="final:FinalGradesEntry">
-                        <StackLayout Padding="0, 1">
-                            <StackLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="final:FinalGradesEntry">
+                    <StackLayout Padding="0, 1">
+                        <StackLayout Padding="16, 8">
+                            <Label
+                                Text="{Binding Subject.Name}" />
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{x:Static resx:Strings.PredictedGradeLabel}" />
                                 <Label
-                                    Text="{Binding Subject.Name}" />
-                                <Label
-                                    Text="{Binding PredictedGrade}" />
-                                <Label
-                                    Text="{Binding FinalGrade}" />
+                                    Text="{Binding PredictedGrade}" HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="End" />
                             </StackLayout>
-                            <BoxView Style="{StaticResource SeparatorStyle}" />
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="{x:Static resx:Strings.FinalGradeLabel}" />
+                                <Label
+                                    Text="{Binding FinalGrade}" HorizontalOptions="FillAndExpand"
+                                    HorizontalTextAlignment="End" />
+                            </StackLayout>
                         </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
     </ContentView.Content>
 </rxui:ReactiveContentView>
