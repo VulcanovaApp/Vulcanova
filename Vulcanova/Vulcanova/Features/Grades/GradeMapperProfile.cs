@@ -1,5 +1,7 @@
 using System;
 using AutoMapper;
+using Vulcanova.Features.Grades.Final;
+using Vulcanova.Uonet.Api.Common.Models;
 using Vulcanova.Uonet.Api.Grades;
 using Subject = Vulcanova.Features.Shared.Subject;
 
@@ -14,10 +16,14 @@ namespace Vulcanova.Features.Grades
 
             CreateMap<Uonet.Api.Grades.Column, Column>();
 
-            CreateMap<Uonet.Api.Grades.Subject, Subject>();
+            CreateMap<Uonet.Api.Common.Models.Subject, Subject>();
 
             CreateMap<Date, DateTime>()
                 .ConvertUsing(d => DateTimeOffset.FromUnixTimeMilliseconds(d.Timestamp).UtcDateTime);
+
+            CreateMap<GradesSummaryEntryPayload, FinalGradesEntry>()
+                .ForMember(f => f.PredictedGrade, cfg => cfg.MapFrom(src => src.Entry1))
+                .ForMember(f => f.FinalGrade, cfg => cfg.MapFrom(src => src.Entry2));
         }
     }
 }

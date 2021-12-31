@@ -1,4 +1,5 @@
 using Prism.Ioc;
+using Vulcanova.Features.Grades.Final;
 
 namespace Vulcanova.Features.Grades
 {
@@ -10,6 +11,9 @@ namespace Vulcanova.Features.Grades
 
             container.RegisterScoped<IGradesRepository, GradesRepository>();
             container.RegisterScoped<IGradesService, GradesService>();
+
+            container.RegisterScoped<IFinalGradesRepository, FinalGradesRepository>();
+            container.RegisterScoped<IFinalGradesService, FinalGradesService>();
         }
     }
 }

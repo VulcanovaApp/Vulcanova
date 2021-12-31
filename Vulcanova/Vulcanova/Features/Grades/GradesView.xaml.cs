@@ -12,7 +12,7 @@ namespace Vulcanova.Features.Grades
         public GradesView()
         {
             InitializeComponent();
-
+            
             this.WhenActivated(disposable =>
             {
                 this.Bind(ViewModel, vm => vm.SelectedViewModelIndex, v => v.TabHost.SelectedIndex)
@@ -22,6 +22,9 @@ namespace Vulcanova.Features.Grades
                     .DisposeWith(disposable);
 
                 this.OneWayBind(ViewModel, vm => vm.GradesSummaryViewModel, v => v.GradesSummaryView.ViewModel)
+                    .DisposeWith(disposable);
+
+                this.OneWayBind(ViewModel, vm => vm.FinalGradesViewModel, v => v.FinalGradesView.ViewModel)
                     .DisposeWith(disposable);
 
                 this.BindCommand(ViewModel, vm => vm.PreviousSemester, v => v.PreviousSemesterTap)
@@ -49,6 +52,10 @@ namespace Vulcanova.Features.Grades
                     .DisposeWith(disposable);
 
                 this.OneWayBind(ViewModel, vm => vm.PeriodInfo, v => v.GradesSummaryView.PeriodId,
+                        r => r?.CurrentPeriod?.Id)
+                    .DisposeWith(disposable);
+                
+                this.OneWayBind(ViewModel, vm => vm.PeriodInfo, v => v.FinalGradesView.PeriodId,
                         r => r?.CurrentPeriod?.Id)
                     .DisposeWith(disposable);
 

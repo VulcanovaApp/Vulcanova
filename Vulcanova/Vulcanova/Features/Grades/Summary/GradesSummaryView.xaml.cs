@@ -34,7 +34,9 @@ namespace Vulcanova.Features.Grades.Summary
                 this.OneWayBind(ViewModel, vm => vm.IsSyncing, v => v.RefreshView.IsRefreshing)
                     .DisposeWith(disposable);
 
-                this.Bind(ViewModel, vm => vm.PeriodId, v => v.PeriodId)
+                this.WhenAnyValue(v => v.PeriodId)
+                    .WhereNotNull()
+                    .Subscribe((val) => ViewModel!.PeriodId = val!.Value)
                     .DisposeWith(disposable);
             });
         }

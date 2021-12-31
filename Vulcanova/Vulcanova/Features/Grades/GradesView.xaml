@@ -79,7 +79,7 @@
                 <tabs:ViewSwitcher
                     Grid.Row="2" x:Name="Switcher" Animate="True">
                     <summary:GradesSummaryView x:Name="GradesSummaryView" />
-                    <final:FinalGradesView />
+                    <final:FinalGradesView x:Name="FinalGradesView" />
                 </tabs:ViewSwitcher>
             </Grid>
             <layout:SlidingUpPanel x:Name="Panel" Open="False">

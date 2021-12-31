@@ -1,4 +1,5 @@
 using System;
+using Vulcanova.Uonet.Api.Common.Models;
 
 namespace Vulcanova.Uonet.Api.Grades
 {
@@ -42,28 +43,11 @@ namespace Vulcanova.Uonet.Api.Grades
         public string Code { get; set; }
     }
 
-    public class Subject
-    {
-        public int Id { get; set; }
-        public Guid Key { get; set; }
-        public string Name { get; set; }
-        public string Kod { get; set; }
-        public int Position { get; set; }
-    }
-
     public class Creator
     {
         public int Id { get; set; }
         public string Surname { get; set; }
         public string Name { get; set; }
         public string DisplayName { get; set; }
-    }
-
-    public class Date
-    {
-        public long Timestamp { get; set; }
-        // public DateTime DateDate { get; set; }
-        public string DateDisplay { get; set; }
-        // public DateTime Time { get; set; }
     }
 }
