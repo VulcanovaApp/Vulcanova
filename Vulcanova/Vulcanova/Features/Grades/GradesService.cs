@@ -40,6 +40,11 @@ namespace Vulcanova.Features.Grades
                     var account = await _accountRepository.GetByIdAsync(accountId);
 
                     var resourceKey = GetGradesResourceKey(account, periodId);
+                    
+                    var items = await _gradesRepository.GetGradesForPupilAsync(account.Id, account.Pupil.Id,
+                        periodId);
+                    
+                    observer.OnNext(items);
 
                     if (ShouldSync(resourceKey) || forceSync)
                     {
@@ -48,9 +53,13 @@ namespace Vulcanova.Features.Grades
                         await _gradesRepository.UpdatePupilGradesAsync(onlineGrades);
                         
                         SetJustSynced(resourceKey);
+                        
+                        items = await _gradesRepository.GetGradesForPupilAsync(account.Id, account.Pupil.Id,
+                            periodId);
+                        
+                        observer.OnNext(items);
                     }
 
-                    observer.OnNext(await _gradesRepository.GetGradesForPupilAsync(account.Id, account.Pupil.Id, periodId));
                     observer.OnCompleted();
                 });
             });
