@@ -21,7 +21,7 @@ namespace Vulcanova.Features.Grades.Final
                 .OrderBy(g => g.Subject.Name);
         }
 
-        public async Task UpdatePupilFinalGradesAsync(int accountId, int pupilId, IEnumerable<FinalGradesEntry> newGrades)
+        public async Task UpdatePupilFinalGradesAsync(IEnumerable<FinalGradesEntry> newGrades)
         {
             await _db.GetCollection<FinalGradesEntry>().UpsertAsync(newGrades);
         }

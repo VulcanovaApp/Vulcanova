@@ -44,7 +44,7 @@ namespace Vulcanova.Features.Grades.Final
                     {
                         var onlineGrades = await FetchPeriodGradesAsync(account, periodId);
 
-                        await _gradesRepository.UpdatePupilFinalGradesAsync(account.Id, account.Pupil.Id, onlineGrades);
+                        await _gradesRepository.UpdatePupilFinalGradesAsync(onlineGrades);
                         
                         SetJustSynced(resourceKey);
                     }

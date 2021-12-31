@@ -22,7 +22,7 @@ namespace Vulcanova.Features.Grades
                 .ThenBy(g => g.DateCreated);
         }
 
-        public async Task UpdatePupilGradesAsync(int accountId, int pupilId, IEnumerable<Grade> newGrades)
+        public async Task UpdatePupilGradesAsync(IEnumerable<Grade> newGrades)
         {
             await _db.GetCollection<Grade>().UpsertAsync(newGrades);
         }
