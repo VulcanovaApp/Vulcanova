@@ -170,5 +170,17 @@ namespace Vulcanova.Resources {
                 return ResourceManager.GetString("FinalGradeLabel", resourceCulture);
             }
         }
+        
+        internal static string NoElementsLabel {
+            get {
+                return ResourceManager.GetString("NoElementsLabel", resourceCulture);
+            }
+        }
+        
+        internal static string NoPredictedGradesLabel {
+            get {
+                return ResourceManager.GetString("NoPredictedGradesLabel", resourceCulture);
+            }
+        }
     }
 }

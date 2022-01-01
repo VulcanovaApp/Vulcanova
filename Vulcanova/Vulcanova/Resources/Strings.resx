@@ -81,4 +81,10 @@
     <data name="FinalGradeLabel" xml:space="preserve">
         <value>Final grade</value>
     </data>
+    <data name="NoElementsLabel" xml:space="preserve">
+        <value>No elements</value>
+    </data>
+    <data name="NoPredictedGradesLabel" xml:space="preserve">
+        <value>No predicted grades have been added or the register does not provide such data</value>
+    </data>
 </root>

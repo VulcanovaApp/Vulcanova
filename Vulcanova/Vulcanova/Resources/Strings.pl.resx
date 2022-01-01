@@ -74,4 +74,10 @@
     <data name="FinalGradeLabel" xml:space="preserve">
         <value>Ocena końcowa</value>
     </data>
+    <data name="NoElementsLabel" xml:space="preserve">
+        <value>Brak elementów</value>
+    </data>
+    <data name="NoPredictedGradesLabel" xml:space="preserve">
+        <value>Żadne oceny końcowe nie zostały wpisane lub dziennik nie umożliwia przeglądania tych danych</value>
+    </data>
 </root>
