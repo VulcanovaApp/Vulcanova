@@ -5,6 +5,7 @@
                           x:Name="ContentPage"
                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                           xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+                          xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
                           xmlns:local="clr-namespace:Vulcanova.Features.Grades.Summary;assembly=Vulcanova"
                           xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
                           xmlns:grades="clr-namespace:Vulcanova.Features.Grades;assembly=Vulcanova"
@@ -20,13 +21,9 @@
                 <CollectionView x:Name="SubjectGrades">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="local:SubjectGrades">
-                            <StackLayout Padding="0, 1">
-                                <StackLayout.GestureRecognizers>
-                                    <TapGestureRecognizer
-                                        Command="{Binding Source={RelativeSource AncestorType={x:Type local:GradesSummaryViewModel}}, Path=ShowSubjectGradesDetails}"
-                                        CommandParameter="{Binding SubjectId}">
-                                    </TapGestureRecognizer>
-                                </StackLayout.GestureRecognizers>
+                            <StackLayout Padding="0, 1" xe:TouchEffect.Color="{AppThemeBinding Light={StaticResource LightBorderColor}, Dark={StaticResource DarkBorderColor}}"
+                                         xe:Commands.Tap="{Binding Source={RelativeSource AncestorType={x:Type local:GradesSummaryViewModel}}, Path=ShowSubjectGradesDetails}"
+                                         xe:Commands.TapParameter="{Binding SubjectId}">
                                 <StackLayout Orientation="Horizontal" Padding="16, 8">
                                     <StackLayout HorizontalOptions="FillAndExpand">
                                         <Label Text="{Binding SubjectName}" />

@@ -19,7 +19,9 @@ namespace Vulcanova.Android
             base.OnCreate(savedInstanceState);
 
             CachedImageRenderer.Init(true);
-            
+
+            XamEffects.Droid.Effects.Init();
+
             GoogleVisionBarCodeScanner.Droid.RendererInitializer.Init();
             
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
