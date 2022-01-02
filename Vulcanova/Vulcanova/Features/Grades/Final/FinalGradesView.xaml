@@ -12,7 +12,7 @@
                 <Label HorizontalTextAlignment="Center" Text="{x:Static resx:Strings.NoElementsLabel}" />
                 <Label HorizontalTextAlignment="Center" FontSize="Small" Text="{x:Static resx:Strings.NoPredictedGradesLabel}" />
             </StackLayout>
-            <CollectionView x:Name="FinalGradesList">
+            <CollectionView x:Name="FinalGradesList" ItemSizingStrategy="MeasureFirstItem">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="final:FinalGradesEntry">
                         <StackLayout Padding="0, 1">
