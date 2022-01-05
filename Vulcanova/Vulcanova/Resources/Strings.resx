@@ -87,4 +87,7 @@
     <data name="NoPredictedGradesLabel" xml:space="preserve">
         <value>No predicted grades have been added or the register does not provide such data</value>
     </data>
+    <data name="TimetableTabTitle" xml:space="preserve">
+        <value>Timetable</value>
+    </data>
 </root>

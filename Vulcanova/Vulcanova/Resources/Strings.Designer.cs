@@ -182,5 +182,11 @@ namespace Vulcanova.Resources {
                 return ResourceManager.GetString("NoPredictedGradesLabel", resourceCulture);
             }
         }
+        
+        internal static string TimetableTabTitle {
+            get {
+                return ResourceManager.GetString("TimetableTabTitle", resourceCulture);
+            }
+        }
     }
 }
