@@ -16,8 +16,8 @@ namespace Vulcanova.Uonet.Api.Grades
         public object Denominator { get; set; }
         public Date DateCreated { get; set; }
         public Date DateModify { get; set; }
-        public Creator Creator { get; set; }
-        public Creator Modifier { get; set; }
+        public Teacher Creator { get; set; }
+        public Teacher Modifier { get; set; }
         public Column Column { get; set; }
     }
 
@@ -41,13 +41,5 @@ namespace Vulcanova.Uonet.Api.Grades
         public int Id { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
-    }
-
-    public class Creator
-    {
-        public int Id { get; set; }
-        public string Surname { get; set; }
-        public string Name { get; set; }
-        public string DisplayName { get; set; }
     }
 }
