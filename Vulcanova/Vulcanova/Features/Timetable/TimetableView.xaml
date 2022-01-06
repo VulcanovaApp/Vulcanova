@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <rxui:ReactiveContentPage x:TypeArguments="timetable:TimetableViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
-                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                              xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
-                              xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
-                              xmlns:timetable="clr-namespace:Vulcanova.Features.Timetable;assembly=Vulcanova"
-                              xmlns:controls="clr-namespace:Vulcanova.Core.Layout.Controls;assembly=Vulcanova"
-                              Title="{x:Static resx:Strings.TimetableTabTitle}"
-                              IconImageSource="{OnPlatform iOS=calendar-outline@3x.png, Android=ic_calendar}"
-                              x:Class="Vulcanova.Features.Timetable.TimetableView">
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
+                          xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+                          xmlns:timetable="clr-namespace:Vulcanova.Features.Timetable;assembly=Vulcanova"
+                          xmlns:controls="clr-namespace:Vulcanova.Core.Layout.Controls;assembly=Vulcanova"
+                          Title="{x:Static resx:Strings.TimetableTabTitle}"
+                          IconImageSource="{OnPlatform iOS=calendar-outline@3x.png, Android=ic_calendar}"
+                          x:Class="Vulcanova.Features.Timetable.TimetableView">
     <ContentPage.Content>
         <StackLayout>
-            <controls:Calendar />
+            <controls:Calendar
+                SelectedColor="{AppThemeBinding Dark={StaticResource DarkTranslucentPrimaryColor}, Light={StaticResource LightTranslucentPrimaryColor}}" />
         </StackLayout>
     </ContentPage.Content>
 </rxui:ReactiveContentPage>

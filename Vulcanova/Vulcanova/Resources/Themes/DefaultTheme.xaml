@@ -3,6 +3,9 @@
     <Color x:Key="LightPrimaryColor">#007aff</Color>
     <Color x:Key="DarkPrimaryColor">#0a84ff</Color>
 
+    <Color x:Key="LightTranslucentPrimaryColor">#7C007AFF</Color>
+    <Color x:Key="DarkTranslucentPrimaryColor">#7C0A84FF</Color>
+
     <Color x:Key="SecondaryColor">Black</Color>
 
     <Color x:Key="LightPrimaryTextColor">Black</Color>

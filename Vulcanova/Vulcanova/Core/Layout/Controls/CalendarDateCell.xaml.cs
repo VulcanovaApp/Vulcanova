@@ -8,7 +8,8 @@ namespace Vulcanova.Core.Layout.Controls
     public partial class CalendarDateCell
     {
         public static readonly BindableProperty SelectedProperty =
-            BindableProperty.Create(nameof(Selected), typeof(bool), typeof(CalendarDateCell), false, propertyChanged: SelectedPropertyChanged);
+            BindableProperty.Create(nameof(Selected), typeof(bool), typeof(CalendarDateCell), false,
+                propertyChanged: SelectedPropertyChanged);
 
         public bool Selected
         {
@@ -24,7 +25,7 @@ namespace Vulcanova.Core.Layout.Controls
             get => (int) GetValue(DayProperty);
             set => SetValue(DayProperty, value);
         }
-        
+
         public static readonly BindableProperty TapCommandProperty =
             BindableProperty.Create(nameof(TapCommand), typeof(ICommand), typeof(CalendarDateCell));
 
@@ -34,16 +35,32 @@ namespace Vulcanova.Core.Layout.Controls
             set => SetValue(TapCommandProperty, value);
         }
 
+        public static readonly BindableProperty SelectedColorProperty =
+            BindableProperty.Create(nameof(SelectedColor), typeof(Color), typeof(CalendarDateCell), Color.Red,
+                propertyChanged: SelectedColorPropertyChanged);
+
+        public Color SelectedColor
+        {
+            get => (Color) GetValue(SelectedColorProperty);
+            set => SetValue(SelectedColorProperty, value);
+        }
+
         public CalendarDateCell()
         {
             InitializeComponent();
         }
-        
+
         private static void SelectedPropertyChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var cell = (CalendarDateCell) bindable;
             var isSelected = (bool) newValue;
-            cell.Container.BackgroundColor = isSelected ? Color.Red : Color.Transparent;
+            cell.Container.BackgroundColor = isSelected ? cell.SelectedColor : Color.Transparent;
+        }
+
+        private static void SelectedColorPropertyChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var cell = (CalendarDateCell) bindable;
+            cell.Container.BackgroundColor = cell.Selected ? (Color) newValue : Color.Transparent;
         }
     }
 }

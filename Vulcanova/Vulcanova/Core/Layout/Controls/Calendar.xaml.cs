@@ -10,12 +10,22 @@ namespace Vulcanova.Core.Layout.Controls
     public partial class Calendar : ContentView
     {
         public static readonly BindableProperty SelectedDateProperty =
-            BindableProperty.Create(nameof(SelectedDate), typeof(DateTime), typeof(Calendar), DateTime.Now, propertyChanged: SelectedDateChanged);
+            BindableProperty.Create(nameof(SelectedDate), typeof(DateTime), typeof(Calendar), DateTime.Now,
+                propertyChanged: SelectedDateChanged);
 
         public DateTime SelectedDate
         {
             get => (DateTime) GetValue(SelectedDateProperty);
             set => SetValue(SelectedDateProperty, value);
+        }
+
+        public static readonly BindableProperty SelectedColorProperty =
+            BindableProperty.Create(nameof(SelectedColor), typeof(Color), typeof(CalendarDateCell), Color.Red);
+
+        public Color SelectedColor
+        {
+            get => (Color) GetValue(SelectedColorProperty);
+            set => SetValue(SelectedColorProperty, value);
         }
 
         private readonly Dictionary<DateTime, CalendarDateCell> _dateCells = new();
@@ -77,11 +87,21 @@ namespace Vulcanova.Core.Layout.Controls
 
         private CalendarDateCell CreateCellForDate(DateTime date)
         {
-            return new CalendarDateCell
+            var colorBinding = new Binding
+            {
+                Source = this,
+                Path = nameof(SelectedColor)
+            };
+
+            var cell = new CalendarDateCell
             {
                 Day = date.Day,
                 TapCommand = new Command(() => SelectedDate = date)
             };
+
+            cell.SetBinding(CalendarDateCell.SelectedColorProperty, colorBinding);
+
+            return cell;
         }
 
         private void UpdateIndicators(DateTime? oldDate, DateTime newDate)
