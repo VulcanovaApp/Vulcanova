@@ -10,7 +10,7 @@ namespace Vulcanova.Core.Layout.Controls
     public partial class Calendar : ContentView
     {
         public static readonly BindableProperty SelectedDateProperty =
-            BindableProperty.Create(nameof(SelectedDate), typeof(DateTime), typeof(Calendar), DateTime.Now);
+            BindableProperty.Create(nameof(SelectedDate), typeof(DateTime), typeof(Calendar), DateTime.Now, propertyChanged: SelectedDateChanged);
 
         public DateTime SelectedDate
         {
@@ -18,7 +18,7 @@ namespace Vulcanova.Core.Layout.Controls
             set => SetValue(SelectedDateProperty, value);
         }
 
-        private readonly Dictionary<DateTime, Label> _dateLabels = new();
+        private readonly Dictionary<DateTime, CalendarDateCell> _dateCells = new();
 
         public Calendar()
         {
@@ -31,7 +31,7 @@ namespace Vulcanova.Core.Layout.Controls
         {
             SetupHeader();
             SetupCalendarGrid();
-            UpdateIndicators();
+            UpdateIndicators(null, SelectedDate);
         }
 
         private void SetupHeader()
@@ -62,10 +62,11 @@ namespace Vulcanova.Core.Layout.Controls
 
                 for (var day = 0; day < 7; day++)
                 {
-                    var label = new Label {Text = currentDay.Day.ToString()};
-                    CalendarGrid.Children.Add(label, day, weekRow);
+                    var cell = CreateCellForDate(currentDay);
 
-                    _dateLabels.Add(currentDay, label);
+                    CalendarGrid.Children.Add(cell, day, weekRow);
+
+                    _dateCells.Add(currentDay, cell);
 
                     currentDay = currentDay.AddDays(1);
                 }
@@ -74,9 +75,29 @@ namespace Vulcanova.Core.Layout.Controls
             }
         }
 
-        private void UpdateIndicators()
+        private CalendarDateCell CreateCellForDate(DateTime date)
         {
-            _dateLabels[SelectedDate.Date].BackgroundColor = Color.Red;
+            return new CalendarDateCell
+            {
+                Day = date.Day,
+                TapCommand = new Command(() => SelectedDate = date)
+            };
+        }
+
+        private void UpdateIndicators(DateTime? oldDate, DateTime newDate)
+        {
+            if (oldDate != null)
+            {
+                _dateCells[oldDate.Value.Date].Selected = false;
+            }
+
+            _dateCells[newDate.Date].Selected = true;
+        }
+
+        private static void SelectedDateChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var calendar = (Calendar) bindable;
+            calendar.UpdateIndicators((DateTime) oldValue, (DateTime) newValue);
         }
     }
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vulcanova.Core.Layout.Controls.CalendarDateCell"
+             x:Name="View">
+    <ContentView.Content>
+        <Frame Padding="0" HasShadow="False">
+            <Frame.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding TapCommand, Source={x:Reference View}}" />
+            </Frame.GestureRecognizers>
+            <Frame x:Name="Container" HasShadow="False" HorizontalOptions="Center" VerticalOptions="Center"
+                   CornerRadius="16" Padding="0" IsClippedToBounds="True" WidthRequest="32" HeightRequest="32">
+                <Label Text="{Binding Day, Source={x:Reference View}}" VerticalOptions="Center" HorizontalOptions="Center" />
+            </Frame>
+        </Frame>
+    </ContentView.Content>
+</ContentView>
