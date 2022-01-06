@@ -63,5 +63,9 @@
         <AutoGen>True</AutoGen>
         <DependentUpon>Strings.resx</DependentUpon>
       </Compile>
+      <Compile Update="Core\Layout\Controls\SlidingUpPanel.xaml.cs">
+        <DependentUpon>SlidingUpPanel.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 </Project>

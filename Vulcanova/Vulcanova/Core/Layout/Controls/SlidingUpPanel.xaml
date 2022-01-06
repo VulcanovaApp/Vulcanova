@@ -2,7 +2,7 @@
 
 <forms:ContentView xmlns:forms="http://xamarin.com/schemas/2014/forms" xmlns="http://xamarin.com/schemas/2014/forms"
                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                   x:Class="Vulcanova.Core.Layout.SlidingUpPanel"
+                   x:Class="Vulcanova.Core.Layout.Controls.SlidingUpPanel"
                    x:Name="SlidingPanel">
     <ContentView.GestureRecognizers>
         <PanGestureRecognizer x:Name="PanGestureRecognizer" />

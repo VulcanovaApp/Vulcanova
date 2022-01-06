@@ -7,7 +7,7 @@ using Xamarin.Essentials;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Vulcanova.Core.Layout
+namespace Vulcanova.Core.Layout.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     [ContentProperty("Contents")]

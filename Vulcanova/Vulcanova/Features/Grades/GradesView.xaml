@@ -12,6 +12,7 @@
     xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
     xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
     xmlns:subjectDetails="clr-namespace:Vulcanova.Features.Grades.SubjectDetails;assembly=Vulcanova"
+    xmlns:controls="clr-namespace:Vulcanova.Core.Layout.Controls;assembly=Vulcanova"
     IconImageSource="{OnPlatform iOS=medal-outline@3x.png, Android=ic_medal}"
     Title="{x:Static resx:Strings.GradesTabTitle}">
     <ContentPage.Resources>
@@ -82,9 +83,9 @@
                     <final:FinalGradesView x:Name="FinalGradesView" />
                 </tabs:ViewSwitcher>
             </Grid>
-            <layout:SlidingUpPanel x:Name="Panel" Open="False">
+            <controls:SlidingUpPanel x:Name="Panel" Open="False">
                 <subjectDetails:GradesSubjectDetailsView x:Name="DetailsView" />
-            </layout:SlidingUpPanel>
+            </controls:SlidingUpPanel>
         </Grid>
     </ContentPage.Content>
 </rxui:ReactiveContentPage>
