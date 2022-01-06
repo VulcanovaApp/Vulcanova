@@ -54,8 +54,6 @@ namespace Vulcanova.Core.Layout.Controls
             var lastDayOfMonth = new DateTime(SelectedDate.Year, SelectedDate.Month,
                 DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month));
 
-            SetupHeader();
-
             var weekRow = 1;
 
             while (currentDay <= lastDayOfMonth)
