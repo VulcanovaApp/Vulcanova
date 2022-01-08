@@ -3,14 +3,15 @@
     <Color x:Key="LightPrimaryColor">#007aff</Color>
     <Color x:Key="DarkPrimaryColor">#0a84ff</Color>
 
-    <Color x:Key="LightTranslucentPrimaryColor">#7C007AFF</Color>
-    <Color x:Key="DarkTranslucentPrimaryColor">#7C0A84FF</Color>
-
-    <Color x:Key="SecondaryColor">Black</Color>
+    <Color x:Key="LightTranslucentPrimaryColor">#DFF1FF</Color>
+    <Color x:Key="DarkTranslucentPrimaryColor">#7EC7FF</Color>
 
     <Color x:Key="LightPrimaryTextColor">Black</Color>
     <Color x:Key="DarkPrimaryTextColor">White</Color>
     
+    <Color x:Key="LightSecondaryTextColor">#AAAAAA</Color>
+    <Color x:Key="DarkSecondaryTextColor">#AAAAAA</Color>
+
     <Color x:Key="LightBackgroundColor">White</Color>
     <Color x:Key="DarkBackgroundColor">Black</Color>
     

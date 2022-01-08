@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
+using Vulcanova.Extensions;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -28,6 +30,24 @@ namespace Vulcanova.Core.Layout.Controls
             set => SetValue(SelectedColorProperty, value);
         }
 
+        public static readonly BindableProperty SelectedTextColorProperty =
+            BindableProperty.Create(nameof(SelectedTextColor), typeof(Color), typeof(CalendarDateCell), Color.White);
+
+        public Color SelectedTextColor
+        {
+            get => (Color) GetValue(SelectedTextColorProperty);
+            set => SetValue(SelectedTextColorProperty, value);
+        }
+
+        public static readonly BindableProperty SecondaryTextColorProperty =
+            BindableProperty.Create(nameof(SecondaryTextColor), typeof(Color), typeof(CalendarDateCell), Color.White);
+
+        public Color SecondaryTextColor
+        {
+            get => (Color) GetValue(SecondaryTextColorProperty);
+            set => SetValue(SecondaryTextColorProperty, value);
+        }
+
         private readonly Dictionary<DateTime, CalendarDateCell> _dateCells = new();
 
         public Calendar()
@@ -40,7 +60,7 @@ namespace Vulcanova.Core.Layout.Controls
         private void SetupLayout()
         {
             SetupHeader();
-            SetupCalendarGrid();
+            UpdateCalendarGrid();
             UpdateIndicators(null, SelectedDate);
         }
 
@@ -48,60 +68,136 @@ namespace Vulcanova.Core.Layout.Controls
         {
             // 3.01.2022 is on Monday
             var date = new DateTime(2022, 1, 3);
-            CalendarGrid.RowDefinitions.Add(new RowDefinition {Height = GridLength.Star});
+            CalendarGrid.RowDefinitions.Add(new RowDefinition {Height = GridLength.Auto});
 
             for (var day = 0; day < 7; day++)
             {
-                CalendarGrid.Children.Add(new Label {Text = date.ToString("ddd", CultureInfo.CurrentCulture)}, day, 0);
+                var text = date.ToString("ddd", CultureInfo.CurrentCulture).ToUpperInvariant()[..1];
+                var label = new Label
+                {
+                    Text = text,
+                    HorizontalTextAlignment = TextAlignment.Center
+                };
+                label.FontSize = Device.GetNamedSize(NamedSize.Small, label);
+
+                CalendarGrid.Children.Add(label, day, 0);
+
                 date = date.AddDays(1);
             }
         }
 
-        private void SetupCalendarGrid()
+        private void UpdateCalendarGrid()
         {
             var firstDayOfMonth = new DateTime(SelectedDate.Year, SelectedDate.Month, 1);
-            var currentDay = firstDayOfMonth.Subtract(TimeSpan.FromDays((int) firstDayOfMonth.DayOfWeek - 1));
             var lastDayOfMonth = new DateTime(SelectedDate.Year, SelectedDate.Month,
                 DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month));
 
+            var currentDay = firstDayOfMonth.LastMonday();
+            var endDay = lastDayOfMonth.NextSunday();
+
+            var daysToDraw = (endDay - currentDay).TotalDays + 1;
+
+            var cnt = Math.Max(daysToDraw, _dateCells.Count);
+
+            _dateCells.Clear();
+
+            var children = CalendarGrid.Children
+                .OrderBy(Grid.GetRow)
+                .ThenBy(Grid.GetColumn)
+                .Skip(7) // skip weekday names header
+                .ToArray();
+
+            // date cells start on 2nd row (1st is weekday names)
             var weekRow = 1;
 
-            while (currentDay <= lastDayOfMonth)
+            for (var i = 0; i < cnt; i++)
             {
-                CalendarGrid.RowDefinitions.Add(new RowDefinition {Height = GridLength.Star});
+                var dayColumn = i % 7;
 
-                for (var day = 0; day < 7; day++)
+                CalendarDateCell cell = null;
+                if (children.Length > i)
                 {
-                    var cell = CreateCellForDate(currentDay);
-
-                    CalendarGrid.Children.Add(cell, day, weekRow);
-
-                    _dateCells.Add(currentDay, cell);
-
-                    currentDay = currentDay.AddDays(1);
+                    cell = (CalendarDateCell) children[i];
                 }
 
-                weekRow++;
+                if (i >= daysToDraw)
+                {
+                    if (cell != null)
+                    {
+                        CalendarGrid.Children.Remove(cell);
+                    }
+                }
+                else
+                {
+                    if (CalendarGrid.RowDefinitions.Count < weekRow + 1)
+                    {
+                        CalendarGrid.RowDefinitions.Add(new RowDefinition {Height = GridLength.Star});
+                    }
+
+                    if (cell == null)
+                    {
+                        cell = CreateCellForDate(currentDay);
+                        CalendarGrid.Children.Add(cell, dayColumn, weekRow);
+                    }
+                    else
+                    {
+                        UpdateCellForDate(cell, currentDay);
+                        cell.Selected = false;
+                    }
+
+                    _dateCells.Add(currentDay, cell);
+                }
+
+                if ((i + 1) % 7 == 0)
+                {
+                    weekRow++;
+                }
+
+                currentDay = currentDay.AddDays(1);
             }
         }
 
         private CalendarDateCell CreateCellForDate(DateTime date)
         {
+            var cell = new CalendarDateCell
+            {
+                Day = date.Day,
+                TapCommand = new Command(() => SelectedDate = date),
+                Secondary = date.Month != SelectedDate.Month
+            };
+
             var colorBinding = new Binding
             {
                 Source = this,
                 Path = nameof(SelectedColor)
             };
 
-            var cell = new CalendarDateCell
-            {
-                Day = date.Day,
-                TapCommand = new Command(() => SelectedDate = date)
-            };
-
             cell.SetBinding(CalendarDateCell.SelectedColorProperty, colorBinding);
 
+            var textColorBinding = new Binding
+            {
+                Source = this,
+                Path = nameof(SelectedTextColor)
+            };
+
+            cell.SetBinding(CalendarDateCell.SelectedTextColorProperty, textColorBinding);
+
+            var secondaryColorBinding = new Binding
+            {
+                Source = this,
+                Path = nameof(SecondaryTextColor)
+            };
+
+            cell.SetBinding(CalendarDateCell.SecondaryTextColorProperty, secondaryColorBinding);
+
             return cell;
+        }
+
+        private void UpdateCellForDate(CalendarDateCell cell, DateTime date)
+        {
+            cell.Day = date.Day;
+            cell.TapCommand = new Command(() => SelectedDate = date);
+            cell.Secondary = date.Month != SelectedDate.Month;
         }
 
         private void UpdateIndicators(DateTime? oldDate, DateTime newDate)
@@ -117,7 +213,18 @@ namespace Vulcanova.Core.Layout.Controls
         private static void SelectedDateChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var calendar = (Calendar) bindable;
-            calendar.UpdateIndicators((DateTime) oldValue, (DateTime) newValue);
+            var oldDate = (DateTime) oldValue;
+            var newDate = (DateTime) newValue;
+
+            if (oldDate.Month != newDate.Month)
+            {
+                calendar.UpdateCalendarGrid();
+                calendar.UpdateIndicators(null, newDate);
+
+                return;
+            }
+
+            calendar.UpdateIndicators(oldDate, newDate);
         }
     }
 }

@@ -11,7 +11,8 @@
             </Frame.GestureRecognizers>
             <Frame x:Name="Container" HasShadow="False" HorizontalOptions="Center" VerticalOptions="Center"
                    CornerRadius="16" Padding="0" IsClippedToBounds="True" WidthRequest="32" HeightRequest="32">
-                <Label Text="{Binding Day, Source={x:Reference View}}" VerticalOptions="Center" HorizontalOptions="Center" />
+                <Label x:Name="Label" Text="{Binding Day, Source={x:Reference View}}" VerticalOptions="Center"
+                       HorizontalOptions="Center" />
             </Frame>
         </Frame>
     </ContentView.Content>
