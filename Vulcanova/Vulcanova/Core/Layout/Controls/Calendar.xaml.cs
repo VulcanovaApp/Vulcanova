@@ -226,5 +226,16 @@ namespace Vulcanova.Core.Layout.Controls
 
             calendar.UpdateIndicators(oldDate, newDate);
         }
+
+        private void SwipeGestureRecognizer_OnSwiped(object sender, SwipedEventArgs e)
+        {
+            SelectedDate = SelectedDate.AddMonths(
+                e.Direction switch
+                {
+                    SwipeDirection.Left => 1,
+                    SwipeDirection.Right => -1,
+                    _ => 0
+                });
+        }
     }
 }

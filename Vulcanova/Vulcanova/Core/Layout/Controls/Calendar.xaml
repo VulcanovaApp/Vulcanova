@@ -4,6 +4,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Vulcanova.Core.Layout.Controls.Calendar"
              x:Name="View">
+    <ContentView.GestureRecognizers>
+        <SwipeGestureRecognizer Direction="Left" Swiped="SwipeGestureRecognizer_OnSwiped" />
+        <SwipeGestureRecognizer Direction="Right" Swiped="SwipeGestureRecognizer_OnSwiped" />
+    </ContentView.GestureRecognizers>
     <ContentView.Content>
         <StackLayout>
             <Label Text="{Binding Source={x:Reference View}, Path=SelectedDate, StringFormat='{0:MMMM yyyy}'}"

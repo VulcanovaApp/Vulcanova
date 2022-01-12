@@ -11,7 +11,8 @@
                       xmlns:timetable="clr-namespace:Vulcanova.Features.Timetable;assembly=Vulcanova"
                       x:Class="Vulcanova.Core.Layout.HomeTabbedPage"
                       android:TabbedPage.ToolbarPlacement="Bottom"
-                      ios:TabbedPage.TranslucencyMode="Translucent">
+                      ios:TabbedPage.TranslucencyMode="Translucent"
+                      android:TabbedPage.IsSwipePagingEnabled="False">
     <grades:GradesView />
     <timetable:TimetableView />
     <luckyNumber:LuckyNumberView />
