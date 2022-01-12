@@ -12,9 +12,48 @@
     <ContentPage.Content>
         <StackLayout>
             <controls:Calendar
+                x:Name="Calendar"
                 SelectedColor="{AppThemeBinding Dark={StaticResource DarkTranslucentPrimaryColor}, Light={StaticResource LightTranslucentPrimaryColor}}"
                 SelectedTextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryColor}, Light={StaticResource LightPrimaryColor}}"
                 SecondaryTextColor="{AppThemeBinding Dark={StaticResource DarkSecondaryTextColor}, Light={StaticResource LightSecondaryTextColor}}" />
+            <CollectionView x:Name="EntriesList" ItemSizingStrategy="MeasureFirstItem">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="timetable:TimetableListEntry">
+                        <StackLayout Padding="0, 1" Spacing="0">
+                            <Grid Padding="16, 8">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="46" />
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label VerticalTextAlignment="Center"
+                                       HorizontalTextAlignment="Center"
+                                       FontSize="Large"
+                                       Text="{Binding No}" />
+                                <StackLayout Grid.Column="1" Spacing="0">
+                                    <Label
+                                        Text="{Binding Entry.Subject.Name}" />
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                            FontSize="Small"
+                                            Text="{Binding Entry.TeacherName}" />
+                                        <Label FontSize="Small" Text="{Binding Entry.RoomName}" />
+                                    </StackLayout>
+                                </StackLayout>
+                                <StackLayout Grid.Column="2" Spacing="0">
+                                    <Label
+                                        FontSize="Small"
+                                        Text="{Binding Entry.Start, StringFormat='{0:HH:mm}'}" />
+                                    <Label
+                                        FontSize="Small"
+                                        Text="{Binding Entry.End, StringFormat='{0:HH:mm}'}" />
+                                </StackLayout>
+                            </Grid>
+                            <BoxView Style="{StaticResource SeparatorStyle}" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </rxui:ReactiveContentPage>

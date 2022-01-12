@@ -8,6 +8,7 @@ using Vulcanova.Features.Auth;
 using Vulcanova.Features.Grades;
 using Vulcanova.Features.LuckyNumber;
 using Vulcanova.Features.Shared;
+using Vulcanova.Features.Timetable;
 using Xamarin.Forms.Xaml;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
@@ -58,6 +59,7 @@ namespace Vulcanova
             containerRegistry.RegisterAuth();
             containerRegistry.RegisterLuckyNumber();
             containerRegistry.RegisterGrades();
+            containerRegistry.RegisterTimetable();
 
             containerRegistry.RegisterUonet();
         }

@@ -19,7 +19,7 @@ namespace Vulcanova.Features.Grades
             CreateMap<Uonet.Api.Common.Models.Subject, Subject>();
 
             CreateMap<Date, DateTime>()
-                .ConvertUsing(d => DateTimeOffset.FromUnixTimeMilliseconds(d.Timestamp).UtcDateTime);
+                .ConvertUsing(d => DateTimeOffset.FromUnixTimeMilliseconds(d.Timestamp).LocalDateTime);
 
             CreateMap<GradesSummaryEntryPayload, FinalGradesEntry>()
                 .ForMember(f => f.Id, cfg => cfg.MapFrom(src => $"{src.PeriodId}_{src.Id}"))

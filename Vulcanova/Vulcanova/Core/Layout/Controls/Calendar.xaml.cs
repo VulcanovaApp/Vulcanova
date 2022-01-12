@@ -131,7 +131,7 @@ namespace Vulcanova.Core.Layout.Controls
                 {
                     if (CalendarGrid.RowDefinitions.Count < weekRow + 1)
                     {
-                        CalendarGrid.RowDefinitions.Add(new RowDefinition {Height = GridLength.Star});
+                        CalendarGrid.RowDefinitions.Add(new RowDefinition {Height = 32});
                     }
 
                     if (cell == null)
