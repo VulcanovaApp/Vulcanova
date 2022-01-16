@@ -26,20 +26,36 @@ namespace Vulcanova.Features.Grades.Final
 
             this.WhenActivated(disposable =>
             {
-                this.OneWayBind(ViewModel, vm => vm.FinalGrades, v => v.FinalGradesList.ItemsSource)
+                this.OneWayBind(ViewModel, vm => vm.FinalGrades, v => v.FinalGradesList.ItemsSource, grades =>
+                    {
+                        if (grades == null)
+                        {
+                            return null;
+                        }
+
+                        var finalGradesEntries = grades as FinalGradesEntry[] ?? grades.ToArray();
+                        return finalGradesEntries.All(g => g.PredictedGrade == null && g.FinalGrade == null)
+                            ? null
+                            : finalGradesEntries;
+                    })
                     .DisposeWith(disposable);
 
-                this.OneWayBind(ViewModel, vm => vm.FinalGrades, v => v.NoElementsMessage.IsVisible,
-                        grades => grades?.All(g => g.PredictedGrade == null && g.FinalGrade == null))
-                    .DisposeWith(disposable);
-
-                this.WhenAnyValue(v => v.NoElementsMessage.IsVisible)
-                    .Subscribe(val => FinalGradesList.IsVisible = !val)
+                this.BindCommand(ViewModel, vm => vm.ForceRefreshGrades, v => v.RefreshView)
                     .DisposeWith(disposable);
 
                 this.WhenAnyValue(v => v.PeriodId)
                     .WhereNotNull()
                     .Subscribe((val) => ViewModel!.PeriodId = val!.Value)
+                    .DisposeWith(disposable);
+
+                ViewModel?.GetFinalGrades.IsExecuting
+                    .Subscribe((value) =>
+                    {
+                        if (!value)
+                        {
+                            RefreshView.IsRefreshing = false;
+                        }
+                    })
                     .DisposeWith(disposable);
             });
         }

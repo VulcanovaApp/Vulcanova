@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Reactive;
+using System.Reactive.Linq;
 using Prism.Navigation;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -11,6 +13,7 @@ namespace Vulcanova.Features.Grades.Final
     public class FinalGradesViewModel : ViewModelBase
     {
         public ReactiveCommand<int, IEnumerable<FinalGradesEntry>> GetFinalGrades { get; }
+        public ReactiveCommand<Unit, IEnumerable<FinalGradesEntry>> ForceRefreshGrades { get; }
 
         [ObservableAsProperty] public IEnumerable<FinalGradesEntry> FinalGrades { get; }
 
@@ -24,6 +27,11 @@ namespace Vulcanova.Features.Grades.Final
             GetFinalGrades = ReactiveCommand.CreateFromObservable((int periodId) =>
                 finalGradesService
                     .GetPeriodGrades(accountContext.AccountId, periodId, false));
+
+            ForceRefreshGrades = ReactiveCommand.CreateFromObservable(() =>
+                    finalGradesService
+                        .GetPeriodGrades(accountContext.AccountId, PeriodId!.Value, true),
+                this.WhenAnyValue(vm => vm.PeriodId).Select(value => value != null));
 
             this.WhenAnyValue(vm => vm.PeriodId)
                 .WhereNotNull()

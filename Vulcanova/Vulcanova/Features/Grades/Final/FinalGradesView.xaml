@@ -7,12 +7,17 @@
                           xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
                           x:Class="Vulcanova.Features.Grades.Final.FinalGradesView">
     <ContentView.Content>
-        <Grid>
-            <StackLayout x:Name="NoElementsMessage" VerticalOptions="Center" Padding="16" IsVisible="False">
-                <Label HorizontalTextAlignment="Center" Text="{x:Static resx:Strings.NoElementsLabel}" />
-                <Label HorizontalTextAlignment="Center" FontSize="Small" Text="{x:Static resx:Strings.NoPredictedGradesLabel}" />
-            </StackLayout>
+        <RefreshView x:Name="RefreshView">
             <CollectionView x:Name="FinalGradesList" ItemSizingStrategy="MeasureFirstItem">
+                <CollectionView.EmptyView>
+                    <Grid VerticalOptions="FillAndExpand">
+                        <StackLayout VerticalOptions="Center" Padding="16">
+                            <Label HorizontalTextAlignment="Center" Text="{x:Static resx:Strings.NoElementsLabel}" />
+                            <Label HorizontalTextAlignment="Center" FontSize="Small"
+                                   Text="{x:Static resx:Strings.NoPredictedGradesLabel}" />
+                        </StackLayout>
+                    </Grid>
+                </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="final:FinalGradesEntry">
                         <StackLayout Padding="0, 1">
@@ -45,6 +50,6 @@
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-        </Grid>
+        </RefreshView>
     </ContentView.Content>
 </rxui:ReactiveContentView>
