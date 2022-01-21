@@ -23,4 +23,10 @@
     
     <Color x:Key="LightBorderColor">#F2F2F7</Color>
     <Color x:Key="DarkBorderColor">#1C1C1C</Color>
+
+    <Color x:Key="LightWarningColor">#FF9500</Color>
+    <Color x:Key="DarkWarningColor">#FF9F0A</Color>
+
+    <Color x:Key="LightErrorColor">#FF3B30</Color>
+    <Color x:Key="DarkErrorColor">#FF453A</Color>
 </ResourceDictionary>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Vulcanova.Features.Timetable;assembly=Vulcanova"
+             x:Class="Vulcanova.Features.Timetable.TimetableListEntryView"
+             x:Name="View">
+    <ContentView.Resources>
+        <local:TimetableChangeColorConverter x:Key="ColorConverter" />
+        <local:TimetableChangeTextDecorationsConverter x:Key="TextDecorationsConverter" />
+        <Style TargetType="Label">
+            <Setter Property="TextColor" Value="{Binding Entry.Change, Converter={StaticResource ColorConverter}}" />
+        </Style>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <Grid Padding="16, 8" BindingContext="{x:Reference View}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="46" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Label
+                VerticalTextAlignment="Center"
+                HorizontalTextAlignment="Center"
+                FontSize="Large"
+                Text="{Binding Entry.No}" />
+            <StackLayout Grid.Column="1" Spacing="0">
+                <Label
+                    Text="{Binding Entry.SubjectName}"
+                    TextDecorations="{Binding Entry.Change, Converter={StaticResource TextDecorationsConverter}, TargetNullValue={x:Static TextDecorations.None}}" />
+                <StackLayout Orientation="Horizontal">
+                    <Label
+                        FontSize="Small"
+                        Text="{Binding Entry.TeacherName}" />
+                    <Label FontSize="Small" Text="{Binding Entry.RoomName}" />
+                </StackLayout>
+            </StackLayout>
+            <StackLayout Grid.Column="2" Spacing="0">
+                <Label
+                    FontSize="Small"
+                    Text="{Binding Entry.Start, StringFormat='{0:HH:mm}'}" />
+                <Label
+                    FontSize="Small"
+                    Text="{Binding Entry.End, StringFormat='{0:HH:mm}'}" />
+            </StackLayout>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

@@ -7,6 +7,7 @@ using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Vulcanova.Core.Mvvm;
 using Vulcanova.Features.Shared;
+using Vulcanova.Features.Timetable.Changes;
 
 namespace Vulcanova.Features.Timetable
 {
@@ -20,13 +21,16 @@ namespace Vulcanova.Features.Timetable
         [Reactive] public DateTime SelectedDay { get; set; } = DateTime.Today;
 
         private readonly ITimetableService _timetableService;
+        private readonly ITimetableChangesService _timetableChangesService;
 
         public TimetableViewModel(
             INavigationService navigationService,
             ITimetableService timetableService,
-            AccountContext accountContext) : base(navigationService)
+            AccountContext accountContext,
+            ITimetableChangesService timetableChangesService) : base(navigationService)
         {
             _timetableService = timetableService;
+            _timetableChangesService = timetableChangesService;
 
             GetTimetableEntries = ReactiveCommand.CreateFromObservable((DateTime date) =>
                 GetEntries(accountContext.AccountId, date, false));
@@ -61,18 +65,50 @@ namespace Vulcanova.Features.Timetable
         private IObservable<IReadOnlyDictionary<DateTime, IEnumerable<TimetableListEntry>>> GetEntries(int accountId,
             DateTime monthAndYear, bool forceSync = false)
         {
+            var changes = _timetableChangesService.GetChangesEntriesByMonth(accountId, monthAndYear, forceSync);
+
             return _timetableService.GetPeriodEntriesByMonth(accountId, monthAndYear, forceSync)
-                .Select(ToDictionary);
+                .CombineLatest(changes)
+                .Select(items => ToDictionary(items.First, items.Second));
         }
 
         private static IReadOnlyDictionary<DateTime, IEnumerable<TimetableListEntry>> ToDictionary(
-            IEnumerable<TimetableEntry> entries)
+            IEnumerable<TimetableEntry> lessons, IEnumerable<TimetableChangeEntry> changes)
         {
-            return entries.GroupBy(e => e.Date.Date)
-                .ToDictionary(g => g.Key,
-                    g => g.Where(e => e.Visible)
-                        .OrderBy(e => e.Start)
-                        .Select((e, i) => new TimetableListEntry(i + 1, e)));
+            var result = new Dictionary<DateTime, IEnumerable<TimetableListEntry>>();
+
+            var groups = lessons.Where(l => l.Visible).GroupBy(e => e.Date.Date);
+            
+            // avoid multiple enumerations
+            var timetableChangeEntries = changes as TimetableChangeEntry[] ?? changes.ToArray();
+
+            foreach (var group in groups)
+            {
+                var entries = new List<TimetableListEntry>();
+                foreach (var (lesson, i) in group
+                             .OrderBy(e => e.Start)
+                             .Select((item, i) => (item, i)))
+                {
+                    var change = timetableChangeEntries.FirstOrDefault(c => c.TimetableEntryId == lesson.Id);
+
+                    var entry = new TimetableListEntry
+                    {
+                        No = i + 1,
+                        Start = lesson.Start,
+                        End = lesson.End,
+                        SubjectName = change?.Subject?.Name ?? lesson.Subject.Name,
+                        RoomName = change?.RoomName ?? lesson.RoomName,
+                        TeacherName = change?.TeacherName ?? lesson.TeacherName,
+                        Change = change?.Change.Type
+                    };
+
+                    entries.Add(entry);
+                }
+
+                result[group.Key] = entries.AsReadOnly();
+            }
+
+            return result;
         }
     }
 }

@@ -23,8 +23,14 @@ namespace Vulcanova.Uonet.Api.Schedule
     public class Change
     {
         public int Id { get; set; }
-        public int Type { get; set; }
+        public ChangeType Type { get; set; }
         public bool IsMerge { get; set; }
         public bool Separation { get; set; }
+    }
+    
+    public enum ChangeType
+    {
+        Exemption = 1,
+        Substitution,
     }
 }

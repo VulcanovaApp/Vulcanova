@@ -1,4 +1,5 @@
 using Prism.Ioc;
+using Vulcanova.Features.Timetable.Changes;
 
 namespace Vulcanova.Features.Timetable
 {
@@ -8,6 +9,9 @@ namespace Vulcanova.Features.Timetable
         {
             container.RegisterScoped<ITimetableRepository, TimetableRepository>();
             container.RegisterScoped<ITimetableService, TimetableService>();
+
+            container.RegisterScoped<ITimetableChangesRepository, TimetableChangesRepository>();
+            container.RegisterScoped<ITimetableChangesService, TimetableChangesService>();
         }
     }
 }

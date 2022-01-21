@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<rxui:ReactiveContentPage x:TypeArguments="timetable:TimetableViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+<rxui:ReactiveContentPage x:TypeArguments="local:TimetableViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
                           xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                           xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
                           xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
-                          xmlns:timetable="clr-namespace:Vulcanova.Features.Timetable;assembly=Vulcanova"
+                          xmlns:local="clr-namespace:Vulcanova.Features.Timetable;assembly=Vulcanova"
                           xmlns:controls="clr-namespace:Vulcanova.Core.Layout.Controls;assembly=Vulcanova"
                           Title="{x:Static resx:Strings.TimetableTabTitle}"
                           IconImageSource="{OnPlatform iOS=calendar-outline@3x.png, Android=ic_calendar}"
@@ -18,37 +18,9 @@
                 SecondaryTextColor="{AppThemeBinding Dark={StaticResource DarkSecondaryTextColor}, Light={StaticResource LightSecondaryTextColor}}" />
             <CollectionView x:Name="EntriesList" ItemSizingStrategy="MeasureFirstItem">
                 <CollectionView.ItemTemplate>
-                    <DataTemplate x:DataType="timetable:TimetableListEntry">
+                    <DataTemplate x:DataType="local:TimetableListEntry">
                         <StackLayout Padding="0, 1" Spacing="0">
-                            <Grid Padding="16, 8">
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="46" />
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Label VerticalTextAlignment="Center"
-                                       HorizontalTextAlignment="Center"
-                                       FontSize="Large"
-                                       Text="{Binding No}" />
-                                <StackLayout Grid.Column="1" Spacing="0">
-                                    <Label
-                                        Text="{Binding Entry.Subject.Name}" />
-                                    <StackLayout Orientation="Horizontal">
-                                        <Label
-                                            FontSize="Small"
-                                            Text="{Binding Entry.TeacherName}" />
-                                        <Label FontSize="Small" Text="{Binding Entry.RoomName}" />
-                                    </StackLayout>
-                                </StackLayout>
-                                <StackLayout Grid.Column="2" Spacing="0">
-                                    <Label
-                                        FontSize="Small"
-                                        Text="{Binding Entry.Start, StringFormat='{0:HH:mm}'}" />
-                                    <Label
-                                        FontSize="Small"
-                                        Text="{Binding Entry.End, StringFormat='{0:HH:mm}'}" />
-                                </StackLayout>
-                            </Grid>
+                            <local:TimetableListEntryView Entry="{Binding .}" />
                             <BoxView Style="{StaticResource SeparatorStyle}" />
                         </StackLayout>
                     </DataTemplate>
