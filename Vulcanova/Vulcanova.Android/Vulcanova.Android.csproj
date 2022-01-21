@@ -60,6 +60,7 @@
         <None Include="Properties\AndroidManifest.xml" />
     </ItemGroup>
     <ItemGroup>
+        <AndroidResource Include="Resources\drawable\ic_calendar.xml" />
         <AndroidResource Include="Resources\drawable\ic_medal.xml" />
         <AndroidResource Include="Resources\drawable\ic_star.xml" />
         <AndroidResource Include="Resources\layout\Tabbar.axml" />
