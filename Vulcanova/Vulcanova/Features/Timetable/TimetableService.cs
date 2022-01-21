@@ -45,9 +45,9 @@ namespace Vulcanova.Features.Timetable
 
                     if (ShouldSync(resourceKey) || forceSync)
                     {
-                        var onlineGrades = await FetchEntriesForMonthAndYear(account, monthAndYear);
+                        var onlineEntries = await FetchEntriesForMonthAndYear(account, monthAndYear);
 
-                        await _timetableRepository.UpdatePupilEntriesAsync(onlineGrades);
+                        await _timetableRepository.UpdatePupilEntriesAsync(onlineEntries);
 
                         SetJustSynced(resourceKey);
 
