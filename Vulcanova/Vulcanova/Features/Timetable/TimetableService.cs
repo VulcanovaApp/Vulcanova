@@ -87,6 +87,6 @@ namespace Vulcanova.Features.Timetable
         private static string GetTimetableResourceKey(Account account, DateTime monthAndYear)
             => $"Timetable_{account.Id}_{account.Pupil.Id}_{monthAndYear.Month}_{monthAndYear.Year}";
 
-        protected override TimeSpan OfflineDataLifespan => TimeSpan.FromMinutes(1);
+        protected override TimeSpan OfflineDataLifespan => TimeSpan.FromHours(1);
     }
 }
