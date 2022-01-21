@@ -47,7 +47,7 @@
     <ItemGroup>
         <PackageReference Include="BarcodeScanner.XF" Version="5.0.9" />
         <PackageReference Include="SkiaSharp" Version="2.80.3" />
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2196" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
     </ItemGroup>
     <ItemGroup>
         <Compile Include="MainActivity.cs" />
