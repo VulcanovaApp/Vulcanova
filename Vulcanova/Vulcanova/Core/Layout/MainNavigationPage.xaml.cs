@@ -1,4 +1,4 @@
-using Vulcanova.Core.Mvvm;
+using Vulcanova.Core.Rx;
 using Xamarin.Forms.Xaml;
 
 namespace Vulcanova.Core.Layout

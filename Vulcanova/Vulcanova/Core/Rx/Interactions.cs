@@ -2,7 +2,7 @@ using System;
 using System.Reactive;
 using ReactiveUI;
 
-namespace Vulcanova.Core.Mvvm
+namespace Vulcanova.Core.Rx
 {
     public class Interactions
     {

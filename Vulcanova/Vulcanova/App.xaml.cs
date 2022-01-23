@@ -1,8 +1,10 @@
 ﻿using GoogleVisionBarCodeScanner;
 using Prism.Ioc;
+using ReactiveUI;
 using Vulcanova.Core.Data;
 using Vulcanova.Core.Layout;
 using Vulcanova.Core.Mapping;
+using Vulcanova.Core.Rx;
 using Vulcanova.Core.Uonet;
 using Vulcanova.Features.Auth;
 using Vulcanova.Features.Grades;
@@ -24,6 +26,8 @@ namespace Vulcanova
         protected override async void OnInitialized()
         {
             InitializeComponent();
+
+            RxApp.DefaultExceptionHandler = new ReactiveExceptionHandler();
 
             Sharpnado.Tabs.Initializer.Initialize(false, false);
             Sharpnado.Shades.Initializer.Initialize(loggerEnable: false);

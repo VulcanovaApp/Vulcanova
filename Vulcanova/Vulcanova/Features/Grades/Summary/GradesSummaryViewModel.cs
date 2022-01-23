@@ -8,6 +8,7 @@ using ReactiveUI.Fody.Helpers;
 using Vulcanova.Core.Mvvm;
 using Vulcanova.Features.Shared;
 using System;
+using Vulcanova.Core.Rx;
 
 namespace Vulcanova.Features.Grades.Summary
 {
@@ -59,7 +60,7 @@ namespace Vulcanova.Features.Grades.Summary
                 .WhereNotNull()
                 .Subscribe(v =>
                 {
-                    GetGrades.Execute(v!.Value).Subscribe();
+                    GetGrades.Execute(v!.Value).SubscribeAndIgnoreErrors();
                 });
         }
 

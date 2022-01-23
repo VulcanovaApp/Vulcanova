@@ -6,6 +6,7 @@ using Prism.Navigation;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Vulcanova.Core.Mvvm;
+using Vulcanova.Core.Rx;
 using Vulcanova.Features.Shared;
 
 namespace Vulcanova.Features.Grades.Final
@@ -35,7 +36,7 @@ namespace Vulcanova.Features.Grades.Final
 
             this.WhenAnyValue(vm => vm.PeriodId)
                 .WhereNotNull()
-                .Subscribe(v => { GetFinalGrades.Execute(v!.Value).Subscribe(); });
+                .Subscribe(v => GetFinalGrades.Execute(v!.Value).SubscribeAndIgnoreErrors());
 
             GetFinalGrades.ToPropertyEx(this, vm => vm.FinalGrades);
         }

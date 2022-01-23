@@ -6,6 +6,7 @@ using Prism.Navigation;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Vulcanova.Core.Mvvm;
+using Vulcanova.Core.Rx;
 using Vulcanova.Features.Shared;
 using Vulcanova.Features.Timetable.Changes;
 
@@ -42,7 +43,7 @@ namespace Vulcanova.Features.Timetable
                 {
                     if (Entries == null || !Entries.TryGetValue(SelectedDay.Date, out _))
                     {
-                        GetTimetableEntries.Execute(d).Subscribe();
+                        GetTimetableEntries.Execute(d).SubscribeAndIgnoreErrors();
                     }
                 });
 
