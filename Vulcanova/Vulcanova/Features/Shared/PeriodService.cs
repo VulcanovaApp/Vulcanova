@@ -20,7 +20,7 @@ namespace Vulcanova.Features.Shared
             var currentPeriod = account.GetCurrentPeriod();
             var index = account.Periods.IndexOf(currentPeriod);
 
-            var hasNext = index < account.Periods.Count - 2;
+            var hasNext = index < account.Periods.Count - 1;
             var hasPrevious = index > 0;
 
             return new PeriodResult(currentPeriod, hasNext, hasPrevious);
