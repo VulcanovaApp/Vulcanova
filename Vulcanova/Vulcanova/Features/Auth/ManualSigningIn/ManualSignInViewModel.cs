@@ -38,11 +38,6 @@ namespace Vulcanova.Features.Auth.ManualSigningIn
             _instanceUrlProvider = instanceUrlProvider;
 
             AddDevice = ReactiveCommand.CreateFromTask(_ => AddDeviceAsync(Token, Symbol, Pin));
-
-            AddDevice.ThrownExceptions.Subscribe(ex =>
-            {
-                Interactions.Errors.Handle(ex).Subscribe();
-            });
         }
 
         private async Task<Unit> AddDeviceAsync(string token, string symbol, string pin)

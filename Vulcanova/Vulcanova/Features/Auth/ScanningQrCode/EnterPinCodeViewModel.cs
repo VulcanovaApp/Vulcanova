@@ -31,11 +31,6 @@ namespace Vulcanova.Features.Auth.ScanningQrCode
             _accountsManager = accountsManager;
 
             RegisterDevice = ReactiveCommand.CreateFromTask(_ => RegisterDeviceAsync(_token, Pin, _instanceUrl));
-            
-            RegisterDevice.ThrownExceptions.Subscribe(ex =>
-            {
-                Interactions.Errors.Handle(ex).Subscribe();
-            });
         }
 
         public void OnNavigatedFrom(INavigationParameters parameters)
