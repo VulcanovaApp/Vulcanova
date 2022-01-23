@@ -7,7 +7,6 @@ using AutoMapper;
 using Vulcanova.Core.Uonet;
 using Vulcanova.Features.Auth;
 using Vulcanova.Features.Auth.Accounts;
-using Vulcanova.Features.Shared;
 using Vulcanova.Uonet.Api.Grades;
 
 namespace Vulcanova.Features.Grades

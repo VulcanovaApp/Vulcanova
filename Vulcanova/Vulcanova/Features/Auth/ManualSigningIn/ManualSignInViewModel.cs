@@ -7,7 +7,6 @@ using ReactiveUI.Fody.Helpers;
 using Vulcanova.Core.Mvvm;
 using Vulcanova.Uonet.Api.Common;
 using System;
-using Vulcanova.Core.Rx;
 using Vulcanova.Resources;
 
 namespace Vulcanova.Features.Auth.ManualSigningIn

@@ -1,5 +1,4 @@
 using System.Reactive.Disposables;
-using System.Reactive.Linq;
 using ReactiveUI;
 using Xamarin.Forms.Xaml;
 using Xamarin.Forms;

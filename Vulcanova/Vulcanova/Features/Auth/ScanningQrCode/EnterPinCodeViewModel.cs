@@ -1,4 +1,3 @@
-using System;
 using System.Linq;
 using System.Reactive;
 using System.Threading.Tasks;
@@ -6,7 +5,6 @@ using Prism.Navigation;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Vulcanova.Core.Mvvm;
-using Vulcanova.Core.Rx;
 
 namespace Vulcanova.Features.Auth.ScanningQrCode
 {
