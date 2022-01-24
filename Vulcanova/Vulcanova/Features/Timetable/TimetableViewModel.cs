@@ -91,9 +91,7 @@ namespace Vulcanova.Features.Timetable
                              .Select((item, i) => (item, i)))
                 {
                     var change = timetableChangeEntries
-                        .Where(c => c.TimetableEntryId == lesson.Id)
-                        .OrderByDescending(c => c.Id)
-                        .FirstOrDefault();
+                        .FirstOrDefault(c => c.TimetableEntryId == lesson.Id);
 
                     var entry = new TimetableListEntry
                     {

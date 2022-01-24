@@ -47,7 +47,7 @@ namespace Vulcanova.Features.Timetable
                     {
                         var onlineEntries = await FetchEntriesForMonthAndYear(account, monthAndYear);
 
-                        await _timetableRepository.UpdatePupilEntriesAsync(onlineEntries);
+                        await _timetableRepository.UpdatePupilEntriesAsync(onlineEntries, monthAndYear);
 
                         SetJustSynced(resourceKey);
 

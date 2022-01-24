@@ -9,6 +9,6 @@ namespace Vulcanova.Features.Timetable.Changes
         Task<IEnumerable<TimetableChangeEntry>> GetEntriesForPupilAsync(int accountId, int pupilId,
             DateTime monthAndYear);
 
-        Task UpsertEntriesAsync(IEnumerable<TimetableChangeEntry> entries);
+        Task UpsertEntriesAsync(IEnumerable<TimetableChangeEntry> entries, DateTime monthAndYear);
     }
 }

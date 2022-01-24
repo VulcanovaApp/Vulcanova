@@ -23,8 +23,12 @@ namespace Vulcanova.Features.Timetable
                     g.Date.Month == monthAndYear.Month);
         }
 
-        public async Task UpdatePupilEntriesAsync(IEnumerable<TimetableEntry> entries)
+        public async Task UpdatePupilEntriesAsync(IEnumerable<TimetableEntry> entries, DateTime monthAndYear)
         {
+            await _db.GetCollection<TimetableEntry>()
+                .DeleteManyAsync(g => g.Date.Year == monthAndYear.Year &&
+                                      g.Date.Month == monthAndYear.Month);
+
             await _db.GetCollection<TimetableEntry>().UpsertAsync(entries);
         }
     }
