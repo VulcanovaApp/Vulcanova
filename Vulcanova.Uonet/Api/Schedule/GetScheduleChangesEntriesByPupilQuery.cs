@@ -8,7 +8,7 @@ namespace Vulcanova.Uonet.Api.Schedule
         DateTime DateTo,
         DateTime LastSyncDate,
         int LastId = int.MinValue,
-        int PageSize = 500) : IApiQuery<ScheduleChangeEntry[]>
+        int PageSize = 500) : IApiQuery<ScheduleChangeEntryPayload[]>
     {
         public const string ApiEndpoint = "mobile/schedule/changes/byPupil";
     }

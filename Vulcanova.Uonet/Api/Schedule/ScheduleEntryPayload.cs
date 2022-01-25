@@ -2,7 +2,7 @@ using Vulcanova.Uonet.Api.Common.Models;
 
 namespace Vulcanova.Uonet.Api.Schedule
 {
-    public class ScheduleEntry
+    public class ScheduleEntryPayload
     {
         public Change Change { get; set; }
         public ClassUnit Clazz { get; set; }
