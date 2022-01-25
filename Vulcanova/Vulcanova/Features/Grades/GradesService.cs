@@ -32,35 +32,32 @@ namespace Vulcanova.Features.Grades
 
         public IObservable<IEnumerable<Grade>> GetPeriodGrades(int accountId, int periodId, bool forceSync = false)
         {
-            return Observable.Create<IEnumerable<Grade>>(observer =>
+            return Observable.Create<IEnumerable<Grade>>(async observer =>
             {
-                return Task.Run(async () =>
+                var account = await _accountRepository.GetByIdAsync(accountId);
+
+                var resourceKey = GetGradesResourceKey(account, periodId);
+
+                var items = await _gradesRepository.GetGradesForPupilAsync(account.Id, account.Pupil.Id,
+                    periodId);
+
+                observer.OnNext(items);
+
+                if (ShouldSync(resourceKey) || forceSync)
                 {
-                    var account = await _accountRepository.GetByIdAsync(accountId);
+                    var onlineGrades = await FetchPeriodGradesAsync(account, periodId);
 
-                    var resourceKey = GetGradesResourceKey(account, periodId);
-                    
-                    var items = await _gradesRepository.GetGradesForPupilAsync(account.Id, account.Pupil.Id,
+                    await _gradesRepository.UpdatePupilGradesAsync(onlineGrades);
+
+                    SetJustSynced(resourceKey);
+
+                    items = await _gradesRepository.GetGradesForPupilAsync(account.Id, account.Pupil.Id,
                         periodId);
-                    
+
                     observer.OnNext(items);
+                }
 
-                    if (ShouldSync(resourceKey) || forceSync)
-                    {
-                        var onlineGrades = await FetchPeriodGradesAsync(account, periodId);
-
-                        await _gradesRepository.UpdatePupilGradesAsync(onlineGrades);
-                        
-                        SetJustSynced(resourceKey);
-                        
-                        items = await _gradesRepository.GetGradesForPupilAsync(account.Id, account.Pupil.Id,
-                            periodId);
-                        
-                        observer.OnNext(items);
-                    }
-
-                    observer.OnCompleted();
-                });
+                observer.OnCompleted();
             });
         }
 

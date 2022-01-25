@@ -29,41 +29,39 @@ namespace Vulcanova.Features.Grades.Final
             _mapper = mapper;
             _gradesRepository = gradesRepository;
         }
-        
-        public IObservable<IEnumerable<FinalGradesEntry>> GetPeriodGrades(int accountId, int periodId, bool forceSync = false)
+
+        public IObservable<IEnumerable<FinalGradesEntry>> GetPeriodGrades(int accountId, int periodId,
+            bool forceSync = false)
         {
-            return Observable.Create<IEnumerable<FinalGradesEntry>>(observer =>
+            return Observable.Create<IEnumerable<FinalGradesEntry>>(async observer =>
             {
-                return Task.Run(async () =>
+                var account = await _accountRepository.GetByIdAsync(accountId);
+
+                var resourceKey = GetGradesSummaryResourceKey(account, periodId);
+
+                var items = await _gradesRepository.GetFinalGradesForPupilAsync(account.Id, account.Pupil.Id,
+                    periodId);
+
+                observer.OnNext(items);
+
+                if (ShouldSync(resourceKey) || forceSync)
                 {
-                    var account = await _accountRepository.GetByIdAsync(accountId);
+                    var onlineGrades = await FetchPeriodGradesAsync(account, periodId);
 
-                    var resourceKey = GetGradesSummaryResourceKey(account, periodId);
-                    
-                    var items = await _gradesRepository.GetFinalGradesForPupilAsync(account.Id, account.Pupil.Id,
+                    await _gradesRepository.UpdatePupilFinalGradesAsync(onlineGrades);
+
+                    SetJustSynced(resourceKey);
+
+                    items = await _gradesRepository.GetFinalGradesForPupilAsync(account.Id, account.Pupil.Id,
                         periodId);
-                    
+
                     observer.OnNext(items);
+                }
 
-                    if (ShouldSync(resourceKey) || forceSync)
-                    {
-                        var onlineGrades = await FetchPeriodGradesAsync(account, periodId);
-
-                        await _gradesRepository.UpdatePupilFinalGradesAsync(onlineGrades);
-                        
-                        SetJustSynced(resourceKey);
-                        
-                        items = await _gradesRepository.GetFinalGradesForPupilAsync(account.Id, account.Pupil.Id,
-                            periodId);
-                        
-                        observer.OnNext(items);
-                    }
-
-                    observer.OnCompleted();
-                });
+                observer.OnCompleted();
             });
         }
-        
+
         private async Task<FinalGradesEntry[]> FetchPeriodGradesAsync(Account account, int periodId)
         {
             var query = new GetGradesSummaryByPupilQuery(account.Unit.Id, account.Pupil.Id, periodId, 500);
@@ -71,14 +69,14 @@ namespace Vulcanova.Features.Grades.Final
             var client = _apiClientFactory.GetForApiInstanceUrl(account.Unit.RestUrl);
 
             var response = await client.GetAsync(GetGradesSummaryByPupilQuery.ApiEndpoint, query);
-            
+
             var domainGrades = response.Envelope.Select(_mapper.Map<FinalGradesEntry>).ToArray();
-            
+
             foreach (var grade in domainGrades)
             {
                 grade.AccountId = account.Id;
             }
-            
+
             return domainGrades;
         }
 

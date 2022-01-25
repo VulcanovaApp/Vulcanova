@@ -18,7 +18,8 @@ namespace Vulcanova.Features.Timetable.Changes
         private readonly IApiClientFactory _apiClientFactory;
         private readonly IMapper _mapper;
 
-        public TimetableChangesService(ITimetableChangesRepository changesRepository, IAccountRepository accountRepository,
+        public TimetableChangesService(ITimetableChangesRepository changesRepository,
+            IAccountRepository accountRepository,
             IApiClientFactory apiClientFactory, IMapper mapper)
         {
             _changesRepository = changesRepository;
@@ -27,38 +28,36 @@ namespace Vulcanova.Features.Timetable.Changes
             _mapper = mapper;
         }
 
-        public IObservable<IEnumerable<TimetableChangeEntry>> GetChangesEntriesByMonth(int accountId, DateTime monthAndYear,
+        public IObservable<IEnumerable<TimetableChangeEntry>> GetChangesEntriesByMonth(int accountId,
+            DateTime monthAndYear,
             bool forceSync = false)
         {
-            return Observable.Create<IEnumerable<TimetableChangeEntry>>(observer =>
+            return Observable.Create<IEnumerable<TimetableChangeEntry>>(async observer =>
             {
-                return Task.Run(async () =>
+                var account = await _accountRepository.GetByIdAsync(accountId);
+
+                var resourceKey = GetTimetableResourceKey(account, monthAndYear);
+
+                var items = await _changesRepository.GetEntriesForPupilAsync(account.Id, account.Pupil.Id,
+                    monthAndYear);
+
+                observer.OnNext(items);
+
+                if (ShouldSync(resourceKey) || forceSync)
                 {
-                    var account = await _accountRepository.GetByIdAsync(accountId);
+                    var onlineEntries = await FetchEntriesForMonthAndYear(account, monthAndYear);
 
-                    var resourceKey = GetTimetableResourceKey(account, monthAndYear);
+                    await _changesRepository.UpsertEntriesAsync(onlineEntries, monthAndYear);
 
-                    var items = await _changesRepository.GetEntriesForPupilAsync(account.Id, account.Pupil.Id,
+                    SetJustSynced(resourceKey);
+
+                    items = await _changesRepository.GetEntriesForPupilAsync(account.Id, account.Pupil.Id,
                         monthAndYear);
 
                     observer.OnNext(items);
+                }
 
-                    if (ShouldSync(resourceKey) || forceSync)
-                    {
-                        var onlineEntries = await FetchEntriesForMonthAndYear(account, monthAndYear);
-
-                        await _changesRepository.UpsertEntriesAsync(onlineEntries, monthAndYear);
-
-                        SetJustSynced(resourceKey);
-
-                        items = await _changesRepository.GetEntriesForPupilAsync(account.Id, account.Pupil.Id,
-                            monthAndYear);
-
-                        observer.OnNext(items);
-                    }
-
-                    observer.OnCompleted();
-                });
+                observer.OnCompleted();
             });
         }
 

@@ -30,35 +30,32 @@ namespace Vulcanova.Features.Timetable
         public IObservable<IEnumerable<TimetableEntry>> GetPeriodEntriesByMonth(int accountId, DateTime monthAndYear,
             bool forceSync = false)
         {
-            return Observable.Create<IEnumerable<TimetableEntry>>(observer =>
+            return Observable.Create<IEnumerable<TimetableEntry>>(async observer =>
             {
-                return Task.Run(async () =>
+                var account = await _accountRepository.GetByIdAsync(accountId);
+
+                var resourceKey = GetTimetableResourceKey(account, monthAndYear);
+
+                var items = await _timetableRepository.GetEntriesForPupilAsync(account.Id, account.Pupil.Id,
+                    monthAndYear);
+
+                observer.OnNext(items);
+
+                if (ShouldSync(resourceKey) || forceSync)
                 {
-                    var account = await _accountRepository.GetByIdAsync(accountId);
+                    var onlineEntries = await FetchEntriesForMonthAndYear(account, monthAndYear);
 
-                    var resourceKey = GetTimetableResourceKey(account, monthAndYear);
+                    await _timetableRepository.UpdatePupilEntriesAsync(onlineEntries, monthAndYear);
 
-                    var items = await _timetableRepository.GetEntriesForPupilAsync(account.Id, account.Pupil.Id,
+                    SetJustSynced(resourceKey);
+
+                    items = await _timetableRepository.GetEntriesForPupilAsync(account.Id, account.Pupil.Id,
                         monthAndYear);
 
                     observer.OnNext(items);
+                }
 
-                    if (ShouldSync(resourceKey) || forceSync)
-                    {
-                        var onlineEntries = await FetchEntriesForMonthAndYear(account, monthAndYear);
-
-                        await _timetableRepository.UpdatePupilEntriesAsync(onlineEntries, monthAndYear);
-
-                        SetJustSynced(resourceKey);
-
-                        items = await _timetableRepository.GetEntriesForPupilAsync(account.Id, account.Pupil.Id,
-                            monthAndYear);
-
-                        observer.OnNext(items);
-                    }
-
-                    observer.OnCompleted();
-                });
+                observer.OnCompleted();
             });
         }
 

@@ -35,9 +35,9 @@ namespace Vulcanova.Features.LuckyNumber
             {
                 return luckyNumber;
             }
-            
+
             var result = await FetchLuckyNumberAsync(account.ConstituentUnit.Id, dateTime, account.Unit.RestUrl);
-            
+
             luckyNumber = new LuckyNumber
             {
                 AccountId = accountId,
