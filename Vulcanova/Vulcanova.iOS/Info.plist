@@ -38,6 +38,7 @@
 	<string>Skanowanie kodu QR</string>
 	<key>CFBundleLocalizations</key>
 	<array>
+		<string>en</string>
 		<string>pl</string>
 	</array>
 	<key>CFBundleDevelopmentRegion</key>
