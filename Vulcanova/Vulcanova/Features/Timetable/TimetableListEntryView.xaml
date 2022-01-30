@@ -35,7 +35,7 @@
                     <Label FontSize="Small" Text="{Binding Entry.RoomName}" />
                 </StackLayout>
             </StackLayout>
-            <StackLayout Grid.Column="2" Spacing="0">
+            <StackLayout Grid.Column="2" Spacing="0" VerticalOptions="Center">
                 <Label
                     FontSize="Small"
                     Text="{Binding Entry.Start, StringFormat='{0:HH:mm}'}" />

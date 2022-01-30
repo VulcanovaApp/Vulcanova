@@ -31,7 +31,7 @@
                         Text="{Binding Lesson.PresenceType.Name}" />
                 </StackLayout>
             </StackLayout>
-            <StackLayout Grid.Column="2" Spacing="0">
+            <StackLayout Grid.Column="2" Spacing="0" VerticalOptions="Center">
                 <Label
                     FontSize="Small"
                     Text="{Binding Lesson.Start, StringFormat='{0:HH:mm}'}" />

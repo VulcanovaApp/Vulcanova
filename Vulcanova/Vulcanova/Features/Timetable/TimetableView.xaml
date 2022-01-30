@@ -16,7 +16,7 @@
                 SelectedColor="{AppThemeBinding Dark={StaticResource DarkTranslucentPrimaryColor}, Light={StaticResource LightTranslucentPrimaryColor}}"
                 SelectedTextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryColor}, Light={StaticResource LightPrimaryColor}}"
                 SecondaryTextColor="{AppThemeBinding Dark={StaticResource DarkSecondaryTextColor}, Light={StaticResource LightSecondaryTextColor}}" />
-            <CollectionView x:Name="EntriesList" ItemSizingStrategy="MeasureFirstItem">
+            <CollectionView x:Name="EntriesList">
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="local:TimetableListEntry">
                         <StackLayout Padding="0, 1" Spacing="0">
