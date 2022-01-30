@@ -42,7 +42,7 @@
         <value>Skaner QR</value>
     </data>
     <data name="LuckyNumberTabTitle" xml:space="preserve">
-        <value>Szczęśliwy numerek</value>
+        <value>Numerek</value>
     </data>
     <data name="GradesTabTitle" xml:space="preserve">
         <value>Oceny</value>
@@ -82,5 +82,8 @@
     </data>
     <data name="TimetableTabTitle" xml:space="preserve">
         <value>Plan lekcji</value>
+    </data>
+    <data name="AttendanceTabTitle" xml:space="preserve">
+        <value>Frekewncja</value>
     </data>
 </root>

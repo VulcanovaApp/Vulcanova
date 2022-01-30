@@ -188,5 +188,11 @@ namespace Vulcanova.Resources {
                 return ResourceManager.GetString("TimetableTabTitle", resourceCulture);
             }
         }
+        
+        internal static string AttendanceTabTitle {
+            get {
+                return ResourceManager.GetString("AttendanceTabTitle", resourceCulture);
+            }
+        }
     }
 }

@@ -6,6 +6,7 @@ using Vulcanova.Core.Layout;
 using Vulcanova.Core.Mapping;
 using Vulcanova.Core.Rx;
 using Vulcanova.Core.Uonet;
+using Vulcanova.Features.Attendance;
 using Vulcanova.Features.Auth;
 using Vulcanova.Features.Grades;
 using Vulcanova.Features.LuckyNumber;
@@ -64,6 +65,7 @@ namespace Vulcanova
             containerRegistry.RegisterLuckyNumber();
             containerRegistry.RegisterGrades();
             containerRegistry.RegisterTimetable();
+            containerRegistry.RegisterAttendance();
 
             containerRegistry.RegisterUonet();
         }

@@ -19,6 +19,6 @@ namespace Vulcanova.Uonet.Api.Schedule
         public Teacher TeacherSecondary { get; set; }
         public Change Change { get; set; }
         public ClassUnit Clazz { get; set; }
-        public object Distribution { get; set; }
+        public Distribution Distribution { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace Vulcanova.Uonet.Api.Schedule
         public Change Change { get; set; }
         public ClassUnit Clazz { get; set; }
         public Date Date { get; set; }
-        public object Distribution { get; set; }
+        public Distribution Distribution { get; set; }
         public object Event { get; set; }
         public int Id { get; set; }
         public object MergeChangeId { get; set; }

@@ -90,4 +90,7 @@
     <data name="TimetableTabTitle" xml:space="preserve">
         <value>Timetable</value>
     </data>
+    <data name="AttendanceTabTitle" xml:space="preserve">
+        <value>Attendance</value>
+    </data>
 </root>
