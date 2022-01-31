@@ -54,7 +54,10 @@
       </EmbeddedResource>
       <EmbeddedResource Include="Resources\Icons\chevron-right.svg" />
       <EmbeddedResource Include="Resources\Icons\chevron-left.svg" />
-      <None Remove="Resources\Icons\information-circle-outline.svg" />
+      <EmbeddedResource Include="Resources\Icons\checkmark-done-circle.svg" />
+      <EmbeddedResource Include="Resources\Icons\checkmark-circle.svg" />
+      <EmbeddedResource Include="Resources\Icons\close-circle.svg" />
+      <EmbeddedResource Include="Resources\Icons\hourglass.svg" />
     </ItemGroup>
 
     <ItemGroup>

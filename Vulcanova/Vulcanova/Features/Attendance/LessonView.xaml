@@ -3,10 +3,13 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vulcanova.Features.Attendance;assembly=Vulcanova"
+             xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
              x:Class="Vulcanova.Features.Attendance.LessonView"
              x:Name="View">
     <ContentView.Resources>
         <local:AttendanceColorConverter x:Key="ColorConverter" />
+        <local:JustificationStatusConverter x:Key="JustificationStatusConverter" />
+        <layout:NullToBooleanConverter x:Key="NullToBooleanConverter" />
         <Style TargetType="Label">
             <Setter Property="TextColor" Value="{Binding Lesson.PresenceType, Converter={StaticResource ColorConverter}}" />
         </Style>
@@ -29,15 +32,22 @@
                     <Label
                         FontSize="Small"
                         Text="{Binding Lesson.PresenceType.Name}" />
+                    <layout:TintedCachedImage
+                        IsVisible="{Binding Lesson.JustificationStatus, Converter={StaticResource NullToBooleanConverter}}"
+                        HeightRequest="14"
+                        WidthRequest="14"
+                        Source="{Binding Lesson.JustificationStatus, Converter={StaticResource JustificationStatusConverter}}"
+                        TintColor="{Binding Lesson.PresenceType, Converter={StaticResource ColorConverter}}">
+                    </layout:TintedCachedImage>
                 </StackLayout>
             </StackLayout>
-            <StackLayout Grid.Column="2" Spacing="0" VerticalOptions="Center">
-                <Label
-                    FontSize="Small"
-                    Text="{Binding Lesson.Start, StringFormat='{0:HH:mm}'}" />
-                <Label
-                    FontSize="Small"
-                    Text="{Binding Lesson.End, StringFormat='{0:HH:mm}'}" />
+            <StackLayout Grid.Column="2" Orientation="Horizontal" Spacing="4" VerticalOptions="Center">
+                <layout:TintedCachedImage
+                    HeightRequest="32"
+                    WidthRequest="32"
+                    Source="resource://Vulcanova.Resources.Icons.chevron-right.svg"
+                    TintColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
+                </layout:TintedCachedImage>
             </StackLayout>
         </Grid>
     </ContentView.Content>

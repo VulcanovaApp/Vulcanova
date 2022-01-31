@@ -1,5 +1,6 @@
 using System;
 using Vulcanova.Features.Shared;
+using Vulcanova.Uonet.Api.Lessons;
 
 namespace Vulcanova.Features.Attendance
 {
@@ -17,6 +18,7 @@ namespace Vulcanova.Features.Attendance
         public Subject Subject { get; set; }
         public PresenceType PresenceType { get; set; }
         public int AccountId { get; set; }
+        public JustificationStatus? JustificationStatus { get; set; }
     }
     
     public class PresenceType

@@ -51,7 +51,8 @@ namespace Vulcanova.Uonet.Api.Lessons
 
     public enum JustificationStatus
     {
-        Accepted = 1,
+        Requested,
+        Accepted,
         Rejected // not sure (yet)
     }
 }
