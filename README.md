@@ -1,5 +1,18 @@
 # Vulcanova
-Unofficial Vulcan UONET+ mobile cross-platform client. WIP.
+An unofficial Vulcan UONET+ mobile cross-platform register client made in Xamarin. Currently, in heavy development.
+
+## What works:
+- lucky number
+- grades
+- timetable
+- attendance
+
+## What's planned:
+- messages 
+- dashboard
+- homework
+- exams
+- notes (points)
 
 ## Credits
 * [kapi2289/vulcan-api](https://github.com/kapi2289/vulcan-api/)
