@@ -1,20 +1,22 @@
+### [English version of README](https://github.com/VulcanovaApp/Vulcanova/blob/main/README-en.md)
+
 # Vulcanova
-An unofficial Vulcan UONET+ mobile cross-platform register client made in Xamarin. Currently, in heavy development.
+Nieoficjalny, mobilny i międzyplatformowy klient dziennika Vulcan UONET+ tworzony w Xamarinie. Aktualnie w fazie intensywnego rozwoju.
 
-## What works:
-- lucky number
-- grades
-- timetable
-- attendance
+## Co działa:
+- szczęśliwy numerek
+- oceny
+- plan lekcji
+- obecność/frekwencja
 
-## What's planned:
-- messages 
+## Co jest planowane:
+- wiadomości
 - dashboard
-- homework
-- exams
-- notes (points)
+- prace domowe/zadania
+- sprawdziany/kartkówki
+- punkty (za zachowanie)
 
-## Credits
+## Wykorzystane projekty
 * [kapi2289/vulcan-api](https://github.com/kapi2289/vulcan-api/)
 * [wulkanowy/qr](https://github.com/wulkanowy/qr)
 * [wulkanowy/uonet-request-signer](https://github.com/wulkanowy/uonet-request-signer)
