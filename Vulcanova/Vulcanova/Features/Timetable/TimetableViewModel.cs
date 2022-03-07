@@ -65,9 +65,23 @@ namespace Vulcanova.Features.Timetable
                         CurrentDayEntries = values;
                         return;
                     }
-
-                    CurrentDayEntries = null;
+                    CurrentDayEntries = NoLessons();
                 });
+        }
+        
+        private IEnumerable<TimetableListEntry> NoLessons()
+        {
+            var timetableListEntry = new TimetableListEntry();
+            var currDate = DateTime.Today.Day + "/" + DateTime.Today.Month + "/" + DateTime.Today.Year;
+
+            timetableListEntry.SubjectName = "No lessons for today";
+            timetableListEntry.TeacherName = currDate;
+
+            var freeDay = new List<TimetableListEntry>();
+            freeDay.Add(timetableListEntry);
+
+            IEnumerable<TimetableListEntry> freeDayEnum = freeDay;
+            return freeDayEnum;
         }
 
         private IObservable<IReadOnlyDictionary<DateTime, IEnumerable<TimetableListEntry>>> GetEntries(int accountId,
