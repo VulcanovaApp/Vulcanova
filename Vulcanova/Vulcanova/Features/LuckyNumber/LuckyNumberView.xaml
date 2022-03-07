@@ -1,18 +1,23 @@
-<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8" ?>
 
-<rxui:ReactiveContentPage x:TypeArguments="luckyNumber:LuckyNumberViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
-                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                          xmlns:luckyNumber="clr-namespace:Vulcanova.Features.LuckyNumber;assembly=Vulcanova"
-                          xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
-                          xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
-                          Title="{x:Static resx:Strings.LuckyNumberTabTitle}"
-                          IconImageSource="{OnPlatform iOS=star-outline@3x.png, Android=ic_star}"
-                          x:Class="Vulcanova.Features.LuckyNumber.LuckyNumberView">
+<rxui:ReactiveContentPage
+    IconImageSource="{OnPlatform iOS=star-outline@3x.png,
+                                 Android=ic_star}"
+    Title="{x:Static resx:Strings.LuckyNumberTabTitle}"
+    x:Class="Vulcanova.Features.LuckyNumber.LuckyNumberView"
+    x:TypeArguments="luckyNumber:LuckyNumberViewModel"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:luckyNumber="clr-namespace:Vulcanova.Features.LuckyNumber;assembly=Vulcanova"
+    xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
+    xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="LuckyNumberLabel"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
+            <Label
+                FontSize="50"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                x:Name="LuckyNumberLabel" />
         </StackLayout>
     </ContentPage.Content>
 </rxui:ReactiveContentPage>
