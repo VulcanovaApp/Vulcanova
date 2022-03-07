@@ -65,7 +65,8 @@ namespace Vulcanova.Features.Grades.Summary
         }
 
         private static IEnumerable<SubjectGrades> ToSubjectGrades(IEnumerable<Grade> grades)
-            => grades.GroupBy(g => new
+        {
+            var subjectGrades = grades.GroupBy(g => new
                 {
                     g.Column.Subject.Id,
                     g.Column.Subject.Name
@@ -77,5 +78,25 @@ namespace Vulcanova.Features.Grades.Summary
                     Average = g.Average(),
                     Grades = g.ToArray()
                 });
+
+            SubjectGrades averageSubject = new SubjectGrades();
+            averageSubject.Average = grades.Average();
+            averageSubject.Grades = null;
+            averageSubject.SubjectId = -1;
+            averageSubject.SubjectName = "Average";
+
+            List<SubjectGrades> finalGrades = new List<SubjectGrades>();
+            List<SubjectGrades> _subjectGrades = subjectGrades.ToList();
+
+            finalGrades.Add(averageSubject);
+            foreach (var v in _subjectGrades)
+            {
+                finalGrades.Add(v);
+            }
+
+            subjectGrades = finalGrades;
+
+            return subjectGrades;
+        }
     }
 }
