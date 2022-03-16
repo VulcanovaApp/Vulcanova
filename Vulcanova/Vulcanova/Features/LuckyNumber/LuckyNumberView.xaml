@@ -10,9 +10,11 @@
                           x:Class="Vulcanova.Features.LuckyNumber.LuckyNumberView">
     <ContentPage.Content>
         <StackLayout>
-            <Label x:Name="LuckyNumberLabel"
-                   VerticalOptions="CenterAndExpand"
-                   HorizontalOptions="CenterAndExpand" />
+            <Label
+                FontSize="50"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand"
+                x:Name="LuckyNumberLabel" />
         </StackLayout>
     </ContentPage.Content>
 </rxui:ReactiveContentPage>
