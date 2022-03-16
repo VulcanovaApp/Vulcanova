@@ -19,7 +19,7 @@ namespace Vulcanova.Resources {
         private static System.Resources.ResourceManager resourceMan;
         
         private static System.Globalization.CultureInfo resourceCulture;
-        
+
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Strings() {
         }
@@ -200,7 +200,7 @@ namespace Vulcanova.Resources {
                 return ResourceManager.GetString("LessonTimeValueLabel", resourceCulture);
             }
         }
-        
+
         internal static string LessonTimeLabel {
             get {
                 return ResourceManager.GetString("LessonTimeLabel", resourceCulture);
@@ -222,6 +222,12 @@ namespace Vulcanova.Resources {
         internal static string LessonTeacherLabel {
             get {
                 return ResourceManager.GetString("LessonTeacherLabel", resourceCulture);
+            }
+        }
+        
+        internal static string NoAttendanceLabel {
+            get {
+                return ResourceManager.GetString("NoAttendanceLabel", resourceCulture);
             }
         }
     }

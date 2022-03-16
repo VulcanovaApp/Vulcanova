@@ -108,4 +108,7 @@
     <data name="LessonTeacherLabel" xml:space="preserve">
         <value>Teacher</value>
     </data>
+    <data name="NoAttendanceLabel" xml:space="preserve">
+        <value>No Attendance</value>
+    </data>
 </root>

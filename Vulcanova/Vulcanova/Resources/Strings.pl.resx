@@ -101,4 +101,7 @@
     <data name="LessonTeacherLabel" xml:space="preserve">
         <value>Nauczyciel</value>
     </data>
+    <data name="NoAttendanceLabel" xml:space="preserve">
+        <value>Brak wpisów frekwencyjnych w tym dniu</value>
+    </data>
 </root>
