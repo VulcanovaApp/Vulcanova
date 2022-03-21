@@ -20,6 +20,13 @@
                     SelectedTextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryColor}, Light={StaticResource LightPrimaryColor}}"
                     SecondaryTextColor="{AppThemeBinding Dark={StaticResource DarkSecondaryTextColor}, Light={StaticResource LightSecondaryTextColor}}" />
                 <CollectionView x:Name="EntriesList">
+                    <CollectionView.EmptyView>
+                        <Grid VerticalOptions="FillAndExpand" x:Name="NoElementsView">
+                            <StackLayout Padding="16" VerticalOptions="Center">
+                                <Label HorizontalTextAlignment="Center" Text="{x:Static resx:Strings.NoAttendanceLabel}" />
+                            </StackLayout>
+                        </Grid>
+                    </CollectionView.EmptyView>
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="local:Lesson">
                             <StackLayout Padding="0, 1" Spacing="0"

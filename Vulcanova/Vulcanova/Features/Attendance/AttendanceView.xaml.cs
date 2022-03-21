@@ -33,6 +33,11 @@ namespace Vulcanova.Features.Attendance
                     .Where(val => val == false)
                     .Subscribe(_ => ViewModel!.SelectedLesson = null)
                     .DisposeWith(disposable);
+                
+                this.WhenAnyObservable(v => v.ViewModel.GetTimetableEntries.IsExecuting)
+                    .Select(v => !v)
+                    .BindTo(NoElementsView, x => x.IsVisible)
+                    .DisposeWith(disposable);
             });
         }
     }
