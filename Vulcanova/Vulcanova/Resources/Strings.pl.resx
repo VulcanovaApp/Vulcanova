@@ -29,6 +29,9 @@
     <data name="AddAccountSubheadingLabel" xml:space="preserve">
         <value>Wpisz poniżej dane z zakładki 'Dodaj konto' w przeglądarkowej wersji dziennika</value>
     </data>
+    <data name="NoLessonsLabel" xml:space="preserve">
+        <value>Brak lekcji w tym dniu</value>
+    </data>
     <data name="AddButton" xml:space="preserve">
         <value>Dodaj</value>
     </data>

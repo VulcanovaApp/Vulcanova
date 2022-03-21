@@ -207,6 +207,12 @@ namespace Vulcanova.Resources {
             }
         }
         
+        internal static string NoLessonsLabel {
+            get {
+                return ResourceManager.GetString("NoLessonsLabel", resourceCulture);
+            }
+        }
+        
         internal static string LessonDateLabel {
             get {
                 return ResourceManager.GetString("LessonDateLabel", resourceCulture);
