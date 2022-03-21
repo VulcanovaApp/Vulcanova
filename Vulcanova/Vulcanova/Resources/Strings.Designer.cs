@@ -189,6 +189,12 @@ namespace Vulcanova.Resources {
             }
         }
         
+        internal static string NoLuckyNumber {
+            get {
+                return ResourceManager.GetString("NoLuckyNumber", resourceCulture);
+            }
+        }
+        
         internal static string AttendanceTabTitle {
             get {
                 return ResourceManager.GetString("AttendanceTabTitle", resourceCulture);

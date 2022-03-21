@@ -57,6 +57,9 @@
     <data name="GradeWeightLabel" xml:space="preserve">
         <value>weight: {0}</value>
     </data>
+    <data name="NoLuckyNumber" xml:space="preserve">
+        <value>No lucky number for today</value>
+    </data>
     <data name="GradeCreatedDateLabel" xml:space="preserve">
         <value>date: {0:d}</value>
     </data>
