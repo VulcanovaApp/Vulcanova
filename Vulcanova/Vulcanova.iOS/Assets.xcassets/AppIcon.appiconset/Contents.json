@@ -37,7 +37,7 @@
       "size": "40x40"
     },
     {
-      "filename": "120-1.png",
+      "filename": "120.png",
       "idiom": "iphone",
       "scale": "2x",
       "size": "60x60"
@@ -55,7 +55,7 @@
       "size": "20x20"
     },
     {
-      "filename": "40-1.png",
+      "filename": "40.png",
       "idiom": "ipad",
       "scale": "2x",
       "size": "20x20"
@@ -67,19 +67,19 @@
       "size": "29x29"
     },
     {
-      "filename": "58-1.png",
+      "filename": "58.png",
       "idiom": "ipad",
       "scale": "2x",
       "size": "29x29"
     },
     {
-      "filename": "40-2.png",
+      "filename": "40-1.png",
       "idiom": "ipad",
       "scale": "1x",
       "size": "40x40"
     },
     {
-      "filename": "80-1.png",
+      "filename": "80.png",
       "idiom": "ipad",
       "scale": "2x",
       "size": "40x40"
@@ -109,13 +109,13 @@
       "size": "1024x1024"
     },
     {
-      "filename": "120-2.png",
+      "filename": "120-1.png",
       "idiom": "car",
       "scale": "2x",
       "size": "60x60"
     },
     {
-      "filename": "180-1.png",
+      "filename": "180.png",
       "idiom": "car",
       "scale": "3x",
       "size": "60x60"
@@ -137,21 +137,21 @@
       "subtype": "42mm"
     },
     {
-      "filename": "58-2.png",
+      "filename": "58-1.png",
       "idiom": "watch",
       "role": "companionSettings",
       "scale": "2x",
       "size": "29x29"
     },
     {
-      "filename": "87-1.png",
+      "filename": "87.png",
       "idiom": "watch",
       "role": "companionSettings",
       "scale": "3x",
       "size": "29x29"
     },
     {
-      "filename": "80-2.png",
+      "filename": "80-1.png",
       "idiom": "watch",
       "role": "appLauncher",
       "scale": "2x",
@@ -199,7 +199,7 @@
       "subtype": "44mm"
     },
     {
-      "filename": "1024-1.png",
+      "filename": "1024.png",
       "idiom": "watch-marketing",
       "scale": "1x",
       "size": "1024x1024"
@@ -217,7 +217,7 @@
       "size": "16x16"
     },
     {
-      "filename": "32-1.png",
+      "filename": "32.png",
       "idiom": "mac",
       "scale": "1x",
       "size": "32x32"
@@ -241,7 +241,7 @@
       "size": "128x128"
     },
     {
-      "filename": "256-1.png",
+      "filename": "256.png",
       "idiom": "mac",
       "scale": "1x",
       "size": "256x256"
@@ -253,13 +253,13 @@
       "size": "256x256"
     },
     {
-      "filename": "512-1.png",
+      "filename": "512.png",
       "idiom": "mac",
       "scale": "1x",
       "size": "512x512"
     },
     {
-      "filename": "1024-2.png",
+      "filename": "1024-1.png",
       "idiom": "mac",
       "scale": "2x",
       "size": "512x512"
