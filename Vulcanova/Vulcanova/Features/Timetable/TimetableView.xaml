@@ -13,6 +13,7 @@
         <StackLayout>
             <controls:Calendar
                 x:Name="Calendar"
+                Padding="0, 10"
                 SelectedColor="{AppThemeBinding Dark={StaticResource DarkTranslucentPrimaryColor}, Light={StaticResource LightTranslucentPrimaryColor}}"
                 TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryTextColor}, Light={StaticResource LightPrimaryTextColor}}"
                 SelectedTextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryColor}, Light={StaticResource LightPrimaryColor}}"
