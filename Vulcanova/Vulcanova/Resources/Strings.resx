@@ -90,6 +90,9 @@
     <data name="NoLessonsLabel" xml:space="preserve">
         <value>No Lessons</value>
     </data>
+    <data name="NoExamsLabel" xml:space="preserve">
+        <value>No exams for this week</value>
+    </data>
     <data name="TimetableTabTitle" xml:space="preserve">
         <value>Timetable</value>
     </data>

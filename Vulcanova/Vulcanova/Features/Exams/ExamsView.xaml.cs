@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using ReactiveUI;
 using Xamarin.Forms.Xaml;
 
@@ -21,6 +22,11 @@ namespace Vulcanova.Features.Exams
                         ex => ex.GroupBy(x => x.Deadline)
                             .OrderBy(g => g.Key)
                             .Select(g => new ExamsGroup(g.Key, g.ToList())))
+                    .DisposeWith(disposable);
+                
+                this.WhenAnyObservable(v => v.ViewModel.GetExams.IsExecuting)
+                    .Select(v => !v)
+                    .BindTo(NoElementsView, x => x.IsVisible)
                     .DisposeWith(disposable);
 
                 this.BindCommand(ViewModel, vm => vm.ForceRefreshExams, v => v.RefreshView)
