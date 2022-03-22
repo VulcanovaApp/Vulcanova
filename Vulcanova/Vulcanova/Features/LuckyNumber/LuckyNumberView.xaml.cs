@@ -16,16 +16,19 @@ namespace Vulcanova.Features.LuckyNumber
                 this.OneWayBind(ViewModel, 
                         vm => vm.LuckyNumber, 
                         v => v.LuckyNumberLabel.Text,
-                        l =>
-                        {
-                            if (l?.Number.ToString() == "0")
-                            {
-                                NoLuckyNumberLabel.IsVisible = true;
-                                LuckyNumberLabel.IsVisible = false;
-                            };
-        
-                            return l?.Number.ToString();
-                        })
+                        l => l?.Number.ToString())
+                    .DisposeWith(disposable);
+                
+                this.OneWayBind(ViewModel, 
+                        vm => vm.LuckyNumber, 
+                        v => v.LuckyNumberLabel.IsVisible,
+                        l => !l?.Number.Equals(0))
+                    .DisposeWith(disposable);
+                
+                this.OneWayBind(ViewModel, 
+                        vm => vm.LuckyNumber, 
+                        v => v.NoLuckyNumberLabel.IsVisible,
+                        l => l?.Number.Equals(0))
                     .DisposeWith(disposable);
             });
         }
