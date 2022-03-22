@@ -90,6 +90,9 @@
     <data name="NoPredictedGradesLabel" xml:space="preserve">
         <value>No predicted grades have been added or the register does not provide such data</value>
     </data>
+    <data name="NoExamsLabel" xml:space="preserve">
+        <value>No exams for this week</value>
+    </data>
     <data name="TimetableTabTitle" xml:space="preserve">
         <value>Timetable</value>
     </data>
@@ -110,5 +113,11 @@
     </data>
     <data name="LessonTeacherLabel" xml:space="preserve">
         <value>Teacher</value>
+    </data>
+    <data name="NoAttendanceLabel" xml:space="preserve">
+        <value>No Attendance</value>
+    </data>
+    <data name="ExamsTabTitle" xml:space="preserve">
+        <value>Exams</value>
     </data>
 </root>

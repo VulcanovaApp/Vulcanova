@@ -20,6 +20,9 @@
     <data name="NoLuckyNumber" xml:space="preserve">
         <value>Brak numerku na dzisiaj</value>
     </data>
+    <data name="NoExamsLabel" xml:space="preserve">
+        <value>Brak sprawdzianów w tym tygodniu</value>
+    </data>
     <data name="SignInManuallyButton" xml:space="preserve">
         <value>Wpisz dane ręcznie</value>
     </data>
@@ -103,5 +106,11 @@
     </data>
     <data name="LessonTeacherLabel" xml:space="preserve">
         <value>Nauczyciel</value>
+    </data>
+    <data name="NoAttendanceLabel" xml:space="preserve">
+        <value>Brak wpisów frekwencyjnych w tym dniu</value>
+    </data>
+    <data name="ExamsTabTitle" xml:space="preserve">
+        <value>Sprawdziany</value>
     </data>
 </root>

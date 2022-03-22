@@ -131,7 +131,7 @@ namespace Vulcanova.Core.Layout.Controls
 
             if (cell.Selected)
             {
-                cell.Label.TextColor = cell.SelectedTextColor;
+                cell.Label.TextColor = cell.Secondary ? cell.SelectedTextColor.MultiplyAlpha(0.5) : cell.SelectedTextColor;
             }
             else
             {

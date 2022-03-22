@@ -9,7 +9,7 @@ using Xamarin.Forms.Xaml;
 namespace Vulcanova.Core.Layout.Controls
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Calendar : ContentView
+    public partial class Calendar
     {
         public static readonly BindableProperty SelectedDateProperty =
             BindableProperty.Create(nameof(SelectedDate), typeof(DateTime), typeof(Calendar), DateTime.Now,
@@ -56,6 +56,16 @@ namespace Vulcanova.Core.Layout.Controls
             get => (Color) GetValue(SecondaryTextColorProperty);
             set => SetValue(SecondaryTextColorProperty, value);
         }
+        
+        public static readonly BindableProperty SelectionModeProperty =
+            BindableProperty.Create(nameof(SelectionMode), typeof(CalendarSelectionMode), typeof(CalendarDateCell), CalendarSelectionMode.SingleDay,
+                propertyChanged: SelectionModeChanged);
+
+        public CalendarSelectionMode SelectionMode
+        {
+            get => (CalendarSelectionMode) GetValue(SelectionModeProperty);
+            set => SetValue(SelectionModeProperty, value);
+        }
 
         private readonly Dictionary<DateTime, CalendarDateCell> _dateCells = new();
 
@@ -97,12 +107,7 @@ namespace Vulcanova.Core.Layout.Controls
 
         private void UpdateCalendarGrid()
         {
-            var firstDayOfMonth = new DateTime(SelectedDate.Year, SelectedDate.Month, 1);
-            var lastDayOfMonth = new DateTime(SelectedDate.Year, SelectedDate.Month,
-                DateTime.DaysInMonth(SelectedDate.Year, SelectedDate.Month));
-
-            var currentDay = firstDayOfMonth.LastMonday();
-            var endDay = lastDayOfMonth.NextSunday();
+            var (currentDay, endDay) = SelectedDate.GetMondayOfFirstWeekAndSundayOfLastWeekOfMonth();
 
             var daysToDraw = (endDay - currentDay).TotalDays + 1;
 
@@ -219,29 +224,58 @@ namespace Vulcanova.Core.Layout.Controls
 
         private void UpdateIndicators(DateTime? oldDate, DateTime newDate)
         {
-            if (oldDate != null)
+            if (SelectionMode == CalendarSelectionMode.SingleDay)
             {
-                _dateCells[oldDate.Value.Date].Selected = false;
-            }
+                if (oldDate != null)
+                {
+                    _dateCells[oldDate.Value.Date].Selected = false;
+                }
 
-            _dateCells[newDate.Date].Selected = true;
+                _dateCells[newDate.Date].Selected = true;
+            }
+            else if (SelectionMode == CalendarSelectionMode.Week)
+            {
+                if (oldDate != null)
+                {
+                    ToggleRange(oldDate.Value.LastMonday(), oldDate.Value.NextSunday(), false);
+                }
+                
+                ToggleRange(newDate.LastMonday(), newDate.NextSunday(), true);
+            }
+        }
+
+        private void ToggleRange(DateTime from, DateTime to, bool selected)
+        {
+            foreach (var (_, cell) in _dateCells
+                         .Where(c => c.Key.Date >= from.Date && c.Key.Date <= to.Date))
+            {
+                cell.Selected = selected;
+            }
         }
 
         private static void SelectedDateChanged(BindableObject bindable, object oldValue, object newValue)
         {
             var calendar = (Calendar) bindable;
-            var oldDate = (DateTime) oldValue;
-            var newDate = (DateTime) newValue;
+            calendar.UpdateCalendar((DateTime) oldValue, (DateTime) newValue);
+        }
 
-            if (oldDate.Month != newDate.Month)
+        private static void SelectionModeChanged(BindableObject bindable, object oldValue, object newValue)
+        {
+            var calendar = (Calendar) bindable;
+            calendar.UpdateIndicators(null, calendar.SelectedDate);
+        }
+        
+        private void UpdateCalendar(DateTime? oldDate, DateTime newDate)
+        {
+            if (oldDate?.Month != newDate.Month)
             {
-                calendar.UpdateCalendarGrid();
-                calendar.UpdateIndicators(null, newDate);
+                UpdateCalendarGrid();
+                UpdateIndicators(null, newDate);
 
                 return;
             }
 
-            calendar.UpdateIndicators(oldDate, newDate);
+            UpdateIndicators(oldDate, newDate);
         }
 
         private void SwipeGestureRecognizer_OnSwiped(object sender, SwipedEventArgs e)
@@ -254,5 +288,11 @@ namespace Vulcanova.Core.Layout.Controls
                     _ => 0
                 });
         }
+    }
+
+    public enum CalendarSelectionMode
+    {
+        SingleDay,
+        Week
     }
 }

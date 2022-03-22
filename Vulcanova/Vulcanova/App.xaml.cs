@@ -8,6 +8,7 @@ using Vulcanova.Core.Rx;
 using Vulcanova.Core.Uonet;
 using Vulcanova.Features.Attendance;
 using Vulcanova.Features.Auth;
+using Vulcanova.Features.Exams;
 using Vulcanova.Features.Grades;
 using Vulcanova.Features.LuckyNumber;
 using Vulcanova.Features.Shared;
@@ -66,6 +67,7 @@ namespace Vulcanova
             containerRegistry.RegisterGrades();
             containerRegistry.RegisterTimetable();
             containerRegistry.RegisterAttendance();
+            containerRegistry.RegisterExams();
 
             containerRegistry.RegisterUonet();
         }

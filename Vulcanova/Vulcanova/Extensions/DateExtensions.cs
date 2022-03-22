@@ -27,5 +27,17 @@ namespace Vulcanova.Extensions
 
             return dt.AddDays(delta);
         }
+
+        public static (DateTime Monday, DateTime Sunday) GetMondayOfFirstWeekAndSundayOfLastWeekOfMonth(this DateTime dt)
+        {
+            var firstDayOfMonth = new DateTime(dt.Year, dt.Month, 1);
+            var lastDayOfMonth = new DateTime(dt.Year, dt.Month,
+                DateTime.DaysInMonth(dt.Year, dt.Month));
+
+            var firstDay = firstDayOfMonth.LastMonday();
+            var lastDay = lastDayOfMonth.NextSunday();
+
+            return (firstDay, lastDay);
+        }
     }
 }
