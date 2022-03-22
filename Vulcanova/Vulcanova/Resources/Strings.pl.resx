@@ -18,7 +18,7 @@
         <value>Skanuj kod QR</value>
     </data>
     <data name="NoExamsLabel" xml:space="preserve">
-        <value>Brak egzaminów w tym tygodniu</value>
+        <value>Brak sprawdzianów w tym tygodniu</value>
     </data>
     <data name="SignInManuallyButton" xml:space="preserve">
         <value>Wpisz dane ręcznie</value>
