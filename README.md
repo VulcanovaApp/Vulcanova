@@ -1,7 +1,7 @@
 ### [English version of README](README-en.md)
 
 # Vulcanova
-[![Discord](https://img.shields.io/discord/951860775503421460?style=for-the-badge)](https://discord.gg/GaCQknqRjT)
+[![Discord](https://discord.com/api/guilds/951860775503421460/widget.png?style=shield)](https://discord.gg/GaCQknqRjT)
 
 Nieoficjalny, międzyplatformowy, mobilny klient dziennika Vulcan UONET+ tworzony w Xamarinie. Aktualnie w fazie intensywnego rozwoju.
 
@@ -10,12 +10,12 @@ Nieoficjalny, międzyplatformowy, mobilny klient dziennika Vulcan UONET+ tworzon
 - oceny
 - plan lekcji
 - obecność/frekwencja
+- sprawdziany/kartkówki
 
 ## Co jest planowane?
 - wiadomości
 - dashboard
 - prace domowe/zadania
-- sprawdziany/kartkówki
 - punkty (za zachowanie)
 I wiele więcej!
 
