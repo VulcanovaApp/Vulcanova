@@ -11,6 +11,7 @@
                       xmlns:timetable="clr-namespace:Vulcanova.Features.Timetable;assembly=Vulcanova"
                       xmlns:attendance="clr-namespace:Vulcanova.Features.Attendance;assembly=Vulcanova"
                       xmlns:exams="clr-namespace:Vulcanova.Features.Exams;assembly=Vulcanova"
+                      xmlns:homeworks="clr-namespace:Vulcanova.Features.Homeworks;assembly=Vulcanova"
                       x:Class="Vulcanova.Core.Layout.HomeTabbedPage"
                       android:TabbedPage.ToolbarPlacement="Bottom"
                       ios:TabbedPage.TranslucencyMode="Translucent"
@@ -19,5 +20,6 @@
     <timetable:TimetableView />
     <attendance:AttendanceView />
     <exams:ExamsView />
+    <homeworks:HomeworksView />
     <luckyNumber:LuckyNumberView />
-</layout:SvgTabbedPage> 
+</layout:SvgTabbedPage>

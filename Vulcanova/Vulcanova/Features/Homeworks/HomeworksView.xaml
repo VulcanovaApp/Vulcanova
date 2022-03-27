@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<rxui:ReactiveContentPage x:TypeArguments="local:HomeworksViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                          xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                          xmlns:controls="clr-namespace:Vulcanova.Core.Layout.Controls;assembly=Vulcanova"
+                          xmlns:xe="clr-namespace:XamEffects;assembly=XamEffects"
+                          xmlns:local="clr-namespace:Vulcanova.Features.Homeworks;assembly=Vulcanova"
+                          xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
+                          xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+                          xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
+                          Title="{x:Static resx:Strings.HomeworksTabTitle}"
+                          IconImageSource="{OnPlatform iOS=calendar-number-outline@3x.png, Android=ic_calendar_number}"
+                          x:Class="Vulcanova.Features.Homeworks.HomeworksView">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout>
+                <controls:Calendar
+                    x:Name="Calendar"
+                    SelectionMode="Week"
+                    SelectedColor="{AppThemeBinding Dark={StaticResource DarkTranslucentPrimaryColor}, Light={StaticResource LightTranslucentPrimaryColor}}"
+                    TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryTextColor}, Light={StaticResource LightPrimaryTextColor}}"
+                    SelectedTextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryColor}, Light={StaticResource LightPrimaryColor}}"
+                    SecondaryTextColor="{AppThemeBinding Dark={StaticResource DarkSecondaryTextColor}, Light={StaticResource LightSecondaryTextColor}}" />
+                <RefreshView x:Name="RefreshView">
+                    <CollectionView x:Name="EntriesList" IsGrouped="true">
+                        <CollectionView.GroupHeaderTemplate>
+                            <DataTemplate x:DataType="local:HomeworksGroup">
+                                <Label Text="{Binding Date, StringFormat='{0:dddd} {0:d}'}"
+                                       BackgroundColor="LightGray" Padding="8" />
+                            </DataTemplate>
+                        </CollectionView.GroupHeaderTemplate>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="local:HomeworkEntry">
+                                <StackLayout Padding="0, 1" Spacing="0"
+                                             xe:TouchEffect.Color="{AppThemeBinding Light={StaticResource LightBorderColor}, Dark={StaticResource DarkBorderColor}}"
+                                             xe:Commands.Tap="{Binding Source={RelativeSource AncestorType={x:Type local:HomeworksViewModel}}, Path=ShowHomeworkDetails}"
+                                             xe:Commands.TapParameter="{Binding Id}">
+                                    <Grid Padding="16, 8">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout Grid.Column="0" Spacing="0">
+                                            <Label Text="{Binding Subject.Name}" />
+                                            <Label FontSize="Small" Text="{Binding Content}" />
+                                        </StackLayout>
+                                        <layout:TintedCachedImage
+                                            Grid.Column="1"
+                                            VerticalOptions="Center"
+                                            HeightRequest="32"
+                                            WidthRequest="32"
+                                            Source="resource://Vulcanova.Resources.Icons.chevron-right.svg"
+                                            TintColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
+                                        </layout:TintedCachedImage>
+                                    </Grid>
+                                    <BoxView Style="{StaticResource SeparatorStyle}" />
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </RefreshView>
+            </StackLayout>
+            <controls:SlidingUpPanel x:Name="Panel" Open="False">
+            </controls:SlidingUpPanel>
+        </Grid>
+    </ContentPage.Content>
+</rxui:ReactiveContentPage>

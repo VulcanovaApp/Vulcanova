@@ -15,7 +15,7 @@ namespace Vulcanova.Uonet.Api.Homeworks
         public Date DateCreated { get; set; }
         public Date Date { get; set; }
         public Date Deadline { get; set; }
-        public object AnswerDate { get; set; }
+        public Date AnswerDate { get; set; }
         public Date AnswerDeadline { get; set; }
         public Teacher Creator { get; set; }
         public Subject Subject { get; set; }
