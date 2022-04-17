@@ -1,17 +1,257 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <ContentPage
+    Title="Dashboard"
     x:Class="Vulcanova.Features.Dashboard.DashboardView"
     xmlns="http://xamarin.com/schemas/2014/forms"
-    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Dashboard">
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <ContentPage.Content>
-        <StackLayout>
+        <ScrollView>
+            <StackLayout BackgroundColor="{AppThemeBinding Dark=#000, Light={StaticResource LightControlColor}}" Padding="0,10">
+                <Frame
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor},
+                                                      Light=#FFF}"
+                    CornerRadius="5"
+                    HasShadow="False"
+                    Margin="15,5"
+                    Padding="10">
+                    <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light=#FFF}">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            LineBreakMode="TailTruncation"
+                            Text="Plan Lekcji" />
+                        <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light=#FFF}" Padding="5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    LineBreakMode="TailTruncation"
+                                    Text="1. Matematyka (31)"
+                                    TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryColor},
+                                                                Light={StaticResource LightPrimaryColor}}"
+                                    VerticalOptions="End" />
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    LineBreakMode="TailTruncation"
+                                    Text="8:00 - 8:45"
+                                    TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryColor},
+                                                                Light={StaticResource LightPrimaryColor}}" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    LineBreakMode="TailTruncation"
+                                    Text="2. Język Angielski (11)"
+                                    VerticalOptions="End" />
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    LineBreakMode="TailTruncation"
+                                    Text="8:55 - 9:35" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    LineBreakMode="TailTruncation"
+                                    Text="3. Język Polski (25)"
+                                    VerticalOptions="End" />
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    LineBreakMode="TailTruncation"
+                                    Text="9:40 - 10:25" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    LineBreakMode="TailTruncation"
+                                    Text="4. Biologia (15)"
+                                    VerticalOptions="End" />
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    LineBreakMode="TailTruncation"
+                                    Text="10:35 - 11:20" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    LineBreakMode="TailTruncation"
+                                    Text="5. Chemia (21)"
+                                    VerticalOptions="End" />
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    LineBreakMode="TailTruncation"
+                                    Text="11:30 - 12:15" />
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    LineBreakMode="TailTruncation"
+                                    Text="6. Angielski (34)"
+                                    VerticalOptions="End" />
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    LineBreakMode="TailTruncation"
+                                    Text="12:35 - 13:20" />
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor},
+                                                      Light=#FFF}"
+                    CornerRadius="5"
+                    HasShadow="False"
+                    Margin="15,5"
+                    Padding="10">
+                    <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light=#FFF}">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            LineBreakMode="TailTruncation"
+                            Text="Nowe Oceny" />
+                        <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light=#FFF}" Padding="5">
+                            <Label
+                                LineBreakMode="TailTruncation"
+                                Text="Matematyka - 6 - Sprawdzian"
+                                TextColor="{AppThemeBinding Dark=#ff4242,
+                                                            Light=#ff2929}"
+                                VerticalOptions="End" />
+                            <Label
+                                LineBreakMode="TailTruncation"
+                                Text="Język Angielski - 2 - Praca domowa"
+                                VerticalOptions="End" />
+                            <Label
+                                LineBreakMode="TailTruncation"
+                                Text="Język Polski - 5 - Kartkówka"
+                                TextColor="{AppThemeBinding Dark=#fff242,
+                                                            Light=#ff9442}"
+                                VerticalOptions="End" />
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <Frame
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor},
+                                                      Light=#FFF}"
+                    CornerRadius="5"
+                    HasShadow="False"
+                    Margin="15,5"
+                    Padding="10">
+                    <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light=#FFF}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
 
-            <Label
-                HorizontalOptions="CenterAndExpand"
-                Text="Dashboard!"
-                VerticalOptions="CenterAndExpand" />
-        </StackLayout>
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                LineBreakMode="TailTruncation"
+                                Text="Szczęśliwy Numerek"
+                                VerticalOptions="Center" />
+                            <Label
+                                FontSize="Title"
+                                Grid.Column="1"
+                                HorizontalOptions="End"
+                                LineBreakMode="TailTruncation"
+                                Text="23"
+                                TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryColor},
+                                                            Light={StaticResource LightPrimaryColor}}"
+                                VerticalOptions="Center" />
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+                <Frame
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor},
+                                                      Light=#FFF}"
+                    CornerRadius="5"
+                    HasShadow="False"
+                    Margin="15,5"
+                    Padding="10">
+                    <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light=#FFF}">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            LineBreakMode="TailTruncation"
+                            Text="Sprawdziany" />
+
+                        <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light=#FFF}" Padding="5">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    LineBreakMode="TailTruncation"
+                                    Text="Matematyka - Sprawdzian"
+                                    TextColor="{AppThemeBinding Dark=#ff4242,
+                                                                Light=#ff2929}" />
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    LineBreakMode="TailTruncation"
+                                    Text="23.04" />
+                            </Grid>
+
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label
+                                    LineBreakMode="TailTruncation"
+                                    Text="Język Angielski - Kartkówka"
+                                    TextColor="{AppThemeBinding Dark=#fff242,
+                                                                Light=#ff9442}" />
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    LineBreakMode="TailTruncation"
+                                    Text="26.04" />
+
+                            </Grid>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label LineBreakMode="TailTruncation" Text="Język Polski" />
+                                <Label
+                                    Grid.Column="1"
+                                    HorizontalOptions="End"
+                                    LineBreakMode="TailTruncation"
+                                    Text="28.04" />
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>
