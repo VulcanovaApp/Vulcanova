@@ -290,5 +290,10 @@ namespace Vulcanova.Resources {
                 return ResourceManager.GetString("ExamsCreatedOnLabel", resourceCulture);
             }
         }
+        internal static string DashboardTabTitle {
+            get {
+                return ResourceManager.GetString("DashboardTabTitle", resourceCulture);
+            }
+        }
     }
 }
