@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 
 <ContentPage
-    Title="Dashboard"
+    Title="Poniedzialek, 19 listopada"
     x:Class="Vulcanova.Features.Dashboard.DashboardView"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
@@ -14,14 +14,15 @@
                     CornerRadius="5"
                     HasShadow="False"
                     Margin="15,5"
-                    Padding="10">
+                    Padding="15">
                     <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light=#FFF}">
                         <Label
-                            FontAttributes="Bold"
                             FontSize="Medium"
                             LineBreakMode="TailTruncation"
                             Text="Plan Lekcji" />
-                        <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light=#FFF}" Padding="5">
+                        <!--  Separator  -->
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+                        <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light=#FFF}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
@@ -125,14 +126,15 @@
                     CornerRadius="5"
                     HasShadow="False"
                     Margin="15,5"
-                    Padding="10">
+                    Padding="15">
                     <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light=#FFF}">
                         <Label
-                            FontAttributes="Bold"
                             FontSize="Medium"
                             LineBreakMode="TailTruncation"
                             Text="Nowe Oceny" />
-                        <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light=#FFF}" Padding="5">
+                        <!--  Separator  -->
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+                        <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light=#FFF}">
                             <Label
                                 LineBreakMode="TailTruncation"
                                 Text="Matematyka - 6 - Sprawdzian"
@@ -158,7 +160,7 @@
                     CornerRadius="5"
                     HasShadow="False"
                     Margin="15,5"
-                    Padding="10">
+                    Padding="15">
                     <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light=#FFF}">
                         <Grid>
                             <Grid.ColumnDefinitions>
@@ -167,7 +169,6 @@
                             </Grid.ColumnDefinitions>
 
                             <Label
-                                FontAttributes="Bold"
                                 FontSize="Medium"
                                 LineBreakMode="TailTruncation"
                                 Text="Szczęśliwy Numerek"
@@ -190,15 +191,16 @@
                     CornerRadius="5"
                     HasShadow="False"
                     Margin="15,5"
-                    Padding="10">
+                    Padding="15">
                     <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light=#FFF}">
                         <Label
-                            FontAttributes="Bold"
                             FontSize="Medium"
                             LineBreakMode="TailTruncation"
                             Text="Sprawdziany" />
+                        <!--  Separator  -->
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
 
-                        <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light=#FFF}" Padding="5">
+                        <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor}, Light=#FFF}">
                             <Grid>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="3*" />
