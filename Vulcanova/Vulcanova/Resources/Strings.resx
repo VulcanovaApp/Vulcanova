@@ -141,4 +141,7 @@
     <data name="ExamsCreatedOnLabel" xml:space="preserve">
         <value>Created on</value>
     </data>
+    <data name="DashboardTabTitle" xml:space="preserve">
+        <value>Dashboard</value>
+    </data>
 </root>

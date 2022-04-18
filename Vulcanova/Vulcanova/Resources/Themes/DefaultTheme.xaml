@@ -1,5 +1,4 @@
-<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
     <Color x:Key="LightPrimaryColor">#007aff</Color>
     <Color x:Key="DarkPrimaryColor">#0a84ff</Color>
 
@@ -8,20 +7,20 @@
 
     <Color x:Key="LightPrimaryTextColor">Black</Color>
     <Color x:Key="DarkPrimaryTextColor">White</Color>
-    
+
     <Color x:Key="LightSecondaryTextColor">#AAAAAA</Color>
     <Color x:Key="DarkSecondaryTextColor">#AAAAAA</Color>
 
     <Color x:Key="LightBackgroundColor">White</Color>
     <Color x:Key="DarkBackgroundColor">Black</Color>
-    
+
     <Color x:Key="LightPanelColor">White</Color>
     <Color x:Key="DarkPanelColor">#131313</Color>
 
-    <Color x:Key="LightControlColor">#f7f7f9</Color>
+    <Color x:Key="LightControlColor">#F3F3F5</Color>
     <Color x:Key="DarkControlColor">#131313</Color>
-    
-    <Color x:Key="LightBorderColor">#F2F2F7</Color>
+
+    <Color x:Key="LightBorderColor">#A9A9AE</Color>
     <Color x:Key="DarkBorderColor">#1C1C1C</Color>
 
     <Color x:Key="LightWarningColor">#FF9500</Color>

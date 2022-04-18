@@ -11,10 +11,12 @@
                       xmlns:timetable="clr-namespace:Vulcanova.Features.Timetable;assembly=Vulcanova"
                       xmlns:attendance="clr-namespace:Vulcanova.Features.Attendance;assembly=Vulcanova"
                       xmlns:exams="clr-namespace:Vulcanova.Features.Exams;assembly=Vulcanova"
+                      xmlns:dashboard="clr-namespace:Vulcanova.Features.Dashboard;assembly=Vulcanova"
                       x:Class="Vulcanova.Core.Layout.HomeTabbedPage"
                       android:TabbedPage.ToolbarPlacement="Bottom"
                       ios:TabbedPage.TranslucencyMode="Translucent"
                       android:TabbedPage.IsSwipePagingEnabled="False">
+    <dashboard:DashboardView />
     <grades:GradesView />
     <timetable:TimetableView />
     <attendance:AttendanceView />
