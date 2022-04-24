@@ -12,6 +12,11 @@ jobs:
     runs-on: macos-11
 
     steps:
+    - name: Checkout repository and submodules
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+
     - uses: actions/checkout@v2
     - name: Set default Xamarin SDK versions
       run: |
@@ -23,7 +28,10 @@ jobs:
       with:
         dotnet-version: 5.0.x
 
-    - name: Restore dependencies
+    - name: Restore dependencies with dotnet restore
+      run: dotnet restore
+
+    - name: Restore dependencies with nuget restore
       run: nuget restore
 
     - name: Build
@@ -32,4 +40,4 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        path: Vulcanova/Vulcanova.Android/bin/Debug/com.companyname.Vulcanova-Signed.apk
+        path: Vulcanova/Vulcanova.Android/bin/Release/com.companyname.Vulcanova-Signed.apk
