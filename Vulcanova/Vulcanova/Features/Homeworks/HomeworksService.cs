@@ -27,10 +27,10 @@ namespace Vulcanova.Features.Homeworks
             _homeworksRepository = homeworksRepository;
         }
 
-        public IObservable<IEnumerable<HomeworkEntry>> GetHomeworksByDateRange(int accountId, int periodId, DateTime from, DateTime to,
+        public IObservable<IEnumerable<Homework>> GetHomeworksByDateRange(int accountId, int periodId, DateTime from, DateTime to,
             bool forceSync = false)
         {
-            return Observable.Create<IEnumerable<HomeworkEntry>>(async observer =>
+            return Observable.Create<IEnumerable<Homework>>(async observer =>
             {
                 var account = await _accountRepository.GetByIdAsync(accountId);
 
@@ -42,7 +42,7 @@ namespace Vulcanova.Features.Homeworks
 
                 if (ShouldSync(resourceKey) || forceSync)
                 {
-                    var onlineEntities = await FetchHomeworks(account, periodId);
+                    var onlineEntities = await FetchHomeworks(account, periodId, accountId, resourceKey);
 
                     await _homeworksRepository.UpdateHomeworksEntriesAsync(onlineEntities, account.Id);
 
@@ -57,15 +57,22 @@ namespace Vulcanova.Features.Homeworks
             });
         }
 
-        private async Task<HomeworkEntry[]> FetchHomeworks(Account account, int periodId)
+        private async Task<Homework[]> FetchHomeworks(Account account, int periodId, int accountId, string resourceKey)
         {
-            var query = new GetHomeworksByPupilQuery(account.Unit.Id, periodId, DateTime.MinValue);
+            var lastSync = GetLastSync(resourceKey);
+        
+            var query = new GetHomeworksByPupilQuery(account.Pupil.Id, periodId, lastSync);
 
             var client = _apiClientFactory.GetForApiInstanceUrl(account.Unit.RestUrl);
 
             var response = await client.GetAsync(GetExamsByPupilQuery.ApiEndpoint, query);
 
-            var entries = response.Envelope.Select(_mapper.Map<HomeworkEntry>).ToArray();
+            var entries = response.Envelope.Select(_mapper.Map<Homework>).ToArray();
+
+            foreach (var entry in entries)
+            {
+                entry.AccountId = accountId;
+            }
 
             return entries;
         }

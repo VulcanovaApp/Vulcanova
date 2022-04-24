@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace Vulcanova.Features.Homeworks
 {
-    public class HomeworksGroup : List<HomeworkEntry>
+    public class HomeworksGroup : List<Homework>
     {
-        public DateTime Date { get; }
+        public DateTimeOffset Date { get; }
 
-        public HomeworksGroup(DateTime date, IEnumerable<HomeworkEntry> animals) : base(animals)
+        public HomeworksGroup(DateTimeOffset date, IEnumerable<Homework> animals) : base(animals)
         {
             Date = date;
         }

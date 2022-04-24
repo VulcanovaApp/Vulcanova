@@ -30,7 +30,7 @@
                             </DataTemplate>
                         </CollectionView.GroupHeaderTemplate>
                         <CollectionView.ItemTemplate>
-                            <DataTemplate x:DataType="local:HomeworkEntry">
+                            <DataTemplate x:DataType="local:Homework">
                                 <StackLayout Padding="0, 1" Spacing="0"
                                              xe:TouchEffect.Color="{AppThemeBinding Light={StaticResource LightBorderColor}, Dark={StaticResource DarkBorderColor}}"
                                              xe:Commands.Tap="{Binding Source={RelativeSource AncestorType={x:Type local:HomeworksViewModel}}, Path=ShowHomeworkDetails}"

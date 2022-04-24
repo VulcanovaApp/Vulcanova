@@ -16,14 +16,16 @@ namespace Vulcanova.Features.Homeworks
 {
     public class HomeworksViewModel : ViewModelBase
     {
-        public ReactiveCommand<bool, ImmutableArray<HomeworkEntry>> GetHomeworks { get; }
-        public ReactiveCommand<Unit, ImmutableArray<HomeworkEntry>> ForceRefreshHomeworks { get; }
+        public ReactiveCommand<bool, ImmutableArray<Homework>> GetHomeworks { get; }
+        public ReactiveCommand<Unit, ImmutableArray<Homework>> ForceRefreshHomeworks { get; }
+        public ReactiveCommand<int, Unit> ShowHomeworkDetails { get; }
         
-        [ObservableAsProperty] public ImmutableArray<HomeworkEntry> Entries { get; set; }
+        [ObservableAsProperty] public ImmutableArray<Homework> Entries { get; }
 
-        [Reactive] public IReadOnlyCollection<HomeworkEntry> CurrentWeekEntries { get; private set; }
+        [Reactive] public IReadOnlyCollection<Homework> CurrentWeekEntries { get; private set; }
         [Reactive] public DateTime SelectedDay { get; set; } = DateTime.Today;
         [Reactive] public PeriodResult PeriodInfo { get; private set; }
+        [Reactive] public Homework SelectedHomework { get; set; }
 
         private readonly IHomeworksService _homeworksService;
 
@@ -38,13 +40,20 @@ namespace Vulcanova.Features.Homeworks
                 .InvokeCommand(setCurrentPeriod);
 
             GetHomeworks = ReactiveCommand.CreateFromObservable((bool forceSync) =>
-                GetEntries(accountContext.AccountId, PeriodInfo.CurrentPeriod.Id, SelectedDay, forceSync));
+                GetEntries(accountContext.AccountId, PeriodInfo.CurrentPeriod.Number, SelectedDay, forceSync));
             
             ForceRefreshHomeworks = ReactiveCommand.CreateFromObservable(() =>
                 GetHomeworks.Execute(true));
 
             GetHomeworks.ToPropertyEx(this, vm => vm.Entries);
-            
+
+            ShowHomeworkDetails = ReactiveCommand.Create((int lessonId) =>
+            {
+                SelectedHomework = CurrentWeekEntries?.First(g => g.Id == lessonId);
+
+                return Unit.Default;
+            });
+
             var lastDate = SelectedDay;
 
             this.WhenAnyValue(vm => vm.SelectedDay)
@@ -54,8 +63,6 @@ namespace Vulcanova.Features.Homeworks
                     {
                         GetHomeworks.Execute(false).SubscribeAndIgnoreErrors();
                     }
-
-                    lastDate = d;
                 });
 
             this.WhenAnyValue(vm => vm.Entries)
@@ -73,7 +80,7 @@ namespace Vulcanova.Features.Homeworks
                 });
         }
 
-        private IObservable<ImmutableArray<HomeworkEntry>> GetEntries(int accountId, int periodId, DateTime date,
+        private IObservable<ImmutableArray<Homework>> GetEntries(int accountId, int periodId, DateTime date,
             bool forceSync = false)
         {
             var (firstDay, lastDay) = date.GetMondayOfFirstWeekAndSundayOfLastWeekOfMonth();

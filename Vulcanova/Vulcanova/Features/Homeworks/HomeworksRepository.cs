@@ -13,18 +13,18 @@ namespace Vulcanova.Features.Homeworks
             _db = db;
         }
 
-        public async Task<IEnumerable<HomeworkEntry>> GetHomeworksForPupilAsync(int accountId, int pupilId)
+        public async Task<IEnumerable<Homework>> GetHomeworksForPupilAsync(int accountId, int pupilId)
         {
-            return await _db.GetCollection<HomeworkEntry>()
+            return await _db.GetCollection<Homework>()
                 .FindAsync(h => h.IdPupil == pupilId && h.AccountId == accountId);
         }
 
-        public async Task UpdateHomeworksEntriesAsync(IEnumerable<HomeworkEntry> entries, int accountId)
+        public async Task UpdateHomeworksEntriesAsync(IEnumerable<Homework> entries, int accountId)
         {
-            await _db.GetCollection<HomeworkEntry>()
+            await _db.GetCollection<Homework>()
                 .DeleteManyAsync(h => h.AccountId == accountId);
             
-            await _db.GetCollection<HomeworkEntry>().UpsertAsync(entries);
+            await _db.GetCollection<Homework>().UpsertAsync(entries);
         }
     }
 }
