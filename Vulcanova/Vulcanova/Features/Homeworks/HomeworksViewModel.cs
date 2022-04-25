@@ -41,7 +41,7 @@ namespace Vulcanova.Features.Homeworks
                 .InvokeCommand(setCurrentPeriod);
 
             GetHomeworks = ReactiveCommand.CreateFromObservable((bool forceSync) =>
-                GetEntries(accountContext.AccountId, PeriodInfo.CurrentPeriod.Number, SelectedDay, forceSync));
+                GetEntries(accountContext.AccountId, PeriodInfo.CurrentPeriod.Id, SelectedDay, forceSync));
             
             ForceRefreshHomeworks = ReactiveCommand.CreateFromObservable(() =>
                 GetHomeworks.Execute(true));
@@ -84,9 +84,7 @@ namespace Vulcanova.Features.Homeworks
         private IObservable<ImmutableArray<Homework>> GetEntries(int accountId, int periodId, DateTime date,
             bool forceSync = false)
         {
-            var (firstDay, lastDay) = date.GetMondayOfFirstWeekAndSundayOfLastWeekOfMonth();
-
-            return _homeworksService.GetHomeworksByDateRange(accountId, periodId, firstDay, lastDay, forceSync)
+            return _homeworksService.GetHomeworks(accountId, periodId, forceSync)
                 .Select(e => e.ToImmutableArray());
         }
     }

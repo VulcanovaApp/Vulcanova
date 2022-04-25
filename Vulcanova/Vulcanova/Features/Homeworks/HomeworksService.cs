@@ -27,14 +27,14 @@ namespace Vulcanova.Features.Homeworks
             _homeworksRepository = homeworksRepository;
         }
 
-        public IObservable<IEnumerable<Homework>> GetHomeworksByDateRange(int accountId, int periodId, DateTime from, DateTime to,
+        public IObservable<IEnumerable<Homework>> GetHomeworks(int accountId, int periodId,
             bool forceSync = false)
         {
             return Observable.Create<IEnumerable<Homework>>(async observer =>
             {
                 var account = await _accountRepository.GetByIdAsync(accountId);
 
-                var resourceKey = GetHomeworksResourceKey(account, from, to, periodId);
+                var resourceKey = GetHomeworksResourceKey(account, periodId);
 
                 var items = await _homeworksRepository.GetHomeworksForPupilAsync(account.Id, account.Pupil.Id);
                 
@@ -65,7 +65,7 @@ namespace Vulcanova.Features.Homeworks
 
             var client = _apiClientFactory.GetForApiInstanceUrl(account.Unit.RestUrl);
 
-            var response = await client.GetAsync(GetExamsByPupilQuery.ApiEndpoint, query);
+            var response = await client.GetAsync(GetHomeworksByPupilQuery.ApiEndpoint, query);
 
             var entries = response.Envelope.Select(_mapper.Map<Homework>).ToArray();
 
@@ -77,8 +77,8 @@ namespace Vulcanova.Features.Homeworks
             return entries;
         }
 
-        private static string GetHomeworksResourceKey(Account account, DateTime from, DateTime to, int periodId)
-            => $"Homeworks_{account.Id}_{from.ToShortDateString()}-{to.ToLongDateString()}_{periodId}";
+        private static string GetHomeworksResourceKey(Account account, int periodId)
+            => $"Homeworks_{account.Id}_{periodId}";
 
         protected override TimeSpan OfflineDataLifespan => TimeSpan.FromHours(1);
     }
