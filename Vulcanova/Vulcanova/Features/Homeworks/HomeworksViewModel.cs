@@ -4,7 +4,6 @@ using System.Collections.Generic;
 using System.Collections.Immutable;
 using System.Linq;
 using System.Reactive.Linq;
-using System.Windows.Input;
 using Prism.Navigation;
 using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
@@ -41,7 +40,7 @@ namespace Vulcanova.Features.Homeworks
                 .InvokeCommand(setCurrentPeriod);
 
             GetHomeworks = ReactiveCommand.CreateFromObservable((bool forceSync) =>
-                GetEntries(accountContext.AccountId, PeriodInfo.CurrentPeriod.Id, SelectedDay, forceSync));
+                GetEntries(accountContext.AccountId, PeriodInfo.CurrentPeriod.Id, forceSync));
             
             ForceRefreshHomeworks = ReactiveCommand.CreateFromObservable(() =>
                 GetHomeworks.Execute(true));
@@ -58,9 +57,10 @@ namespace Vulcanova.Features.Homeworks
             var lastDate = SelectedDay;
 
             this.WhenAnyValue(vm => vm.SelectedDay)
+                .CombineLatest(this.WhenAnyValue(vm => vm.PeriodInfo.CurrentPeriod.Id))
                 .Subscribe((d) =>
                 {
-                    if (Entries == null || lastDate.Month != d.Month)
+                    if (Entries == null || lastDate.Month != d.First.Month)
                     {
                         GetHomeworks.Execute(false).SubscribeAndIgnoreErrors();
                     }
@@ -81,7 +81,7 @@ namespace Vulcanova.Features.Homeworks
                 });
         }
 
-        private IObservable<ImmutableArray<Homework>> GetEntries(int accountId, int periodId, DateTime date,
+        private IObservable<ImmutableArray<Homework>> GetEntries(int accountId, int periodId,
             bool forceSync = false)
         {
             return _homeworksService.GetHomeworks(accountId, periodId, forceSync)
