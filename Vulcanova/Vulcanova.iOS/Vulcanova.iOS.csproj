@@ -135,7 +135,7 @@
     <ItemGroup>
         <BundleResource Include="GoogleService-Info.plist" />
         <BundleResource Include="Resources\medal-outline.svg" />
-        <BundleResource Include="Resources\reader-outline.svg" />
+        <BundleResource Include="Resources\reader-outline@3x.png" />
         <BundleResource Include="Resources\star-outline.svg" />
         <BundleResource Include="Resources\medal-outline@3x.png" />
         <BundleResource Include="Resources\star-outline@3x.png" />
