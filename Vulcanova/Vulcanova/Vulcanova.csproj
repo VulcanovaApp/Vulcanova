@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
         <TargetFramework>netstandard2.1</TargetFramework>
@@ -37,7 +37,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Vulcanova.Uonet\Vulcanova.Uonet.csproj" />
+      <ProjectReference Include="..\..\Vulcanova.Uonet\Vulcanova.Uonet\Vulcanova.Uonet.csproj" />
     </ItemGroup>
 
     <ItemGroup>
@@ -74,6 +74,22 @@
       </Compile>
       <Compile Update="Features\Attendance\LessonDetails\LessonDetailsView.xaml.cs">
         <DependentUpon>LessonDetailsView.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Features\Settings\Grades\iOS\ValueOfPlusPickeriOS.xaml.cs">
+        <DependentUpon>ValueOfPlusPickeriOS.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Features\Settings\Grades\iOS\ValueOfMinusPickeriOS.xaml.cs">
+        <DependentUpon>ValueOfMinusPickeriOS.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Features\Settings\Grades\Android\ValueOfMinusPickerAndroid.xaml.cs">
+        <DependentUpon>ValueOfMinusPickeriOS.xaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="Features\Settings\Grades\Android\ValueOfPlusPickerAndroid.xaml.cs">
+        <DependentUpon>ValueOfPlusPickeriOS.xaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>

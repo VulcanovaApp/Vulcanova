@@ -1,34 +1,32 @@
-using System.Reactive.Disposables;
-using System.Reactive.Linq;
-using ReactiveMarbles.ObservableEvents;
-using ReactiveUI;
+using Vulcanova.Features.Settings;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Vulcanova.Core.Layout
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class HomeTabbedPage : SvgTabbedPage<HomeTabbedPageViewModel>
+    public partial class HomeTabbedPage
     {
         public HomeTabbedPage()
         {
             InitializeComponent();
 
-            this.WhenActivated(disposable =>
-            {
-                this.Events()
-                    .CurrentPageChanged
-                    .Select(_ => CurrentPage.Title)
-                    .InvokeCommand(ViewModel, vm => vm.UpdateTitle)
-                    .DisposeWith(disposable);
-            
-                this.OneWayBind(ViewModel, vm => vm.Title, v => v.Title)
-                    .DisposeWith(disposable);
+            Page page = new SettingsView();
 
-                this.WhenAnyValue(v => v.ViewModel)
-                    .Select(_ => CurrentPage.Title)
-                    .InvokeCommand(ViewModel, vm => vm.UpdateTitle)
-                    .DisposeWith(disposable);
-            });
+            // Settings page is expected to be placed in "More" tab.
+            // On iOS this breaks Prism's NavigationService if wrapped in a NavigationPage
+            if (Device.RuntimePlatform != Device.iOS)
+            {
+                var navigationPage = new NavigationPage(page)
+                {
+                    Title = page.Title,
+                    IconImageSource = page.IconImageSource
+                };
+
+                page = navigationPage;
+            }
+
+            Children.Add(page);
         }
     }
 }

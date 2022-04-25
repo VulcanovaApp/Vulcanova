@@ -18,6 +18,18 @@ namespace Vulcanova.Features.LuckyNumber
                         v => v.LuckyNumberLabel.Text,
                         l => l?.Number.ToString())
                     .DisposeWith(disposable);
+                
+                this.OneWayBind(ViewModel, 
+                        vm => vm.LuckyNumber, 
+                        v => v.LuckyNumberLabel.IsVisible,
+                        l => l?.Number != 0)
+                    .DisposeWith(disposable);
+                
+                this.OneWayBind(ViewModel, 
+                        vm => vm.LuckyNumber, 
+                        v => v.NoLuckyNumberLabel.IsVisible,
+                        l => l?.Number == 0)
+                    .DisposeWith(disposable);
             });
         }
     }

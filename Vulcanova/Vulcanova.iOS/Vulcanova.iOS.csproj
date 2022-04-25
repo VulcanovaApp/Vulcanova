@@ -96,6 +96,8 @@
     <ItemGroup>
         <Compile Include="Main.cs" />
         <Compile Include="AppDelegate.cs" />
+        <Compile Include="NativeOptionCell.cs" />
+        <Compile Include="OptionCellRenderer.cs" />
         <Compile Include="SvgTabbedPageRenderer.cs" />
         <None Include="Entitlements.plist" />
         <None Include="Info.plist" />
@@ -134,14 +136,12 @@
     </ItemGroup>
     <ItemGroup>
         <BundleResource Include="GoogleService-Info.plist" />
-        <BundleResource Include="Resources\medal-outline.svg" />
-        <BundleResource Include="Resources\reader-outline@3x.png" />
-        <BundleResource Include="Resources\star-outline.svg" />
         <BundleResource Include="Resources\medal-outline@3x.png" />
         <BundleResource Include="Resources\star-outline@3x.png" />
         <BundleResource Include="Resources\calendar-outline@3x.png" />
         <BundleResource Include="Resources\checkmark-done-outline@3x.png" />
         <BundleResource Include="Resources\calendar-number-outline@3x.png" />
+        <BundleResource Include="Resources\settings-outline@3x.png" />
     </ItemGroup>
     <ItemGroup>
         <Content Include=".gitignore" />

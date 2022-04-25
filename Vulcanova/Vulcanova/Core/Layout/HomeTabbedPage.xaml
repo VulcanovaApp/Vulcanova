@@ -12,14 +12,46 @@
                       xmlns:attendance="clr-namespace:Vulcanova.Features.Attendance;assembly=Vulcanova"
                       xmlns:exams="clr-namespace:Vulcanova.Features.Exams;assembly=Vulcanova"
                       xmlns:homeworks="clr-namespace:Vulcanova.Features.Homeworks;assembly=Vulcanova"
+                      xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
                       x:Class="Vulcanova.Core.Layout.HomeTabbedPage"
                       android:TabbedPage.ToolbarPlacement="Bottom"
                       ios:TabbedPage.TranslucencyMode="Translucent"
-                      android:TabbedPage.IsSwipePagingEnabled="False">
-    <grades:GradesView />
-    <timetable:TimetableView />
-    <attendance:AttendanceView />
-    <exams:ExamsView />
-    <homeworks:HomeworksView />
-    <luckyNumber:LuckyNumberView />
+                      android:TabbedPage.IsSwipePagingEnabled="False"
+                      NavigationPage.HasNavigationBar="False">
+    <NavigationPage Title="{x:Static resx:Strings.GradesTabTitle}"
+                    IconImageSource="{OnPlatform iOS=medal-outline@3x.png, Android=ic_medal_outline}">
+        <x:Arguments>
+            <grades:GradesView />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="{x:Static resx:Strings.TimetableTabTitle}"
+                    IconImageSource="{OnPlatform iOS=calendar-outline@3x.png, Android=ic_calendar_outline}">
+        <x:Arguments>
+            <timetable:TimetableView />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="{x:Static resx:Strings.AttendanceTabTitle}"
+                    IconImageSource="{OnPlatform iOS=checkmark-done-outline@3x.png, Android=ic_checkmark_done_outline}">
+        <x:Arguments>
+            <attendance:AttendanceView />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="{x:Static resx:Strings.ExamsTabTitle}"
+                    IconImageSource="{OnPlatform iOS=calendar-number-outline@3x.png, Android=ic_calendar_number_outline}">
+        <x:Arguments>
+            <exams:ExamsView />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="{x:Static resx:Strings.HomeworksTabTitle}"
+                    IconImageSource="{OnPlatform iOS=reader-outline@3x.png, Android=ic_reader_outline}">
+        <x:Arguments>
+            <homeworks:HomeworksView />
+        </x:Arguments>
+    </NavigationPage>
+    <NavigationPage Title="{x:Static resx:Strings.LuckyNumberTabTitle}"
+                    IconImageSource="{OnPlatform iOS=star-outline@3x.png, Android=ic_star_outline}">
+        <x:Arguments>
+            <luckyNumber:LuckyNumberView />
+        </x:Arguments>
+    </NavigationPage>
 </layout:SvgTabbedPage>

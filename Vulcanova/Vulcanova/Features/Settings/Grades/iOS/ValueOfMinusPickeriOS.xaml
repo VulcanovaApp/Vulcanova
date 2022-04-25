@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xamForms:ReactiveContentPage x:TypeArguments="local:ValueOfMinusPickerViewModel"
+                              xmlns="http://xamarin.com/schemas/2014/forms"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:xamForms="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+                              xmlns:local="clr-namespace:Vulcanova.Features.Settings.Grades;assembly=Vulcanova"
+                              xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
+                              Title="{x:Static resx:Strings.GradesSettingsValueOfMinus}"
+                              x:Class="Vulcanova.Features.Settings.Grades.ValueOfMinusPickeriOS">
+    <ContentPage.Content>
+        <TableView Intent="Settings">
+            <TableRoot x:Name="TableRoot">
+                <TableSection x:Name="CustomSection" Title="{x:Static resx:Strings.SettingsCustomValueLabel}">
+                    <EntryCell x:Name="CustomValue" Label="{x:Static resx:Strings.SettingsCustomValueLabel}"
+                               Keyboard="Numeric" />
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</xamForms:ReactiveContentPage>

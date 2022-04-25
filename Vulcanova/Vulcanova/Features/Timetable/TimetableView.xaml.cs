@@ -1,4 +1,5 @@
 using System.Reactive.Disposables;
+using System.Reactive.Linq;
 using ReactiveUI;
 using Xamarin.Forms.Xaml;
 using System;
@@ -21,6 +22,11 @@ namespace Vulcanova.Features.Timetable
                     .DisposeWith(disposable);
                 
                 this.BindCommand(ViewModel, vm => vm.ForceRefreshTimetableEntries, v => v.RefreshView)
+                    .DisposeWith(disposable);
+                
+                this.WhenAnyObservable(v => v.ViewModel.GetTimetableEntries.IsExecuting)
+                    .Select(v => !v)
+                    .BindTo(NoElementsView, x => x.IsVisible)
                     .DisposeWith(disposable);
 
                 ViewModel?.ForceRefreshTimetableEntries.IsExecuting

@@ -7,14 +7,15 @@
                           xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
                           xmlns:local="clr-namespace:Vulcanova.Features.Attendance;assembly=Vulcanova"
                           xmlns:controls="clr-namespace:Vulcanova.Core.Layout.Controls;assembly=Vulcanova"
+                          xmlns:lessonDetails="clr-namespace:Vulcanova.Features.Attendance.LessonDetails;assembly=Vulcanova"
                           Title="{x:Static resx:Strings.AttendanceTabTitle}"
-                          IconImageSource="{OnPlatform iOS=checkmark-done-outline@3x.png, Android=ic_checkmark_done}"
                           x:Class="Vulcanova.Features.Attendance.AttendanceView">
     <ContentPage.Content>
         <Grid>
             <StackLayout>
                 <controls:Calendar
                     x:Name="Calendar"
+                    Padding="0, 10"
                     SelectedColor="{AppThemeBinding Dark={StaticResource DarkTranslucentPrimaryColor}, Light={StaticResource LightTranslucentPrimaryColor}}"
                     TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryTextColor}, Light={StaticResource LightPrimaryTextColor}}"
                     SelectedTextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryColor}, Light={StaticResource LightPrimaryColor}}"
@@ -41,7 +42,7 @@
                 </CollectionView>
             </StackLayout>
             <controls:SlidingUpPanel x:Name="Panel" Open="False">
-                <local:LessonDetailsView x:Name="DetailsView" />
+                <lessonDetails:LessonDetailsView x:Name="DetailsView" />
             </controls:SlidingUpPanel>
         </Grid>
     </ContentPage.Content>

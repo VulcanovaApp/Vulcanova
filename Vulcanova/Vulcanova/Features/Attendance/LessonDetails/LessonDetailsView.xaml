@@ -6,7 +6,7 @@
                    xmlns:controls="clr-namespace:Vulcanova.Core.Layout.Controls;assembly=Vulcanova"
                    xmlns:converters="clr-namespace:Vulcanova.Features.Attendance.Converters;assembly=Vulcanova"
                    xmlns:lessonDetails="clr-namespace:Vulcanova.Features.Attendance.LessonDetails;assembly=Vulcanova"
-                   x:Class="Vulcanova.Features.Attendance.LessonDetailsView"
+                   x:Class="Vulcanova.Features.Attendance.LessonDetails.LessonDetailsView"
                    x:Name="View">
     <ContentView.Resources>
         <ResourceDictionary>

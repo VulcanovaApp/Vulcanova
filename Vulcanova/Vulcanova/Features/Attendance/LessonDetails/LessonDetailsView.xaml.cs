@@ -1,7 +1,7 @@
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Vulcanova.Features.Attendance
+namespace Vulcanova.Features.Attendance.LessonDetails
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LessonDetailsView

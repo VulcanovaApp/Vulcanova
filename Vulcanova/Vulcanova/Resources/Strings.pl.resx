@@ -21,6 +21,12 @@
     <data name="ScanQrCodeButton" xml:space="preserve">
         <value>Skanuj kod QR</value>
     </data>
+    <data name="NoLuckyNumber" xml:space="preserve">
+        <value>Brak numerku na dzisiaj</value>
+    </data>
+    <data name="NoExamsLabel" xml:space="preserve">
+        <value>Brak sprawdzianów w wybranym tygodniu</value>
+    </data>
     <data name="SignInManuallyButton" xml:space="preserve">
         <value>Wpisz dane ręcznie</value>
     </data>
@@ -32,6 +38,9 @@
     </data>
     <data name="AddAccountSubheadingLabel" xml:space="preserve">
         <value>Wpisz poniżej dane z zakładki 'Dodaj konto' w przeglądarkowej wersji dziennika</value>
+    </data>
+    <data name="NoLessonsLabel" xml:space="preserve">
+        <value>Brak lekcji w wybranym dniu</value>
     </data>
     <data name="AddButton" xml:space="preserve">
         <value>Dodaj</value>
@@ -111,7 +120,44 @@
     <data name="ExamsTabTitle" xml:space="preserve">
         <value>Sprawdziany</value>
     </data>
+    <data name="ExamsSubjectLabel" xml:space="preserve">
+        <value>Przedmiot</value>
+    </data>
+    <data name="ExamsCreatorLabel" xml:space="preserve">
+        <value>Zapowiedziany przez</value>
+    </data>
+    <data name="ExamsDeadlineLabel" xml:space="preserve">
+        <value>Termin</value>
+    </data>
+    <data name="ExamsTypeLabel" xml:space="preserve">
+        <value>Typ</value>
+    </data>
+    <data name="ExamsCommentLabel" xml:space="preserve">
+        <value>Opis</value>
+    </data>
+    <data name="ExamsCreatedOnLabel" xml:space="preserve">
+        <value>Dodano</value>
+    </data>
+    <data name="SettingsTabTitle" xml:space="preserve">
+        <value>Ustawienia</value>
+    </data>
+    <data name="SettingsViewGradesSection" xml:space="preserve">
+        <value>Oceny</value>
+    </data>
+    <data name="GradesSettingsValueOfPlus" xml:space="preserve">
+        <value>Wartość plusa</value>
+    </data>
+    <data name="GradesSettingsValueOfMinus" xml:space="preserve">
+        <value>Wartość minusa</value>
+    </data>
     <data name="HomeworksTabTitle" xml:space="preserve">
         <value>Prace domowe</value>
     </data>
+    <data name="SettingsCustomValueLabel" xml:space="preserve">
+        <value>Własna wartość</value>
+    </data>
+    <data name="SettingsCustomOptionText" xml:space="preserve">
+        <value>Własna</value>
+    </data>
 </root>
+>>>>>>> a4399efbb78d86386440da978a8db54587ec9c77

@@ -7,7 +7,8 @@ namespace Vulcanova.Features.Exams
     {
         public ExamsMapperProfile()
         {
-            CreateMap<ExamPayload, Exam>();
+            CreateMap<ExamPayload, Exam>()
+                .ForMember(e => e.CreatorName, cfg => cfg.MapFrom(src => src.Creator.DisplayName));
         }
     }
 }

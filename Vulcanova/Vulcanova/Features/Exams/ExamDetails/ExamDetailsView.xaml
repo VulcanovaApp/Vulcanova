@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<forms:ContentView xmlns:forms="http://xamarin.com/schemas/2014/forms" xmlns="http://xamarin.com/schemas/2014/forms"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
+                   xmlns:controls="clr-namespace:Vulcanova.Core.Layout.Controls;assembly=Vulcanova"
+                   x:Class="Vulcanova.Features.Exams.ExamDetails.ExamDetailsView"
+                   x:Name="View">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style ApplyToDerivedTypes="true" TargetType="StackLayout">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding Light={StaticResource LightPanelColor}, Dark={StaticResource DarkPanelColor}}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentPage.Content>
+        <StackLayout BindingContext="{x:Reference View}">
+            <StackLayout Padding="16, 8">
+                <Label Style="{StaticResource MediumLabelStyle}" HorizontalOptions="FillAndExpand"
+                       Text="{Binding Exam.Subject.Name}" />
+                <Label Text="{Binding Exam.Type}" />
+            </StackLayout>
+            <StackLayout Padding="16, 8" Spacing="16">
+                <controls:FieldView Name="{x:Static resx:Strings.ExamsCreatorLabel}"
+                                    Value="{Binding Exam.CreatorName}" />
+                <controls:FieldView Name="{x:Static resx:Strings.ExamsDeadlineLabel}"
+                                    Value="{Binding Exam.Deadline, StringFormat='{0:d}'}" />
+                <controls:FieldView Name="{x:Static resx:Strings.ExamsCommentLabel}"
+                                    Value="{Binding Exam.Content}" />
+                <controls:FieldView Name="{x:Static resx:Strings.ExamsCreatedOnLabel}"
+                                    Value="{Binding Exam.DateCreated, StringFormat='{0:d}'}" />
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</forms:ContentView>

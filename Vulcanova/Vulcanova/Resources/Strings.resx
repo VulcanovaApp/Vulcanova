@@ -62,6 +62,9 @@
     <data name="GradeWeightLabel" xml:space="preserve">
         <value>weight: {0}</value>
     </data>
+    <data name="NoLuckyNumber" xml:space="preserve">
+        <value>No lucky number for today</value>
+    </data>
     <data name="GradeCreatedDateLabel" xml:space="preserve">
         <value>date: {0:d}</value>
     </data>
@@ -92,6 +95,12 @@
     <data name="NoPredictedGradesLabel" xml:space="preserve">
         <value>No predicted grades have been added or the register does not provide such data</value>
     </data>
+    <data name="NoLessonsLabel" xml:space="preserve">
+        <value>No lessons for the selected day</value>
+    </data>
+    <data name="NoExamsLabel" xml:space="preserve">
+        <value>No exams for the selected week</value>
+    </data>
     <data name="TimetableTabTitle" xml:space="preserve">
         <value>Timetable</value>
     </data>
@@ -119,7 +128,43 @@
     <data name="ExamsTabTitle" xml:space="preserve">
         <value>Exams</value>
     </data>
+    <data name="ExamsSubjectLabel" xml:space="preserve">
+        <value>Subject</value>
+    </data>
+    <data name="ExamsCreatorLabel" xml:space="preserve">
+        <value>Created by</value>
+    </data>
+    <data name="ExamsDeadlineLabel" xml:space="preserve">
+        <value>Date</value>
+    </data>
+    <data name="ExamsTypeLabel" xml:space="preserve">
+        <value>Type</value>
+    </data>
+    <data name="ExamsCommentLabel" xml:space="preserve">
+        <value>Comment</value>
+    </data>
+    <data name="ExamsCreatedOnLabel" xml:space="preserve">
+        <value>Created on</value>
+    </data>
+    <data name="SettingsTabTitle" xml:space="preserve">
+        <value>Settings</value>
+    </data>
+    <data name="SettingsViewGradesSection" xml:space="preserve">
+        <value>Grades</value>
+    </data>
+    <data name="GradesSettingsValueOfPlus" xml:space="preserve">
+        <value>Value of plus</value>
+    </data>
+    <data name="GradesSettingsValueOfMinus" xml:space="preserve">
+        <value>Value of minus</value>
+    </data>
     <data name="HomeworksTabTitle" xml:space="preserve">
         <value>Homeworks</value>
+    </data>
+    <data name="SettingsCustomValueLabel" xml:space="preserve">
+        <value>Custom value</value>
+    </data>
+    <data name="SettingsCustomOptionText" xml:space="preserve">
+        <value>Custom</value>
     </data>
 </root>

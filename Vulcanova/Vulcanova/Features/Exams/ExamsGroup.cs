@@ -7,7 +7,7 @@ namespace Vulcanova.Features.Exams
     {
         public DateTime Date { get; }
 
-        public ExamsGroup(DateTime date, IEnumerable<Exam> animals) : base(animals)
+        public ExamsGroup(DateTime date, IEnumerable<Exam> exams) : base(exams)
         {
             Date = date;
         }

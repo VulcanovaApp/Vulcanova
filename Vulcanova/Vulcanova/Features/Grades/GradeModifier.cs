@@ -1,4 +1,4 @@
-using Xamarin.Essentials;
+using Vulcanova.Features.Settings;
 
 namespace Vulcanova.Features.Grades
 {
@@ -6,12 +6,15 @@ namespace Vulcanova.Features.Grades
     {
         public GradeModifierKind Kind { get; }
 
-        public GradeModifier(GradeModifierKind kind)
+        private readonly ModifiersSettings _modifiers;
+
+        public GradeModifier(GradeModifierKind kind, ModifiersSettings modifiers)
         {
+            _modifiers = modifiers;
             Kind = kind;
         }
 
-        public static GradeModifier FromString(string modifierString)
+        public static GradeModifier FromString(string modifierString, ModifiersSettings modifiers)
         {
             var kind = modifierString switch
             {
@@ -20,7 +23,7 @@ namespace Vulcanova.Features.Grades
                 _ => GradeModifierKind.Unknown
             };
 
-            return new GradeModifier(kind);
+            return new GradeModifier(kind, modifiers);
         }
 
         public decimal ApplyTo(decimal gradeValue)
@@ -30,14 +33,14 @@ namespace Vulcanova.Features.Grades
 
         private decimal GetValue()
         {
-            var floatValue = Kind switch
+            var value = Kind switch
             {
-                GradeModifierKind.Plus => Preferences.Get("Options_ValueOfPlus", 0.5f),
-                GradeModifierKind.Minus => Preferences.Get("Options_ValueOfMinus", -0.25f),
+                GradeModifierKind.Plus => _modifiers.PlusSettings.SelectedValue,
+                GradeModifierKind.Minus => _modifiers.MinusSettings.SelectedValue,
                 _ => 0
             };
 
-            return (decimal)floatValue;
+            return value;
         }
     }
 

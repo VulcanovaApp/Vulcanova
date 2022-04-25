@@ -29,4 +29,7 @@
 
     <Color x:Key="LightErrorColor">#FF3B30</Color>
     <Color x:Key="DarkErrorColor">#FF453A</Color>
+
+    <Color x:Key="LightHeaderColor">#E5E5EA</Color>
+    <Color x:Key="DarkHeaderColor">#2C2C2E</Color>
 </ResourceDictionary>

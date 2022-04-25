@@ -15,7 +15,7 @@ namespace Vulcanova.Features.Timetable
 {
     public class TimetableViewModel : ViewModelBase
     {
-        private ReactiveCommand<bool, IReadOnlyDictionary<DateTime, IEnumerable<TimetableListEntry>>> GetTimetableEntries { get; }
+        public ReactiveCommand<bool, IReadOnlyDictionary<DateTime, IEnumerable<TimetableListEntry>>> GetTimetableEntries { get; }
 
         public ReactiveCommand<Unit, IReadOnlyDictionary<DateTime, IEnumerable<TimetableListEntry>>> ForceRefreshTimetableEntries { get; }
 

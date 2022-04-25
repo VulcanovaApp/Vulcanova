@@ -1,0 +1,3 @@
+[submodule "Vulcanova.Uonet"]
+	path = Vulcanova.Uonet
+	url = git@github.com:VulcanovaApp/Vulcanova.Uonet.git

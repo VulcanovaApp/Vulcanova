@@ -70,6 +70,11 @@
                 Value="{AppThemeBinding Light={StaticResource LightControlColor}, Dark={StaticResource DarkControlColor}}" />
     </Style>
 
+    <Style x:Key="HeaderStyle" TargetType="View">
+        <Setter Property="BackgroundColor"
+                Value="{AppThemeBinding Light={StaticResource LightHeaderColor}, Dark={StaticResource DarkHeaderColor}}" />
+    </Style>
+
     <Style ApplyToDerivedTypes="true" TargetType="StackLayout">
         <Setter Property="BackgroundColor"
                 Value="{AppThemeBinding Light={StaticResource LightBackgroundColor}, Dark={StaticResource DarkBackgroundColor}}" />

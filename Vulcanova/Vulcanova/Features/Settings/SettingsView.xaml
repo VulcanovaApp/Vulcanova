@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<xamForms:ReactiveContentPage x:TypeArguments="local:SettingsViewModel" xmlns="http://xamarin.com/schemas/2014/forms"
+                              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                              xmlns:xamForms="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+                              xmlns:local="clr-namespace:Vulcanova.Features.Settings;assembly=Vulcanova"
+                              xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
+                              IconImageSource="{OnPlatform iOS=settings-outline@3x.png, Android=ic_settings_outline}"
+                              Title="{x:Static resx:Strings.SettingsTabTitle}"
+                              x:Class="Vulcanova.Features.Settings.SettingsView">
+    <ContentPage.Content>
+        <TableView Intent="Settings">
+            <TableRoot>
+                <TableSection Title="{x:Static resx:Strings.SettingsViewGradesSection}">
+                    <ViewCell x:Name="ValueOfPlusCell">
+                        <Grid VerticalOptions="Center" Margin="20, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{x:Static resx:Strings.GradesSettingsValueOfPlus}" />
+                            <Label
+                                x:Name="ValueOfPlusLabel"
+                                Grid.Column="1"
+                                HorizontalTextAlignment="End"
+                                VerticalTextAlignment="Center"
+                                FontSize="Small" />
+                        </Grid>
+                    </ViewCell>
+                    <ViewCell x:Name="ValueOfMinusCell">
+                        <Grid VerticalOptions="Center" Margin="20, 0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{x:Static resx:Strings.GradesSettingsValueOfMinus}" />
+                            <Label
+                                x:Name="ValueOfMinusLabel"
+                                Grid.Column="1"
+                                HorizontalTextAlignment="End"
+                                VerticalTextAlignment="Center"
+                                FontSize="Small" />
+                        </Grid>
+                    </ViewCell>
+                </TableSection>
+            </TableRoot>
+        </TableView>
+    </ContentPage.Content>
+</xamForms:ReactiveContentPage>
