@@ -9,7 +9,7 @@
                           xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
                           xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
                           Title="{x:Static resx:Strings.HomeworksTabTitle}"
-                          IconImageSource="{OnPlatform iOS=calendar-number-outline@3x.png, Android=ic_calendar_number}"
+                          IconImageSource="{OnPlatform iOS=reader-outline.svg, Android=ic_reader_outline}"
                           x:Class="Vulcanova.Features.Homeworks.HomeworksView">
     <ContentPage.Content>
         <Grid>
