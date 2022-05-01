@@ -70,7 +70,12 @@ namespace Vulcanova.Features.Grades.Final
 
             var response = await client.GetAsync(GetGradesSummaryByPupilQuery.ApiEndpoint, query);
 
-            var domainGrades = response.Envelope.Select(_mapper.Map<FinalGradesEntry>).ToArray();
+            var domainGrades = response.Envelope?.Select(_mapper.Map<FinalGradesEntry>).ToArray();
+
+            if (domainGrades == null)
+            {
+                return Array.Empty<FinalGradesEntry>();
+            }
 
             foreach (var grade in domainGrades)
             {
