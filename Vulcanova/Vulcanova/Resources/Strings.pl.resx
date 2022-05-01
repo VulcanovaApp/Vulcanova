@@ -1,163 +1,264 @@
+<?xml version="1.0" encoding="utf-8"?>
 <root>
-    <resheader name="resmimetype">
-        <value>text/microsoft-resx</value>
-    </resheader>
-    <resheader name="version">
-        <value>1.3</value>
-    </resheader>
-    <resheader name="reader">
-        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
-            PublicKeyToken=b77a5c561934e089
-        </value>
-    </resheader>
-    <resheader name="writer">
-        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral,
-            PublicKeyToken=b77a5c561934e089
-        </value>
-    </resheader>
-    <data name="GitHubLinkLabel" xml:space="preserve">
-        <value>Strona projektu na GitHubie</value>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
     </data>
-    <data name="ScanQrCodeButton" xml:space="preserve">
-        <value>Skanuj kod QR</value>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
     </data>
-    <data name="NoLuckyNumber" xml:space="preserve">
-        <value>Brak numerku na dzisiaj</value>
-    </data>
-    <data name="NoExamsLabel" xml:space="preserve">
-        <value>Brak sprawdzianów w wybranym tygodniu</value>
-    </data>
-    <data name="SignInManuallyButton" xml:space="preserve">
-        <value>Wpisz dane ręcznie</value>
-    </data>
-    <data name="VulcanovaSubheadingLabel" xml:space="preserve">
-        <value>Nieoficjalna aplikacja dla dziennika Vulcan UONET+</value>
-    </data>
-    <data name="AddAccountLabel" xml:space="preserve">
-        <value>Dodaj konto</value>
-    </data>
-    <data name="AddAccountSubheadingLabel" xml:space="preserve">
-        <value>Wpisz poniżej dane z zakładki 'Dodaj konto' w przeglądarkowej wersji dziennika</value>
-    </data>
-    <data name="NoLessonsLabel" xml:space="preserve">
-        <value>Brak lekcji w wybranym dniu</value>
-    </data>
-    <data name="AddButton" xml:space="preserve">
-        <value>Dodaj</value>
-    </data>
-    <data name="EnterPinCodeLabel" xml:space="preserve">
-        <value>Wpisz PIN</value>
-    </data>
-    <data name="EnterPinCodeSubheadingLabel" xml:space="preserve">
-        <value>Aby zakończyć dodawanie konta, wpisz kod PIN</value>
-    </data>
-    <data name="QrScannerViewTitle" xml:space="preserve">
-        <value>Skaner QR</value>
-    </data>
-    <data name="LuckyNumberTabTitle" xml:space="preserve">
-        <value>Numerek</value>
-    </data>
-    <data name="GradesTabTitle" xml:space="preserve">
-        <value>Oceny</value>
-    </data>
-    <data name="GradeWeightLabel" xml:space="preserve">
-        <value>waga: {0}</value>
-    </data>
-    <data name="GradeCreatedDateLabel" xml:space="preserve">
-        <value>data: {0:d}</value>
-    </data>
-    <data name="GradeModifiedDateLabel" xml:space="preserve">
-        <value>(zmodifykowano: {0:d})</value>
-    </data>
-    <data name="GradeEmptyNameLabel" xml:space="preserve">
-        <value>bez nazwy</value>
-    </data>
-    <data name="PartialGradesTabTitle" xml:space="preserve">
-        <value>Oceny częściowe</value>
-    </data>
-    <data name="FinalGradesTabTitle" xml:space="preserve">
-        <value>Oceny śródroczne</value>
-    </data>
-    <data name="ErrorInvalidToken" xml:space="preserve">
-        <value>Nie znaleziono adresu API dla podanego tokenu</value>
-    </data>
-    <data name="PredictedGradeLabel" xml:space="preserve">
-        <value>Ocena przewidywana</value>
-    </data>
-    <data name="FinalGradeLabel" xml:space="preserve">
-        <value>Ocena końcowa</value>
-    </data>
-    <data name="NoElementsLabel" xml:space="preserve">
-        <value>Brak elementów</value>
-    </data>
-    <data name="NoPredictedGradesLabel" xml:space="preserve">
-        <value>Żadne oceny końcowe nie zostały wpisane lub dziennik nie umożliwia przeglądania tych danych</value>
-    </data>
-    <data name="TimetableTabTitle" xml:space="preserve">
-        <value>Plan lekcji</value>
-    </data>
-    <data name="AttendanceTabTitle" xml:space="preserve">
-        <value>Frekwencja</value>
-    </data>
-    <data name="LessonTimeValueLabel" xml:space="preserve">
-        <value>{0:HH:mm} – {1:HH:mm}, Lekcja {2}</value>
-    </data>
-    <data name="LessonTimeLabel" xml:space="preserve">
-        <value>Pora</value>
-    </data>
-    <data name="LessonDateLabel" xml:space="preserve">
-        <value>Data</value>
-    </data>
-    <data name="LessonSubjectLabel" xml:space="preserve">
-        <value>Temat</value>
-    </data>
-    <data name="LessonTeacherLabel" xml:space="preserve">
-        <value>Nauczyciel</value>
-    </data>
-    <data name="NoAttendanceLabel" xml:space="preserve">
-        <value>Brak wpisów frekwencyjnych w tym dniu</value>
-    </data>
-    <data name="ExamsTabTitle" xml:space="preserve">
-        <value>Sprawdziany</value>
-    </data>
-    <data name="ExamsSubjectLabel" xml:space="preserve">
-        <value>Przedmiot</value>
-    </data>
-    <data name="ExamsCreatorLabel" xml:space="preserve">
-        <value>Zapowiedziany przez</value>
-    </data>
-    <data name="ExamsDeadlineLabel" xml:space="preserve">
-        <value>Termin</value>
-    </data>
-    <data name="ExamsTypeLabel" xml:space="preserve">
-        <value>Typ</value>
-    </data>
-    <data name="ExamsCommentLabel" xml:space="preserve">
-        <value>Opis</value>
-    </data>
-    <data name="ExamsCreatedOnLabel" xml:space="preserve">
-        <value>Dodano</value>
-    </data>
-    <data name="SettingsTabTitle" xml:space="preserve">
-        <value>Ustawienia</value>
-    </data>
-    <data name="SettingsViewGradesSection" xml:space="preserve">
-        <value>Oceny</value>
-    </data>
-    <data name="GradesSettingsValueOfPlus" xml:space="preserve">
-        <value>Wartość plusa</value>
-    </data>
-    <data name="GradesSettingsValueOfMinus" xml:space="preserve">
-        <value>Wartość minusa</value>
-    </data>
-    <data name="HomeworksTabTitle" xml:space="preserve">
-        <value>Prace domowe</value>
-    </data>
-    <data name="SettingsCustomValueLabel" xml:space="preserve">
-        <value>Własna wartość</value>
-    </data>
-    <data name="SettingsCustomOptionText" xml:space="preserve">
-        <value>Własna</value>
-    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="GitHubLinkLabel" xml:space="preserve">
+    <value>Strona projektu na GitHubie</value>
+  </data>
+  <data name="ScanQrCodeButton" xml:space="preserve">
+    <value>Skanuj kod QR</value>
+  </data>
+  <data name="NoLuckyNumber" xml:space="preserve">
+    <value>Brak numerku na dzisiaj</value>
+  </data>
+  <data name="NoExamsLabel" xml:space="preserve">
+    <value>Brak sprawdzianów w wybranym tygodniu</value>
+  </data>
+  <data name="SignInManuallyButton" xml:space="preserve">
+    <value>Wpisz dane ręcznie</value>
+  </data>
+  <data name="VulcanovaSubheadingLabel" xml:space="preserve">
+    <value>Nieoficjalna aplikacja dla dziennika Vulcan UONET+</value>
+  </data>
+  <data name="AddAccountLabel" xml:space="preserve">
+    <value>Dodaj konto</value>
+  </data>
+  <data name="AddAccountSubheadingLabel" xml:space="preserve">
+    <value>Wpisz poniżej dane z zakładki 'Dodaj konto' w przeglądarkowej wersji dziennika</value>
+  </data>
+  <data name="NoLessonsLabel" xml:space="preserve">
+    <value>Brak lekcji w wybranym dniu</value>
+  </data>
+  <data name="AddButton" xml:space="preserve">
+    <value>Dodaj</value>
+  </data>
+  <data name="EnterPinCodeLabel" xml:space="preserve">
+    <value>Wpisz PIN</value>
+  </data>
+  <data name="EnterPinCodeSubheadingLabel" xml:space="preserve">
+    <value>Aby zakończyć dodawanie konta, wpisz kod PIN</value>
+  </data>
+  <data name="QrScannerViewTitle" xml:space="preserve">
+    <value>Skaner QR</value>
+  </data>
+  <data name="LuckyNumberTabTitle" xml:space="preserve">
+    <value>Numerek</value>
+  </data>
+  <data name="GradesTabTitle" xml:space="preserve">
+    <value>Oceny</value>
+  </data>
+  <data name="GradeWeightLabel" xml:space="preserve">
+    <value>waga: {0}</value>
+  </data>
+  <data name="GradeCreatedDateLabel" xml:space="preserve">
+    <value>data: {0:d}</value>
+  </data>
+  <data name="GradeModifiedDateLabel" xml:space="preserve">
+    <value>(zmodifykowano: {0:d})</value>
+  </data>
+  <data name="GradeEmptyNameLabel" xml:space="preserve">
+    <value>bez nazwy</value>
+  </data>
+  <data name="PartialGradesTabTitle" xml:space="preserve">
+    <value>Oceny częściowe</value>
+  </data>
+  <data name="FinalGradesTabTitle" xml:space="preserve">
+    <value>Oceny śródroczne</value>
+  </data>
+  <data name="ErrorInvalidToken" xml:space="preserve">
+    <value>Nie znaleziono adresu API dla podanego tokenu</value>
+  </data>
+  <data name="PredictedGradeLabel" xml:space="preserve">
+    <value>Ocena przewidywana</value>
+  </data>
+  <data name="FinalGradeLabel" xml:space="preserve">
+    <value>Ocena końcowa</value>
+  </data>
+  <data name="NoElementsLabel" xml:space="preserve">
+    <value>Brak elementów</value>
+  </data>
+  <data name="NoPredictedGradesLabel" xml:space="preserve">
+    <value>Żadne oceny końcowe nie zostały wpisane lub dziennik nie umożliwia przeglądania tych danych</value>
+  </data>
+  <data name="TimetableTabTitle" xml:space="preserve">
+    <value>Plan lekcji</value>
+  </data>
+  <data name="AttendanceTabTitle" xml:space="preserve">
+    <value>Frekwencja</value>
+  </data>
+  <data name="LessonTimeValueLabel" xml:space="preserve">
+    <value>{0:HH:mm} – {1:HH:mm}, Lekcja {2}</value>
+  </data>
+  <data name="LessonTimeLabel" xml:space="preserve">
+    <value>Pora</value>
+  </data>
+  <data name="LessonDateLabel" xml:space="preserve">
+    <value>Data</value>
+  </data>
+  <data name="LessonSubjectLabel" xml:space="preserve">
+    <value>Temat</value>
+  </data>
+  <data name="LessonTeacherLabel" xml:space="preserve">
+    <value>Nauczyciel</value>
+  </data>
+  <data name="NoAttendanceLabel" xml:space="preserve">
+    <value>Brak wpisów frekwencyjnych w tym dniu</value>
+  </data>
+  <data name="ExamsTabTitle" xml:space="preserve">
+    <value>Sprawdziany</value>
+  </data>
+  <data name="ExamsSubjectLabel" xml:space="preserve">
+    <value>Przedmiot</value>
+  </data>
+  <data name="ExamsCreatorLabel" xml:space="preserve">
+    <value>Zapowiedziany przez</value>
+  </data>
+  <data name="ExamsDeadlineLabel" xml:space="preserve">
+    <value>Termin</value>
+  </data>
+  <data name="ExamsTypeLabel" xml:space="preserve">
+    <value>Typ</value>
+  </data>
+  <data name="ExamsCommentLabel" xml:space="preserve">
+    <value>Opis</value>
+  </data>
+  <data name="ExamsCreatedOnLabel" xml:space="preserve">
+    <value>Dodano</value>
+  </data>
+  <data name="SettingsTabTitle" xml:space="preserve">
+    <value>Ustawienia</value>
+  </data>
+  <data name="SettingsViewGradesSection" xml:space="preserve">
+    <value>Oceny</value>
+  </data>
+  <data name="GradesSettingsValueOfPlus" xml:space="preserve">
+    <value>Wartość plusa</value>
+  </data>
+  <data name="GradesSettingsValueOfMinus" xml:space="preserve">
+    <value>Wartość minusa</value>
+  </data>
+  <data name="HomeworkTabTitle" xml:space="preserve">
+    <value>Prace domowe</value>
+  </data>
+  <data name="SettingsCustomValueLabel" xml:space="preserve">
+    <value>Własna wartość</value>
+  </data>
+  <data name="SettingsCustomOptionText" xml:space="preserve">
+    <value>Własna</value>
+  </data>
 </root>
->>>>>>> a4399efbb78d86386440da978a8db54587ec9c77

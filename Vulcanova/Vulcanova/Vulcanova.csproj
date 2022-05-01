@@ -63,6 +63,9 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Compile Update="Features\Homework\HomeworkView.xaml.cs">
+        <DependentUpon>HomeworkView.xaml</DependentUpon>
+      </Compile>
       <Compile Update="Resources\Strings.Designer.cs">
         <DesignTime>True</DesignTime>
         <AutoGen>True</AutoGen>

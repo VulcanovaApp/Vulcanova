@@ -11,7 +11,7 @@
                       xmlns:timetable="clr-namespace:Vulcanova.Features.Timetable;assembly=Vulcanova"
                       xmlns:attendance="clr-namespace:Vulcanova.Features.Attendance;assembly=Vulcanova"
                       xmlns:exams="clr-namespace:Vulcanova.Features.Exams;assembly=Vulcanova"
-                      xmlns:homeworks="clr-namespace:Vulcanova.Features.Homeworks;assembly=Vulcanova"
+                      xmlns:homework="clr-namespace:Vulcanova.Features.Homework;assembly=Vulcanova"
                       xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
                       x:Class="Vulcanova.Core.Layout.HomeTabbedPage"
                       android:TabbedPage.ToolbarPlacement="Bottom"
@@ -42,10 +42,10 @@
             <exams:ExamsView />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="{x:Static resx:Strings.HomeworksTabTitle}"
+    <NavigationPage Title="{x:Static resx:Strings.HomeworkTabTitle}"
                     IconImageSource="{OnPlatform iOS=reader-outline@3x.png, Android=ic_reader_outline}">
         <x:Arguments>
-            <homeworks:HomeworksView />
+            <homework:HomeworkView />
         </x:Arguments>
     </NavigationPage>
     <NavigationPage Title="{x:Static resx:Strings.LuckyNumberTabTitle}"
