@@ -60,7 +60,7 @@ namespace Vulcanova.Features.Homework
         {
             var lastSync = GetLastSync(resourceKey);
         
-            var query = new GetHomeworkByPupilQuery(account.Pupil.Id, periodId, DateTime.MinValue);
+            var query = new GetHomeworkByPupilQuery(account.Pupil.Id, periodId, lastSync);
 
             var client = _apiClientFactory.GetForApiInstanceUrl(account.Unit.RestUrl);
 
