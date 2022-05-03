@@ -7,7 +7,7 @@ namespace Vulcanova.Features.Homework
     {
         public DateTimeOffset Date { get; }
 
-        public HomeworkGroup(DateTimeOffset date, IEnumerable<Homework> animals) : base(animals)
+        public HomeworkGroup(DateTimeOffset date, IEnumerable<Homework> homework) : base(homework)
         {
             Date = date;
         }

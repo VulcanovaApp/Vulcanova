@@ -7,9 +7,9 @@ namespace Vulcanova.Features.Homework
     {
         public long Id { get; set; }
         public Guid Key { get; set; }
-        public long IdPupil { get; set; }
+        public long PupilId { get; set; }
         public long AccountId { get; set; }
-        public long IdHomework { get; set; }
+        public long HomeworkId { get; set; }
         public string Content { get; set; }
         public bool IsAnswerRequired { get; set; }
         public DateTimeOffset DateCreated { get; set; }

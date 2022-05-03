@@ -84,7 +84,7 @@ namespace Vulcanova.Features.Homework
         private IObservable<ImmutableArray<Homework>> GetEntries(int accountId, int periodId,
             bool forceSync = false)
         {
-            return _homeworksService.GetHomeworks(accountId, periodId, forceSync)
+            return _homeworksService.GetHomework(accountId, periodId, forceSync)
                 .Select(e => e.ToImmutableArray());
         }
     }

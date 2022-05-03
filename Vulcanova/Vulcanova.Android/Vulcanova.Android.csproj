@@ -66,6 +66,7 @@
         <AndroidResource Include="Resources\drawable\ic_medal_outline.xml" />
         <AndroidResource Include="Resources\drawable\ic_settings_outline.xml" />
         <AndroidResource Include="Resources\drawable\ic_star_outline.xml" />
+        <AndroidResource Include="Resources\drawable\ic_reader_outline.xml" />
         <AndroidResource Include="Resources\layout\Tabbar.axml" />
         <AndroidResource Include="Resources\layout\Toolbar.axml" />
         <AndroidResource Include="Resources\values\styles.xml" />

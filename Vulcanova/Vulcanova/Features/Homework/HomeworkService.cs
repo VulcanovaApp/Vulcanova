@@ -26,28 +26,28 @@ namespace Vulcanova.Features.Homework
             _homeworksRepository = homeworksRepository;
         }
 
-        public IObservable<IEnumerable<Homework>> GetHomeworks(int accountId, int periodId,
+        public IObservable<IEnumerable<Homework>> GetHomework(int accountId, int periodId,
             bool forceSync = false)
         {
             return Observable.Create<IEnumerable<Homework>>(async observer =>
             {
                 var account = await _accountRepository.GetByIdAsync(accountId);
 
-                var resourceKey = GetHomeworksResourceKey(account, periodId);
+                var resourceKey = GetHomeworkResourceKey(account, periodId);
 
-                var items = await _homeworksRepository.GetHomeworksForPupilAsync(account.Id, account.Pupil.Id);
+                var items = await _homeworksRepository.GetHomeworkForPupilAsync(account.Id, account.Pupil.Id);
                 
                 observer.OnNext(items);
 
                 if (ShouldSync(resourceKey) || forceSync)
                 {
-                    var onlineEntities = await FetchHomeworks(account, periodId, accountId, resourceKey);
+                    var onlineEntities = await FetchHomework(account, periodId, accountId, resourceKey);
 
-                    await _homeworksRepository.UpdateHomeworksEntriesAsync(onlineEntities, account.Id);
+                    await _homeworksRepository.UpdateHomeworkEntriesAsync(onlineEntities, account.Id);
 
                     SetJustSynced(resourceKey);
 
-                    items = await _homeworksRepository.GetHomeworksForPupilAsync(account.Id, account.Pupil.Id);
+                    items = await _homeworksRepository.GetHomeworkForPupilAsync(account.Id, account.Pupil.Id);
                     
                     observer.OnNext(items);
                 }
@@ -56,11 +56,11 @@ namespace Vulcanova.Features.Homework
             });
         }
 
-        private async Task<Homework[]> FetchHomeworks(Account account, int periodId, int accountId, string resourceKey)
+        private async Task<Homework[]> FetchHomework(Account account, int periodId, int accountId, string resourceKey)
         {
             var lastSync = GetLastSync(resourceKey);
         
-            var query = new GetHomeworkByPupilQuery(account.Pupil.Id, periodId, lastSync);
+            var query = new GetHomeworkByPupilQuery(account.Pupil.Id, periodId, DateTime.MinValue);
 
             var client = _apiClientFactory.GetForApiInstanceUrl(account.Unit.RestUrl);
 
@@ -76,7 +76,7 @@ namespace Vulcanova.Features.Homework
             return entries;
         }
 
-        private static string GetHomeworksResourceKey(Account account, int periodId)
+        private static string GetHomeworkResourceKey(Account account, int periodId)
             => $"Homeworks_{account.Id}_{periodId}";
 
         protected override TimeSpan OfflineDataLifespan => TimeSpan.FromHours(1);

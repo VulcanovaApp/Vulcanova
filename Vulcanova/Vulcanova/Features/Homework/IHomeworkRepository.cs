@@ -5,7 +5,7 @@ namespace Vulcanova.Features.Homework
 {
     public interface IHomeworkRepository
     {
-        Task<IEnumerable<Homework>> GetHomeworksForPupilAsync(int accountId, int pupilId);
-        Task UpdateHomeworksEntriesAsync(IEnumerable<Homework> entries, int accountId);
+        Task<IEnumerable<Homework>> GetHomeworkForPupilAsync(int accountId, int pupilId);
+        Task UpdateHomeworkEntriesAsync(IEnumerable<Homework> entries, int accountId);
     }
 }

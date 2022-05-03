@@ -11,6 +11,8 @@ namespace Vulcanova.Features.Homework
         {
             CreateMap<Uonet.Api.Common.Models.Subject, Subject>();
             CreateMap<HomeworkPayload, Homework>()
+                .ForMember(h => h.PupilId, cfg => cfg.MapFrom(src => src.IdPupil))
+                .ForMember(h => h.HomeworkId, cfg => cfg.MapFrom(src => src.IdHomework))
                 .ForMember(h => h.CreatorName, cfg => cfg.MapFrom(src => src.Creator.DisplayName))
                 .ForMember(h => h.DateCreated,
                     cfg => cfg.MapFrom(src => DateTimeOffset.FromUnixTimeMilliseconds(src.DateCreated.Timestamp)))

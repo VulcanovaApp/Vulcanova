@@ -5,6 +5,6 @@ namespace Vulcanova.Features.Homework
 {
     public interface IHomeworkService
     {
-        IObservable<IEnumerable<Homework>> GetHomeworks(int accountId,  int periodId, bool forceSync = false);
+        IObservable<IEnumerable<Homework>> GetHomework(int accountId,  int periodId, bool forceSync = false);
     }
 }

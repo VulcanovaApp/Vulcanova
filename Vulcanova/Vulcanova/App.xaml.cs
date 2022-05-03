@@ -30,7 +30,7 @@ namespace Vulcanova
 
             RxApp.DefaultExceptionHandler = new ReactiveExceptionHandler();
 
-            Initializer.Initialize(false, false);
+            Sharpnado.Tabs.Initializer.Initialize(false, false); 
             Sharpnado.Shades.Initializer.Initialize(false);
 
             Methods.SetSupportBarcodeFormat(BarcodeFormats.QRCode);
