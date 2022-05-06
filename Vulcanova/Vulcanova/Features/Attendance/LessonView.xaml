@@ -19,7 +19,7 @@
     <ContentView.Content>
         <Grid Padding="16, 8" BindingContext="{x:Reference View}">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="46" />
+                <ColumnDefinition Width="25" />
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
@@ -28,30 +28,18 @@
                 HorizontalTextAlignment="Center"
                 FontSize="Large"
                 Text="{Binding Lesson.No}" />
-            <StackLayout Grid.Column="1" Spacing="0">
-                <Label Text="{Binding Lesson.Subject.Name}" />
-                <StackLayout Orientation="Horizontal">
-                    <Label
-                        FontSize="Small"
-                        Text="{Binding Lesson.PresenceType.Name}"
-                        TextColor="{Binding Lesson, Converter={StaticResource JustificationColorConverter}}" />
-                    <layout:TintedCachedImage
-                        IsVisible="{Binding Lesson.JustificationStatus, Converter={StaticResource NullToBooleanConverter}}"
-                        HeightRequest="14"
-                        WidthRequest="14"
-                        Source="{Binding Lesson.JustificationStatus, Converter={StaticResource JustificationStatusConverter}}"
-                        TintColor="{Binding Lesson, Converter={StaticResource JustificationColorConverter}}">
-                    </layout:TintedCachedImage>
-                </StackLayout>
-            </StackLayout>
-            <StackLayout Grid.Column="2" Orientation="Horizontal" Spacing="4" VerticalOptions="Center">
-                <layout:TintedCachedImage
-                    HeightRequest="32"
-                    WidthRequest="32"
-                    Source="resource://Vulcanova.Resources.Icons.chevron-right.svg"
-                    TintColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
-                </layout:TintedCachedImage>
-            </StackLayout>
+            <Label
+                FontSize="15"
+                Grid.Column="1"
+                Text="{Binding Lesson.Subject.Name}"
+                VerticalTextAlignment="Center" />
+            <Label
+                FontSize="15"
+                Grid.Column="2"
+                HorizontalOptions="End"
+                Text="{Binding Lesson.PresenceType.Name}"
+                TextColor="{Binding Lesson, Converter={StaticResource JustificationColorConverter}}"
+                VerticalTextAlignment="Center" />
         </Grid>
     </ContentView.Content>
 </ContentView>
