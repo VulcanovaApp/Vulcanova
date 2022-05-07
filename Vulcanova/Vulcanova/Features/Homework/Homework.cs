@@ -12,10 +12,10 @@ namespace Vulcanova.Features.Homework
         public long HomeworkId { get; set; }
         public string Content { get; set; }
         public bool IsAnswerRequired { get; set; }
-        public DateTimeOffset DateCreated { get; set; }
-        public DateTimeOffset Deadline { get; set; }
-        public DateTimeOffset AnswerDate { get; set; }
-        public DateTimeOffset AnswerDeadline { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime Deadline { get; set; }
+        public DateTime? AnswerDate { get; set; }
+        public DateTime AnswerDeadline { get; set; }
         public string CreatorName { get; set; }
         public Subject Subject { get; set; }
     }

@@ -5,9 +5,9 @@ namespace Vulcanova.Features.Homework
 {
     public class HomeworkGroup : List<Homework>
     {
-        public DateTimeOffset Date { get; }
+        public DateTime Date { get; }
 
-        public HomeworkGroup(DateTimeOffset date, IEnumerable<Homework> homework) : base(homework)
+        public HomeworkGroup(DateTime date, IEnumerable<Homework> homework) : base(homework)
         {
             Date = date;
         }

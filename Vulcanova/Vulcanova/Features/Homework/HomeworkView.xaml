@@ -26,7 +26,7 @@
                         <CollectionView.GroupHeaderTemplate>
                             <DataTemplate x:DataType="local:HomeworkGroup">
                                 <Label Text="{Binding Date, StringFormat='{0:dddd} {0:d}'}"
-                                       BackgroundColor="LightGray" Padding="8" />
+                                       Style="{DynamicResource HeaderStyle}" Padding="8" />
                             </DataTemplate>
                         </CollectionView.GroupHeaderTemplate>
                         <CollectionView.ItemTemplate>
@@ -42,7 +42,7 @@
                                         </Grid.ColumnDefinitions>
                                         <StackLayout Grid.Column="0" Spacing="0">
                                             <Label Text="{Binding Subject.Name}" />
-                                            <Label FontSize="Small" Text="{Binding Content}" />
+                                            <Label FontSize="Small" Text="{Binding Content}" MaxLines="3" />
                                         </StackLayout>
                                         <layout:TintedCachedImage
                                             Grid.Column="1"
