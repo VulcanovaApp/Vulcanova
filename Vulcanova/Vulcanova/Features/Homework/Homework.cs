@@ -5,11 +5,11 @@ namespace Vulcanova.Features.Homework
 {
     public class Homework
     {
-        public long Id { get; set; }
+        public int Id { get; set; }
         public Guid Key { get; set; }
-        public long PupilId { get; set; }
-        public long AccountId { get; set; }
-        public long HomeworkId { get; set; }
+        public int PupilId { get; set; }
+        public int AccountId { get; set; }
+        public int HomeworkId { get; set; }
         public string Content { get; set; }
         public bool IsAnswerRequired { get; set; }
         public DateTime DateCreated { get; set; }
