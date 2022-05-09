@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<rxui:ReactiveContentPage
+    x:TypeArguments="local:DashboardViewModel"
+    Title="{x:Static resx:Strings.DashboardTabTitle}"
+    x:Class="Vulcanova.Features.Dashboard.DashboardView"
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:timetable="clr-namespace:Vulcanova.Features.Timetable;assembly=Vulcanova"
+    xmlns:local="clr-namespace:Vulcanova.Features.Dashboard;assembly=Vulcanova"
+    xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
+    xmlns:grades="clr-namespace:Vulcanova.Features.Grades;assembly=Vulcanova"
+    xmlns:exams="clr-namespace:Vulcanova.Features.Exams;assembly=Vulcanova">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardBackgroundColor}, Light={StaticResource LightDashboardBackgroundColor}}" Padding="0,10">
+                <!-- Time Table -->
+                <Frame
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor},
+                                                      Light=#FFF}"
+                    CornerRadius="5"
+                    HasShadow="False"
+                    Margin="15,5"
+                    Padding="15">
+                    <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}">
+                        <Label
+                            FontSize="Medium"
+                            LineBreakMode="TailTruncation"
+                            Text="{x:Static resx:Strings.TimetableTabTitle}" />
+                        <!--  Separator  -->
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+                        <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}">
+                            <StackLayout BindableLayout.ItemsSource="{Binding TimetableList}" x:Name="TimetableListEntry">
+                                <BindableLayout.EmptyView>
+                                    <Label Text="{x:Static resx:Strings.NoLessonsLabel}"></Label>
+                                </BindableLayout.EmptyView>
+                                <BindableLayout.ItemTemplate>
+                                    <DataTemplate x:DataType="timetable:TimetableListEntry">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label
+                                                    LineBreakMode="TailTruncation"
+                                                    Text="{Binding No, StringFormat='{0}.'}"/>
+                                                <Label
+                                                    LineBreakMode="TailTruncation"
+                                                    Text="{Binding SubjectName}"/>
+                                                <Label
+                                                    LineBreakMode="TailTruncation"
+                                                    Text="{Binding RoomName, StringFormat='({0})'}"/>
+                                            </StackLayout>
+                                            <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End">
+                                                <Label
+                                                    HorizontalOptions="End"
+                                                    LineBreakMode="TailTruncation"
+                                                    Text="{Binding Start, StringFormat='{0:HH:MM}  -'}" />
+                                                <Label
+                                                    HorizontalOptions="End"
+                                                    LineBreakMode="TailTruncation"
+                                                    Text="{Binding End, StringFormat='{0:HH:MM}'}" />
+                                            </StackLayout>
+                                        </Grid>
+                                    </DataTemplate>
+                                </BindableLayout.ItemTemplate>
+                            </StackLayout>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <!-- Grades -->
+                <Frame
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor},
+                                                      Light=#FFF}"
+                    CornerRadius="5"
+                    HasShadow="False"
+                    Margin="15,5"
+                    Padding="15">
+                    <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}">
+                        <Label
+                            FontSize="Medium"
+                            LineBreakMode="TailTruncation"
+                            Text="{x:Static resx:Strings.GradesTabTitle}" />
+                        <!--  Separator  -->
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+                        <StackLayout BindableLayout.ItemsSource="{Binding GradesList}" x:Name="GradesListEntry">
+                            <BindableLayout.EmptyView>
+                                <Label Text="{x:Static resx:Strings.NoElementsLabel}"></Label>
+                            </BindableLayout.EmptyView>
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="grades:Grade">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding Comment, StringFormat='{0}  -'}"/>
+                                        <Label
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding Comment, StringFormat='{0}'}"/>
+                                        <Label
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding Comment, StringFormat='({0})'}"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+                <!-- Lucky Number -->
+                <Frame
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor},
+                                                      Light=#FFF}"
+                    CornerRadius="5"
+                    HasShadow="False"
+                    Margin="15,5"
+                    Padding="15">
+                    <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                FontSize="Medium"
+                                LineBreakMode="TailTruncation"
+                                Text="{x:Static resx:Strings.LuckyNumberTabTitle}"
+                                VerticalOptions="Center" />
+                            <Label
+                                FontSize="Title"
+                                Grid.Column="1"
+                                HorizontalOptions="End"
+                                LineBreakMode="TailTruncation"
+                                x:Name="LuckyNumberEntry"
+                                TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryColor},
+                                                            Light={StaticResource LightPrimaryColor}}"
+                                VerticalOptions="Center" />
+                        </Grid>
+                    </StackLayout>
+                </Frame>
+                <!-- Exams -->
+                <Frame
+                    BackgroundColor="{AppThemeBinding Dark={StaticResource DarkControlColor},
+                                                      Light=#FFF}"
+                    CornerRadius="5"
+                    HasShadow="False"
+                    Margin="15,5"
+                    Padding="15">
+                    <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}">
+                        <Label
+                            FontSize="Medium"
+                            LineBreakMode="TailTruncation"
+                            Text="Sprawdziany" />
+                        <!--  Separator  -->
+                        <BoxView Style="{StaticResource SeparatorStyle}" />
+                        
+                        <StackLayout BindableLayout.ItemsSource="{Binding ExamsList}" x:Name="ExamsListEntry">
+                            <BindableLayout.EmptyView>
+                                <Label Text="{x:Static resx:Strings.NoElementsLabel}"></Label>
+                            </BindableLayout.EmptyView>
+                            <BindableLayout.ItemTemplate>
+                                <DataTemplate x:DataType="exams:Exam">
+                                    <Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="3*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding Subject.Name, StringFormat='{0} - '}"/>
+                                            <Label
+                                                LineBreakMode="TailTruncation"
+                                                Text="{Binding Type, StringFormat='{0}'}"/>
+                                        </StackLayout>
+                                        <Label
+                                            Grid.Column="1"
+                                            HorizontalOptions="End"
+                                            LineBreakMode="TailTruncation"
+                                            Text="{Binding Deadline}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </BindableLayout.ItemTemplate>
+                        </StackLayout>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</rxui:ReactiveContentPage> 

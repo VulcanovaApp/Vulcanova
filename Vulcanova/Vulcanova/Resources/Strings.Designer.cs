@@ -297,6 +297,18 @@ namespace Vulcanova.Resources {
             }
         }
         
+        internal static string NoLuckyNumberShort {
+            get {
+                return ResourceManager.GetString("NoLuckyNumberShort", resourceCulture);
+            }
+        }
+        
+        internal static string DashboardTabTitle {
+            get {
+                return ResourceManager.GetString("DashboardTabTitle", resourceCulture);
+            }
+        }
+        
         internal static string SettingsViewGradesSection {
             get {
                 return ResourceManager.GetString("SettingsViewGradesSection", resourceCulture);

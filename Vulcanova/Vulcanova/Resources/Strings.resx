@@ -159,4 +159,10 @@
     <data name="SettingsCustomOptionText" xml:space="preserve">
         <value>Custom</value>
     </data>
+    <data name="NoLuckyNumberShort" xml:space="preserve">
+        <value>None</value>
+    </data>
+    <data name="DashboardTabTitle" xml:space="preserve">
+        <value>Dashboard</value>
+    </data>
 </root>
