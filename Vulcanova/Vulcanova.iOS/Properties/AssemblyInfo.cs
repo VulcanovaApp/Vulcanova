@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Vulcanova.iOS")]
-[assembly: AssemblyDescription("Unofficial Vulcan mobile client")]
+[assembly: AssemblyDescription("Unofficial Vulcan UONET+ client")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("VulcanovaApp")]
 [assembly: AssemblyProduct("Vulcanova.iOS")]
