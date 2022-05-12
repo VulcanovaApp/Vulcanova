@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Vulcanova.Android")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Unofficial Vulcan UONET+ mobile client")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("CompanyName")]
+[assembly: AssemblyCompany("VulcanovaApp")]
 [assembly: AssemblyProduct("Vulcanova.Android")]
-[assembly: AssemblyCopyright("Copyright © CompanyName Year")]
-[assembly: AssemblyTrademark("CompanyTrademark")]
+[assembly: AssemblyCopyright("Copyright © VulcanovaApp 2022")]
+[assembly: AssemblyTrademark("VulcanovaApp")]
 [assembly: AssemblyCulture("")]
 [assembly: ComVisible(false)]
 
