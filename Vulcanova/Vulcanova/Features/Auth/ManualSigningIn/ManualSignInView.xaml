@@ -15,9 +15,21 @@
                     <Label Text="{x:Static resx:Strings.AddAccountSubheadingLabel}" />
                 </StackLayout>
                 <StackLayout>
-                    <Entry x:Name="Token" Placeholder="Token" />
-                    <Entry x:Name="Symbol" Placeholder="Symbol" />
-                    <Entry x:Name="Pin" Placeholder="Pin" />
+                    <Entry 
+                        x:Name="Token" 
+                        Placeholder="Token" 
+                        PlaceholderColor="{AppThemeBinding Dark={StaticResource DarkSecondaryTextColor}, Light={StaticResource LightSecondaryTextColor}}" 
+                        TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryTextColor}, Light={StaticResource LightPrimaryTextColor}}"/>
+                    <Entry 
+                        x:Name="Symbol" 
+                        Placeholder="Symbol" 
+                        PlaceholderColor="{AppThemeBinding Dark={StaticResource DarkSecondaryTextColor}, Light={StaticResource LightSecondaryTextColor}}" 
+                        TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryTextColor}, Light={StaticResource LightPrimaryTextColor}}"/>
+                    <Entry 
+                        x:Name="Pin" 
+                        Placeholder="Pin"  
+                        PlaceholderColor="{AppThemeBinding Dark={StaticResource DarkSecondaryTextColor}, Light={StaticResource LightSecondaryTextColor}}" 
+                        TextColor="{AppThemeBinding Dark={StaticResource DarkPrimaryTextColor}, Light={StaticResource LightPrimaryTextColor}}"/>
                 </StackLayout>
                 <Button Style="{StaticResource DefaultButtonStyle}" Text="{x:Static resx:Strings.AddButton}"
                         x:Name="AddButton" />
