@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reactive.Disposables;
 using ReactiveUI;
-using Xamarin.Forms;
+using Vulcanova.Resources;
 using Xamarin.Forms.Xaml;
 
 namespace Vulcanova.Features.Dashboard
@@ -16,13 +12,17 @@ namespace Vulcanova.Features.Dashboard
         {
             InitializeComponent();
 
-            this.WhenActivated(disposables =>
+            this.WhenActivated(disposable =>
             {
                 this.OneWayBind(ViewModel, vm => vm.Title, v => v.Title);
                 this.OneWayBind(ViewModel, vm => vm, v => v.TimetableListEntry.BindingContext);
                 this.OneWayBind(ViewModel, vm => vm, v => v.GradesListEntry.BindingContext);
                 this.OneWayBind(ViewModel, vm => vm, v => v.ExamsListEntry.BindingContext);
-                this.OneWayBind(ViewModel, vm => vm.LuckyNumber, v => v.LuckyNumberEntry.Text);
+                this.OneWayBind(ViewModel, 
+                        vm => vm.LuckyNumber, 
+                        v => v.LuckyNumberEntry.Text,
+                        l => l?.Number != 0 ? l?.Number.ToString() : Strings.NoLuckyNumberShort)
+                    .DisposeWith(disposable);
             });
         }
     }

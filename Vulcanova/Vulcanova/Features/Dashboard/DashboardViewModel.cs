@@ -1,28 +1,63 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Prism.Navigation;
+using ReactiveUI;
+using ReactiveUI.Fody.Helpers;
 using Vulcanova.Core.Mvvm;
 using Vulcanova.Features.Exams;
 using Vulcanova.Features.Grades;
+using Vulcanova.Features.LuckyNumber;
 using Vulcanova.Features.Shared;
 using Vulcanova.Features.Timetable;
-using Vulcanova.Resources;
 
 namespace Vulcanova.Features.Dashboard
 {
     public class DashboardViewModel : ViewModelBase
     {
+        
+        private readonly ILuckyNumberService _luckyNumberService;
+        
         public string Title { get; set; }
         public IEnumerable<TimetableListEntry> TimetableList { get; set; }
         public IEnumerable<Grade> GradesList { get; set; }
         public IEnumerable<Exam> ExamsList { get; set; }
-        public String LuckyNumber { get; set; }
-        public DashboardViewModel(INavigationService navigationService) : base(navigationService)
+        
+        
+        public ReactiveCommand<int, LuckyNumber.LuckyNumber> GetLuckyNumber { get; }
+
+        [ObservableAsProperty]
+        public LuckyNumber.LuckyNumber LuckyNumber { get; }
+        
+        
+        public DashboardViewModel(
+            INavigationService navigationService, 
+            AccountContext accountContext, 
+            ILuckyNumberService luckyNumberService) : base(navigationService)
         {
+            
             Title = DateTime.Today.ToString("dddd, dd MMMM");
+            
+            // Timetable
+            
             TimetableList = GetTimetable();
+            
+            // Grades
+            
             GradesList = GetGrades();
-            LuckyNumber = GetLuckyNumber();
+            
+            // Lucky number
+            
+            _luckyNumberService = luckyNumberService;
+
+            GetLuckyNumber = ReactiveCommand.CreateFromTask((int accountId) => GetLuckyNumberAsync(accountId));
+            GetLuckyNumber.ToPropertyEx(this, vm => vm.LuckyNumber);
+
+            accountContext.WhenAnyValue(ctx => ctx.AccountId)
+                .InvokeCommand(GetLuckyNumber);
+            
+            // Exams
+            
             ExamsList = GetExams();
         }
 
@@ -31,9 +66,11 @@ namespace Vulcanova.Features.Dashboard
             return null; // TODO: Get exams from server
         }
 
-        private string GetLuckyNumber()
+        private async Task<LuckyNumber.LuckyNumber> GetLuckyNumberAsync(int accountId)
         {
-            return Strings.NoLuckyNumberShort; // TODO: Get lucky number from server
+            return await _luckyNumberService.GetLuckyNumberAsync(
+                accountId,
+                DateTime.Now);
         }
 
         private IEnumerable<Grade> GetGrades()
