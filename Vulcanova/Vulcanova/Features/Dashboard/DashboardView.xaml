@@ -151,7 +151,7 @@
                         <Label
                             FontSize="Medium"
                             LineBreakMode="TailTruncation"
-                            Text="Sprawdziany" />
+                            Text="{x:Static resx:Strings.ExamsTabTitle}" />
                         <!--  Separator  -->
                         <BoxView Style="{StaticResource SeparatorStyle}" />
                         
