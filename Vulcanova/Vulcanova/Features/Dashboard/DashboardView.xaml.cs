@@ -15,9 +15,10 @@ namespace Vulcanova.Features.Dashboard
             this.WhenActivated(disposable =>
             {
                 this.OneWayBind(ViewModel, vm => vm.Title, v => v.Title);
-                this.OneWayBind(ViewModel, vm => vm, v => v.TimetableListEntry.BindingContext);
                 this.OneWayBind(ViewModel, vm => vm, v => v.GradesListEntry.BindingContext);
                 this.OneWayBind(ViewModel, vm => vm, v => v.ExamsListEntry.BindingContext);
+                this.OneWayBind(ViewModel, vm => vm, v => v.TimetableListEntry.BindingContext)
+                    .DisposeWith(disposable);
                 this.OneWayBind(ViewModel, 
                         vm => vm.LuckyNumber, 
                         v => v.LuckyNumberEntry.Text,

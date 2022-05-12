@@ -12,6 +12,10 @@
     xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
     xmlns:grades="clr-namespace:Vulcanova.Features.Grades;assembly=Vulcanova"
     xmlns:exams="clr-namespace:Vulcanova.Features.Exams;assembly=Vulcanova">
+    <rxui:ReactiveContentPage.Resources>
+        <timetable:TimetableChangeColorConverter x:Key="ColorConverter" />
+        <timetable:TimetableChangeTextDecorationsConverter x:Key="TextDecorationsConverter" />
+    </rxui:ReactiveContentPage.Resources>
     <ContentPage.Content>
         <ScrollView>
             <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardBackgroundColor}, Light={StaticResource LightDashboardBackgroundColor}}" Padding="0,10">
@@ -31,37 +35,53 @@
                         <!--  Separator  -->
                         <BoxView Style="{StaticResource SeparatorStyle}" />
                         <StackLayout BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}">
-                            <StackLayout BindableLayout.ItemsSource="{Binding TimetableList}" x:Name="TimetableListEntry">
+                            <StackLayout BindableLayout.ItemsSource="{Binding TimetableEntries}" x:Name="TimetableListEntry" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}">
                                 <BindableLayout.EmptyView>
                                     <Label Text="{x:Static resx:Strings.NoLessonsLabel}" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}"/>
                                 </BindableLayout.EmptyView>
                                 <BindableLayout.ItemTemplate>
                                     <DataTemplate x:DataType="timetable:TimetableListEntry">
-                                        <Grid>
+                                        <Grid >
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="*" />
-                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="Auto" />
+                                                <ColumnDefinition Width="Auto" />
                                             </Grid.ColumnDefinitions>
-                                            <StackLayout Orientation="Horizontal">
+                                            <StackLayout Orientation="Horizontal" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}">
                                                 <Label
                                                     LineBreakMode="TailTruncation"
-                                                    Text="{Binding No, StringFormat='{0}.'}"/>
+                                                    Text="{Binding No, StringFormat='{0}.'}"
+                                                    TextColor="{Binding Change, Converter={StaticResource ColorConverter}}"
+                                                    TextDecorations="{Binding Change, Converter={StaticResource TextDecorationsConverter}, TargetNullValue={x:Static TextDecorations.None}}"
+                                                    BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}"/>
                                                 <Label
+                                                    Text="{Binding SubjectName}"
+                                                    TextColor="{Binding Change, Converter={StaticResource ColorConverter}}"
+                                                    TextDecorations="{Binding Change, Converter={StaticResource TextDecorationsConverter}, TargetNullValue={x:Static TextDecorations.None}}"
                                                     LineBreakMode="TailTruncation"
-                                                    Text="{Binding SubjectName}"/>
-                                                <Label
-                                                    LineBreakMode="TailTruncation"
-                                                    Text="{Binding RoomName, StringFormat='({0})'}"/>
+                                                    BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}"/>
                                             </StackLayout>
-                                            <StackLayout Grid.Column="1" Orientation="Horizontal" HorizontalOptions="End">
+                                            <Label
+                                                Grid.Column="1"
+                                                Text="{Binding RoomName, StringFormat='({0})'}"
+                                                TextColor="{Binding Change, Converter={StaticResource ColorConverter}}"
+                                                TextDecorations="{Binding Change, Converter={StaticResource TextDecorationsConverter}, TargetNullValue={x:Static TextDecorations.None}}"
+                                                BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}"/>
+                                            <StackLayout Grid.Column="2" Orientation="Horizontal" HorizontalOptions="End" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}">
                                                 <Label
                                                     HorizontalOptions="End"
                                                     LineBreakMode="TailTruncation"
-                                                    Text="{Binding Start, StringFormat='{0:HH:MM}  -'}" />
+                                                    TextColor="{Binding Change, Converter={StaticResource ColorConverter}}"
+                                                    TextDecorations="{Binding Change, Converter={StaticResource TextDecorationsConverter}, TargetNullValue={x:Static TextDecorations.None}}"
+                                                    Text="{Binding Start, StringFormat='{0:HH:MM}'}" 
+                                                    BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}"/>
                                                 <Label
                                                     HorizontalOptions="End"
                                                     LineBreakMode="TailTruncation"
-                                                    Text="{Binding End, StringFormat='{0:HH:MM}'}" />
+                                                    TextColor="{Binding Change, Converter={StaticResource ColorConverter}}"
+                                                    TextDecorations="{Binding Change, Converter={StaticResource TextDecorationsConverter}, TargetNullValue={x:Static TextDecorations.None}}"
+                                                    Text="{Binding End, StringFormat='{0:HH:MM}'}" 
+                                                    BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}"/>
                                             </StackLayout>
                                         </Grid>
                                     </DataTemplate>
@@ -128,7 +148,7 @@
                                 Text="{x:Static resx:Strings.LuckyNumberTabTitle}"
                                 VerticalOptions="Center" />
                             <Label
-                                FontSize="Title"
+                                FontSize="Medium"
                                 Grid.Column="1"
                                 HorizontalOptions="End"
                                 LineBreakMode="TailTruncation"
@@ -155,31 +175,34 @@
                         <!--  Separator  -->
                         <BoxView Style="{StaticResource SeparatorStyle}" />
                         
-                        <StackLayout BindableLayout.ItemsSource="{Binding ExamsList}" x:Name="ExamsListEntry">
+                        <StackLayout BindableLayout.ItemsSource="{Binding CurrentWeekEntries}" x:Name="ExamsListEntry" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}">
                             <BindableLayout.EmptyView>
                                 <Label Text="{x:Static resx:Strings.NoElementsLabel}" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}"/>
                             </BindableLayout.EmptyView>
                             <BindableLayout.ItemTemplate>
                                 <DataTemplate x:DataType="exams:Exam">
-                                    <Grid>
+                                    <Grid BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="3*" />
+                                            <ColumnDefinition Width="Auto" />
                                             <ColumnDefinition Width="*" />
                                         </Grid.ColumnDefinitions>
 
-                                        <StackLayout Orientation="Horizontal">
+                                        <StackLayout Orientation="Horizontal" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}">
                                             <Label
                                                 LineBreakMode="TailTruncation"
-                                                Text="{Binding Subject.Name, StringFormat='{0} - '}"/>
+                                                Text="{Binding Subject.Name, StringFormat='{0},'}"
+                                                BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}"/>
                                             <Label
                                                 LineBreakMode="TailTruncation"
-                                                Text="{Binding Type, StringFormat='{0}'}"/>
+                                                Text="{Binding Type}"
+                                                BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}"/>
                                         </StackLayout>
                                         <Label
                                             Grid.Column="1"
                                             HorizontalOptions="End"
                                             LineBreakMode="TailTruncation"
-                                            Text="{Binding Deadline}" />
+                                            Text="{Binding Deadline, StringFormat='{0:dd/MM/yyyy}'}"
+                                            BackgroundColor="{AppThemeBinding Dark={StaticResource DarkDashboardControlColor}, Light={StaticResource LightDashboardControlColor}}"/>
                                     </Grid>
                                 </DataTemplate>
                             </BindableLayout.ItemTemplate>
