@@ -9,10 +9,7 @@ namespace Vulcanova.Android
 {
     public class CustomEntryRenderer : EntryRenderer
     {
-        public CustomEntryRenderer(Context context) : base(context)
-        {
-            AutoPackage = true;
-        }
+        public CustomEntryRenderer(Context context) : base(context) { }
 
         protected override void OnElementChanged(ElementChangedEventArgs<Entry> element)
         {
