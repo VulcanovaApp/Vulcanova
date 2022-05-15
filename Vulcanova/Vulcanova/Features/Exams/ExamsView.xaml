@@ -55,7 +55,7 @@
                                         </Grid.ColumnDefinitions>
                                         <StackLayout Grid.Column="0" Spacing="0">
                                             <Label Text="{Binding Subject.Name}" />
-                                            <Label FontSize="12" Text="{Binding Content}" TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}" />
+                                            <Label FontSize="Small" Text="{Binding Content}" TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}" />
                                         </StackLayout>
                                         <layout:TintedCachedImage
                                             Grid.Column="1"
