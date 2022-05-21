@@ -10,7 +10,7 @@
                 <TapGestureRecognizer Command="{Binding TapCommand, Source={x:Reference View}}" />
             </Frame.GestureRecognizers>
             <Frame x:Name="Container" HasShadow="False" HorizontalOptions="Center" VerticalOptions="Center"
-                   CornerRadius="16" Padding="0" IsClippedToBounds="True" WidthRequest="32" HeightRequest="32" BackgroundColor="{AppThemeBinding Dark={StaticResource LightPrimaryTextColor}, Light={StaticResource DarkPrimaryTextColor}}">
+                   CornerRadius="16" Padding="0" IsClippedToBounds="True" WidthRequest="32" HeightRequest="32" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBackgroundColor}, Light={StaticResource LightBackgroundColor}}">
                 <Label x:Name="Label" Text="{Binding Day, Source={x:Reference View}}" VerticalOptions="Center"
                        HorizontalOptions="Center" />
             </Frame>
