@@ -33,8 +33,13 @@
                         </CollectionView.EmptyView>
                         <CollectionView.GroupHeaderTemplate>
                             <DataTemplate x:DataType="local:ExamsGroup">
-                                <Label Text="{Binding Date, StringFormat='{0:dddd} {0:d}'}"
-                                       Style="{DynamicResource HeaderStyle}" Padding="8" />
+                                <StackLayout>
+                                    <Label
+                                        FontSize="19"
+                                        Padding="8,8,8,0"
+                                        Text="{Binding Date, StringFormat='{0:dddd, dd MMMM}'}" />
+                                    <BoxView Style="{StaticResource SeparatorStyle}"/>
+                                </StackLayout>
                             </DataTemplate>
                         </CollectionView.GroupHeaderTemplate>
                         <CollectionView.ItemTemplate>
@@ -50,7 +55,7 @@
                                         </Grid.ColumnDefinitions>
                                         <StackLayout Grid.Column="0" Spacing="0">
                                             <Label Text="{Binding Subject.Name}" />
-                                            <Label FontSize="Small" Text="{Binding Content}" />
+                                            <Label FontSize="Small" Text="{Binding Content}" TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}" />
                                         </StackLayout>
                                         <layout:TintedCachedImage
                                             Grid.Column="1"
@@ -61,7 +66,6 @@
                                             TintColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
                                         </layout:TintedCachedImage>
                                     </Grid>
-                                    <BoxView Style="{StaticResource SeparatorStyle}" />
                                 </StackLayout>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>

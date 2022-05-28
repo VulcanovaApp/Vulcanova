@@ -12,5 +12,6 @@ namespace Vulcanova.Features.Timetable
         public DateTime End { get; set; }
         public string RoomName { get; set; }
         public ChangeType? Change { get; set; }
+        public string ChangeNote { get; set; }
     }
 }

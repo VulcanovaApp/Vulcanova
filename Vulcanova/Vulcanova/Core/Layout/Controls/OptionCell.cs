@@ -21,5 +21,23 @@ namespace Vulcanova.Core.Layout.Controls
             get => (string) GetValue(TextProperty);
             set => SetValue(TextProperty, value);
         }
+        
+        public static readonly BindableProperty BackgroundColorProperty =
+            BindableProperty.Create(nameof(BackgroundColor), typeof(Color), typeof(OptionCell));
+
+        public Color BackgroundColor
+        {
+            get => (Color) GetValue(BackgroundColorProperty);
+            set => SetValue(BackgroundColorProperty, value);
+        }
+
+        public static readonly BindableProperty TextColorProperty =
+            BindableProperty.Create(nameof(TextColor), typeof(Color), typeof(OptionCell));
+
+        public Color TextColor
+        {
+            get => (Color) GetValue(TextColorProperty);
+            set => SetValue(TextColorProperty, value);
+        }
     }
 }

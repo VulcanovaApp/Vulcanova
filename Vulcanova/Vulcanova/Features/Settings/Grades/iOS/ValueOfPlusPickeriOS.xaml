@@ -13,7 +13,8 @@
             <TableRoot x:Name="TableRoot">
                 <TableSection x:Name="CustomSection" Title="{x:Static resx:Strings.SettingsCustomValueLabel}">
                     <EntryCell x:Name="CustomValue" Label="{x:Static resx:Strings.SettingsCustomValueLabel}"
-                               Keyboard="Numeric" />
+                               Keyboard="Numeric"
+                               LabelColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
                 </TableSection>
             </TableRoot>
         </TableView>

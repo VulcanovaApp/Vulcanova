@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using Vulcanova.Core.Layout;
 using Vulcanova.Core.Layout.Controls;
 using Xamarin.Forms;
 
@@ -17,10 +18,15 @@ namespace Vulcanova.Features.Settings.Controls
 
         public OptionPickerBuilder WithOption(string option)
         {
-            _tableSection.Add(new OptionCell
+            var cell = new OptionCell
             {
                 Text = option
-            });
+            };
+
+            cell.SetAppThemeColor(OptionCell.TextColorProperty, ThemeUtility.GetColor("LightPrimaryTextColor"),
+                ThemeUtility.GetColor("DarkPrimaryTextColor"));
+
+            _tableSection.Add(cell);
 
             return this;
         }

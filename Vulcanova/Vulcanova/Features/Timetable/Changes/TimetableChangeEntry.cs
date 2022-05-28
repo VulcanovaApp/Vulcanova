@@ -13,6 +13,7 @@ namespace Vulcanova.Features.Timetable.Changes
         public Shared.Subject Subject { get; set; }
         public DateTime LessonDate { get; set; }
         public string Note { get; set; }
+        public string Reason { get; set; }
         public string TeacherName { get; set; }
         public string RoomName { get; set; }
         public Change Change { get; set; }

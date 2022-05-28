@@ -17,8 +17,13 @@ namespace Vulcanova.Core.Layout
             var colorVariant = Application.Current.RequestedTheme == OSAppTheme.Dark
                 ? "Dark"
                 : "Light";
-            
-            if (Application.Current.Resources.TryGetValue($"{colorVariant}{key}", out var color))
+
+            return GetColor($"{colorVariant}{key}");
+        }
+
+        public static Color GetColor(string key)
+        {
+            if (Application.Current.Resources.TryGetValue(key, out var color))
             {
                 return (Color)color;
             }

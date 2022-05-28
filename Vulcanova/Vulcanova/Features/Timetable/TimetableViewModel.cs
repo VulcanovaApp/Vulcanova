@@ -106,7 +106,8 @@ namespace Vulcanova.Features.Timetable
                         SubjectName = change?.Subject?.Name ?? lesson.Subject.Name,
                         RoomName = change?.RoomName ?? lesson.RoomName,
                         TeacherName = change?.TeacherName ?? lesson.TeacherName,
-                        Change = change?.Change.Type
+                        Change = change?.Change.Type,
+                        ChangeNote = change?.Note ?? change?.Reason
                     };
 
                     entries.Add(entry);

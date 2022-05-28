@@ -2,6 +2,7 @@ using System.ComponentModel;
 using UIKit;
 using Vulcanova.Core.Layout.Controls;
 using Xamarin.Forms;
+using Xamarin.Forms.Platform.iOS;
 
 namespace Vulcanova.iOS
 {
@@ -22,7 +23,8 @@ namespace Vulcanova.iOS
         {
             Accessory = cell.Selected ? UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
             TextLabel.Text = cell.Text;
-            BackgroundColor = UIColor.FromRGBA(0, 0, 0, 255);
+            BackgroundColor = cell.BackgroundColor.ToUIColor();
+            TextLabel.TextColor = cell.TextColor.ToUIColor();
 
             OptionCell.PropertyChanged -= CellOnPropertyChanged;
             cell.PropertyChanged += CellOnPropertyChanged;
@@ -32,8 +34,22 @@ namespace Vulcanova.iOS
 
         private void CellOnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            TextLabel.Text = OptionCell.Text;
-            Accessory = OptionCell.Selected ? UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
+            if (e.PropertyName == OptionCell.TextProperty.PropertyName)
+            {
+                TextLabel.Text = OptionCell.Text;
+            }
+            else if (e.PropertyName == OptionCell.SelectedProperty.PropertyName)
+            {
+                Accessory = OptionCell.Selected ? UITableViewCellAccessory.Checkmark : UITableViewCellAccessory.None;
+            }
+            else if (e.PropertyName == OptionCell.BackgroundColorProperty.PropertyName)
+            {
+                BackgroundColor = OptionCell.BackgroundColor.ToUIColor();
+            }
+            else if (e.PropertyName == OptionCell.TextColorProperty.PropertyName)
+            {
+                TextLabel.TextColor = OptionCell.TextColor.ToUIColor();
+            }
         }
     }
 }
