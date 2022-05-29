@@ -4,6 +4,7 @@ using System.Linq;
 using System.Reactive.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Vulcanova.Uonet.Api;
 using Vulcanova.Core.Uonet;
 using Vulcanova.Features.Auth;
 using Vulcanova.Features.Auth.Accounts;
@@ -41,7 +42,7 @@ namespace Vulcanova.Features.Homework
 
                 if (ShouldSync(resourceKey) || forceSync)
                 {
-                    var onlineEntities = await FetchHomework(account, periodId, accountId, resourceKey);
+                    var onlineEntities = await FetchHomework(account, periodId, accountId);
 
                     await _homeworksRepository.UpdateHomeworkEntriesAsync(onlineEntities, account.Id);
 
@@ -56,17 +57,15 @@ namespace Vulcanova.Features.Homework
             });
         }
 
-        private async Task<Homework[]> FetchHomework(Account account, int periodId, int accountId, string resourceKey)
-        {
-            var lastSync = GetLastSync(resourceKey);
-        
-            var query = new GetHomeworkByPupilQuery(account.Pupil.Id, periodId, lastSync);
+        private async Task<Homework[]> FetchHomework(Account account, int periodId, int accountId)
+        {        
+            var query = new GetHomeworkByPupilQuery(account.Pupil.Id, periodId, DateTime.MinValue);
 
             var client = _apiClientFactory.GetForApiInstanceUrl(account.Unit.RestUrl);
 
-            var response = await client.GetAsync(GetHomeworkByPupilQuery.ApiEndpoint, query);
+            var response = client.GetAllAsync(GetHomeworkByPupilQuery.ApiEndpoint, query);
 
-            var entries = response.Envelope.Select(_mapper.Map<Homework>).ToArray();
+            var entries = await response.Select(_mapper.Map<Homework>).ToArrayAsync();
 
             foreach (var entry in entries)
             {

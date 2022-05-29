@@ -261,4 +261,7 @@
   <data name="SettingsCustomOptionText" xml:space="preserve">
     <value>Custom</value>
   </data>
+  <data name="NoHomeworkLabel" xml:space="preserve">
+    <value>No homework for the selected week</value>
+  </data>
 </root>
