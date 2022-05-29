@@ -443,6 +443,10 @@ $RECYCLE.BIN/
 # JetBrains Rider
 .idea/
 *.sln.iml
+!.idea/.idea.Vulcanova/.idea/indexLayout.xml
+!.idea/.idea.Vulcanova/.idea/vcs.xml
+!.idea/.idea.Vulcanova/.idea/runConfigurations
+
 
 ##
 ## Visual Studio Code
