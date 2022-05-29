@@ -443,9 +443,9 @@ $RECYCLE.BIN/
 # JetBrains Rider
 .idea/
 *.sln.iml
-!.idea/.idea.Vulcanova/.idea/indexLayout.xml
-!.idea/.idea.Vulcanova/.idea/vcs.xml
-!.idea/.idea.Vulcanova/.idea/runConfigurations
+!**/.idea/indexLayout.xml
+!**/.idea/vcs.xml
+!**/.idea/runConfigurations
 
 
 ##
