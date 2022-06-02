@@ -9,7 +9,9 @@ namespace Vulcanova.Features.Timetable
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value is ChangeType.Exemption ? TextDecorations.Strikethrough : TextDecorations.None;
+            return value is ChangeType.Exemption or ChangeType.UnitExemption
+                ? TextDecorations.Strikethrough
+                : TextDecorations.None;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)

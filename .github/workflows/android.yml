@@ -20,7 +20,7 @@ jobs:
     - uses: actions/checkout@v2
     - name: Set default Xamarin SDK versions
       run: |
-        $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=11.3
+        $VM_ASSETS/select-xamarin-sdk-v2.sh --mono=6.12 --android=12.2
 
     - uses: actions/checkout@v2
     - name: Setup .NET
@@ -40,4 +40,4 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v2
       with:
-        path: Vulcanova/Vulcanova.Android/bin/Release/com.companyname.Vulcanova-Signed.apk
+        path: Vulcanova/Vulcanova.Android/bin/Release/io.github.vulcanova-Signed.apk

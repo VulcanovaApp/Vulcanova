@@ -34,6 +34,7 @@
                         Text="{Binding Entry.TeacherName}" />
                     <Label FontSize="Small" Text="{Binding Entry.RoomName}" />
                 </StackLayout>
+                <Label FontSize="Small" Text="{Binding Entry.ChangeNote}" />
             </StackLayout>
             <StackLayout Grid.Column="2" Spacing="0" VerticalOptions="Center">
                 <Label

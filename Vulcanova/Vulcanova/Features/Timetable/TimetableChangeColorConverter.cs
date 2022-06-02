@@ -12,7 +12,9 @@ namespace Vulcanova.Features.Timetable
         {
             if (value is ChangeType type)
             {
-                var baseColor = type == ChangeType.Exemption ? "ErrorColor" : "WarningColor";
+                var baseColor = type is ChangeType.Exemption or ChangeType.UnitExemption
+                    ? "ErrorColor"
+                    : "WarningColor";
 
                 return ThemeUtility.GetThemedColorByResourceKey(baseColor);
             }

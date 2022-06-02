@@ -14,7 +14,7 @@
         <AndroidManifest>Properties\AndroidManifest.xml</AndroidManifest>
         <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
         <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
-        <TargetFrameworkVersion>v11.0</TargetFrameworkVersion>
+        <TargetFrameworkVersion>v12.0</TargetFrameworkVersion>
         <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -47,9 +47,10 @@
     <ItemGroup>
         <PackageReference Include="BarcodeScanner.XF" Version="5.0.9" />
         <PackageReference Include="SkiaSharp" Version="2.80.3" />
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="CustomEntryRenderer.cs" />
         <Compile Include="MainActivity.cs" />
         <Compile Include="Resources\Resource.Designer.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

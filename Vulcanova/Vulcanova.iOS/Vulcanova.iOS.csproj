@@ -118,7 +118,7 @@
     <ItemGroup>
         <PackageReference Include="BarcodeScanner.XF" Version="5.0.9" />
         <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2291" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
     </ItemGroup>
     <ItemGroup>
         <PackageReference Include="System.Memory" Version="4.5.4">
