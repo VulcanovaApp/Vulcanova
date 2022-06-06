@@ -20,7 +20,7 @@ namespace Vulcanova.Features.Exams
                     .DisposeWith(disposable);
 
                 this.OneWayBind(ViewModel, vm => vm.CurrentWeekEntries, v => v.EntriesList.ItemsSource,
-                        ex => ex.GroupBy(x => x.Deadline)
+                        ex => ex?.GroupBy(x => x.Deadline)
                             .OrderBy(g => g.Key)
                             .Select(g => new ExamsGroup(g.Key, g.ToList())))
                     .DisposeWith(disposable);

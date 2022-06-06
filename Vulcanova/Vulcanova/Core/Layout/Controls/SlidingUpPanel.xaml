@@ -29,7 +29,7 @@
                 x:Name="Sheet">
                 <trans:Interaction.Transitions>
                     <trans:TransitionCollection>
-                        <trans:TransformTransition />
+                        <trans:TransformTransition x:Name="TransformTransition" />
                     </trans:TransitionCollection>
                 </trans:Interaction.Transitions>
                 <StackLayout Style="{StaticResource PanelStyle}">
