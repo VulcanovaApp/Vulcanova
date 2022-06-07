@@ -3,9 +3,11 @@
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:Vulcanova.Features.Timetable;assembly=Vulcanova"
+             xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
              x:Class="Vulcanova.Features.Timetable.TimetableListEntryView"
              x:Name="View">
     <ContentView.Resources>
+        <layout:NullToBooleanConverter x:Key="NullToBooleanConverter" />
         <local:TimetableChangeColorConverter x:Key="ColorConverter" />
         <local:TimetableChangeTextDecorationsConverter x:Key="TextDecorationsConverter" />
         <Style TargetType="Label">
@@ -34,7 +36,8 @@
                         Text="{Binding Entry.TeacherName}" />
                     <Label FontSize="Small" Text="{Binding Entry.RoomName}" />
                 </StackLayout>
-                <Label FontSize="Small" Text="{Binding Entry.ChangeNote}" />
+                <Label IsVisible="{Binding Entry.ChangeNote, Converter={StaticResource NullToBooleanConverter}}"
+                       FontSize="Small" Text="{Binding Entry.ChangeNote}" />
             </StackLayout>
             <StackLayout Grid.Column="2" Spacing="0" VerticalOptions="Center">
                 <Label

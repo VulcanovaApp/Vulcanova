@@ -69,6 +69,16 @@
         <AndroidResource Include="Resources\drawable\ic_star_outline.xml" />
         <AndroidResource Include="Resources\layout\Tabbar.axml" />
         <AndroidResource Include="Resources\layout\Toolbar.axml" />
+        <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
+        <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher.png" />
+        <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher.png" />
+        <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher.png" />
+        <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher.png" />
+        <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher_round.png" />
+        <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher_round.png" />
+        <AndroidResource Include="Resources\mipmap-xhdpi\ic_launcher_round.png" />
+        <AndroidResource Include="Resources\mipmap-xxhdpi\ic_launcher_round.png" />
+        <AndroidResource Include="Resources\mipmap-xxxhdpi\ic_launcher_round.png" />
         <AndroidResource Include="Resources\values\styles.xml" />
         <AndroidResource Include="Resources\values\colors.xml" />
     </ItemGroup>
