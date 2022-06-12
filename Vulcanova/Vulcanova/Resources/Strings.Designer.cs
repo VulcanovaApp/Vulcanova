@@ -87,11 +87,6 @@ namespace Vulcanova.Resources {
             }
         }
         
-<<<<<<< HEAD
-        /// <summary>
-        ///   Looks up a localized string similar to Attendance.
-        /// </summary>
-=======
         internal static string EnterPinCodeLabel {
             get {
                 return ResourceManager.GetString("EnterPinCodeLabel", resourceCulture);
@@ -212,7 +207,6 @@ namespace Vulcanova.Resources {
             }
         }
         
->>>>>>> 31a2fbad8193a5b0c88497bbe3603230c8d13072
         internal static string AttendanceTabTitle {
             get {
                 return ResourceManager.GetString("AttendanceTabTitle", resourceCulture);
@@ -224,9 +218,6 @@ namespace Vulcanova.Resources {
         /// </summary>
         internal static string EnterPinCodeLabel {
             get {
-<<<<<<< HEAD
-                return ResourceManager.GetString("EnterPinCodeLabel", resourceCulture);
-=======
                 return ResourceManager.GetString("LessonTimeValueLabel", resourceCulture);
             }
         }
@@ -234,7 +225,6 @@ namespace Vulcanova.Resources {
         internal static string LessonTimeLabel {
             get {
                 return ResourceManager.GetString("LessonTimeLabel", resourceCulture);
->>>>>>> 31a2fbad8193a5b0c88497bbe3603230c8d13072
             }
         }
         
