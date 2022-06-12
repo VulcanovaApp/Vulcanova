@@ -12,7 +12,7 @@ namespace Vulcanova.Features.Timetable
         {
             if (value is ChangeType type)
             {
-                var baseColor = type is ChangeType.Exemption or ChangeType.UnitExemption
+                var baseColor = type is ChangeType.Exemption or ChangeType.ClassAbsence
                     ? "ErrorColor"
                     : "WarningColor";
 

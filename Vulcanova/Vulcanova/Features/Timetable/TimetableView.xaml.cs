@@ -2,7 +2,7 @@ using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using ReactiveUI;
 using Xamarin.Forms.Xaml;
-using System;
+using Vulcanova.Core.Rx;
 
 namespace Vulcanova.Features.Timetable
 {
@@ -20,23 +20,13 @@ namespace Vulcanova.Features.Timetable
 
                 this.OneWayBind(ViewModel, vm => vm.CurrentDayEntries, v => v.EntriesList.ItemsSource)
                     .DisposeWith(disposable);
-                
-                this.BindCommand(ViewModel, vm => vm.ForceRefreshTimetableEntries, v => v.RefreshView)
-                    .DisposeWith(disposable);
-                
+
                 this.WhenAnyObservable(v => v.ViewModel.GetTimetableEntries.IsExecuting)
                     .Select(v => !v)
                     .BindTo(NoElementsView, x => x.IsVisible)
                     .DisposeWith(disposable);
 
-                ViewModel?.ForceRefreshTimetableEntries.IsExecuting
-                    .Subscribe(value =>
-                    {
-                        if (!value)
-                        {
-                            RefreshView.IsRefreshing = false;
-                        }
-                    })
+                this.BindForceRefresh(RefreshView, v => v.ViewModel.GetTimetableEntries)
                     .DisposeWith(disposable);
             });
         }

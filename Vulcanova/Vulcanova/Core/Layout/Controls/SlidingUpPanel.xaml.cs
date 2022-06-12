@@ -24,9 +24,13 @@ namespace Vulcanova.Core.Layout.Controls
             set => SetValue(OpenProperty, value); 
         }
 
+        private readonly bool _hwAccelerated = DeviceInfo.Platform == DevicePlatform.iOS;
+
         public SlidingUpPanel()
         {
             InitializeComponent();
+
+            TransformTransition.IsDisabled = !_hwAccelerated;
 
             var startPosition = PanGestureRecognizer.Events().PanUpdated
                 .Where(a => a.StatusType == GestureStatus.Started)
@@ -86,12 +90,28 @@ namespace Vulcanova.Core.Layout.Controls
 
             if (open)
             {
-                Sheet.TranslationY = Sheet.Padding.Bottom;
+                if (_hwAccelerated)
+                {
+                    Sheet.TranslationY = Sheet.Padding.Bottom;
+                }
+                else
+                {
+                    Sheet.TranslateTo(0, Sheet.Padding.Bottom);
+                }
+
                 Backdrop.FadeTo(0.2);
             }
             else
             {
-                Sheet.TranslationY = SlidingPanel.Height;
+                if (_hwAccelerated)
+                {
+                    Sheet.TranslationY = SlidingPanel.Height;
+                }
+                else
+                {
+                    Sheet.TranslateTo(0, SlidingPanel.Height);
+                }
+
                 Backdrop.FadeTo(0);
             }
         }

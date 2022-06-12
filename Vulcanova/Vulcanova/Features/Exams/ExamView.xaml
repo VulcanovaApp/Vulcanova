@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
+             x:Class="Vulcanova.Features.Exams.ExamView"
+             x:Name="View">
+    <ContentView.Content>
+        <Grid Padding="16, 8" BindingContext="{x:Reference View}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackLayout Grid.Column="0" Spacing="0">
+                <Label Text="{Binding Exam.Subject.Name}" />
+                <Label FontSize="Small" Text="{Binding Exam.Content}"
+                       TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}" />
+            </StackLayout>
+            <layout:TintedCachedImage
+                Grid.Column="1"
+                VerticalOptions="Center"
+                HeightRequest="32"
+                WidthRequest="32"
+                Source="resource://Vulcanova.Resources.Icons.chevron-right.svg"
+                TintColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
+            </layout:TintedCachedImage>
+        </Grid>
+    </ContentView.Content>
+</ContentView>

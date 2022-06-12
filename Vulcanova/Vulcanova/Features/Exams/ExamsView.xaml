@@ -7,7 +7,6 @@
                           xmlns:local="clr-namespace:Vulcanova.Features.Exams;assembly=Vulcanova"
                           xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
                           xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
-                          xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
                           xmlns:examDetails="clr-namespace:Vulcanova.Features.Exams.ExamDetails;assembly=Vulcanova"
                           Title="{x:Static resx:Strings.ExamsTabTitle}"
                           x:Class="Vulcanova.Features.Exams.ExamsView">
@@ -44,29 +43,9 @@
                         </CollectionView.GroupHeaderTemplate>
                         <CollectionView.ItemTemplate>
                             <DataTemplate x:DataType="local:Exam">
-                                <StackLayout Padding="0, 1" Spacing="0"
-                                             xe:TouchEffect.Color="{AppThemeBinding Light={StaticResource LightBorderColor}, Dark={StaticResource DarkBorderColor}}"
-                                             xe:Commands.Tap="{Binding Source={RelativeSource AncestorType={x:Type local:ExamsViewModel}}, Path=ShowExamDetails}"
-                                             xe:Commands.TapParameter="{Binding Id}">
-                                    <Grid Padding="16, 8">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*" />
-                                            <ColumnDefinition Width="Auto" />
-                                        </Grid.ColumnDefinitions>
-                                        <StackLayout Grid.Column="0" Spacing="0">
-                                            <Label Text="{Binding Subject.Name}" />
-                                            <Label FontSize="Small" Text="{Binding Content}" TextColor="{AppThemeBinding Light={StaticResource LightSecondaryTextColor}, Dark={StaticResource DarkSecondaryTextColor}}" />
-                                        </StackLayout>
-                                        <layout:TintedCachedImage
-                                            Grid.Column="1"
-                                            VerticalOptions="Center"
-                                            HeightRequest="32"
-                                            WidthRequest="32"
-                                            Source="resource://Vulcanova.Resources.Icons.chevron-right.svg"
-                                            TintColor="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}">
-                                        </layout:TintedCachedImage>
-                                    </Grid>
-                                </StackLayout>
+                                <local:ExamView Exam="{Binding .}" xe:TouchEffect.Color="{AppThemeBinding Light={StaticResource LightBorderColor}, Dark={StaticResource DarkBorderColor}}"
+                                                xe:Commands.Tap="{Binding Source={RelativeSource AncestorType={x:Type local:ExamsViewModel}}, Path=ShowExamDetails}"
+                                                xe:Commands.TapParameter="{Binding Id}"/>
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>

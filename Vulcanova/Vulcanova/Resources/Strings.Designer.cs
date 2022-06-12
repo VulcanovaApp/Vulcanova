@@ -26,9 +26,9 @@ namespace Vulcanova.Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
-        private static global::System.Globalization.CultureInfo resourceCulture;
+        private static System.Globalization.CultureInfo resourceCulture;
         
-        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
         internal Strings() {
         }
         
@@ -87,9 +87,132 @@ namespace Vulcanova.Resources {
             }
         }
         
+<<<<<<< HEAD
         /// <summary>
         ///   Looks up a localized string similar to Attendance.
         /// </summary>
+=======
+        internal static string EnterPinCodeLabel {
+            get {
+                return ResourceManager.GetString("EnterPinCodeLabel", resourceCulture);
+            }
+        }
+        
+        internal static string EnterPinCodeSubheadingLabel {
+            get {
+                return ResourceManager.GetString("EnterPinCodeSubheadingLabel", resourceCulture);
+            }
+        }
+        
+        internal static string QrScannerViewTitle {
+            get {
+                return ResourceManager.GetString("QrScannerViewTitle", resourceCulture);
+            }
+        }
+        
+        internal static string LuckyNumberTabTitle {
+            get {
+                return ResourceManager.GetString("LuckyNumberTabTitle", resourceCulture);
+            }
+        }
+        
+        internal static string GradesTabTitle {
+            get {
+                return ResourceManager.GetString("GradesTabTitle", resourceCulture);
+            }
+        }
+        
+        internal static string GradeWeightLabel {
+            get {
+                return ResourceManager.GetString("GradeWeightLabel", resourceCulture);
+            }
+        }
+        
+        internal static string NoLuckyNumber {
+            get {
+                return ResourceManager.GetString("NoLuckyNumber", resourceCulture);
+            }
+        }
+        
+        internal static string GradeCreatedDateLabel {
+            get {
+                return ResourceManager.GetString("GradeCreatedDateLabel", resourceCulture);
+            }
+        }
+        
+        internal static string GradeModifiedDateLabel {
+            get {
+                return ResourceManager.GetString("GradeModifiedDateLabel", resourceCulture);
+            }
+        }
+        
+        internal static string GradeEmptyNameLabel {
+            get {
+                return ResourceManager.GetString("GradeEmptyNameLabel", resourceCulture);
+            }
+        }
+        
+        internal static string PartialGradesTabTitle {
+            get {
+                return ResourceManager.GetString("PartialGradesTabTitle", resourceCulture);
+            }
+        }
+        
+        internal static string FinalGradesTabTitle {
+            get {
+                return ResourceManager.GetString("FinalGradesTabTitle", resourceCulture);
+            }
+        }
+        
+        internal static string ErrorInvalidToken {
+            get {
+                return ResourceManager.GetString("ErrorInvalidToken", resourceCulture);
+            }
+        }
+        
+        internal static string PredictedGradeLabel {
+            get {
+                return ResourceManager.GetString("PredictedGradeLabel", resourceCulture);
+            }
+        }
+        
+        internal static string FinalGradeLabel {
+            get {
+                return ResourceManager.GetString("FinalGradeLabel", resourceCulture);
+            }
+        }
+        
+        internal static string NoElementsLabel {
+            get {
+                return ResourceManager.GetString("NoElementsLabel", resourceCulture);
+            }
+        }
+        
+        internal static string NoPredictedGradesLabel {
+            get {
+                return ResourceManager.GetString("NoPredictedGradesLabel", resourceCulture);
+            }
+        }
+        
+        internal static string NoLessonsLabel {
+            get {
+                return ResourceManager.GetString("NoLessonsLabel", resourceCulture);
+            }
+        }
+        
+        internal static string NoExamsLabel {
+            get {
+                return ResourceManager.GetString("NoExamsLabel", resourceCulture);
+            }
+        }
+        
+        internal static string TimetableTabTitle {
+            get {
+                return ResourceManager.GetString("TimetableTabTitle", resourceCulture);
+            }
+        }
+        
+>>>>>>> 31a2fbad8193a5b0c88497bbe3603230c8d13072
         internal static string AttendanceTabTitle {
             get {
                 return ResourceManager.GetString("AttendanceTabTitle", resourceCulture);
@@ -101,7 +224,17 @@ namespace Vulcanova.Resources {
         /// </summary>
         internal static string EnterPinCodeLabel {
             get {
+<<<<<<< HEAD
                 return ResourceManager.GetString("EnterPinCodeLabel", resourceCulture);
+=======
+                return ResourceManager.GetString("LessonTimeValueLabel", resourceCulture);
+            }
+        }
+        
+        internal static string LessonTimeLabel {
+            get {
+                return ResourceManager.GetString("LessonTimeLabel", resourceCulture);
+>>>>>>> 31a2fbad8193a5b0c88497bbe3603230c8d13072
             }
         }
         
@@ -498,6 +631,12 @@ namespace Vulcanova.Resources {
         internal static string VulcanovaSubheadingLabel {
             get {
                 return ResourceManager.GetString("VulcanovaSubheadingLabel", resourceCulture);
+            }
+        }
+        
+        internal static string FinalGradesAverage {
+            get {
+                return ResourceManager.GetString("FinalGradesAverage", resourceCulture);
             }
         }
     }

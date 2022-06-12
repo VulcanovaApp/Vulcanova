@@ -15,9 +15,7 @@ namespace Vulcanova.Features.Grades.Summary
 {
     public class GradesSummaryViewModel : ViewModelBase
     {
-        public ReactiveCommand<int, IEnumerable<Grade>> GetGrades { get; }
-
-        public ReactiveCommand<Unit, IEnumerable<Grade>> ForceRefreshGrades { get; }
+        public ReactiveCommand<bool, IEnumerable<Grade>> GetGrades { get; }
 
         public ReactiveCommand<int, Unit> ShowSubjectGradesDetails { get; }
 
@@ -37,19 +35,13 @@ namespace Vulcanova.Features.Grades.Summary
             IGradesService gradesService,
             AppSettings settings) : base(navigationService)
         {
-            GetGrades = ReactiveCommand.CreateFromObservable((int periodId) =>
+            GetGrades = ReactiveCommand.CreateFromObservable((bool forceSync) =>
                 gradesService
-                    .GetPeriodGrades(accountContext.AccountId, periodId, false));
-            
-            ForceRefreshGrades = ReactiveCommand.CreateFromObservable(() =>
-                gradesService
-                    .GetPeriodGrades(accountContext.AccountId, PeriodId.Value, true));
+                    .GetPeriodGrades(accountContext.AccountId, PeriodId!.Value, forceSync));
 
             GetGrades.ToPropertyEx(this, vm => vm.RawGrades);
 
-            ForceRefreshGrades.ToPropertyEx(this, vm => vm.RawGrades);
-
-            GetGrades.IsExecuting.ToPropertyEx(this, vm => vm.IsSyncing);
+            GetGrades.IsExecuting.ToPropertyEx(this, vm => vm.IsSyncing);   
 
             ShowSubjectGradesDetails = ReactiveCommand.Create((int subjectId) =>
             {
@@ -62,7 +54,7 @@ namespace Vulcanova.Features.Grades.Summary
                 .WhereNotNull()
                 .Subscribe(v =>
                 {
-                    GetGrades.Execute(v!.Value).SubscribeAndIgnoreErrors();
+                    GetGrades.Execute(false).SubscribeAndIgnoreErrors();
                 });
 
             var modifiersObservable = settings

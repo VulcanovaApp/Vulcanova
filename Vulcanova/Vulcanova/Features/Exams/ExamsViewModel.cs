@@ -17,7 +17,6 @@ namespace Vulcanova.Features.Exams
     public class ExamsViewModel : ViewModelBase
     {
         public ReactiveCommand<bool, ImmutableArray<Exam>> GetExams { get; }
-        public ReactiveCommand<Unit, ImmutableArray<Exam>> ForceRefreshExams { get; }
         public ReactiveCommand<int, Unit> ShowExamDetails { get; }
 
         [ObservableAsProperty] public ImmutableArray<Exam> Entries { get; }
@@ -37,9 +36,6 @@ namespace Vulcanova.Features.Exams
 
             GetExams = ReactiveCommand.CreateFromObservable((bool forceSync) =>
                 GetEntries(accountContext.AccountId, SelectedDay, forceSync));
-            
-            ForceRefreshExams = ReactiveCommand.CreateFromObservable(() =>
-                GetExams.Execute(true));
 
             GetExams.ToPropertyEx(this, vm => vm.Entries);
             

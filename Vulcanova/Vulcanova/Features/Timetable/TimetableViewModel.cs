@@ -17,8 +17,6 @@ namespace Vulcanova.Features.Timetable
     {
         public ReactiveCommand<bool, IReadOnlyDictionary<DateTime, IEnumerable<TimetableListEntry>>> GetTimetableEntries { get; }
 
-        public ReactiveCommand<Unit, IReadOnlyDictionary<DateTime, IEnumerable<TimetableListEntry>>> ForceRefreshTimetableEntries { get; }
-
         [ObservableAsProperty] public IReadOnlyDictionary<DateTime, IEnumerable<TimetableListEntry>> Entries { get; }
 
         [Reactive] public IEnumerable<TimetableListEntry> CurrentDayEntries { get; private set; }
@@ -39,9 +37,6 @@ namespace Vulcanova.Features.Timetable
             GetTimetableEntries = ReactiveCommand.CreateFromObservable((bool forceSync) =>
                 GetEntries(accountContext.AccountId, SelectedDay, forceSync)
                     .SubscribeOn(RxApp.TaskpoolScheduler));
-
-            ForceRefreshTimetableEntries = ReactiveCommand.CreateFromObservable(() =>
-                GetTimetableEntries.Execute(true));
 
             GetTimetableEntries.ToPropertyEx(this, vm => vm.Entries);
 

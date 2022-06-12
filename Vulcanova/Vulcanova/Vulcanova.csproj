@@ -32,7 +32,7 @@
         <PackageReference Include="System.Collections.Immutable" Version="6.0.0" />
         <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.4.11.982" />
         <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.4.11.982" />
-        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2401" />
+        <PackageReference Include="Xamarin.Forms" Version="5.0.0.2478" />
         <PackageReference Include="XamEffects" Version="1.6.3" />
     </ItemGroup>
 

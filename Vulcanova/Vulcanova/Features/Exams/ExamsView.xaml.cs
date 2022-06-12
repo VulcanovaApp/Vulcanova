@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using ReactiveUI;
+using Vulcanova.Core.Rx;
 using Xamarin.Forms.Xaml;
 
 namespace Vulcanova.Features.Exams
@@ -20,7 +21,7 @@ namespace Vulcanova.Features.Exams
                     .DisposeWith(disposable);
 
                 this.OneWayBind(ViewModel, vm => vm.CurrentWeekEntries, v => v.EntriesList.ItemsSource,
-                        ex => ex.GroupBy(x => x.Deadline)
+                        ex => ex?.GroupBy(x => x.Deadline)
                             .OrderBy(g => g.Key)
                             .Select(g => new ExamsGroup(g.Key, g.ToList())))
                     .DisposeWith(disposable);
@@ -30,7 +31,7 @@ namespace Vulcanova.Features.Exams
                     .BindTo(NoElementsView, x => x.IsVisible)
                     .DisposeWith(disposable);
 
-                this.BindCommand(ViewModel, vm => vm.ForceRefreshExams, v => v.RefreshView)
+                this.BindForceRefresh(RefreshView, v => v.ViewModel.GetExams)
                     .DisposeWith(disposable);
 
                 this.OneWayBind(ViewModel, vm => vm.SelectedExam, v => v.DetailsView.Exam)

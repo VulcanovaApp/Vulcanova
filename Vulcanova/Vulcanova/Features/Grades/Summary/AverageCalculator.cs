@@ -25,6 +25,20 @@ namespace Vulcanova.Features.Grades.Summary
 
         private static readonly Regex ValueRegex = new("(\\d+)([+|-])?");
 
+        public static bool TryGetValueFromContentRaw(string contentRaw, ModifiersSettings modifiers, out decimal d)
+        {
+            var value = TryGetValueFromContentRaw(contentRaw, modifiers);
+
+            if (value == null)
+            {
+                d = 0;
+                return false;
+            }
+            
+            d = value.Value;
+            return true;
+        }
+
         private static decimal? TryGetValueFromContentRaw(string contentRaw, ModifiersSettings modifiers)
         {
             var match = ValueRegex.Match(contentRaw);

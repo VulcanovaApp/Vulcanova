@@ -7,6 +7,7 @@ using AutoMapper;
 using Vulcanova.Core.Uonet;
 using Vulcanova.Features.Auth;
 using Vulcanova.Features.Auth.Accounts;
+using Vulcanova.Uonet.Api;
 using Vulcanova.Uonet.Api.Grades;
 
 namespace Vulcanova.Features.Grades
@@ -36,20 +37,22 @@ namespace Vulcanova.Features.Grades
             {
                 var account = await _accountRepository.GetByIdAsync(accountId);
 
-                var resourceKey = GetGradesResourceKey(account, periodId);
+                var normalGradesResourceKey = GetGradesResourceKey(account, periodId);
+                var behaviourGradesResourceKey = GetBehaviourGradesResourceKey(account, periodId);
 
                 var items = await _gradesRepository.GetGradesForPupilAsync(account.Id, account.Pupil.Id,
                     periodId);
 
                 observer.OnNext(items);
 
-                if (ShouldSync(resourceKey) || forceSync)
+                if (ShouldSync(normalGradesResourceKey) || ShouldSync(behaviourGradesResourceKey) || forceSync)
                 {
                     var onlineGrades = await FetchPeriodGradesAsync(account, periodId);
 
                     await _gradesRepository.UpdatePupilGradesAsync(onlineGrades);
 
-                    SetJustSynced(resourceKey);
+                    SetJustSynced(normalGradesResourceKey);
+                    SetJustSynced(behaviourGradesResourceKey);
 
                     items = await _gradesRepository.GetGradesForPupilAsync(account.Id, account.Pupil.Id,
                         periodId);
@@ -63,15 +66,29 @@ namespace Vulcanova.Features.Grades
 
         private async Task<Grade[]> FetchPeriodGradesAsync(Account account, int periodId)
         {
-            var lastSync = GetLastSync(GetGradesResourceKey(account, periodId));
-
-            var query = new GetGradesByPupilQuery(account.Unit.Id, account.Pupil.Id, periodId, lastSync, 500);
-
             var client = _apiClientFactory.GetForApiInstanceUrl(account.Unit.RestUrl);
 
-            var response = await client.GetAsync(GetGradesByPupilQuery.ApiEndpoint, query);
+            var normalGradesLastSync = GetLastSync(GetGradesResourceKey(account, periodId));
 
-            var domainGrades = response.Envelope.Select(_mapper.Map<Grade>).ToArray();
+            var normalGradesQuery =
+                new GetGradesByPupilQuery(account.Unit.Id, account.Pupil.Id, periodId, normalGradesLastSync, 500);
+
+            var normalGrades = client.GetAllAsync(GetGradesByPupilQuery.ApiEndpoint,
+                normalGradesQuery);
+
+            var behaviourGradesLastSync = GetLastSync(GetGradesResourceKey(account, periodId));
+
+            var behaviourGradesQuery =
+                new GetBehaviourGradesByPupilQuery(account.Unit.Id, account.Pupil.Id, periodId, behaviourGradesLastSync,
+                    500);
+
+            var behaviourGrades = client.GetAllAsync(GetBehaviourGradesByPupilQuery.ApiEndpoint,
+                behaviourGradesQuery);
+
+            var domainGrades = await normalGrades
+                .Concat(behaviourGrades)
+                .Select(_mapper.Map<Grade>)
+                .ToArrayAsync();
 
             foreach (var grade in domainGrades)
             {
@@ -83,6 +100,9 @@ namespace Vulcanova.Features.Grades
 
         private static string GetGradesResourceKey(Account account, int periodId)
             => $"Grades_{account.Id}_{account.Pupil.Id}_{periodId}";
+        
+        private static string GetBehaviourGradesResourceKey(Account account, int periodId)
+            => $"BehaviourGrades_{account.Id}_{account.Pupil.Id}_{periodId}";
 
         protected override TimeSpan OfflineDataLifespan => TimeSpan.FromMinutes(15);
     }

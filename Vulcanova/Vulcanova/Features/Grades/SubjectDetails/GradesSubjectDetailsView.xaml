@@ -38,7 +38,8 @@
                                     HorizontalTextAlignment="Center"
                                     FontSize="Large"
                                     TextColor="{Binding Column.Color, Converter={StaticResource GradeColorConverter}}"
-                                    Text="{Binding Content}" />
+                                    Text="{Binding Content}"
+                                    LineBreakMode="TailTruncation" />
                                 <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="0">
                                     <Label FontSize="Small" FontAttributes="Bold"
                                            Text="{Binding Column.Name, Converter={StaticResource FallbackStringConverter}, ConverterParameter={x:Static resx:Strings.GradeEmptyNameLabel}}" />
