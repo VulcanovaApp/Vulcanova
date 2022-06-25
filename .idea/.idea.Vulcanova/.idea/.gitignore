@@ -1,13 +1,13 @@
-﻿# Default ignored files
+# Default ignored files
 /shelf/
 /workspace.xml
 # Rider ignored files
-/.idea.Vulcanova.iml
-/projectSettingsUpdater.xml
 /modules.xml
+/projectSettingsUpdater.xml
+/.idea.Vulcanova.iml
 /contentModel.xml
-# Editor-based HTTP Client requests
-/httpRequests/
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/
