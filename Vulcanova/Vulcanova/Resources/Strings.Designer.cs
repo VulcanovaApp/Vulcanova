@@ -7,292 +7,401 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Vulcanova.Resources {
+namespace Vulcanova.Resources
+{
     using System;
-    
-    
+
+
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class Strings {
-        
+    internal class Strings
+    {
+
         private static System.Resources.ResourceManager resourceMan;
-        
+
         private static System.Globalization.CultureInfo resourceCulture;
 
         [System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
-        internal Strings() {
+        internal Strings()
+        {
         }
-        
+
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static System.Resources.ResourceManager ResourceManager {
-            get {
-                if (object.Equals(null, resourceMan)) {
+        internal static System.Resources.ResourceManager ResourceManager
+        {
+            get
+            {
+                if (object.Equals(null, resourceMan))
+                {
                     System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Vulcanova.Resources.Strings", typeof(Strings).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
             }
         }
-        
+
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static System.Globalization.CultureInfo Culture {
-            get {
+        internal static System.Globalization.CultureInfo Culture
+        {
+            get
+            {
                 return resourceCulture;
             }
-            set {
+            set
+            {
                 resourceCulture = value;
             }
         }
-        
-        internal static string ScanQrCodeButton {
-            get {
+
+        internal static string ScanQrCodeButton
+        {
+            get
+            {
                 return ResourceManager.GetString("ScanQrCodeButton", resourceCulture);
             }
         }
-        
-        internal static string SignInManuallyButton {
-            get {
+
+        internal static string SignInManuallyButton
+        {
+            get
+            {
                 return ResourceManager.GetString("SignInManuallyButton", resourceCulture);
             }
         }
-        
-        internal static string VulcanovaSubheadingLabel {
-            get {
+
+        internal static string VulcanovaSubheadingLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("VulcanovaSubheadingLabel", resourceCulture);
             }
         }
-        
-        internal static string GitHubLinkLabel {
-            get {
+
+        internal static string GitHubLinkLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("GitHubLinkLabel", resourceCulture);
             }
         }
-        
-        internal static string AddAccountLabel {
-            get {
+
+        internal static string AddAccountLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("AddAccountLabel", resourceCulture);
             }
         }
-        
-        internal static string AddAccountSubheadingLabel {
-            get {
+
+        internal static string AddAccountSubheadingLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("AddAccountSubheadingLabel", resourceCulture);
             }
         }
-        
-        internal static string AddButton {
-            get {
+
+        internal static string AddButton
+        {
+            get
+            {
                 return ResourceManager.GetString("AddButton", resourceCulture);
             }
         }
-        
-        internal static string EnterPinCodeLabel {
-            get {
+
+        internal static string EnterPinCodeLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("EnterPinCodeLabel", resourceCulture);
             }
         }
-        
-        internal static string EnterPinCodeSubheadingLabel {
-            get {
+
+        internal static string EnterPinCodeSubheadingLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("EnterPinCodeSubheadingLabel", resourceCulture);
             }
         }
-        
-        internal static string QrScannerViewTitle {
-            get {
+
+        internal static string QrScannerViewTitle
+        {
+            get
+            {
                 return ResourceManager.GetString("QrScannerViewTitle", resourceCulture);
             }
         }
-        
-        internal static string LuckyNumberTabTitle {
-            get {
+
+        internal static string LuckyNumberTabTitle
+        {
+            get
+            {
                 return ResourceManager.GetString("LuckyNumberTabTitle", resourceCulture);
             }
         }
-        
-        internal static string GradesTabTitle {
-            get {
+
+        internal static string GradesTabTitle
+        {
+            get
+            {
                 return ResourceManager.GetString("GradesTabTitle", resourceCulture);
             }
         }
-        
-        internal static string GradeWeightLabel {
-            get {
+
+        internal static string GradeWeightLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("GradeWeightLabel", resourceCulture);
             }
         }
-        
-        internal static string GradeCreatedDateLabel {
-            get {
-                return ResourceManager.GetString("GradeCreatedDateLabel", resourceCulture);
+
+        internal static string HomeworkTabTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("HomeworkTabTitle", resourceCulture);
             }
         }
-        
-        internal static string GradeModifiedDateLabel {
-            get {
-                return ResourceManager.GetString("GradeModifiedDateLabel", resourceCulture);
-            }
-        }
-        
-        internal static string GradeEmptyNameLabel {
-            get {
-                return ResourceManager.GetString("GradeEmptyNameLabel", resourceCulture);
-            }
-        }
-        
-        internal static string PartialGradesTabTitle {
-            get {
-                return ResourceManager.GetString("PartialGradesTabTitle", resourceCulture);
-            }
-        }
-        
-        internal static string FinalGradesTabTitle {
-            get {
-                return ResourceManager.GetString("FinalGradesTabTitle", resourceCulture);
-            }
-        }
-        
-        internal static string ErrorInvalidToken {
-            get {
-                return ResourceManager.GetString("ErrorInvalidToken", resourceCulture);
-            }
-        }
-        
-        internal static string PredictedGradeLabel {
-            get {
-                return ResourceManager.GetString("PredictedGradeLabel", resourceCulture);
-            }
-        }
-        
-        internal static string FinalGradeLabel {
-            get {
-                return ResourceManager.GetString("FinalGradeLabel", resourceCulture);
-            }
-        }
-        
-        internal static string NoElementsLabel {
-            get {
-                return ResourceManager.GetString("NoElementsLabel", resourceCulture);
-            }
-        }
-        
-        internal static string NoPredictedGradesLabel {
-            get {
-                return ResourceManager.GetString("NoPredictedGradesLabel", resourceCulture);
-            }
-        }
-        
-        internal static string NoLessonsLabel {
-            get {
-                return ResourceManager.GetString("NoLessonsLabel", resourceCulture);
-            }
-        }
-        
-        internal static string NoExamsLabel {
-            get {
-                return ResourceManager.GetString("NoExamsLabel", resourceCulture);
-            }
-        }
-        
-        internal static string TimetableTabTitle {
-            get {
-                return ResourceManager.GetString("TimetableTabTitle", resourceCulture);
-            }
-        }
-        
-        internal static string NoLuckyNumber {
-            get {
+
+        internal static string NoLuckyNumber
+        {
+            get
+            {
                 return ResourceManager.GetString("NoLuckyNumber", resourceCulture);
             }
         }
-        
-        internal static string AttendanceTabTitle {
-            get {
+
+        internal static string GradeCreatedDateLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("GradeCreatedDateLabel", resourceCulture);
+            }
+        }
+
+        internal static string GradeModifiedDateLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("GradeModifiedDateLabel", resourceCulture);
+            }
+        }
+
+        internal static string GradeEmptyNameLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("GradeEmptyNameLabel", resourceCulture);
+            }
+        }
+
+        internal static string PartialGradesTabTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("PartialGradesTabTitle", resourceCulture);
+            }
+        }
+
+        internal static string FinalGradesTabTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("FinalGradesTabTitle", resourceCulture);
+            }
+        }
+
+        internal static string ErrorInvalidToken
+        {
+            get
+            {
+                return ResourceManager.GetString("ErrorInvalidToken", resourceCulture);
+            }
+        }
+
+        internal static string PredictedGradeLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("PredictedGradeLabel", resourceCulture);
+            }
+        }
+
+        internal static string FinalGradeLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("FinalGradeLabel", resourceCulture);
+            }
+        }
+
+        internal static string NoElementsLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("NoElementsLabel", resourceCulture);
+            }
+        }
+
+        internal static string NoPredictedGradesLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("NoPredictedGradesLabel", resourceCulture);
+            }
+        }
+
+        internal static string NoLessonsLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("NoLessonsLabel", resourceCulture);
+            }
+        }
+
+        internal static string NoExamsLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("NoExamsLabel", resourceCulture);
+            }
+        }
+
+        internal static string NoHomeworkLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("NoHomeworkLabel", resourceCulture);
+            }
+        }
+
+        internal static string TimetableTabTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("TimetableTabTitle", resourceCulture);
+            }
+        }
+
+        internal static string AttendanceTabTitle
+        {
+            get
+            {
                 return ResourceManager.GetString("AttendanceTabTitle", resourceCulture);
             }
         }
-        
-        internal static string LessonTimeValueLabel {
-            get {
+
+        internal static string LessonTimeValueLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("LessonTimeValueLabel", resourceCulture);
             }
         }
 
-        internal static string LessonTimeLabel {
-            get {
+        internal static string LessonTimeLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("LessonTimeLabel", resourceCulture);
             }
         }
-        
-        internal static string LessonDateLabel {
-            get {
+
+        internal static string LessonDateLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("LessonDateLabel", resourceCulture);
             }
         }
-        
-        internal static string LessonSubjectLabel {
-            get {
+
+        internal static string LessonSubjectLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("LessonSubjectLabel", resourceCulture);
             }
         }
-        
-        internal static string LessonTeacherLabel {
-            get {
+
+        internal static string LessonTeacherLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("LessonTeacherLabel", resourceCulture);
             }
         }
-        
-        internal static string NoAttendanceLabel {
-            get {
+
+        internal static string NoAttendanceLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("NoAttendanceLabel", resourceCulture);
             }
         }
-        
-        internal static string ExamsTabTitle {
-            get {
+
+        internal static string ExamsTabTitle
+        {
+            get
+            {
                 return ResourceManager.GetString("ExamsTabTitle", resourceCulture);
             }
         }
-        
-        internal static string ExamsSubjectLabel {
-            get {
+
+        internal static string ExamsSubjectLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("ExamsSubjectLabel", resourceCulture);
             }
         }
-        
-        internal static string ExamsCreatorLabel {
-            get {
+
+        internal static string ExamsCreatorLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("ExamsCreatorLabel", resourceCulture);
             }
         }
-        
-        internal static string ExamsDeadlineLabel {
-            get {
+
+        internal static string ExamsDeadlineLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("ExamsDeadlineLabel", resourceCulture);
             }
         }
-        
-        internal static string ExamsTypeLabel {
-            get {
+
+        internal static string ExamsTypeLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("ExamsTypeLabel", resourceCulture);
             }
         }
-        
-        internal static string ExamsCommentLabel {
-            get {
+
+        internal static string ExamsCommentLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("ExamsCommentLabel", resourceCulture);
             }
         }
-        
-        internal static string ExamsCreatedOnLabel {
-            get {
+
+        internal static string ExamsCreatedOnLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("ExamsCreatedOnLabel", resourceCulture);
             }
         }
-        
-        internal static string SettingsTabTitle {
-            get {
+
+        internal static string SettingsTabTitle
+        {
+            get
+            {
                 return ResourceManager.GetString("SettingsTabTitle", resourceCulture);
             }
         }
@@ -311,31 +420,179 @@ namespace Vulcanova.Resources {
         
         internal static string SettingsViewGradesSection {
             get {
+
+        internal static string SettingsViewGradesSection
+        {
+            get
+            {
                 return ResourceManager.GetString("SettingsViewGradesSection", resourceCulture);
             }
         }
-        
-        internal static string GradesSettingsValueOfPlus {
-            get {
+
+        internal static string GradesSettingsValueOfPlus
+        {
+            get
+            {
                 return ResourceManager.GetString("GradesSettingsValueOfPlus", resourceCulture);
             }
         }
-        
-        internal static string GradesSettingsValueOfMinus {
-            get {
+
+        internal static string GradesSettingsValueOfMinus
+        {
+            get
+            {
                 return ResourceManager.GetString("GradesSettingsValueOfMinus", resourceCulture);
             }
         }
-        
-        internal static string SettingsCustomValueLabel {
-            get {
+
+        internal static string SettingsCustomValueLabel
+        {
+            get
+            {
                 return ResourceManager.GetString("SettingsCustomValueLabel", resourceCulture);
             }
         }
-        
-        internal static string SettingsCustomOptionText {
-            get {
+
+        internal static string SettingsCustomOptionText
+        {
+            get
+            {
                 return ResourceManager.GetString("SettingsCustomOptionText", resourceCulture);
+            }
+        }
+
+        internal static string FinalGradesAverage
+        {
+            get
+            {
+                return ResourceManager.GetString("FinalGradesAverage", resourceCulture);
+            }
+        }
+
+        internal static string ShowErrorDetails
+        {
+            get
+            {
+                return ResourceManager.GetString("ShowErrorDetails", resourceCulture);
+            }
+        }
+
+        internal static string ErrorAlertTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("ErrorAlertTitle", resourceCulture);
+            }
+        }
+
+        internal static string ReportErrorButton
+        {
+            get
+            {
+                return ResourceManager.GetString("ReportErrorButton", resourceCulture);
+            }
+        }
+
+        internal static string IgnoreErrorButton
+        {
+            get
+            {
+                return ResourceManager.GetString("IgnoreErrorButton", resourceCulture);
+            }
+        }
+
+        internal static string SessionErrorPopupTitle
+        {
+            get
+            {
+                return ResourceManager.GetString("SessionErrorPopupTitle", resourceCulture);
+            }
+        }
+
+        internal static string SessionErrorAlertMessage
+        {
+            get
+            {
+                return ResourceManager.GetString("SessionErrorAlertMessage", resourceCulture);
+            }
+        }
+
+        internal static string SessionErrorAlertAction
+        {
+            get
+            {
+                return ResourceManager.GetString("SessionErrorAlertAction", resourceCulture);
+            }
+        }
+
+        internal static string HomeworkCreatorLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("HomeworkCreatorLabel", resourceCulture);
+            }
+        }
+
+        internal static string HomeworkCreatedOnLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("HomeworkCreatedOnLabel", resourceCulture);
+            }
+        }
+
+        internal static string HomeworkDueLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("HomeworkDueLabel", resourceCulture);
+            }
+        }
+
+        internal static string HomeworkContentLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("HomeworkContentLabel", resourceCulture);
+            }
+        }
+
+        internal static string HomeworkRequiresAnswerLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("HomeworkRequiresAnswerLabel", resourceCulture);
+            }
+        }
+
+        internal static string CommonYes
+        {
+            get
+            {
+                return ResourceManager.GetString("CommonYes", resourceCulture);
+            }
+        }
+
+        internal static string CommonNo
+        {
+            get
+            {
+                return ResourceManager.GetString("CommonNo", resourceCulture);
+            }
+        }
+        
+        internal static string GradesAverageLabel
+        {
+            get
+            {
+                return ResourceManager.GetString("GradesAverageLabel", resourceCulture);
+            }
+        }
+        
+        internal static string GradesCountLabel {
+            get
+            {
+                return ResourceManager.GetString("GradesCountLabel", resourceCulture);
             }
         }
     }

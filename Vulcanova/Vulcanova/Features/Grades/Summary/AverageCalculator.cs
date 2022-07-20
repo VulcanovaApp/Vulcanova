@@ -3,49 +3,62 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using Vulcanova.Features.Settings;
 
-namespace Vulcanova.Features.Grades.Summary
+namespace Vulcanova.Features.Grades.Summary;
+
+public static class AverageCalculator
 {
-    public static class AverageCalculator
+    public static decimal? Average(this IEnumerable<Grade> grades, ModifiersSettings modifiers)
     {
-        public static decimal? Average(this IEnumerable<Grade> grades, ModifiersSettings modifiers)
+        var nonNullGrades = grades
+            .Where(g => g.Value != null)
+            .SelectMany(g => Enumerable.Repeat(TryGetValueFromContentRaw(g.ContentRaw, modifiers), g.Column.Weight))
+            .Where(g => g != null)
+            .ToList();
+
+        if (!nonNullGrades.Any())
         {
-            var nonNullGrades = grades
-                .Where(g => g.Value != null)
-                .SelectMany(g => Enumerable.Repeat(TryGetValueFromContentRaw(g.ContentRaw, modifiers), g.Column.Weight))
-                .Where(g => g != null)
-                .ToList();
-
-            if (!nonNullGrades.Any())
-            {
-                return null;
-            }
-
-            return nonNullGrades.Sum() / nonNullGrades.Count;
+            return null;
         }
 
-        private static readonly Regex ValueRegex = new("(\\d+)([+|-])?");
+        return nonNullGrades.Sum() / nonNullGrades.Count;
+    }
 
-        private static decimal? TryGetValueFromContentRaw(string contentRaw, ModifiersSettings modifiers)
+    private static readonly Regex ValueRegex = new("(\\d+)([+|-])?");
+
+    public static bool TryGetValueFromContentRaw(string contentRaw, ModifiersSettings modifiers, out decimal d)
+    {
+        var value = TryGetValueFromContentRaw(contentRaw, modifiers);
+
+        if (value == null)
         {
-            var match = ValueRegex.Match(contentRaw);
-
-            if (!match.Success)
-            {
-                return null;
-            }
-
-            if (!int.TryParse(match.Groups[1].Value, out var numericValue))
-            {
-                return null;
-            }
-
-            if (!match.Groups[2].Success)
-            {
-                return numericValue;
-            }
-
-            var modifier = GradeModifier.FromString(match.Groups[2].Value, modifiers);
-            return modifier.ApplyTo(numericValue);
+            d = 0;
+            return false;
         }
+            
+        d = value.Value;
+        return true;
+    }
+
+    private static decimal? TryGetValueFromContentRaw(string contentRaw, ModifiersSettings modifiers)
+    {
+        var match = ValueRegex.Match(contentRaw);
+
+        if (!match.Success)
+        {
+            return null;
+        }
+
+        if (!int.TryParse(match.Groups[1].Value, out var numericValue))
+        {
+            return null;
+        }
+
+        if (!match.Groups[2].Success)
+        {
+            return numericValue;
+        }
+
+        var modifier = GradeModifier.FromString(match.Groups[2].Value, modifiers);
+        return modifier.ApplyTo(numericValue);
     }
 }

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<forms:ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+                   xmlns:forms="http://xamarin.com/schemas/2014/forms"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                   xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
+                   xmlns:controls="clr-namespace:Vulcanova.Core.Layout.Controls;assembly=Vulcanova"
+                   xmlns:homeworkDetails="clr-namespace:Vulcanova.Features.Homework.HomeworkDetails;assembly=Vulcanova"
+                   x:Class="Vulcanova.Features.Homework.HomeworkDetails.HomeworkDetailsView"
+                   x:Name="View"
+                   BackgroundColor="{AppThemeBinding Light={StaticResource LightPanelColor}, Dark={StaticResource DarkPanelColor}}">
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style ApplyToDerivedTypes="true" TargetType="StackLayout">
+                <Setter Property="BackgroundColor"
+                        Value="{AppThemeBinding Light={StaticResource LightPanelColor}, Dark={StaticResource DarkPanelColor}}" />
+            </Style>
+            <homeworkDetails:BooleanToYesNoConverter x:Key="YesNoConverter" />
+        </ResourceDictionary>
+    </ContentView.Resources>
+    <ContentView.Content>
+        <StackLayout BindingContext="{x:Reference View}">
+            <StackLayout Padding="16, 8">
+                <Label Style="{StaticResource TitleLabelStyle}" HorizontalOptions="FillAndExpand"
+                       Text="{Binding Homework.Subject.Name}" />
+            </StackLayout>
+            <StackLayout Padding="16, 8" Spacing="16">
+                <controls:FieldView Name="{x:Static resx:Strings.HomeworkCreatorLabel}"
+                                    Value="{Binding Homework.CreatorName}" />
+                <controls:FieldView Name="{x:Static resx:Strings.HomeworkCreatedOnLabel}"
+                                    Value="{Binding Homework.DateCreated, StringFormat='{0:d}'}" />
+                <controls:FieldView Name="{x:Static resx:Strings.HomeworkDueLabel}"
+                                    Value="{Binding Homework.Deadline, StringFormat='{0:d}'}" />
+                <controls:FieldView Name="{x:Static resx:Strings.HomeworkContentLabel}"
+                                    Value="{Binding Homework.Content}" />
+                <controls:FieldView Name="{x:Static resx:Strings.HomeworkRequiresAnswerLabel}"
+                                    Value="{Binding Homework.IsAnswerRequired, Converter={StaticResource YesNoConverter}}" />
+            </StackLayout>
+        </StackLayout>
+    </ContentView.Content>
+</forms:ContentView>

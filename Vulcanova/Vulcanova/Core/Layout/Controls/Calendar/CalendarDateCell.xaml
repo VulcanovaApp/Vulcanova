@@ -2,7 +2,7 @@
 
 <ContentView xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Vulcanova.Core.Layout.Controls.CalendarDateCell"
+             x:Class="Vulcanova.Core.Layout.Controls.Calendar.CalendarDateCell"
              x:Name="View">
     <ContentView.Content>
         <Frame Padding="0" HasShadow="False" BackgroundColor="{AppThemeBinding Dark={StaticResource DarkBackgroundColor}, Light={StaticResource LightBackgroundColor}}">

@@ -19,6 +19,7 @@
                 </StackLayout>
                 <Button Style="{StaticResource DefaultButtonStyle}" Text="{x:Static resx:Strings.AddButton}"
                         x:Name="AddAccountButton" />
+                <ActivityIndicator x:Name="LoadingIndicator" />
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

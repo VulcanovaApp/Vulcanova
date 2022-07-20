@@ -2,7 +2,10 @@
 using Foundation;
 using OliveTree.Transitions;
 using OliveTree.Transitions.iOS;
+using Prism;
+using Prism.Ioc;
 using UIKit;
+using Vulcanova.Core.Layout;
 
 namespace Vulcanova.iOS
 {
@@ -10,7 +13,8 @@ namespace Vulcanova.iOS
     // User Interface of the application, as well as listening (and optionally responding) to 
     // application events from iOS.
     [Register("AppDelegate")]
-    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate
+    public partial class AppDelegate : global::Xamarin.Forms.Platform.iOS.FormsApplicationDelegate,
+        IPlatformInitializer
     {
         //
         // This method is invoked when the application has loaded and is ready to run. In this 
@@ -23,6 +27,10 @@ namespace Vulcanova.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             
+            Xamarin.Essentials.Platform.Init(UiHelper.GetTopViewController);
+
+            Rg.Plugins.Popup.Popup.Init();
+
             CachedImageRenderer.Init();
             
             Sharpnado.Tabs.iOS.Preserver.Preserve();
@@ -34,9 +42,14 @@ namespace Vulcanova.iOS
             GoogleVisionBarCodeScanner.iOS.Initializer.Init();
             Firebase.Core.App.Configure();
 
-            LoadApplication(new App());
+            LoadApplication(new App(this));
 
             return base.FinishedLaunching(app, options);
+        }
+
+        public void RegisterTypes(IContainerRegistry containerRegistry)
+        {
+            containerRegistry.RegisterScoped<ISheetPopper, SheetPopper>();
         }
     }
 }

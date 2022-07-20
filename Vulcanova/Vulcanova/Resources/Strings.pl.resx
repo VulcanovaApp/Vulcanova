@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <root>
     <resheader name="resmimetype">
         <value>text/microsoft-resx</value>
@@ -89,6 +90,9 @@
     <data name="NoPredictedGradesLabel" xml:space="preserve">
         <value>Żadne oceny końcowe nie zostały wpisane lub dziennik nie umożliwia przeglądania tych danych</value>
     </data>
+    <data name="NoHomeworkLabel" xml:space="preserve">
+      <value>Brak prac domowych w wybranym tygodniu</value>
+    </data>
     <data name="TimetableTabTitle" xml:space="preserve">
         <value>Plan lekcji</value>
     </data>
@@ -146,11 +150,65 @@
     <data name="GradesSettingsValueOfMinus" xml:space="preserve">
         <value>Wartość minusa</value>
     </data>
+    <data name="HomeworkTabTitle" xml:space="preserve">
+      <value>Prace domowe</value>
+    </data>
     <data name="SettingsCustomValueLabel" xml:space="preserve">
         <value>Własna wartość</value>
     </data>
     <data name="SettingsCustomOptionText" xml:space="preserve">
         <value>Własna</value>
+    </data>
+    <data name="FinalGradesAverage" xml:space="preserve">
+        <value>Średnia ocen końcowych</value>
+    </data>
+    <data name="ShowErrorDetails" xml:space="preserve">
+        <value>Szczegóły</value>
+    </data>
+    <data name="ErrorAlertTitle" xml:space="preserve">
+        <value>Błąd</value>
+    </data>
+    <data name="ReportErrorButton" xml:space="preserve">
+        <value>Zgłoś</value>
+    </data>
+    <data name="IgnoreErrorButton" xml:space="preserve">
+        <value>Zignoruj</value>
+    </data>
+    <data name="SessionErrorPopupTitle" xml:space="preserve">
+        <value>Błąd sesji</value>
+    </data>
+    <data name="SessionErrorAlertMessage" xml:space="preserve">
+        <value>Zaloguj się ponownie</value>
+    </data>
+    <data name="SessionErrorAlertAction" xml:space="preserve">
+        <value>Zaloguj się</value>
+    </data>
+    <data name="HomeworkCreatorLabel" xml:space="preserve">
+        <value>Dodano przez</value>
+    </data>
+    <data name="HomeworkCreatedOnLabel" xml:space="preserve">
+        <value>Dodano</value>
+    </data>
+    <data name="HomeworkDueLabel" xml:space="preserve">
+        <value>Termin wykonania</value>
+    </data>
+    <data name="HomeworkContentLabel" xml:space="preserve">
+        <value>Treść</value>
+    </data>
+    <data name="HomeworkRequiresAnswerLabel" xml:space="preserve">
+        <value>Wymagana odpowiedź</value>
+    </data>
+    <data name="CommonNo" xml:space="preserve">
+        <value>Nie</value>
+    </data>
+    <data name="CommonYes" xml:space="preserve">
+        <value>Tak</value>
+    </data>
+    <data name="GradesAverageLabel" xml:space="preserve">
+        <value>Średnia</value>
+    </data>
+    <data name="GradesCountLabel" xml:space="preserve">
+        <value>Liczba ocen</value>
     </data>
     <data name="NoLuckyNumberShort" xml:space="preserve">
         <value>Brak</value>

@@ -1,11 +1,10 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Vulcanova.Features.LuckyNumber
+namespace Vulcanova.Features.LuckyNumber;
+
+public interface ILuckyNumberRepository
 {
-    public interface ILuckyNumberRepository
-    {
-        Task<LuckyNumber> FindForAccountAndConstituentAsync(int accountId, int constituentId, DateTime date);
-        Task AddAsync(LuckyNumber luckyNumber);
-    }
+    Task<LuckyNumber> FindForAccountAndConstituentAsync(int accountId, int constituentId, DateTime date);
+    Task AddAsync(LuckyNumber luckyNumber);
 }

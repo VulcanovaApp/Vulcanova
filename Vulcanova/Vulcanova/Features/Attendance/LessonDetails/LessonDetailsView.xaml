@@ -7,7 +7,8 @@
                    xmlns:converters="clr-namespace:Vulcanova.Features.Attendance.Converters;assembly=Vulcanova"
                    xmlns:lessonDetails="clr-namespace:Vulcanova.Features.Attendance.LessonDetails;assembly=Vulcanova"
                    x:Class="Vulcanova.Features.Attendance.LessonDetails.LessonDetailsView"
-                   x:Name="View">
+                   x:Name="View"
+                   BackgroundColor="{AppThemeBinding Light={StaticResource LightPanelColor}, Dark={StaticResource DarkPanelColor}}">
     <ContentView.Resources>
         <ResourceDictionary>
             <converters:AttendanceColorConverter x:Key="ColorConverter" />
@@ -20,7 +21,7 @@
     <ContentPage.Content>
         <StackLayout BindingContext="{x:Reference View}">
             <StackLayout Padding="16, 8">
-                <Label Style="{StaticResource MediumLabelStyle}" HorizontalOptions="FillAndExpand"
+                <Label Style="{StaticResource TitleLabelStyle}" HorizontalOptions="FillAndExpand"
                        Text="{Binding Lesson.Subject.Name}" />
                 <Label Text="{Binding Lesson.PresenceType.Name}"
                        TextColor="{Binding Lesson.PresenceType, Converter={StaticResource ColorConverter}}" />

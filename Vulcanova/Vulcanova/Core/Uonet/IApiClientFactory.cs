@@ -1,9 +1,8 @@
 using Vulcanova.Uonet.Api;
 
-namespace Vulcanova.Core.Uonet
+namespace Vulcanova.Core.Uonet;
+
+public interface IApiClientFactory
 {
-    public interface IApiClientFactory
-    {
-        IApiClient GetForApiInstanceUrl(string apiInstanceUrl);
-    }
+    IApiClient GetForApiInstanceUrl(string apiInstanceUrl);
 }

@@ -11,11 +11,11 @@ Nieoficjalny, międzyplatformowy, mobilny klient dziennika Vulcan UONET+ tworzon
 - plan lekcji
 - frekwencja
 - sprawdziany
+- zadania domowe
 
 ## Co jest planowane?
 - wiadomości
 - dashboard
-- zadania domowe
 - uwagi
 - …i wiele więcej :)
 

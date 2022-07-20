@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Vulcanova.Core.Layout.Controls.HighlightValueView"
+             x:Name="View">
+    <ContentPage.Content>
+        <StackLayout BindingContext="{x:Reference View}" Spacing="2">
+            <Label Text="{Binding Name}" TextTransform="Uppercase" FontAttributes="Bold"
+                   FontSize="Small"
+                   TextColor="{AppThemeBinding Dark={StaticResource DarkSecondaryTextColor}, Light={StaticResource LightSecondaryTextColor}}"/>
+            <Label Text="{Binding Value}" TextTransform="Uppercase" FontAttributes="Bold" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentView>

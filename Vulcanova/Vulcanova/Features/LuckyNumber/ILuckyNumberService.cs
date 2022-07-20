@@ -1,10 +1,9 @@
 using System;
 using System.Threading.Tasks;
 
-namespace Vulcanova.Features.LuckyNumber
+namespace Vulcanova.Features.LuckyNumber;
+
+public interface ILuckyNumberService
 {
-    public interface ILuckyNumberService
-    {
-        Task<LuckyNumber> GetLuckyNumberAsync(int accountId, DateTime dateTime);
-    }
+    Task<LuckyNumber> GetLuckyNumberAsync(int accountId, DateTime dateTime);
 }

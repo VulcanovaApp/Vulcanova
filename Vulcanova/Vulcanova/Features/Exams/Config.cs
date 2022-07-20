@@ -1,13 +1,12 @@
 using Prism.Ioc;
 
-namespace Vulcanova.Features.Exams
+namespace Vulcanova.Features.Exams;
+
+public static class Config
 {
-    public static class Config
+    public static void RegisterExams(this IContainerRegistry container)
     {
-        public static void RegisterExams(this IContainerRegistry container)
-        {
-            container.RegisterScoped<IExamsRepository, ExamsRepository>();
-            container.RegisterScoped<IExamsService, ExamsService>();
-        }
+        container.RegisterScoped<IExamsRepository, ExamsRepository>();
+        container.RegisterScoped<IExamsService, ExamsService>();
     }
 }

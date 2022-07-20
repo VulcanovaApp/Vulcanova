@@ -7,38 +7,47 @@ using ReactiveUI;
 using ReactiveUI.Fody.Helpers;
 using Vulcanova.Core.Mvvm;
 using Vulcanova.Core.Rx;
+using Vulcanova.Features.Settings;
 using Vulcanova.Features.Shared;
 
-namespace Vulcanova.Features.Grades.Final
+namespace Vulcanova.Features.Grades.Final;
+
+public class FinalGradesViewModel : ViewModelBase
 {
-    public class FinalGradesViewModel : ViewModelBase
+    public ReactiveCommand<bool, IEnumerable<FinalGradesEntry>> GetFinalGrades { get; }
+
+    [ObservableAsProperty] public IEnumerable<FinalGradesEntry> FinalGrades { get; private set; }
+
+    [Reactive] public int? PeriodId { get; set; }
+    [Reactive] public decimal? FinalAverage { get; private set; }
+
+    public FinalGradesViewModel(
+        INavigationService navigationService,
+        IFinalGradesService finalGradesService,
+        AccountContext accountContext,
+        AppSettings settings) : base(navigationService)
     {
-        public ReactiveCommand<int, IEnumerable<FinalGradesEntry>> GetFinalGrades { get; }
-        public ReactiveCommand<Unit, IEnumerable<FinalGradesEntry>> ForceRefreshGrades { get; }
+        GetFinalGrades = ReactiveCommand.CreateFromObservable((bool forceSync) =>
+            finalGradesService
+                .GetPeriodGrades(accountContext.AccountId, PeriodId!.Value, forceSync)
+                .SubscribeOn(RxApp.TaskpoolScheduler));
 
-        [ObservableAsProperty] public IEnumerable<FinalGradesEntry> FinalGrades { get; }
+        GetFinalGrades.ToPropertyEx(this, vm => vm.FinalGrades);
 
-        [Reactive] public int? PeriodId { get; set; }
+        this.WhenAnyValue(vm => vm.PeriodId)
+            .WhereNotNull()
+            .Subscribe(v => GetFinalGrades.Execute().SubscribeAndIgnoreErrors());
 
-        public FinalGradesViewModel(
-            INavigationService navigationService,
-            IFinalGradesService finalGradesService,
-            AccountContext accountContext) : base(navigationService)
-        {
-            GetFinalGrades = ReactiveCommand.CreateFromObservable((int periodId) =>
-                finalGradesService
-                    .GetPeriodGrades(accountContext.AccountId, periodId, false));
+        var modifiersObservable = settings
+            .WhenAnyValue(s => s.Modifiers.PlusSettings.SelectedValue, s => s.Modifiers.MinusSettings.SelectedValue)
+            .WhereNotNull();
 
-            ForceRefreshGrades = ReactiveCommand.CreateFromObservable(() =>
-                    finalGradesService
-                        .GetPeriodGrades(accountContext.AccountId, PeriodId!.Value, true),
-                this.WhenAnyValue(vm => vm.PeriodId).Select(value => value != null));
-
-            this.WhenAnyValue(vm => vm.PeriodId)
-                .WhereNotNull()
-                .Subscribe(v => GetFinalGrades.Execute(v!.Value).SubscribeAndIgnoreErrors());
-
-            GetFinalGrades.ToPropertyEx(this, vm => vm.FinalGrades);
-        }
+        this.WhenAnyValue(vm => vm.FinalGrades)
+            .WhereNotNull()
+            .CombineLatest(modifiersObservable)
+            .Subscribe(values =>
+            {
+                FinalAverage = values.First.Average(settings.Modifiers);
+            });
     }
 }

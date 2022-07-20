@@ -4,37 +4,36 @@ using Prism.Navigation;
 using Vulcanova.Features.Auth.Accounts;
 using Vulcanova.Features.Shared;
 
-namespace Vulcanova.Features.Auth
+namespace Vulcanova.Features.Auth;
+
+public class AccountsManager
 {
-    public class AccountsManager
+    private readonly IAccountRepository _accountRepository;
+    private readonly AccountContext _accountContext;
+    private readonly INavigationService _navigationService;
+
+    public AccountsManager(IAccountRepository accountRepository, INavigationService navigationService, AccountContext accountContext)
     {
-        private readonly IAccountRepository _accountRepository;
-        private readonly AccountContext _accountContext;
-        private readonly INavigationService _navigationService;
+        _accountRepository = accountRepository;
+        _navigationService = navigationService;
+        _accountContext = accountContext;
+    }
 
-        public AccountsManager(IAccountRepository accountRepository, INavigationService navigationService, AccountContext accountContext)
-        {
-            _accountRepository = accountRepository;
-            _navigationService = navigationService;
-            _accountContext = accountContext;
-        }
+    public async Task OpenAccountAndMarkAsCurrentAsync(int accountId)
+    {
+        var account = await _accountRepository.GetByIdAsync(accountId);
 
-        public async Task OpenAccountAndMarkAsCurrentAsync(int accountId)
-        {
-            var account = await _accountRepository.GetByIdAsync(accountId);
+        account.IsActive = true;
 
-            account.IsActive = true;
-
-            await _accountRepository.UpdateAccountAsync(account);
+        await _accountRepository.UpdateAccountAsync(account);
             
-            _accountContext.AccountId = account.Id;
+        _accountContext.AccountId = account.Id;
             
-            await _navigationService.NavigateAsync("/MainNavigationPage/HomeTabbedPage?selectedTab=GradesSummaryView");
-        }
+        await _navigationService.NavigateAsync("/MainNavigationPage/HomeTabbedPage?selectedTab=GradesSummaryView");
+    }
 
-        public async Task AddAccountsAsync(IEnumerable<Account> accounts)
-        {
-            await _accountRepository.AddAccountsAsync(accounts);
-        }
+    public async Task AddAccountsAsync(IEnumerable<Account> accounts)
+    {
+        await _accountRepository.AddAccountsAsync(accounts);
     }
 }

@@ -9,51 +9,50 @@ using Vulcanova.Uonet.Api.Common;
 using System;
 using Vulcanova.Resources;
 
-namespace Vulcanova.Features.Auth.ManualSigningIn
+namespace Vulcanova.Features.Auth.ManualSigningIn;
+
+public class ManualSignInViewModel : ViewModelBase
 {
-    public class ManualSignInViewModel : ViewModelBase
+    public ReactiveCommand<Unit, Unit> AddDevice { get; }
+
+    [Reactive] public string Token { get; set; }
+
+    [Reactive] public string Symbol { get; set; }
+
+    [Reactive] public string Pin { get; set; }
+
+    private readonly IAuthenticationService _authenticationService;
+    private readonly AccountsManager _accountsManager;
+
+    private readonly IInstanceUrlProvider _instanceUrlProvider;
+
+    public ManualSignInViewModel(
+        INavigationService navigationService,
+        IInstanceUrlProvider instanceUrlProvider,
+        IAuthenticationService authenticationService,
+        AccountsManager accountsManager) : base(navigationService)
     {
-        public ReactiveCommand<Unit, Unit> AddDevice { get; }
+        _authenticationService = authenticationService;
+        _accountsManager = accountsManager;
+        _instanceUrlProvider = instanceUrlProvider;
 
-        [Reactive] public string Token { get; set; }
+        AddDevice = ReactiveCommand.CreateFromTask(_ => AddDeviceAsync(Token, Symbol, Pin));
+    }
 
-        [Reactive] public string Symbol { get; set; }
+    private async Task<Unit> AddDeviceAsync(string token, string symbol, string pin)
+    {
+        var instanceUrl = await _instanceUrlProvider.GetInstanceUrlAsync(token, symbol);
 
-        [Reactive] public string Pin { get; set; }
-
-        private readonly IAuthenticationService _authenticationService;
-        private readonly AccountsManager _accountsManager;
-
-        private readonly IInstanceUrlProvider _instanceUrlProvider;
-
-        public ManualSignInViewModel(
-            INavigationService navigationService,
-            IInstanceUrlProvider instanceUrlProvider,
-            IAuthenticationService authenticationService,
-            AccountsManager accountsManager) : base(navigationService)
+        if (string.IsNullOrEmpty(instanceUrl))
         {
-            _authenticationService = authenticationService;
-            _accountsManager = accountsManager;
-            _instanceUrlProvider = instanceUrlProvider;
-
-            AddDevice = ReactiveCommand.CreateFromTask(_ => AddDeviceAsync(Token, Symbol, Pin));
+            throw new ArgumentException(Strings.ErrorInvalidToken, nameof(token));
         }
 
-        private async Task<Unit> AddDeviceAsync(string token, string symbol, string pin)
-        {
-            var instanceUrl = await _instanceUrlProvider.GetInstanceUrlAsync(token, symbol);
+        var accounts = await _authenticationService.AuthenticateAsync(token, pin, instanceUrl);
 
-            if (string.IsNullOrEmpty(instanceUrl))
-            {
-                throw new ArgumentException(Strings.ErrorInvalidToken, nameof(token));
-            }
+        await _accountsManager.AddAccountsAsync(accounts);
+        await _accountsManager.OpenAccountAndMarkAsCurrentAsync(accounts.First().Id);
 
-            var accounts = await _authenticationService.AuthenticateAsync(token, pin, instanceUrl);
-
-            await _accountsManager.AddAccountsAsync(accounts);
-            await _accountsManager.OpenAccountAndMarkAsCurrentAsync(accounts.First().Id);
-
-            return Unit.Default;
-        }
+        return Unit.Default;
     }
 }

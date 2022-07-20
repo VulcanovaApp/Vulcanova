@@ -1,43 +1,42 @@
 using System;
 
-namespace Vulcanova.Extensions
+namespace Vulcanova.Extensions;
+
+public static class DateExtensions
 {
-    public static class DateExtensions
+    public static DateTime LastMonday(this DateTime dt)
     {
-        public static DateTime LastMonday(this DateTime dt)
+        var delta = DayOfWeek.Monday - dt.DayOfWeek;
+
+        if (delta > 0)
         {
-            var delta = DayOfWeek.Monday - dt.DayOfWeek;
-
-            if (delta > 0)
-            {
-                delta -= 7;
-            }
-
-            return dt.AddDays(delta);
+            delta -= 7;
         }
 
-        public static DateTime NextSunday(this DateTime dt)
+        return dt.AddDays(delta);
+    }
+
+    public static DateTime NextSunday(this DateTime dt)
+    {
+        var delta = DayOfWeek.Sunday - dt.DayOfWeek;
+
+        if (delta < 0)
         {
-            var delta = DayOfWeek.Sunday - dt.DayOfWeek;
-
-            if (delta < 0)
-            {
-                delta += 7;
-            }
-
-            return dt.AddDays(delta);
+            delta += 7;
         }
 
-        public static (DateTime Monday, DateTime Sunday) GetMondayOfFirstWeekAndSundayOfLastWeekOfMonth(this DateTime dt)
-        {
-            var firstDayOfMonth = new DateTime(dt.Year, dt.Month, 1);
-            var lastDayOfMonth = new DateTime(dt.Year, dt.Month,
-                DateTime.DaysInMonth(dt.Year, dt.Month));
+        return dt.AddDays(delta);
+    }
 
-            var firstDay = firstDayOfMonth.LastMonday();
-            var lastDay = lastDayOfMonth.NextSunday();
+    public static (DateTime Monday, DateTime Sunday) GetMondayOfFirstWeekAndSundayOfLastWeekOfMonth(this DateTime dt)
+    {
+        var firstDayOfMonth = new DateTime(dt.Year, dt.Month, 1);
+        var lastDayOfMonth = new DateTime(dt.Year, dt.Month,
+            DateTime.DaysInMonth(dt.Year, dt.Month));
 
-            return (firstDay, lastDay);
-        }
+        var firstDay = firstDayOfMonth.LastMonday();
+        var lastDay = lastDayOfMonth.NextSunday();
+
+        return (firstDay, lastDay);
     }
 }

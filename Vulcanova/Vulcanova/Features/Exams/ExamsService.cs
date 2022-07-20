@@ -9,75 +9,74 @@ using Vulcanova.Features.Auth;
 using Vulcanova.Features.Auth.Accounts;
 using Vulcanova.Uonet.Api.Exams;
 
-namespace Vulcanova.Features.Exams
+namespace Vulcanova.Features.Exams;
+
+public class ExamsService : UonetResourceProvider, IExamsService
 {
-    public class ExamsService : UonetResourceProvider, IExamsService
+    private readonly IApiClientFactory _apiClientFactory;
+    private readonly IMapper _mapper;
+    private readonly IAccountRepository _accountRepository;
+    private readonly IExamsRepository _examsRepository;
+
+    public ExamsService(IApiClientFactory apiClientFactory, IMapper mapper,
+        IAccountRepository accountRepository, IExamsRepository examsRepository)
     {
-        private readonly IApiClientFactory _apiClientFactory;
-        private readonly IMapper _mapper;
-        private readonly IAccountRepository _accountRepository;
-        private readonly IExamsRepository _examsRepository;
+        _apiClientFactory = apiClientFactory;
+        _mapper = mapper;
+        _accountRepository = accountRepository;
+        _examsRepository = examsRepository;
+    }
 
-        public ExamsService(IApiClientFactory apiClientFactory, IMapper mapper,
-            IAccountRepository accountRepository, IExamsRepository examsRepository)
+    public IObservable<IEnumerable<Exam>> GetExamsByDateRange(int accountId, DateTime from, DateTime to,
+        bool forceSync = false)
+    {
+        return Observable.Create<IEnumerable<Exam>>(async observer =>
         {
-            _apiClientFactory = apiClientFactory;
-            _mapper = mapper;
-            _accountRepository = accountRepository;
-            _examsRepository = examsRepository;
-        }
+            var account = await _accountRepository.GetByIdAsync(accountId);
 
-        public IObservable<IEnumerable<Exam>> GetExamsByDateRange(int accountId, DateTime from, DateTime to,
-            bool forceSync = false)
-        {
-            return Observable.Create<IEnumerable<Exam>>(async observer =>
+            var resourceKey = GetExamsResourceKey(account, from, to);
+
+            var items = await _examsRepository.GetExamsForPupilAsync(account.Id, from, to);
+
+            observer.OnNext(items);
+
+            if (ShouldSync(resourceKey) || forceSync)
             {
-                var account = await _accountRepository.GetByIdAsync(accountId);
+                var onlineEntries = await FetchExamsAsync(account);
 
-                var resourceKey = GetExamsResourceKey(account, from, to);
+                await _examsRepository.UpdateExamsForPupilAsync(accountId, onlineEntries);
 
-                var items = await _examsRepository.GetExamsForPupilAsync(account.Id, from, to);
+                SetJustSynced(resourceKey);
+
+                items = await _examsRepository.GetExamsForPupilAsync(account.Id, from, to);
 
                 observer.OnNext(items);
-
-                if (ShouldSync(resourceKey) || forceSync)
-                {
-                    var onlineEntries = await FetchExamsAsync(account);
-
-                    await _examsRepository.UpdateExamsForPupilAsync(accountId, onlineEntries);
-
-                    SetJustSynced(resourceKey);
-
-                    items = await _examsRepository.GetExamsForPupilAsync(account.Id, from, to);
-
-                    observer.OnNext(items);
-                }
-
-                observer.OnCompleted();
-            });
-        }
-
-        private async Task<Exam[]> FetchExamsAsync(Account account)
-        {
-            var query = new GetExamsByPupilQuery(account.Unit.Id, account.Pupil.Id, DateTime.MinValue, 500);
-
-            var client = _apiClientFactory.GetForApiInstanceUrl(account.Unit.RestUrl);
-
-            var response = await client.GetAsync(GetExamsByPupilQuery.ApiEndpoint, query);
-
-            var entries = response.Envelope.Select(_mapper.Map<Exam>).ToArray();
-
-            foreach (var entry in entries)
-            {
-                entry.AccountId = account.Id;
             }
 
-            return entries;
+            observer.OnCompleted();
+        });
+    }
+
+    private async Task<Exam[]> FetchExamsAsync(Account account)
+    {
+        var query = new GetExamsByPupilQuery(account.Unit.Id, account.Pupil.Id, DateTime.MinValue, 500);
+
+        var client = _apiClientFactory.GetForApiInstanceUrl(account.Unit.RestUrl);
+
+        var response = await client.GetAsync(GetExamsByPupilQuery.ApiEndpoint, query);
+
+        var entries = response.Envelope.Select(_mapper.Map<Exam>).ToArray();
+
+        foreach (var entry in entries)
+        {
+            entry.AccountId = account.Id;
         }
 
-        private static string GetExamsResourceKey(Account account, DateTime from, DateTime to)
-            => $"Timetable_{account.Id}_{from.ToShortDateString()}_{to.ToLongDateString()}";
-
-        protected override TimeSpan OfflineDataLifespan => TimeSpan.FromHours(1);
+        return entries;
     }
+
+    private static string GetExamsResourceKey(Account account, DateTime from, DateTime to)
+        => $"Timetable_{account.Id}_{from.ToShortDateString()}_{to.ToLongDateString()}";
+
+    protected override TimeSpan OfflineDataLifespan => TimeSpan.FromHours(1);
 }

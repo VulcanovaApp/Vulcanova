@@ -22,10 +22,16 @@
                 Value="{AppThemeBinding Dark={StaticResource DarkPrimaryColor}, Light={StaticResource LightPrimaryColor}}" />
     </Style>
 
+    <Style x:Key="TitleLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+        <Setter Property="FontSize" Value="Title" />
+        <Setter Property="FontAttributes" Value="Bold" />
+    </Style>
+
     <Style x:Key="LargeLabelStyle"
            TargetType="Label">
         <Setter Property="TextColor"
-                Value="{DynamicResource DarkPrimaryTextColor}" />
+                Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
         <Setter Property="FontSize"
                 Value="30" />
     </Style>
@@ -99,5 +105,10 @@
                 Value="{AppThemeBinding Light={StaticResource LightPrimaryColor}, Dark={StaticResource DarkPrimaryColor}} " />
         <Setter Property="UnselectedTabColor"
                 Value="{AppThemeBinding Light={StaticResource LightPrimaryTextColor}, Dark={StaticResource DarkPrimaryTextColor}}" />
+    </Style>
+        
+    <Style ApplyToDerivedTypes="true" TargetType="ActivityIndicator">
+        <Setter Property="Color" 
+                Value="{AppThemeBinding Light={StaticResource LightPrimaryColor}, Dark={StaticResource DarkPrimaryColor}}" />
     </Style>
 </ResourceDictionary>

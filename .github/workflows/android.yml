@@ -9,7 +9,7 @@ on:
 jobs:
   build:
 
-    runs-on: macos-11
+    runs-on: macos-12
 
     steps:
     - name: Checkout repository and submodules
@@ -26,7 +26,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 5.0.x
+        dotnet-version: 6.0.x
 
     - name: Restore dependencies with dotnet restore
       run: dotnet restore
@@ -35,7 +35,7 @@ jobs:
       run: nuget restore
 
     - name: Build
-      run: msbuild Vulcanova/Vulcanova.Android/Vulcanova.Android.csproj /t:PackageForAndroid /t:SignAndroidPackage /p:Configuration=Release
+      run: /Library/Frameworks/Mono.framework/Versions/Current/Commands/mono '/Applications/Visual Studio.app/Contents/MonoBundle/MSBuild/Current/bin/MSBuild.dll' Vulcanova/Vulcanova.Android/Vulcanova.Android.csproj /t:PackageForAndroid /t:SignAndroidPackage /p:Configuration=Release
       
     - name: Upload artifact
       uses: actions/upload-artifact@v2

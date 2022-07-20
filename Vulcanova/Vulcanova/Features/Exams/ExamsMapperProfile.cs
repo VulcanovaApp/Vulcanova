@@ -1,14 +1,13 @@
 using AutoMapper;
 using Vulcanova.Uonet.Api.Exams;
 
-namespace Vulcanova.Features.Exams
+namespace Vulcanova.Features.Exams;
+
+public class ExamsMapperProfile : Profile
 {
-    public class ExamsMapperProfile : Profile
+    public ExamsMapperProfile()
     {
-        public ExamsMapperProfile()
-        {
-            CreateMap<ExamPayload, Exam>()
-                .ForMember(e => e.CreatorName, cfg => cfg.MapFrom(src => src.Creator.DisplayName));
-        }
+        CreateMap<ExamPayload, Exam>()
+            .ForMember(e => e.CreatorName, cfg => cfg.MapFrom(src => src.Creator.DisplayName));
     }
 }

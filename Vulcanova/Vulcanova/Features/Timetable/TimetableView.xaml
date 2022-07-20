@@ -5,12 +5,12 @@
                           xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
                           xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
                           xmlns:local="clr-namespace:Vulcanova.Features.Timetable;assembly=Vulcanova"
-                          xmlns:controls="clr-namespace:Vulcanova.Core.Layout.Controls;assembly=Vulcanova"
+                          xmlns:calendar="clr-namespace:Vulcanova.Core.Layout.Controls.Calendar;assembly=Vulcanova"
                           Title="{x:Static resx:Strings.TimetableTabTitle}"
                           x:Class="Vulcanova.Features.Timetable.TimetableView">
     <ContentPage.Content>
         <StackLayout>
-            <controls:Calendar
+            <calendar:Calendar
                 x:Name="Calendar"
                 Padding="0, 10"
                 SelectedColor="{AppThemeBinding Dark={StaticResource DarkTranslucentPrimaryColor}, Light={StaticResource LightTranslucentPrimaryColor}}"

@@ -2,43 +2,46 @@ using System;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
 using ReactiveUI;
+using Vulcanova.Core.Layout;
+using Vulcanova.Core.Rx;
+using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Vulcanova.Features.Attendance
+namespace Vulcanova.Features.Attendance;
+
+[XamlCompilation(XamlCompilationOptions.Compile)]
+public partial class AttendanceView
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class AttendanceView
+    public AttendanceView()
     {
-        public AttendanceView()
-        {
-            InitializeComponent();
+        InitializeComponent();
             
-            this.WhenActivated(disposable =>
+        this.WhenActivated(disposable =>
+        {
+            this.Bind(ViewModel, vm => vm.SelectedDay, v => v.Calendar.SelectedDate)
+                .DisposeWith(disposable);
+
+            this.OneWayBind(ViewModel, vm => vm.CurrentDayEntries, v => v.EntriesList.ItemsSource)
+                .DisposeWith(disposable);
+                
+            this.OneWayBind(ViewModel, vm => vm.SelectedLesson, v => v.DetailsView.Lesson)
+                .DisposeWith(disposable);
+
+            if (Device.RuntimePlatform != Device.iOS)
             {
-                this.Bind(ViewModel, vm => vm.SelectedDay, v => v.Calendar.SelectedDate)
+                UiExtensions.WireUpNonNativeSheet(ViewModel, DetailsView, Panel,
+                        vm => vm.SelectedLesson,
+                        v => v.Lesson)
                     .DisposeWith(disposable);
+            }
 
-                this.OneWayBind(ViewModel, vm => vm.CurrentDayEntries, v => v.EntriesList.ItemsSource)
-                    .DisposeWith(disposable);
+            this.WhenAnyObservable(v => v.ViewModel.GetAttendanceEntries.IsExecuting)
+                .Select(v => !v)
+                .BindTo(NoElementsView, x => x.IsVisible)
+                .DisposeWith(disposable);
                 
-                this.OneWayBind(ViewModel, vm => vm.SelectedLesson, v => v.DetailsView.Lesson)
-                    .DisposeWith(disposable);
-
-                this.WhenAnyValue(v => v.ViewModel.SelectedLesson)
-                    .Skip(1)
-                    .Subscribe(sub => Panel.Open = sub != null)
-                    .DisposeWith(disposable);
-
-                this.WhenAnyValue(v => v.Panel.Open)
-                    .Where(val => val == false)
-                    .Subscribe(_ => ViewModel!.SelectedLesson = null)
-                    .DisposeWith(disposable);
-                
-                this.WhenAnyObservable(v => v.ViewModel.GetTimetableEntries.IsExecuting)
-                    .Select(v => !v)
-                    .BindTo(NoElementsView, x => x.IsVisible)
-                    .DisposeWith(disposable);
-            });
-        }
+            this.BindForceRefresh(RefreshView, v => v.ViewModel.GetAttendanceEntries)
+                .DisposeWith(disposable);
+        });
     }
 }

@@ -9,6 +9,14 @@
     <ContentView.Content>
         <RefreshView x:Name="RefreshView">
             <CollectionView x:Name="FinalGradesList" ItemSizingStrategy="MeasureFirstItem">
+                <CollectionView.Header>
+                    <StackLayout x:Name="FinalAverageContainer">
+                        <Label HorizontalTextAlignment="Center" x:Name="FinalAverage" />
+                        <Label HorizontalTextAlignment="Center"
+                               Text="{x:Static resx:Strings.FinalGradesAverage}"
+                               FontSize="Small" />
+                    </StackLayout>
+                </CollectionView.Header>
                 <CollectionView.EmptyView>
                     <Grid VerticalOptions="FillAndExpand">
                         <StackLayout VerticalOptions="Center" Padding="16">

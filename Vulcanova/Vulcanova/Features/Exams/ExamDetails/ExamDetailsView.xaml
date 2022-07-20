@@ -5,7 +5,8 @@
                    xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
                    xmlns:controls="clr-namespace:Vulcanova.Core.Layout.Controls;assembly=Vulcanova"
                    x:Class="Vulcanova.Features.Exams.ExamDetails.ExamDetailsView"
-                   x:Name="View">
+                   x:Name="View"
+                   BackgroundColor="{AppThemeBinding Light={StaticResource LightPanelColor}, Dark={StaticResource DarkPanelColor}}">
     <ContentView.Resources>
         <ResourceDictionary>
             <Style ApplyToDerivedTypes="true" TargetType="StackLayout">
@@ -17,7 +18,7 @@
     <ContentPage.Content>
         <StackLayout BindingContext="{x:Reference View}">
             <StackLayout Padding="16, 8">
-                <Label Style="{StaticResource MediumLabelStyle}" HorizontalOptions="FillAndExpand"
+                <Label Style="{StaticResource TitleLabelStyle}" HorizontalOptions="FillAndExpand"
                        Text="{Binding Exam.Subject.Name}" />
                 <Label Text="{Binding Exam.Type}" />
             </StackLayout>

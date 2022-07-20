@@ -1,12 +1,11 @@
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
-namespace Vulcanova.Features.Grades.Summary
+namespace Vulcanova.Features.Grades.Summary;
+
+public class SubjectGrades
 {
-    public class SubjectGrades
-    {
-        public int SubjectId { get; set; }
-        public string SubjectName { get; set; }
-        public decimal? Average { get; set; }
-        public ICollection<Grade> Grades { get; set; }
-    }
+    public int SubjectId { get; set; }
+    public string SubjectName { get; set; }
+    public decimal? Average { get; set; }
+    public ObservableCollection<Grade> Grades { get; set; }
 }

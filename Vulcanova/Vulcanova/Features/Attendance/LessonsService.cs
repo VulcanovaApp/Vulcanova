@@ -9,78 +9,77 @@ using Vulcanova.Features.Auth;
 using Vulcanova.Features.Auth.Accounts;
 using Vulcanova.Uonet.Api.Lessons;
 
-namespace Vulcanova.Features.Attendance
+namespace Vulcanova.Features.Attendance;
+
+public class LessonsService : UonetResourceProvider, ILessonsService
 {
-    public class LessonsService : UonetResourceProvider, ILessonsService
+    private readonly ILessonsRepository _changesRepository;
+    private readonly IAccountRepository _accountRepository;
+    private readonly IApiClientFactory _apiClientFactory;
+    private readonly IMapper _mapper;
+
+    public LessonsService(ILessonsRepository changesRepository,
+        IAccountRepository accountRepository,
+        IApiClientFactory apiClientFactory, IMapper mapper)
     {
-        private readonly ILessonsRepository _changesRepository;
-        private readonly IAccountRepository _accountRepository;
-        private readonly IApiClientFactory _apiClientFactory;
-        private readonly IMapper _mapper;
+        _changesRepository = changesRepository;
+        _accountRepository = accountRepository;
+        _apiClientFactory = apiClientFactory;
+        _mapper = mapper;
+    }
 
-        public LessonsService(ILessonsRepository changesRepository,
-            IAccountRepository accountRepository,
-            IApiClientFactory apiClientFactory, IMapper mapper)
+    public IObservable<IEnumerable<Lesson>> GetLessonsByMonth(int accountId, DateTime monthAndYear, bool forceSync = false)
+    {
+        return Observable.Create<IEnumerable<Lesson>>(async observer =>
         {
-            _changesRepository = changesRepository;
-            _accountRepository = accountRepository;
-            _apiClientFactory = apiClientFactory;
-            _mapper = mapper;
-        }
+            var account = await _accountRepository.GetByIdAsync(accountId);
 
-        public IObservable<IEnumerable<Lesson>> GetLessonsByMonth(int accountId, DateTime monthAndYear, bool forceSync = false)
-        {
-            return Observable.Create<IEnumerable<Lesson>>(async observer =>
+            var resourceKey = GetTimetableResourceKey(account, monthAndYear);
+
+            var items = await _changesRepository.GetLessonsForAccountAsync(account.Id, monthAndYear);
+
+            observer.OnNext(items);
+
+            if (ShouldSync(resourceKey) || forceSync)
             {
-                var account = await _accountRepository.GetByIdAsync(accountId);
+                var onlineEntries = await FetchEntriesForMonthAndYear(account, monthAndYear);
 
-                var resourceKey = GetTimetableResourceKey(account, monthAndYear);
+                await _changesRepository.UpsertLessonsForAccountAsync(onlineEntries, account.Id, monthAndYear);
 
-                var items = await _changesRepository.GetLessonsForAccountAsync(account.Id, monthAndYear);
+                SetJustSynced(resourceKey);
+
+                items = await _changesRepository.GetLessonsForAccountAsync(account.Id, monthAndYear);
 
                 observer.OnNext(items);
-
-                if (ShouldSync(resourceKey) || forceSync)
-                {
-                    var onlineEntries = await FetchEntriesForMonthAndYear(account, monthAndYear);
-
-                    await _changesRepository.UpsertLessonsForAccountAsync(onlineEntries, account.Id, monthAndYear);
-
-                    SetJustSynced(resourceKey);
-
-                    items = await _changesRepository.GetLessonsForAccountAsync(account.Id, monthAndYear);
-
-                    observer.OnNext(items);
-                }
-
-                observer.OnCompleted();
-            });
-        }
-
-        private async Task<Lesson[]> FetchEntriesForMonthAndYear(Account account, DateTime monthAndYear)
-        {
-            var from = new DateTime(monthAndYear.Year, monthAndYear.Month, 1);
-            var to = new DateTime(monthAndYear.Year, monthAndYear.Month, DateTime.DaysInMonth(from.Year, from.Month));
-
-            var query = new GetLessonsByPupilQuery(account.Pupil.Id, from, to, DateTime.MinValue);
-
-            var client = _apiClientFactory.GetForApiInstanceUrl(account.Unit.RestUrl);
-
-            var response = await client.GetAsync(GetLessonsByPupilQuery.ApiEndpoint, query);
-
-            var lessons = response.Envelope.Select(_mapper.Map<Lesson>).ToArray();
-
-            foreach (var lesson in lessons)
-            {
-                lesson.AccountId = account.Id;
             }
 
-            return lessons;
+            observer.OnCompleted();
+        });
+    }
+
+    private async Task<Lesson[]> FetchEntriesForMonthAndYear(Account account, DateTime monthAndYear)
+    {
+        var from = new DateTime(monthAndYear.Year, monthAndYear.Month, 1);
+        var to = new DateTime(monthAndYear.Year, monthAndYear.Month, DateTime.DaysInMonth(from.Year, from.Month));
+
+        var query = new GetLessonsByPupilQuery(account.Pupil.Id, from, to, DateTime.MinValue);
+
+        var client = _apiClientFactory.GetForApiInstanceUrl(account.Unit.RestUrl);
+
+        var response = await client.GetAsync(GetLessonsByPupilQuery.ApiEndpoint, query);
+
+        var lessons = response.Envelope.Select(_mapper.Map<Lesson>).ToArray();
+
+        foreach (var lesson in lessons)
+        {
+            lesson.AccountId = account.Id;
         }
 
-        private static string GetTimetableResourceKey(Account account, DateTime monthAndYear)
-            => $"Lessons_{account.Id}_{monthAndYear.Month}_{monthAndYear.Year}";
-
-        protected override TimeSpan OfflineDataLifespan => TimeSpan.FromHours(1);
+        return lessons;
     }
+
+    private static string GetTimetableResourceKey(Account account, DateTime monthAndYear)
+        => $"Lessons_{account.Id}_{monthAndYear.Month}_{monthAndYear.Year}";
+
+    protected override TimeSpan OfflineDataLifespan => TimeSpan.FromHours(1);
 }

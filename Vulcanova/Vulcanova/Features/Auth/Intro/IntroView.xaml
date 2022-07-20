@@ -23,7 +23,7 @@
                         Text="{x:Static resx:Strings.SignInManuallyButton}" x:Name="ManualSignInButton" />
             </StackLayout>
             <Label HorizontalTextAlignment="Center" FontSize="Small" Style="{StaticResource LinkLabelStyle}"
-                   Text="{x:Static resx:Strings.GitHubLinkLabel}" />
+                   x:Name="GitHubLinkLbl" Text="{x:Static resx:Strings.GitHubLinkLabel}" />
         </StackLayout>
     </ContentPage.Content>
 </rxui:ReactiveContentPage>

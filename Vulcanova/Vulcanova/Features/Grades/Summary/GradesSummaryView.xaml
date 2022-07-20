@@ -17,7 +17,7 @@
     </ContentView.Resources>
     <ContentView.Content>
         <Grid>
-            <RefreshView x:Name="RefreshView" IsRefreshing="True">
+            <RefreshView x:Name="RefreshView">
                 <CollectionView x:Name="SubjectGrades">
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="local:SubjectGrades">

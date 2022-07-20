@@ -1,10 +1,9 @@
 using System.Threading.Tasks;
 using Vulcanova.Features.Auth.Accounts;
 
-namespace Vulcanova.Features.Auth
+namespace Vulcanova.Features.Auth;
+
+public interface IAuthenticationService
 {
-    public interface IAuthenticationService
-    {
-        Task<Account[]> AuthenticateAsync(string token, string pin, string instanceUrl);
-    }
+    Task<Account[]> AuthenticateAsync(string token, string pin, string instanceUrl);
 }

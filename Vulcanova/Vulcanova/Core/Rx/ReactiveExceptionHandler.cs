@@ -3,26 +3,25 @@ using System.Diagnostics;
 using System.Reactive.Concurrency;
 using ReactiveUI;
 
-namespace Vulcanova.Core.Rx
+namespace Vulcanova.Core.Rx;
+
+public class ReactiveExceptionHandler : IObserver<Exception>
 {
-    public class ReactiveExceptionHandler : IObserver<Exception>
+    public void OnNext(Exception value)
     {
-        public void OnNext(Exception value)
-        {
-            if (Debugger.IsAttached) Debugger.Break();
+        if (Debugger.IsAttached) Debugger.Break();
 
-            RxApp.MainThreadScheduler.Schedule(() => Interactions.Errors.Handle(value).Subscribe());
-        }
+        RxApp.MainThreadScheduler.Schedule(() => Interactions.Errors.Handle(value).Subscribe());
+    }
 
-        public void OnError(Exception error)
-        {
-            if (Debugger.IsAttached) Debugger.Break();
+    public void OnError(Exception error)
+    {
+        if (Debugger.IsAttached) Debugger.Break();
 
-            RxApp.MainThreadScheduler.Schedule(() => Interactions.Errors.Handle(error).Subscribe());
-        }
+        RxApp.MainThreadScheduler.Schedule(() => Interactions.Errors.Handle(error).Subscribe());
+    }
 
-        public void OnCompleted()
-        {
-        }
+    public void OnCompleted()
+    {
     }
 }

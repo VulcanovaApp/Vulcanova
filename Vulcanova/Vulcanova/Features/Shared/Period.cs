@@ -1,14 +1,13 @@
 using System;
 
-namespace Vulcanova.Features.Shared
+namespace Vulcanova.Features.Shared;
+
+public class Period
 {
-    public class Period
-    {
-        public int Id { get; set; }
-        public int Level { get; set; }
-        public int Number { get; set; }
-        public bool Current { get; set; }
-        public DateTime Start { get; set; }
-        public DateTime End { get; set; }
-    }
+    public int Id { get; set; }
+    public int Level { get; set; }
+    public int Number { get; set; }
+    public bool Current { get; set; }
+    public DateTime Start { get; set; }
+    public DateTime End { get; set; }
 }

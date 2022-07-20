@@ -4,13 +4,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
              xmlns:converters="clr-namespace:Vulcanova.Features.Attendance.Converters;assembly=Vulcanova"
+             xmlns:layoutConverters="clr-namespace:Vulcanova.Core.Layout.Converters;assembly=Vulcanova"
              x:Class="Vulcanova.Features.Attendance.LessonView"
              x:Name="View">
     <ContentView.Resources>
         <converters:AttendanceColorConverter x:Key="ColorConverter" />
         <converters:JustificationStatusConverter x:Key="JustificationStatusConverter" />
         <converters:JustificationColorConverter x:Key="JustificationColorConverter" />
-        <layout:NullToBooleanConverter x:Key="NullToBooleanConverter" />
+        <layoutConverters:NullToBooleanConverter x:Key="NullToBooleanConverter" />
         <Style TargetType="Label">
             <Setter Property="TextColor"
                     Value="{Binding Lesson.PresenceType, Converter={StaticResource ColorConverter}}" />

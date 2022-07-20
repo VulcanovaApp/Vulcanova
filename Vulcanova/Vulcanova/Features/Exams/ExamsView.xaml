@@ -8,12 +8,13 @@
                           xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
                           xmlns:rxui="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
                           xmlns:examDetails="clr-namespace:Vulcanova.Features.Exams.ExamDetails;assembly=Vulcanova"
+                          xmlns:calendar="clr-namespace:Vulcanova.Core.Layout.Controls.Calendar;assembly=Vulcanova"
                           Title="{x:Static resx:Strings.ExamsTabTitle}"
                           x:Class="Vulcanova.Features.Exams.ExamsView">
     <ContentPage.Content>
         <Grid>
             <StackLayout>
-                <controls:Calendar
+                <calendar:Calendar
                     x:Name="Calendar"
                     Padding="0, 10"
                     SelectionMode="Week"

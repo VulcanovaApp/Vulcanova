@@ -3,28 +3,27 @@ using System.Linq;
 using System.Threading.Tasks;
 using LiteDB.Async;
 
-namespace Vulcanova.Features.Grades
+namespace Vulcanova.Features.Grades;
+
+public class GradesRepository : IGradesRepository
 {
-    public class GradesRepository : IGradesRepository
+    private readonly LiteDatabaseAsync _db;
+
+    public GradesRepository(LiteDatabaseAsync db)
     {
-        private readonly LiteDatabaseAsync _db;
+        _db = db;
+    }
 
-        public GradesRepository(LiteDatabaseAsync db)
-        {
-            _db = db;
-        }
-
-        public async Task<IEnumerable<Grade>> GetGradesForPupilAsync(int accountId, int pupilId, int periodId)
-        {
-            return (await _db.GetCollection<Grade>()
+    public async Task<IEnumerable<Grade>> GetGradesForPupilAsync(int accountId, int pupilId, int periodId)
+    {
+        return (await _db.GetCollection<Grade>()
                 .FindAsync(g => g.PupilId == pupilId && g.AccountId == accountId && g.Column.PeriodId == periodId))
-                .OrderBy(g => g.Column.Subject.Name)
-                .ThenBy(g => g.DateCreated);
-        }
+            .OrderBy(g => g.Column.Subject.Name)
+            .ThenBy(g => g.DateCreated);
+    }
 
-        public async Task UpdatePupilGradesAsync(IEnumerable<Grade> newGrades)
-        {
-            await _db.GetCollection<Grade>().UpsertAsync(newGrades);
-        }
+    public async Task UpdatePupilGradesAsync(IEnumerable<Grade> newGrades)
+    {
+        await _db.GetCollection<Grade>().UpsertAsync(newGrades);
     }
 }

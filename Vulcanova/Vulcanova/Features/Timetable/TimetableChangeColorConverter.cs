@@ -4,27 +4,26 @@ using Vulcanova.Core.Layout;
 using Vulcanova.Uonet.Api.Schedule;
 using Xamarin.Forms;
 
-namespace Vulcanova.Features.Timetable
+namespace Vulcanova.Features.Timetable;
+
+public class TimetableChangeColorConverter : IValueConverter
 {
-    public class TimetableChangeColorConverter : IValueConverter
+    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        if (value is ChangeType type)
         {
-            if (value is ChangeType type)
-            {
-                var baseColor = type is ChangeType.Exemption or ChangeType.UnitExemption
-                    ? "ErrorColor"
-                    : "WarningColor";
+            var baseColor = type is ChangeType.Exemption or ChangeType.ClassAbsence
+                ? "ErrorColor"
+                : "WarningColor";
 
-                return ThemeUtility.GetThemedColorByResourceKey(baseColor);
-            }
-
-            return ThemeUtility.GetDefaultTextColor();
+            return ThemeUtility.GetThemedColorByResourceKey(baseColor);
         }
 
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        {
-            throw new NotImplementedException();
-        }
+        return ThemeUtility.GetDefaultTextColor();
+    }
+
+    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+    {
+        throw new NotImplementedException();
     }
 }

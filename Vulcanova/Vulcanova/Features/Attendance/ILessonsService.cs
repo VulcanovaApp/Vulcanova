@@ -1,10 +1,9 @@
 using System;
 using System.Collections.Generic;
 
-namespace Vulcanova.Features.Attendance
+namespace Vulcanova.Features.Attendance;
+
+public interface ILessonsService
 {
-    public interface ILessonsService
-    {
-        IObservable<IEnumerable<Lesson>> GetLessonsByMonth(int accountId, DateTime monthAndYear, bool forceSync = false);
-    }
+    IObservable<IEnumerable<Lesson>> GetLessonsByMonth(int accountId, DateTime monthAndYear, bool forceSync = false);
 }

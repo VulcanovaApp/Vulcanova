@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<NavigationPage xmlns="http://xamarin.com/schemas/2014/forms"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Vulcanova.Core.Layout.MainNavigationPage" />
+<xamForms:ReactiveNavigationPage x:TypeArguments="layout:MainNavigationPageViewModel"
+                                 xmlns="http://xamarin.com/schemas/2014/forms"
+                                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                                 xmlns:xamForms="clr-namespace:ReactiveUI.XamForms;assembly=ReactiveUI.XamForms"
+                                 xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
+                                 x:Class="Vulcanova.Core.Layout.MainNavigationPage" />

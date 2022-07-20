@@ -6,13 +6,12 @@
                       xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
                       xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
                       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-                      xmlns:luckyNumber="clr-namespace:Vulcanova.Features.LuckyNumber;assembly=Vulcanova"
                       xmlns:grades="clr-namespace:Vulcanova.Features.Grades;assembly=Vulcanova"
                       xmlns:timetable="clr-namespace:Vulcanova.Features.Timetable;assembly=Vulcanova"
                       xmlns:attendance="clr-namespace:Vulcanova.Features.Attendance;assembly=Vulcanova"
                       xmlns:exams="clr-namespace:Vulcanova.Features.Exams;assembly=Vulcanova"
-                      xmlns:dashboard="clr-namespace:Vulcanova.Features.Dashboard;assembly=Vulcanova"
                       xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
+                      xmlns:dashboard="clr-namespace:Vulcanova.Features.Dashboard;assembly=Vulcanova"
                       x:Class="Vulcanova.Core.Layout.HomeTabbedPage"
                       android:TabbedPage.ToolbarPlacement="Bottom"
                       ios:TabbedPage.TranslucencyMode="Translucent"
@@ -48,10 +47,5 @@
             <exams:ExamsView />
         </x:Arguments>
     </NavigationPage>
-    <NavigationPage Title="{x:Static resx:Strings.LuckyNumberTabTitle}"
-                    IconImageSource="{OnPlatform iOS=star-outline@3x.png, Android=ic_star_outline}">
-        <x:Arguments>
-            <luckyNumber:LuckyNumberView />
-        </x:Arguments>
-    </NavigationPage>
+    <!-- For more pages and explanation why they aren't put here see the code-behind file -->
 </layout:SvgTabbedPage>

@@ -1,16 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<forms:ContentView xmlns:forms="http://xamarin.com/schemas/2014/forms" xmlns="http://xamarin.com/schemas/2014/forms"
+<forms:ContentView xmlns:forms="http://xamarin.com/schemas/2014/forms"
+                   xmlns="http://xamarin.com/schemas/2014/forms"
                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
                    xmlns:grades="clr-namespace:Vulcanova.Features.Grades;assembly=Vulcanova"
-                   xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
                    xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
+                   xmlns:converters="clr-namespace:Vulcanova.Core.Layout.Converters;assembly=Vulcanova"
+                   xmlns:controls="clr-namespace:Vulcanova.Core.Layout.Controls;assembly=Vulcanova"
                    x:Class="Vulcanova.Features.Grades.SubjectDetails.GradesSubjectDetailsView"
-                   x:Name="View">
+                   x:Name="View"
+                   BackgroundColor="{AppThemeBinding Light={StaticResource LightPanelColor}, Dark={StaticResource DarkPanelColor}}">
     <ContentView.Resources>
         <ResourceDictionary>
             <grades:GradeColorConverter x:Key="GradeColorConverter" />
-            <layout:FallbackStringConverter x:Key="FallbackStringConverter" />
+            <converters:FallbackStringConverter x:Key="FallbackStringConverter" />
             <Style ApplyToDerivedTypes="true" TargetType="StackLayout">
                 <Setter Property="BackgroundColor"
                         Value="{AppThemeBinding Light={StaticResource LightPanelColor}, Dark={StaticResource DarkPanelColor}}" />
@@ -18,11 +21,19 @@
         </ResourceDictionary>
     </ContentView.Resources>
     <ContentPage.Content>
-        <StackLayout BindingContext="{x:Reference View}">
-            <StackLayout Orientation="Horizontal" Padding="16, 8">
-                <Label Style="{StaticResource MediumLabelStyle}" HorizontalOptions="FillAndExpand"
-                       Text="{Binding Subject.SubjectName}" />
-                <Label Text="{Binding Subject.Average, StringFormat='{0:F2}'}" />
+        <StackLayout BindingContext="{x:Reference View}" Spacing="16">
+            <Label Style="{StaticResource TitleLabelStyle}" HorizontalOptions="FillAndExpand"
+                   Padding="16, 0"
+                   Text="{Binding Subject.SubjectName}" />
+            <StackLayout Orientation="Horizontal" Spacing="16" Padding="16, 0">
+                <controls:HighlightValueView Name="{x:Static resx:Strings.GradesAverageLabel}"
+                                             Value="{Binding Subject.Average, StringFormat='{0:F2}'}" />
+                <Frame HasShadow="False" Padding="0, 10" Margin="0">
+                    <BoxView WidthRequest="1" HeightRequest="2"
+                             BackgroundColor="{AppThemeBinding Dark={StaticResource DarkSecondaryTextColor}, Light={StaticResource LightSecondaryTextColor}}" />
+                </Frame>
+                <controls:HighlightValueView Name="{x:Static resx:Strings.GradesCountLabel}"
+                                             Value="{Binding Subject.Grades.Count}" />
             </StackLayout>
             <CollectionView BindingContext="{x:Reference View}" ItemsSource="{Binding Subject.Grades}">
                 <CollectionView.ItemTemplate>
@@ -38,7 +49,8 @@
                                     HorizontalTextAlignment="Center"
                                     FontSize="Large"
                                     TextColor="{Binding Column.Color, Converter={StaticResource GradeColorConverter}}"
-                                    Text="{Binding Content}" />
+                                    Text="{Binding Content}"
+                                    LineBreakMode="TailTruncation" />
                                 <StackLayout Grid.Column="1" Orientation="Vertical" Spacing="0">
                                     <Label FontSize="Small" FontAttributes="Bold"
                                            Text="{Binding Column.Name, Converter={StaticResource FallbackStringConverter}, ConverterParameter={x:Static resx:Strings.GradeEmptyNameLabel}}" />
