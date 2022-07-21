@@ -6,18 +6,23 @@
                       xmlns:layout="clr-namespace:Vulcanova.Core.Layout;assembly=Vulcanova"
                       xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
                       xmlns:ios="clr-namespace:Xamarin.Forms.PlatformConfiguration.iOSSpecific;assembly=Xamarin.Forms.Core"
-                      xmlns:luckyNumber="clr-namespace:Vulcanova.Features.LuckyNumber;assembly=Vulcanova"
                       xmlns:grades="clr-namespace:Vulcanova.Features.Grades;assembly=Vulcanova"
                       xmlns:timetable="clr-namespace:Vulcanova.Features.Timetable;assembly=Vulcanova"
                       xmlns:attendance="clr-namespace:Vulcanova.Features.Attendance;assembly=Vulcanova"
                       xmlns:exams="clr-namespace:Vulcanova.Features.Exams;assembly=Vulcanova"
-                      xmlns:homework="clr-namespace:Vulcanova.Features.Homework;assembly=Vulcanova"
                       xmlns:resx="clr-namespace:Vulcanova.Resources;assembly=Vulcanova"
+                      xmlns:dashboard="clr-namespace:Vulcanova.Features.Dashboard;assembly=Vulcanova"
                       x:Class="Vulcanova.Core.Layout.HomeTabbedPage"
                       android:TabbedPage.ToolbarPlacement="Bottom"
                       ios:TabbedPage.TranslucencyMode="Translucent"
                       android:TabbedPage.IsSwipePagingEnabled="False"
                       NavigationPage.HasNavigationBar="False">
+    <NavigationPage Title="{x:Static resx:Strings.DashboardTabTitle}"
+                    IconImageSource="{OnPlatform iOS=calendar-outline@3x.png, Android=ic_calendar_outline}">
+        <x:Arguments>
+            <dashboard:DashboardView  />
+        </x:Arguments>
+    </NavigationPage>
     <NavigationPage Title="{x:Static resx:Strings.GradesTabTitle}"
                     IconImageSource="{OnPlatform iOS=medal-outline@3x.png, Android=ic_medal_outline}">
         <x:Arguments>
